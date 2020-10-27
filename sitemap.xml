@@ -2,27 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2019/12/24/Paper%20Reading%20|%20The%20spaces%20of%20human%20body%20shapes:%20reconstruction%20and%20parameterization%20from%20range%20scans./</loc>
-    
-    <lastmod>2020-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/02/19/Machine-Learning-2019-1-Anomaly-Detection-%E5%BC%82%E5%B8%B8%E4%BE%A6%E6%B5%8B/</loc>
-    
-    <lastmod>2020-10-18</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/07/02/Algorithm-Binary-Heap/</loc>
-    
-    <lastmod>2020-10-17</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2020/10/17/test/</loc>
     
     <lastmod>2020-10-17</lastmod>
@@ -30,408 +9,429 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/06/23/Algorithm-Binary-Tree/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/12/28/Algorithm-Computational-Complexity/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/01/13/Algorithm-Leetcode-search/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/01/16/Algorithm-LinkedList/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/06/08/Algorithm-Sorting/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/02/17/Esitimation-and-Detection-Hypothesis-testing/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/01/15/Estimation-and-Detection-Bayes-Decision-Theory/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/01/16/Estimation-and-Detection-Properties-of-estimators/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/02/23/Machine-Learning-2019-3-Explainable-Machine-Learning-%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/01/Machine-Learning-2019-4-Life-Long-Learning/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/19/Machine-Learning-2020-Lecture-0-Introduction/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/28/Machine-Learning-2020-Lecture-2-Classification/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/13/Machine-Learning-2020-Lecture-2-New-Optimization/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/07/04/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Recipe-for-Deep-Learning/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/07/15/Machine-Learning-2020-Lecture-5-Convolutional-Neural-Network/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/14/Machine-Learning-2020-Week-4-Deep-Learning-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/01/06/Notes-Different-distances/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/01/07/Notes-Kmeans-and-KNN/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/01/06/Paper-Reading-Active-Shape-Model-Segmentation-With-Optimal-Features/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/12/31/Paper-Reading-Active-Shape-Model-their-training-and-application/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/12/27/Paper-Reading-Building-dtatistical-shape-spaces-for-3D-human-modeling/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/01/13/Paper-Reading-ClothFlow-A-Flow-Based-Model-for-Clothed-Person-Generation/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/21/Paper-Reading-MobileNetV2-Inverted-Residuals-and-Linear-Bottlenecks/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/12/29/Paper-Reading-SCAPE-Shape-Completion-and-Animation-of-People/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/02/09/Paper-Reading-Searching-for-MobileNet-V3/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/01/07/Paper-Reading-U-Net-Convolutional-Networks-for-Biomedical-Image-Segmentation/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/09/PaperReading-BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/22/PaperReading-MobileNetsV1/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/06/12/PaperReading-SMPL-A-Skinned-Multi-Person-Linear-Model/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/23/PaperReading-Semantic-Human-Matting/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/24/PaperReading-Unsupervised-Prepresentation-Learning-with-Deep-Convolutional-GAN/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/11/12/System%20and%20Signals%20|%20Chapter%201%20/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/19/whatidid-gensim-word2vec-doc/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/05/16/whatidid-%E6%8F%90%E5%8F%96CCL%E8%AF%AD%E6%96%99%E6%A3%80%E7%B4%A2%E5%BA%93%E6%A3%80%E7%B4%A2%E6%95%B0%E6%8D%AE/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/11/07/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/18/%E5%B9%B2%E8%B4%A7-BLEU-score/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/07/20/%E5%B9%B2%E8%B4%A7-%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B%E5%AD%90/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/01/09/Algorithm-Leetcode-array/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/06/06/Algorithm-Leetcode-June%20Challenge/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/categories/index.html</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/tags/index.html</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/02/24/Algorithm-Leetcode-Dynamic-Programming/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/01/15/Estimation-and-Detection-Intro/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/02/21/Machine-Learning-2019-2-Attack-and-Defense-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/07/Machine-Learning-2019-5-Meta-Learning/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/02/19/Machine-Learning-2019-Introduction/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/19/Machine-Learning-2020-Lecture-1-Regression/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/07/05/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Backpropagation/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2020/07/24/Paper-Reading-Deep-Residual-Learning-for-Image-Recognition/</loc>
     
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/12/24/System%20and%20Signals%20|%20Chapter%201_2%20/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/12/whatidid-%E3%80%90%E7%99%BE%E5%BA%A6PaddlePaddle%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A07%E6%97%A5%E5%85%A5%E9%97%A8-CV%E7%96%AB%E6%83%85%E4%B8%93%E9%A2%98/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/05/whatidid-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B8%AD%E4%B8%8D%E5%90%8C%E4%BB%BB%E5%8A%A1%E4%B8%8B%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E6%80%BB%E7%BB%93/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/07/19/%E5%B9%B2%E8%B4%A7-Canny-Edge-Detector/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/12/26/%E5%B9%B2%E8%B4%A7-hexo%E4%BD%BF%E7%94%A8%E5%87%BA%E7%8E%B0%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/</loc>
-    
-    <lastmod>2020-09-24</lastmod>
+    <lastmod>2020-07-24</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2020/07/22/%E5%B9%B2%E8%B4%A7-%E5%87%A0%E7%A7%8D%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E7%BD%91%E7%BB%9C/</loc>
     
-    <lastmod>2020-09-24</lastmod>
+    <lastmod>2020-07-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/20/%E5%B9%B2%E8%B4%A7-%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E7%89%B9%E5%BE%81%E6%A3%80%E6%B5%8B%E5%AD%90/</loc>
+    
+    <lastmod>2020-07-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/19/%E5%B9%B2%E8%B4%A7-Canny-Edge-Detector/</loc>
+    
+    <lastmod>2020-07-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/15/Machine-Learning-2020-Lecture-5-Convolutional-Neural-Network/</loc>
+    
+    <lastmod>2020-07-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/05/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Backpropagation/</loc>
+    
+    <lastmod>2020-07-05</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/04/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Recipe-for-Deep-Learning/</loc>
+    
+    <lastmod>2020-07-04</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/02/Algorithm-Binary-Heap/</loc>
+    
+    <lastmod>2020-07-02</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2020/06/30/Algorithm-LeetCode-July-Challenge/</loc>
     
-    <lastmod>2020-09-24</lastmod>
+    <lastmod>2020-06-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/06/23/Algorithm-Binary-Tree/</loc>
+    
+    <lastmod>2020-06-23</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/06/12/PaperReading-SMPL-A-Skinned-Multi-Person-Linear-Model/</loc>
+    
+    <lastmod>2020-06-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/06/08/Algorithm-Sorting/</loc>
+    
+    <lastmod>2020-06-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/06/06/Algorithm-Leetcode-June%20Challenge/</loc>
+    
+    <lastmod>2020-06-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/05/16/whatidid-%E6%8F%90%E5%8F%96CCL%E8%AF%AD%E6%96%99%E6%A3%80%E7%B4%A2%E5%BA%93%E6%A3%80%E7%B4%A2%E6%95%B0%E6%8D%AE/</loc>
+    
+    <lastmod>2020-05-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/19/whatidid-gensim-word2vec-doc/</loc>
+    
+    <lastmod>2020-04-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/14/Machine-Learning-2020-Week-4-Deep-Learning-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/</loc>
+    
+    <lastmod>2020-04-14</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/13/Machine-Learning-2020-Lecture-2-New-Optimization/</loc>
+    
+    <lastmod>2020-04-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/12/whatidid-%E3%80%90%E7%99%BE%E5%BA%A6PaddlePaddle%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A07%E6%97%A5%E5%85%A5%E9%97%A8-CV%E7%96%AB%E6%83%85%E4%B8%93%E9%A2%98/</loc>
+    
+    <lastmod>2020-04-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/09/PaperReading-BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/</loc>
+    
+    <lastmod>2020-04-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/05/whatidid-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B8%AD%E4%B8%8D%E5%90%8C%E4%BB%BB%E5%8A%A1%E4%B8%8B%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E6%80%BB%E7%BB%93/</loc>
+    
+    <lastmod>2020-04-05</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2020/03/28/PaperReading-Google-s-Neural-Machine-Translation-System-Bridging-the-Gap-between-Human-and-Machine-Translation/</loc>
     
-    <lastmod>2020-09-24</lastmod>
+    <lastmod>2020-03-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/28/Machine-Learning-2020-Lecture-2-Classification/</loc>
+    
+    <lastmod>2020-03-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/24/PaperReading-Unsupervised-Prepresentation-Learning-with-Deep-Convolutional-GAN/</loc>
+    
+    <lastmod>2020-03-24</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/23/PaperReading-Semantic-Human-Matting/</loc>
+    
+    <lastmod>2020-03-23</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/22/PaperReading-MobileNetsV1/</loc>
+    
+    <lastmod>2020-03-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/21/Paper-Reading-MobileNetV2-Inverted-Residuals-and-Linear-Bottlenecks/</loc>
+    
+    <lastmod>2020-03-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/19/Machine-Learning-2020-Lecture-0-Introduction/</loc>
+    
+    <lastmod>2020-03-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/19/Machine-Learning-2020-Lecture-1-Regression/</loc>
+    
+    <lastmod>2020-03-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/18/%E5%B9%B2%E8%B4%A7-BLEU-score/</loc>
+    
+    <lastmod>2020-03-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/07/Machine-Learning-2019-5-Meta-Learning/</loc>
+    
+    <lastmod>2020-03-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/01/Machine-Learning-2019-4-Life-Long-Learning/</loc>
+    
+    <lastmod>2020-03-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/02/24/Algorithm-Leetcode-Dynamic-Programming/</loc>
+    
+    <lastmod>2020-02-25</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/02/23/Machine-Learning-2019-3-Explainable-Machine-Learning-%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
+    
+    <lastmod>2020-02-23</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/02/21/Machine-Learning-2019-2-Attack-and-Defense-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/</loc>
+    
+    <lastmod>2020-02-21</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/02/19/Machine-Learning-2019-1-Anomaly-Detection-%E5%BC%82%E5%B8%B8%E4%BE%A6%E6%B5%8B/</loc>
+    
+    <lastmod>2020-02-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/02/19/Machine-Learning-2019-Introduction/</loc>
+    
+    <lastmod>2020-02-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/02/17/Esitimation-and-Detection-Hypothesis-testing/</loc>
+    
+    <lastmod>2020-02-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/02/09/Paper-Reading-Searching-for-MobileNet-V3/</loc>
+    
+    <lastmod>2020-02-10</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/16/Algorithm-LinkedList/</loc>
+    
+    <lastmod>2020-01-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/16/Estimation-and-Detection-Properties-of-estimators/</loc>
+    
+    <lastmod>2020-01-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/15/Estimation-and-Detection-Bayes-Decision-Theory/</loc>
+    
+    <lastmod>2020-01-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/15/Estimation-and-Detection-Intro/</loc>
+    
+    <lastmod>2020-01-15</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/13/Paper-Reading-ClothFlow-A-Flow-Based-Model-for-Clothed-Person-Generation/</loc>
+    
+    <lastmod>2020-01-14</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/13/Algorithm-Leetcode-search/</loc>
+    
+    <lastmod>2020-01-14</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/09/Algorithm-Leetcode-array/</loc>
+    
+    <lastmod>2020-01-09</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/07/Paper-Reading-U-Net-Convolutional-Networks-for-Biomedical-Image-Segmentation/</loc>
+    
+    <lastmod>2020-01-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/07/Notes-Kmeans-and-KNN/</loc>
+    
+    <lastmod>2020-01-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/06/Notes-Different-distances/</loc>
+    
+    <lastmod>2020-01-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/01/06/Paper-Reading-Active-Shape-Model-Segmentation-With-Optimal-Features/</loc>
+    
+    <lastmod>2020-01-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/12/31/Paper-Reading-Active-Shape-Model-their-training-and-application/</loc>
+    
+    <lastmod>2019-12-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/12/29/Paper-Reading-SCAPE-Shape-Completion-and-Animation-of-People/</loc>
+    
+    <lastmod>2019-12-29</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/12/28/Algorithm-Computational-Complexity/</loc>
+    
+    <lastmod>2019-12-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/12/27/Paper-Reading-Building-dtatistical-shape-spaces-for-3D-human-modeling/</loc>
+    
+    <lastmod>2019-12-28</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/12/26/%E5%B9%B2%E8%B4%A7-hexo%E4%BD%BF%E7%94%A8%E5%87%BA%E7%8E%B0%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/</loc>
+    
+    <lastmod>2019-12-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/12/24/Paper%20Reading%20|%20The%20spaces%20of%20human%20body%20shapes:%20reconstruction%20and%20parameterization%20from%20range%20scans./</loc>
+    
+    <lastmod>2019-12-25</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/12/24/System%20and%20Signals%20|%20Chapter%201_2%20/</loc>
+    
+    <lastmod>2019-12-24</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/11/12/System%20and%20Signals%20|%20Chapter%201%20/</loc>
+    
+    <lastmod>2019-11-12</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/11/07/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/</loc>
+    
+    <lastmod>2019-11-07</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/test/index.html</loc>
     
-    <lastmod>2020-09-24</lastmod>
+    <lastmod>2019-11-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/categories/index.html</loc>
+    
+    <lastmod>2019-11-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/index.html</loc>
+    
+    <lastmod>2019-11-06</lastmod>
     
   </url>
   
@@ -564,14 +564,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/Explainable-Machine-Learning/</loc>
+    <loc>http://yoursite.com/tags/Life-Long-Learning/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/Life-Long-Learning/</loc>
+    <loc>http://yoursite.com/tags/Explainable-Machine-Learning/</loc>
     <lastmod>2020-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
