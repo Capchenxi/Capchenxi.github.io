@@ -1,23 +1,1022 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="光">
+<meta property="og:url" content="http://yoursite.com/page/6/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:locale">
+<meta property="article:author" content="Chenxi">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/page/6/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Chenxi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+      
+
+      
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/31/Paper-Reading-Active-Shape-Model-their-training-and-application/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/31/Paper-Reading-Active-Shape-Model-their-training-and-application/" class="post-title-link" itemprop="url">论文阅读 | Active Shape Model - their training and application</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-12-31 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-31T00:00:00-05:00">2019-12-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li>论文题目：<a target="_blank" rel="noopener" href="https://pdfs.semanticscholar.org/f731/b6745d829241941307c3ebf163e90e200318.pdf">Active Shape Model - their training and application</a></li>
+<li>论文作者： $T.F.Cootes,  C. J. Taylor, D. H. Cooper, J. Graha$</li>
+<li>Implementation: <a target="_blank" rel="noopener" href="https://www.mathworks.com/matlabcentral/fileexchange/26706-active-shape-model-asm-and-active-appearance-model-aam">https://www.mathworks.com/matlabcentral/fileexchange/26706-active-shape-model-asm-and-active-appearance-model-aam</a></li>
+<li><strong>论文原文中的一些翻译可能不准确，（）中的部分为论文原文中的术语</strong></li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>基于模型的视觉(model-based vision)在识别和定位刚性物体方面都是具有鲁棒性(robustness)的方法。将基于模型的方法应用在一些可能会产生外形变化的图片上时，会产生问题。这些灵活的模型为了适应图片中物体外形的变化，会牺牲自身模板本来的形状，因此鲁棒性会降低。本文指出，一个模型只能在其所代表的属类下进行特征变换。文章提出了一种从具有多重差异的训练集中学习模式特性来建立模型的方法。这些模型可以被用来进行迭代的图片搜索，和Active Contour Models(snakes)相似。 两种的主要哲别是文章提出的ASM 模型只可以应用于和训练集模型相似的变形。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/31/Paper-Reading-Active-Shape-Model-their-training-and-application/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/29/Paper-Reading-SCAPE-Shape-Completion-and-Animation-of-People/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/29/Paper-Reading-SCAPE-Shape-Completion-and-Animation-of-People/" class="post-title-link" itemprop="url">论文阅读 | SCAPE: Shape Completion and Animation of People</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-12-29 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-29T00:00:00-05:00">2019-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li>论文题目：<a target="_blank" rel="noopener" href="http://robots.stanford.edu/papers/anguelov.shapecomp.pdf">SCAPE: Shape Completion and Animation of People</a></li>
+<li>论文作者：$ \it Dragomir\ Anguelov, Praveen\ Srinivasan, \Daphne\ Koller, Sebastian\ Thrun, Jim\ Rodgers, James\ Davis$</li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>文章介绍了 SCAPE 方法，一种在人体形态和姿态的变量上都可拓展的数据驱使的方法。这个方法是基于关节点(articulated)和非刚性(non-rigid)的表达方式。文章学习了一种姿态分解模型可以驱使非刚性曲面作为一个关于关节点骨骼变化（articulated skeleton）的方程。文章同样学习了另一种基于人体形态的变量模型。结合两种模型，作者可以生产不同人在不同姿态下具有真实肌肉变化的人体模型，即使这个模型不在训练集中。</p>
+<p>文章展示了自己的模型如何实现 shape completion , 也就是说在有限的已知标定点（marker）下，实现目标人体模型曲面(surface mesh)。该方法可以生成一个正在运动的人高质量动画曲面，拥有真实的肌肉变化。而实现这些只需要一个数据扫描模型和一系列的标记点。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/29/Paper-Reading-SCAPE-Shape-Completion-and-Animation-of-People/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/28/Algorithm-Computational-Complexity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/28/Algorithm-Computational-Complexity/" class="post-title-link" itemprop="url">Algorithm | Computational Complexity</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-12-28 18:56:09" itemprop="dateCreated datePublished" datetime="2019-12-28T18:56:09-05:00">2019-12-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/Google-Interview/" itemprop="url" rel="index"><span itemprop="name">Google Interview</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="算法复杂度"><a href="#算法复杂度" class="headerlink" title="算法复杂度"></a>算法复杂度</h1><p>定义 Big-Oh, $O(*)$ 表示算法的复杂度</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/28/Algorithm-Computational-Complexity/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/27/Paper-Reading-Building-dtatistical-shape-spaces-for-3D-human-modeling/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/27/Paper-Reading-Building-dtatistical-shape-spaces-for-3D-human-modeling/" class="post-title-link" itemprop="url">Paper Reading | Building statistical shape spaces for 3D human modeling</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-12-27 20:52:03" itemprop="dateCreated datePublished" datetime="2019-12-27T20:52:03-05:00">2019-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li><p>论文题目： <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1503.05860.pdf">Building statistical shape spaces for 3D human modeling</a> </p>
+<p>​                    建立3D人体模型的统计模型</p>
+</li>
+<li><p>论文作者：$\it Leonid \ Pishchulin, Stefanie \ Wuhrer, Thomas\ Helten, Christian\ Theobalt, Bernt\ Schiele$</p>
+</li>
+<li><p>相关代码：<a target="_blank" rel="noopener" href="https://github.com/leonid-pishchulin/humanshape">https://github.com/leonid-pishchulin/humanshape</a></p>
+</li>
+</ul>
+<h1 id="0-摘要"><a href="#0-摘要" class="headerlink" title="0 摘要"></a>0 摘要</h1><p>从扫描数据中学习3D人体形态和姿态的统计模型可以为现有的视觉和图形问题提供很好的解决方案。但发布在网上可供大众使用的扫描模型比较少。这篇文章主要将大型的商用人体扫描模型数据库中的数据拟合在高效的统计模型中。并且评价了数据的准确性和从稀疏数据进行模型恢复的效果提高。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/27/Paper-Reading-Building-dtatistical-shape-spaces-for-3D-human-modeling/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/%E5%B9%B2%E8%B4%A7-hexo%E4%BD%BF%E7%94%A8%E5%87%BA%E7%8E%B0%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/26/%E5%B9%B2%E8%B4%A7-hexo%E4%BD%BF%E7%94%A8%E5%87%BA%E7%8E%B0%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">干货 | hexo使用出现的小问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-12-26 22:53:29" itemprop="dateCreated datePublished" datetime="2019-12-26T22:53:29-05:00">2019-12-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B9%B2%E8%B4%A7/" itemprop="url" rel="index"><span itemprop="name">干货</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>（不断更新中…）</p>
+<h1 id="首页文章latex渲染成功但文章单独页面点开没有latex渲染"><a href="#首页文章latex渲染成功但文章单独页面点开没有latex渲染" class="headerlink" title="首页文章latex渲染成功但文章单独页面点开没有latex渲染"></a>首页文章latex渲染成功但文章单独页面点开没有latex渲染</h1><p>我的问题：首页latex渲染成功，但是点击文章链接来到文章单独的页面就是乱码了。</p>
+<p>首先，我的诉求是在文章中用到Latex的公式，使得文章中的符号和方程能更优（tong）雅（su）得表示出来。于是我先选择了使用mathjax，当然也有别的了，但是那就是另一个问题了($\times$)</p>
+<p>所以你要知道如何在hexo中植入mathjax，这里有我觉得还不错的<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/MATH.md">教程1</a> <a target="_blank" rel="noopener" href="https://abelsu7.top/2018/10/29/hexo-mathjax/">教程2</a>。</p>
+<p>那么接下来，如果你首页的Latex渲染成功了，那说明你导入的mathjax有效果了，但如果你的单独文章页面还是乱码一片的话，你可以考虑下面的解决方法：</p>
+<p>是因为在文章前面的介绍部分</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line">title:</span><br><span class="line">data:</span><br><span class="line">tages:</span><br><span class="line">categories:</span><br><span class="line">**mathjax: true**</span><br><span class="line">&#x27;&#x27;&#x27;</span><br></pre></td></tr></table></figure>
+<p>这部分的mathjax忘记开启了。如果加上 mathjax: true 的话，就能在点击文章单独页面也成功进行latex渲染了</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/26/%E5%B9%B2%E8%B4%A7-hexo%E4%BD%BF%E7%94%A8%E5%87%BA%E7%8E%B0%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/24/Paper%20Reading%20|%20The%20spaces%20of%20human%20body%20shapes:%20reconstruction%20and%20parameterization%20from%20range%20scans./">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/24/Paper%20Reading%20%7C%20The%20spaces%20of%20human%20body%20shapes:%20reconstruction%20and%20parameterization%20from%20range%20scans./" class="post-title-link" itemprop="url">论文阅读 | The space of human body shapes - reconstruction and parameterization from range scans</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-12-24 20:21:13" itemprop="dateCreated datePublished" datetime="2019-12-24T20:21:13-05:00">2019-12-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li><p><strong>论文题目</strong>：<a target="_blank" rel="noopener" href="https://grail.cs.washington.edu/projects/digital-human/pub/allen03space-submit.pdf">The space of human body shapes: reconstruction and parameterization from range scans</a></p>
+<p>​                   人体形态空间：大范围扫描得到的重建和参数化模型</p>
+</li>
+<li><p><strong>论文作者</strong>：  $Brett Allen, Brian Curless, Zoran Popovi\acute{c}$</p>
+</li>
+</ul>
+<h1 id="0-摘要"><a href="#0-摘要" class="headerlink" title="0 摘要"></a>0 摘要</h1><p>本文主要提出了一种新的能够利用稀疏标记点将高分辨率的mesh模板（high-resolution mesh template）拟合在精细的身体范围扫描上的方法。本文将拟合问题转化成了对模型中每个顶点进行affine transformation的优化问题，所用到的优化函数由三个加权因素构成： 变换后的顶点与原扫描数据之间的距离， 临近顶点所做的affine transformation的相似性， 以及稀疏标记点在模板和在扫描面的距离。主要用到的范围扫描数据来自于CAESAR数据库。</p>
+<p>文章主要介绍的就是一种基于模板的(template-based)非刚性的，可以形成点对点对应关系的，对于整体形状相似，但部分指标（如身高，三维）有所差异的扫描模型的registration方法。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/24/Paper%20Reading%20%7C%20The%20spaces%20of%20human%20body%20shapes:%20reconstruction%20and%20parameterization%20from%20range%20scans./#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/24/System%20and%20Signals%20|%20Chapter%201_2%20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/24/System%20and%20Signals%20%7C%20Chapter%201_2%20/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-12-24 16:04:33" itemprop="dateCreated datePublished" datetime="2019-12-24T16:04:33-05:00">2019-12-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <a id="more"></a>
+<p>1.5 Properties of systems.<br>系统的性质有很多，包括线性(linearity), 因果性(causality)<br>1.5.1 Linearity<br>线性很好理解，我们都学过线性方程，那线性系统也是形式相似的系统。<br>一个系统是否为线性，需要满足两个特性：Addility Homogeneity<br>Addity就是说如果两个信号的和在通过系统后的结果，等于两个信号分别通过系统后的响应和。那么这个系统就符合Addility<br>Homogeneity是说，如果输入信号扩大/缩小的倍数等于响应扩大/缩小的倍数，那么，这个系统就符合Homogeneity.<br>一般情况下我们可以同时证明两种特性：<br>1.5.2 Causality<br>因果关系看着有些像语文的阅读理解，但其实他也就是字面的意思。有因必有果，你的报应（…不是）。既然说了因为关系，那么肯定是现有原因才有结果。所以符合因果关系的系统需要遵循的是：当前的输出只由当前时刻或在当前时刻之前的时刻决定，也就是过去和现在决定现在，而不是未来决定现在。所以几乎所有我们在日常生活中见到的系统都是causal system. 那么，由未来决定现在的系统叫做anti-calsal system.<br>\fi</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/12/System%20and%20Signals%20|%20Chapter%201%20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/12/System%20and%20Signals%20%7C%20Chapter%201%20/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-11-12 17:56:54" itemprop="dateCreated datePublished" datetime="2019-11-12T17:56:54-05:00">2019-11-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Chapter-1-Signals-and-Systems"><a href="#Chapter-1-Signals-and-Systems" class="headerlink" title="Chapter 1 Signals and Systems"></a>Chapter 1 Signals and Systems</h3><ul>
+<li>Complex number</li>
+<li>Even and Odd Function</li>
+<li>Impulse, step and ramp functions</li>
+<li>Examples of systems/connections of systems</li>
+<li>Properties of system</li>
+<li>Basic Problems<h4 id="0-Introduction"><a href="#0-Introduction" class="headerlink" title="0 Introduction"></a>0 Introduction</h4>本章提到的都是一些信号与系统中会用到的基础的数学知识以及基本的系统概念。很基础也很重要的东西。<br>既然课程的名称叫信号与系统，那什么是信号，什么是系统呢。其实我们对信号和对系统都会有大概的认识，我们发出的信息都可以被看做是以某种形式存在的信号，比如生物课本中学到的细胞会发出化学物质实现融合，日常生活中也会听到各种的光信号和声信号。这些可以发出信息的现象都可以被看做是信号的产生。</li>
+</ul>
+<p>那什么又是系统呢？在Wiki中，系统的定义是：A system is a group of interacting or interrelated entities that form a unified whole. 也就是说，一切可以产生相互作用或者相关的实体组成的整体，就会被称作系统。我们听到过很专业的词，比如供电系统，温控系统，但系统不仅仅如此。一个拿着平衡木骑独轮车的人和这些道具也构成一个系统，大自然中水的循环也是一个系统。系统的定义不分大小，只看整体中相互作用的个体。</p>
+<p>在这本书中，我们遇到的都是电子相关的信号与系统。我们会去讨论的，也是在电路或者通信中可能会遇到的不同形式的信号、系统以及它们相互之间的变换。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/12/System%20and%20Signals%20%7C%20Chapter%201%20/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/07/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/07/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/" class="post-title-link" itemprop="url">写在前面</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-11-07 11:42:51" itemprop="dateCreated datePublished" datetime="2019-11-07T11:42:51-05:00">2019-11-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <a id="more"></a>
+<p>上小学的时候，每次新学期开始，语文课本的第一页都是“写在前面”。那时候的“写在前面”是让我们好好珍惜时光，告诉我们你们又升高了一个年级，这学期我们又要接触全新的作者了。那时候我觉得这些话都是多余的，我只要看了正文不就好了吗，所以我很少真正去看“写在前面”的话，包括书的序，数学课本的符号定义。但是，当有一天我也开始想写“写在前面”的话的时候，我才多少了解到，前面的这些话是开始的契机，对于自己来说，更像是一个交代。我为什么要开始写，我写的时候希望自己能做到怎样，都是无法写在正文却又想要表达的东西。写下这些话有时候更像是种仪式感，告诉自己，你已经开始追寻自己想要的做的事了哦，不要轻易放弃。<br>我是一个喜欢表达的人，虽然不常也不敢在太多人面前讲话，但拉到一个投机的熟人就能侃侃而谈。有时候跟人正说着话，自己也能清楚的意识到我是在为了说话而说话，大脑的储备不够就无法做出有效的输出，说出的一切不过是在重复之前看到的别人的观点。当这些发生时，我便会草草结束这我的发言，听别人讲。小学的时候，每逢暑假，我和我的小伙伴就会在学校实验楼前面的大厅表演节目给大人们看。节目是自发准备的，唱歌，跳舞，翻跟头，各种类型和花样应有尽有。但我最喜欢干的是主持人。美丽，落落大方，言行得体，这些美好的形容词是小时候的我给主持人这个职业贴上的标签，也是我后来一直向往被贴上的标签。再后来，由于种种原因，大学选择了教育专业。师范学校的学生，每逢周末或者是下午放学的时候，都会带一些短时的家教。我也成为了其中一个。和中学生不断进行的学科内容的输出和讨论让我觉得分享知识这件事会让我得到极大的成就感和满足感。一直持续到现在，我还在学校里，也有幸持续做着某一门课的助教。一直以来的学习和搜索都让我有继续分享知识和讨论的冲动。每次遇到一批新的学生，大家都有质疑权威的勇气，也有一些奇妙的想法喷薄而出，可能在我学习这些课程时没有想到的东西，被一些学生注意到了。在进一步的讨论中，无论质疑的对错都会让我们对知识的理解更进一步，也就是教学相长。所以我希望我也一样，把自己对一些知识的理解和积累分享出来，希望能和更多的人讨论和发现新的天地。<br>在我决定写下这篇文章开始做这件事的时候，正巧，一个朋友说在11月中旬或者下旬要搬走了。对她来说，可能是个新的开始。对我来说，可能是个有些难已接受的告别。但我们都要和旧的自己说再见的，会有新的开始，也一定会在别的地方后会有期。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+  </nav>
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenxi</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

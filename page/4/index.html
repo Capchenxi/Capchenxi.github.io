@@ -1,23 +1,1142 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="光">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:locale">
+<meta property="article:author" content="Chenxi">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/page/4/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Chenxi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+      
+
+      
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/07/Machine-Learning-2019-5-Meta-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/07/Machine-Learning-2019-5-Meta-Learning/" class="post-title-link" itemprop="url">Machine Learning-2019| 5 Meta Learning</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-07 18:20:17" itemprop="dateCreated datePublished" datetime="2020-03-07T18:20:17-05:00">2020-03-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Chapter 5. Meta Learning</p>
+<p>这部分讨论的是如何让机器学习如何学习。一般来说，在我们做机器学习的时候，我们通常会定义某种学习模型，给予这些模型的的初始化参数，定义模型的学习机制/优化算法等等。但是我们在教机器如何学习的时候，我们是想让机器在学习一系列Task之后，在遇到新的模型时，自己去选择模型，选择参数，选择优化算法，然后运用在其他的Task上面。</p>
+<p>然后简单介绍Meta Learning的学习步骤，之后会举例说明MAML 和 Reptile两种算法.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/07/Machine-Learning-2019-5-Meta-Learning/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/01/Machine-Learning-2019-4-Life-Long-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/01/Machine-Learning-2019-4-Life-Long-Learning/" class="post-title-link" itemprop="url">Machine Learning-2019| 4 Life Long Learning</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-01 11:02:21" itemprop="dateCreated datePublished" datetime="2020-03-01T11:02:21-05:00">2020-03-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h2><p>$R_{i,j}$ </p>
+<ul>
+<li>Accuracy</li>
+<li>Backward trasfer = (usually negative)  若+就很厉害</li>
+<li>Forward transfer</li>
+</ul>
+<h3 id="Gradient-Episodic-Memory"><a href="#Gradient-Episodic-Memory" class="headerlink" title="Gradient Episodic Memory"></a>Gradient Episodic Memory</h3><p>$g’ \cdot g^1 \geq 0$</p>
+<p>$g’ \cdot g^2 \geq 0$</p>
+<p>沿着新的 $g’$ 的方向移动（需要存一些之前的data来算 g1g2）</p>
+<h1 id="Model-Expansion"><a href="#Model-Expansion" class="headerlink" title="Model Expansion"></a>Model Expansion</h1><p>已经学不起来了-》扩张model的大小</p>
+<p>有策略扩张</p>
+<ul>
+<li><p>Progressive Neural Network</p>
+<p>Task 1 训练固定（记住参数</p>
+<p>Task 2 的input 会吃task 1的output</p>
+<p>task越多，hiddenlayer越多</p>
+<ul>
+<li><p>Expert Gate</p>
+<p>观察新的任务和之前哪个任务最像 多一个任务多一个model</p>
+</li>
+<li><p>Net2net, 让network长宽</p>
+<p>两个neural是相同的，参数一样的： add small noise</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Curriculum-Learning"><a href="#Curriculum-Learning" class="headerlink" title="Curriculum Learning"></a>Curriculum Learning</h2><p>如何在任务上排序</p>
+<p>what is the proper learning order?</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/24/Algorithm-Leetcode-Dynamic-Programming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/24/Algorithm-Leetcode-Dynamic-Programming/" class="post-title-link" itemprop="url">Algorithm | Leetcode - Dynamic Programming</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-02-24 22:02:39" itemprop="dateCreated datePublished" datetime="2020-02-24T22:02:39-05:00">2020-02-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Dynamic-Programming-部分总结"><a href="#Dynamic-Programming-部分总结" class="headerlink" title="Dynamic Programming 部分总结"></a>Dynamic Programming 部分总结</h1><p>这部分主要总结动态规划。</p>
+<p>动态规划最重要的两个点是找： </p>
+<ol>
+<li>dynamic state；</li>
+<li>state transition equation</li>
+</ol>
+<p>语言： Python3</p>
+<h1 id="NO-5-Longest-Palindromic-Substring"><a href="#NO-5-Longest-Palindromic-Substring" class="headerlink" title="NO.5 Longest Palindromic Substring"></a>NO.5 Longest Palindromic Substring</h1><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.</span><br><span class="line"></span><br><span class="line">Example 1:</span><br><span class="line"></span><br><span class="line">Input: &quot;babad&quot;</span><br><span class="line">Output: &quot;bab&quot;</span><br><span class="line">Note: &quot;aba&quot; is also a valid answer.</span><br><span class="line">Example 2:</span><br><span class="line"></span><br><span class="line">Input: &quot;cbbd&quot;</span><br><span class="line">Output: &quot;bb&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>假定动态规划矩阵为 DP(i,j)，输入字符串为s</p>
+<ul>
+<li><strong>State</strong>：DP(l, r) 每个substring s(l:r)是否为一个palindrome，如果是，赋予True值，如果不是，赋予False值</li>
+<li><strong>State transition equation</strong>：DP(l,r) = True if s(l) == s(r) and DP(l+1, r-1) = True.</li>
+<li><strong>Base case</strong>: DP(l,r) = True if l == r;  DP(l,r) = True if s(l) == s(r) and l == r-1; </li>
+<li>需要注意的一点是 : l &lt;= r 这样在定义 DP矩阵的时候，只关注矩阵的一半右下角就可以了</li>
+</ul>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">longestPalindrome</span>(<span class="params">self, s</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type s: str</span></span><br><span class="line"><span class="string">    :rtype: str</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    N = <span class="built_in">len</span>(s)</span><br><span class="line">    memo = [[<span class="number">0</span>]*N <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(N)]</span><br><span class="line">    max_len = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">        i = N - <span class="number">1</span> - i</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i, N):</span><br><span class="line">            <span class="keyword">if</span> i == j:</span><br><span class="line">                memo[i][j] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> <span class="number">1</span> &gt; <span class="built_in">len</span>(max_len):</span><br><span class="line">                    max_len = s[i:j+<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">elif</span> j - i == <span class="number">1</span> <span class="keyword">and</span> s[i] == s[j]:</span><br><span class="line">                memo[i][j] = <span class="number">1</span></span><br><span class="line">                max_len = <span class="built_in">max</span>(max_len, <span class="number">2</span>)</span><br><span class="line">                <span class="keyword">if</span> <span class="number">2</span> &gt; <span class="built_in">len</span>(max_len):</span><br><span class="line">                    max_len = s[i:j+<span class="number">1</span>]</span><br><span class="line">                    </span><br><span class="line">            <span class="keyword">elif</span> memo[i+<span class="number">1</span>][j<span class="number">-1</span>] == <span class="number">1</span> <span class="keyword">and</span> s[i] == s[j]:</span><br><span class="line">                memo[i][j] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> j - i + <span class="number">1</span> &gt; <span class="built_in">len</span>(max_len):</span><br><span class="line">                    max_len = s[i:j+<span class="number">1</span>]</span><br><span class="line">                    </span><br><span class="line">    <span class="keyword">return</span> max_len</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/23/Machine-Learning-2019-3-Explainable-Machine-Learning-%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/23/Machine-Learning-2019-3-Explainable-Machine-Learning-%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Machine Learning-2019| 3 Explainable Machine Learning 可解释机器学习</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-02-23 17:12:51" itemprop="dateCreated datePublished" datetime="2020-02-23T17:12:51-05:00">2020-02-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Chapter 3. Explainable Machine Learning</p>
+<p>之前我们讲到了,如何机器知道 自己是”不知道”的, 以及如何 “骗” 过机器。那么这部分要探究的是，机器是否知道自己为什么知道，即机器是否知道自己给出某种决策的原因，以及决策的依据是否合理。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/23/Machine-Learning-2019-3-Explainable-Machine-Learning-%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/21/Machine-Learning-2019-2-Attack-and-Defense-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/21/Machine-Learning-2019-2-Attack-and-Defense-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" class="post-title-link" itemprop="url">Machine Learning-2019| 2 Attack and Defense 攻击与防御</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-02-21 11:39:31" itemprop="dateCreated datePublished" datetime="2020-02-21T11:39:31-05:00">2020-02-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Chapter 2. Attack and Defense</p>
+<p>这部分主要来说明对于通过Machine Learning 训练好的模型如何进行攻击 和防止攻击。</p>
+<p>Machine Learning 的目的在于通过大量的数据捕捉和学习来完成我们人类要做的事。 我们在第一章讲的大致就是对于异常数据的检测，既然我们的机器有检测异常的能力，那么发布异常的人当然有像一个方法来绕过我们的机器，让这种可以检测异常的模型对异常数据失效。这就构成了对模型的 Attack，我们要先了解敌人才能打败敌人，所以这部分先说明什么是 Attack，之后再讲如何根据恶意的攻击做出防御 Defense。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/21/Machine-Learning-2019-2-Attack-and-Defense-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/Machine-Learning-2019-1-Anomaly-Detection-%E5%BC%82%E5%B8%B8%E4%BE%A6%E6%B5%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/Machine-Learning-2019-1-Anomaly-Detection-%E5%BC%82%E5%B8%B8%E4%BE%A6%E6%B5%8B/" class="post-title-link" itemprop="url"> Machine Learning-2019| 1 Anomaly Detection 异常侦测</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-02-19 11:25:45" itemprop="dateCreated datePublished" datetime="2020-02-19T11:25:45-05:00">2020-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>终于到了正文部分了：）</p>
+<p>Chapter 1. Anomaly Detection</p>
+<p>之前说到了这部分主要是说如何让机器知道“我不知道”。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/19/Machine-Learning-2019-1-Anomaly-Detection-%E5%BC%82%E5%B8%B8%E4%BE%A6%E6%B5%8B/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/Machine-Learning-2019-Introduction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/19/Machine-Learning-2019-Introduction/" class="post-title-link" itemprop="url"> Machine Learning-2019| Introduction</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-02-19 10:20:36" itemprop="dateCreated datePublished" datetime="2020-02-19T10:20:36-05:00">2020-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="李宏毅-Machine-Learning-2019"><a href="#李宏毅-Machine-Learning-2019" class="headerlink" title="李宏毅 Machine Learning 2019"></a>李宏毅 Machine Learning 2019</h1><p>哇，听闻李宏毅的Machine Learning好久了，这次终于改掉拖延症去听了，我的笔记本用完了，干脆就一并电子存档记录吧，还可以稍微回顾加强一下记忆。</p>
+<p>B站地址：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av46561029?p=1">https://www.bilibili.com/video/av46561029?p=1</a></p>
+<h2 id="我想说"><a href="#我想说" class="headerlink" title="我想说"></a>我想说</h2><p>第一篇主要就是在讲Machine Learning在接下来的发展会如何。我没有听过之前的比如2017的课，不知道是不是也是结合Machine Learning目前的发展然后再引入基础的内容。听的感觉好像这个课的前置课程是有Deep Learning 基础的，因为第一节的时候有提到神经网络中softmax的层这些知识直接拿过来用的。反正和传统从Naive Bayes Classifier开始讲的Machine Learning是不一样的。在第一节课的时候直接提到了Machine Learning目前面临的问题有哪些，可能是个Advanced之类的课程？但是也提到了二分类以及ROC的定义，所以我现在还没弄清这个课的套路，但是讲得比较清晰。个人想法，作为记录。</p>
+<h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>这节课就是提到了这门课Machine Learning将会讲到的一些问题:</p>
+<h3 id="1-Machine-是否可以知道-“我不知道”？"><a href="#1-Machine-是否可以知道-“我不知道”？" class="headerlink" title="1 Machine 是否可以知道 “我不知道”？"></a>1 Machine 是否可以知道 “我不知道”？</h3><p>在通常的对于机器，不管是传统的机器学习还是大规模的神经网络学习的时候，我们对于模型的训练一般是给出标定好的训练集，比如说 我想训练一个模型帮助我识别一张图片是猫还是狗。那么我的训练集这个时候就是一系列猫的图片伴随着“猫”的label，然后有一系列狗的图片伴随着“狗” 的label。这样训练出来的模型，在我们给他一个新的图片的时候，就可以帮我们判断是 “猫” 还是 “狗” 了。</p>
+<p>但有一个问题是，现实世界总是奇怪而又复杂的，我们收集训练数据总是有限，就拿这个猫狗识别器为例，如果我就不给你 猫或者狗的图片，反而给你一个企鹅的图片，你的模型有可以告诉我“我不知道这图片上是什么东西”的能力吗？如何才能交给Machine 他识别不知道事物的能力呢? 还是强行将企鹅划分为猫或者狗呢？</p>
+<h3 id="2-Machine-是否可以知道-“我为什么不知道”？"><a href="#2-Machine-是否可以知道-“我为什么不知道”？" class="headerlink" title="2 Machine 是否可以知道 “我为什么不知道”？"></a>2 Machine 是否可以知道 “我为什么不知道”？</h3><p>这部分将会说明如何让机器知道 “我不知道” 给出的测试图片是什么的原因</p>
+<h3 id="3-机器的错觉"><a href="#3-机器的错觉" class="headerlink" title="3 机器的错觉"></a>3 机器的错觉</h3><p>我们在训练模型，比如说神经网络的时候，往往并不知道你的神经网络究竟是根据图片的哪个特征得出的结论。比如说，我想训练一个识别“马” 的网络，就从同一个网站上下载了大量的图片，作为训练识别 ”马“ 网络的训练数据。训练好了之后，利用同一个网站上的图片，我还是可以轻易的识别出 哪张图片上有🐴， 哪张图片上没有🐴。但如果换了网站下载 马的图片，便识别不出了。后来发现是因为同一个网站下载的图片都有一个相同的水印表示，训练好的网络并不是学习了马的特征，而是学习了水印的特征。所以 机器错以为水印的特征就是马的特征。</p>
+<p>再一个例子，我们训练好的熊猫的分类器，可能在新输入的熊猫的图片上改动一个像素，分类的结果就会发生剧烈的变化。我们称这种改动一小部分就能把训练好的模型攻击到无法正常工作的行为 为： Adversarial Attack。这种技术很危险，比如说在自动驾驶的时候，如果识别的图片被恶意修改，那么汽车将无法判断需不需要停车，或造成错误判断。这部分也会讲到 如何避免 Adversarial Attack.</p>
+<h3 id="4-终身学习"><a href="#4-终身学习" class="headerlink" title="4 终身学习"></a>4 终身学习</h3><p>人都是会终身学习的，不断学习新的知识，获得新的能力。但对于机器而言，目前我们的策略是对于一项特定的任务，学习一个新的模型。这样会造成一些局限：1. 具有多种能力的机器就需要储存多个不同的模型，在用尽储存空间后就无法学习新的任务；2. 已经训练好的模型也无法帮助机器学习新的任务，无法发挥自身已经学习过的经验；3. 如果对同一个模型先进行任务A再进行任务B的训练，那模型可能在训练完成任务B之后便忘记任务A该如何实现，这被称作 Catastrophic Forgetting。这部分将会讨论机器如何进行终身学习</p>
+<h3 id="5-如何学习机器学习"><a href="#5-如何学习机器学习" class="headerlink" title="5 如何学习机器学习"></a>5 如何学习机器学习</h3><p>现在说的机器学习的内容，都是我们人工搭建的结构以及给予的训练数据。那我们能不能训练一个模型，让他教机器如何学习呢？换言之，就是是否可以让机器 学习 机器学习？这部分的相关内容被称为 Meta-Learning</p>
+<h3 id="6-一定需要很多训练资料吗"><a href="#6-一定需要很多训练资料吗" class="headerlink" title="6 一定需要很多训练资料吗"></a>6 一定需要很多训练资料吗</h3><p>这部分提出的问题很切实，如何在训练数据很少或是没有的情况下进行机器学习呢？</p>
+<ul>
+<li>Few-shot Learning</li>
+<li>Zero-shot Learning</li>
+</ul>
+<h3 id="7-强化学习"><a href="#7-强化学习" class="headerlink" title="7 强化学习"></a>7 强化学习</h3><p>强化学习的概念被广泛应用，但是强化学习有一个缺点就是学习的很慢。那强化学习的时间为什么这么慢，有没有办法改进呢？</p>
+<h3 id="8-神经网络压缩"><a href="#8-神经网络压缩" class="headerlink" title="8 神经网络压缩"></a>8 神经网络压缩</h3><p>这部分将会涉及到对于神经网络压缩的讨论，也就是让神经网络不要占用太多的空间。</p>
+<ul>
+<li>减去多余的网络</li>
+<li>二元化参数</li>
+</ul>
+<h3 id="9-机器学习的谎言"><a href="#9-机器学习的谎言" class="headerlink" title="9 机器学习的谎言"></a>9 机器学习的谎言</h3><p>这部分是在说，我们给机器的训练集和测试集真的需要有相同的结构吗？在一些情况加我们得到的测试集，或者是最终应用的场景中的测试集和之前的训练集不同时，机器是否还能保持很高的运行准确率呢？ 这部分提到了 Unsupervised Domain Adaption</p>
+<p>第一节主要就是讲了一些机器学习现在面临的挑战，第一部分的介绍说的比较清晰是因为我已经听了半节课辽。然后后面的部分的介绍也会在听完课后稍微更新一下，（就看我总结能力有没有提高了</p>
+<p>下章见 ：）</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/17/Esitimation-and-Detection-Hypothesis-testing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/17/Esitimation-and-Detection-Hypothesis-testing/" class="post-title-link" itemprop="url">Esitimation and Detection | Hypothesis testing</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-02-17 10:30:29" itemprop="dateCreated datePublished" datetime="2020-02-17T10:30:29-05:00">2020-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>之前我们讨论了贝叶斯决策理论，也就是我们在已知随机变量在不同分类的先验概率时，如何对新的变量做出分类。之后我们讨论了，当已知随机变量的分布，但是不知道分布的具体参数的时候，如何从已知的数据来估算参数值。这部分我们进行更普遍的讨论：假定检验。</p>
+<h1 id="假定检验"><a href="#假定检验" class="headerlink" title="假定检验"></a>假定检验</h1><p>在讨论贝叶斯决策理论的时候，我们讨论的大环境是，对随机变量进行分类，分类可能是 $w_1$ 或是 $w_2$ 类。</p>
+<p>在假定检验的时候，我们将这两个条件换一下，设为 $\mathcal{H_0}$ 和 $\mathcal{H_1}$， $\mathcal{H_0}$ 代表 零假设，$\mathcal{H_1}$ 则表示零假设的对立假设。</p>
+<p>贝叶斯决策论是假定检验的一个子问题，在贝叶斯决策论中， $w_1$ 表示  $\mathcal{H_0}$ 而与之相对的第二类 $w_2$  则表示 $\mathcal{H_1}$。 在假定 两种分类的先验概率相同时，我们可以得出 $\frac{p({\bf x} | \mathcal{H_0})}{p({\bf x} | \mathcal{H_1})}$ 若大于1， 则属于 $\mathcal{H_0}$类，反之则属于 $\mathcal{H_1}$ 类。经过简化之后，我们都知道，左边的部分可以化简为一个和 $\bf x$ 相关的方程，右边则为一个实数。若我们将左边的线性方程表示为 $T({\bf x})$, 右侧则为 Bayes decision rule 的阈值 $\mathcal{K_B}$。 我们定义了两类error，都是分类错误的error：</p>
+<ul>
+<li>一类是： $p(T({\bf x})&gt;\mathcal{K_B} | \mathcal{H_0}) = \alpha_B$ , 表示 给定</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/09/Paper-Reading-Searching-for-MobileNet-V3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/09/Paper-Reading-Searching-for-MobileNet-V3/" class="post-title-link" itemprop="url">Paper Reading | Searching for MobileNet V3</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-02-09 21:13:34" itemprop="dateCreated datePublished" datetime="2020-02-09T21:13:34-05:00">2020-02-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li>论文题目：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1905.02244">Seaching for MobileNet v3 </a></li>
+<li>论文作者：</li>
+<li>相关代码：</li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文展示了基于网络搜索技术和新的网络结构设计的下一代的MobileNet（轻量级网络）。MobileNet v3结合了硬件网络结构搜索（NAS）和NetAdapt算法，并且通过新的网络结构来改进。本文开始介绍了如何自动进行网络搜索，然后通过调整互补的方法来整体上提升网络的性能。通过这个方法，文章介绍了基于资源多少情况下的两种新的轻量级网络：MobileNet v3-Large 和MobileNet v3-Small。对于语义分割（或者其他密集像素预测）的task而言，我们提出了一个新的有效的分割decoder，Lite Reduced Atrous Spatial Pyramid Pooling(LR-ASPP) 轻量ASPP。MobileNetv3 -large 比 MobileNetv2 在imageNet上的准确度提高了3.2%， 速度（计算复杂度）提高了 20%；MobileNetv3 -small 比 MobileNetv2 在imageNet上的准确度提高了6.6% ；MobileNetv3 -large 比 MobileNetv2 在COCO上的检测速率快了25%，准确率二者相当；MobileNetv3 -large LR-ASPP比 MobileNetv2 R-ASPP 在 Cityspace 分割人物快了34%，准确率两者相当。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/09/Paper-Reading-Searching-for-MobileNet-V3/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/16/Algorithm-LinkedList/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/16/Algorithm-LinkedList/" class="post-title-link" itemprop="url">Algorithm | LinkedList</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-16 23:35:49" itemprop="dateCreated datePublished" datetime="2020-01-16T23:35:49-05:00">2020-01-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>啊，好像不怎么碰到Linked List使用的情况啊。之前上一个文章里总结的都是 Array的问题，其实在python里也叫list，所以就比较容易混淆。array list 和linked list的区别就在于，array list有直接的index 可以在 O(1) 的时间复杂度下找到想要找的数值。但是linked list就需要从头开始找。但是linked list比较方便于插入和删除，只需要找到对应的点改变前后两个node的.next属性就可以了，但是array list就很麻烦，需要对每一个list中的值进行移动。</p>
+<h1 id="NO-2-Add-Two-Numbers"><a href="#NO-2-Add-Two-Numbers" class="headerlink" title="NO.2 Add Two Numbers"></a>NO.2 Add Two Numbers</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>You are given two <strong>non-empty</strong> linked lists representing two non-negative integers. The digits are stored in <strong>reverse order</strong> and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</span><br><span class="line">Output: 7 -&gt; 0 -&gt; 8</span><br><span class="line">Explanation: 342 + 465 = 807.</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这道题其实就是简单的运用linked list的方面，对于我自己，需要注意的点是：</p>
+<ul>
+<li>当两个数相加的和大于10 的时候需要进位，熟练运用 % 和 / 运算，</li>
+<li>需要加dummyhead</li>
+</ul>
+<p>第一点是我可以想到的，第二点我查了一些帖子，都是在说为什么需要dummy head。是因为如果是doubly linked list时，有了dummyhead就不需要多去判定原来的head node是不是为空。【这类问题还没遇到】另一个原因就是，list整体需要变动，就是我们这道题，定义的两位之和需要不断向后移动来更新.next的内容</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addTwoNumbers</span>(<span class="params">self, l1, l2</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type l1: ListNode</span></span><br><span class="line"><span class="string">        :type l2: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        addto = <span class="number">0</span></span><br><span class="line">        l = ListNode(<span class="number">0</span>)</span><br><span class="line">        dummyhead = l</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> l1 <span class="keyword">and</span> l2:</span><br><span class="line">            l.<span class="built_in">next</span> = ListNode((addto + l1.val + l2.val) % <span class="number">10</span>)</span><br><span class="line">            addto = (addto + l1.val + l2.val) / <span class="number">10</span></span><br><span class="line">            l = l.<span class="built_in">next</span></span><br><span class="line">            l1 = l1.<span class="built_in">next</span></span><br><span class="line">            l2 = l2.<span class="built_in">next</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">while</span> l1:</span><br><span class="line">            l.<span class="built_in">next</span> = ListNode((addto + l1.val) % <span class="number">10</span>)</span><br><span class="line">            addto = (addto + l1.val) / <span class="number">10</span></span><br><span class="line">            l = l.<span class="built_in">next</span></span><br><span class="line">            l1 = l1.<span class="built_in">next</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">while</span> l2:</span><br><span class="line">            l.<span class="built_in">next</span> = ListNode((addto + l2.val) % <span class="number">10</span>)</span><br><span class="line">            addto = (addto + l2.val) / <span class="number">10</span></span><br><span class="line">            l = l.<span class="built_in">next</span></span><br><span class="line">            l2 = l2.<span class="built_in">next</span></span><br><span class="line">        print(addto)   </span><br><span class="line">        <span class="keyword">if</span> addto:</span><br><span class="line">            l.<span class="built_in">next</span> = ListNode(addto)</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> dummyhead.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
+<p>应该可以再合并一些情况，但是思路就是这样。</p>
+<h1 id="NO-19-Remove-Nth-Node-from-the-end-of-the-list"><a href="#NO-19-Remove-Nth-Node-from-the-end-of-the-list" class="headerlink" title="NO.19 Remove Nth Node from the end of the list."></a>NO.19 Remove Nth Node from the end of the list.</h1><p>&gt;</p>
+<h2 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h2><p>简单的来说可以先把head中的所有node遍历一遍存在一个list中，然后再遍历一遍根据for循环来找到倒数第n个值，也就是要判定  i == len(vals) - n，把其他的值都存在新的listnode中。但是这部分要遍历两遍。</p>
+<p>可以一遍吗？</p>
+<h2 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 遍历两遍</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">removeNthFromEnd</span>(<span class="params">self, head, n</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        vals = []</span><br><span class="line">        <span class="keyword">while</span> head:</span><br><span class="line">            vals.append(head.val)</span><br><span class="line">            head = head.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        newhead = ListNode(<span class="number">0</span>)</span><br><span class="line">        dummy = newhead</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(vals)):</span><br><span class="line">            <span class="keyword">if</span> i == <span class="built_in">len</span>(vals) - n:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            newhead.<span class="built_in">next</span> = ListNode(vals[i])</span><br><span class="line">            newhead = newhead.<span class="built_in">next</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> dummy.<span class="built_in">next</span></span><br><span class="line"><span class="comment"># 遍历一遍</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeNthFromEnd</span>(<span class="params">self, head, n</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        dummy.<span class="built_in">next</span> = head</span><br><span class="line">        </span><br><span class="line">        new1 = dummy</span><br><span class="line">        new2 = dummy</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> n&gt;<span class="number">0</span>:</span><br><span class="line">            new1 = new1.<span class="built_in">next</span></span><br><span class="line">            n = n - <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">while</span> new1.<span class="built_in">next</span>:</span><br><span class="line">            new1 = new1.<span class="built_in">next</span></span><br><span class="line">            new2 = new2.<span class="built_in">next</span></span><br><span class="line">        new2.<span class="built_in">next</span> = new2.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dummy.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
+<h1 id="NO-24"><a href="#NO-24" class="headerlink" title="NO.24"></a>NO.24</h1><h2 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Change numbers</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swapPairs</span>(<span class="params">self, head</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head <span class="keyword">or</span> <span class="keyword">not</span> head.<span class="built_in">next</span>: <span class="keyword">return</span> head</span><br><span class="line">        </span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        new = dummy        </span><br><span class="line">        <span class="keyword">while</span> head <span class="keyword">and</span> head.<span class="built_in">next</span>:</span><br><span class="line">            val1 = head.val</span><br><span class="line">            head = head.<span class="built_in">next</span></span><br><span class="line">            val2 = head.val</span><br><span class="line">            head = head.<span class="built_in">next</span></span><br><span class="line">            </span><br><span class="line">            new.<span class="built_in">next</span> = ListNode(val2)</span><br><span class="line">            new = new.<span class="built_in">next</span></span><br><span class="line">            new.<span class="built_in">next</span> = ListNode(val1)</span><br><span class="line">            new = new.<span class="built_in">next</span></span><br><span class="line">        </span><br><span class="line">        new.<span class="built_in">next</span> = head</span><br><span class="line">        <span class="keyword">return</span> dummy.<span class="built_in">next</span></span><br><span class="line"><span class="comment"># Change nodes.</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swapPairs</span>(<span class="params">self, head</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head <span class="keyword">or</span> <span class="keyword">not</span> head.<span class="built_in">next</span>: <span class="keyword">return</span> head</span><br><span class="line">        </span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        dummy.<span class="built_in">next</span> = head</span><br><span class="line">        </span><br><span class="line">        new = dummy</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> new.<span class="built_in">next</span> <span class="keyword">and</span> new.<span class="built_in">next</span>.<span class="built_in">next</span>:</span><br><span class="line">            first = new.<span class="built_in">next</span></span><br><span class="line">            second = new.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">            new.<span class="built_in">next</span> = second</span><br><span class="line">            first.<span class="built_in">next</span> = second.<span class="built_in">next</span></span><br><span class="line">            second.<span class="built_in">next</span> = first</span><br><span class="line">            </span><br><span class="line">            new = new.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line"> </span><br><span class="line">        <span class="keyword">return</span> dummy.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
+<h1 id="NO"><a href="#NO" class="headerlink" title="NO."></a>NO.</h1>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenxi</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

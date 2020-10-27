@@ -1,37 +1,414 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="论文题目：SCAPE: Shape Completion and Animation of People 论文作者：$ \it Dragomir\ Anguelov, Praveen\ Srinivasan, \Daphne\ Koller, Sebastian\ Thrun, Jim\ Rodgers, James\ Davis$  摘要文章介绍了 SCAPE 方法，一种在人体形态和姿态的变量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读 | SCAPE: Shape Completion and Animation of People">
+<meta property="og:url" content="http://yoursite.com/2019/12/29/Paper-Reading-SCAPE-Shape-Completion-and-Animation-of-People/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="论文题目：SCAPE: Shape Completion and Animation of People 论文作者：$ \it Dragomir\ Anguelov, Praveen\ Srinivasan, \Daphne\ Koller, Sebastian\ Thrun, Jim\ Rodgers, James\ Davis$  摘要文章介绍了 SCAPE 方法，一种在人体形态和姿态的变量">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-12-29T05:00:00.000Z">
+<meta property="article:modified_time" content="2019-12-29T05:00:00.000Z">
+<meta property="article:author" content="Chenxi">
+<meta property="article:tag" content="3D">
+<meta property="article:tag" content="SCAPE">
+<meta name="twitter:card" content="summary">
 
 
-{% block content %}
+<link rel="canonical" href="http://yoursite.com/2019/12/29/Paper-Reading-SCAPE-Shape-Completion-and-Animation-of-People/">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>论文阅读 | SCAPE: Shape Completion and Animation of People | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Acquiring-and-Processing-Data-Meshes"><span class="nav-number">3.</span> <span class="nav-text">Acquiring and Processing Data Meshes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pose-Deformation"><span class="nav-number">4.</span> <span class="nav-text">Pose Deformation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Deformation-process"><span class="nav-number">4.1.</span> <span class="nav-text">Deformation process</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-the-Pose-Deformation-Model"><span class="nav-number">4.2.</span> <span class="nav-text">Learning the Pose Deformation Model</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Body-Shape-deformation"><span class="nav-number">5.</span> <span class="nav-text">Body-Shape deformation</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Chenxi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/29/Paper-Reading-SCAPE-Shape-Completion-and-Animation-of-People/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          论文阅读 | SCAPE: Shape Completion and Animation of People
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-12-29 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-29T00:00:00-05:00">2019-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li>论文题目：<a target="_blank" rel="noopener" href="http://robots.stanford.edu/papers/anguelov.shapecomp.pdf">SCAPE: Shape Completion and Animation of People</a></li>
+<li>论文作者：$ \it Dragomir\ Anguelov, Praveen\ Srinivasan, \Daphne\ Koller, Sebastian\ Thrun, Jim\ Rodgers, James\ Davis$</li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>文章介绍了 SCAPE 方法，一种在人体形态和姿态的变量上都可拓展的数据驱使的方法。这个方法是基于关节点(articulated)和非刚性(non-rigid)的表达方式。文章学习了一种姿态分解模型可以驱使非刚性曲面作为一个关于关节点骨骼变化（articulated skeleton）的方程。文章同样学习了另一种基于人体形态的变量模型。结合两种模型，作者可以生产不同人在不同姿态下具有真实肌肉变化的人体模型，即使这个模型不在训练集中。</p>
+<p>文章展示了自己的模型如何实现 shape completion , 也就是说在有限的已知标定点（marker）下，实现目标人体模型曲面(surface mesh)。该方法可以生成一个正在运动的人高质量动画曲面，拥有真实的肌肉变化。而实现这些只需要一个数据扫描模型和一系列的标记点。</p>
+<a id="more"></a>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>文章介绍的 SCAPE 方法主要就是数据驱使的建立人体模型的方法。这个方法可以实现非刚性的变化，不仅仅局限于低纬度的刚性的骨骼姿态变化，还可实现非刚性比如肌肉的曲面变化。并且这个模型可以实现人体形态在多变量下的变化，比如改变人的身高体重三维等等。</p>
+<p>这个方法可以应用在两个重要的图形问题方面：一个是对于不完整的扫描模型的补全以及动作的预测，第二个就是利用稀疏的标记点可以预测认得完整模型并且实现一系列的动作动画。</p>
+<h1 id="Acquiring-and-Processing-Data-Meshes"><a href="#Acquiring-and-Processing-Data-Meshes" class="headerlink" title="Acquiring and Processing Data Meshes"></a>Acquiring and Processing Data Meshes</h1><ol>
+<li>Range Scanning. 利用Cyberware WBX全身扫描器。主要生成两组dataset。其一是 pose dataset，是某个指定人的70个姿势的扫描， 其二是 shape dataset 包含37个不同人在相同（相似）姿态下的扫描。同样添加了从CAESAR数据集的八个数据。pose dataset中选择一个mesh（也就是由三角形连接成的曲面人体模型）作为template mesh， 其他的数据都叫做instance mesh</li>
+<li>Correspondence. 将template mesh和其他的instance mesh关联起来。非刚性模型注册算法需要在instance mesh和template mesh之间找一组对应的markers。文章通过 Correlated Correspondence（CC）来寻找markers。最终通过 CC找到140-200个markers。</li>
+<li>Non-rigid Registration. 在给出了template和instance中的markers之后，我们要进行非刚性注册。也就是将两个mesh进行匹配。这样的话就可以得到具有同样topology了。</li>
+<li>Recovering the Articulated Skeleton. 利用模型的mesh来构建骨骼结构。因为在同样的骨骼关节上的点是在空间上相接触的，并且在不同的扫描下呈现出相似的动作。它可以自动将建立18部分的骨骼结构。</li>
+<li>Data Format and Assumptions. 最后得到的数据包括一个 model mesh $X$ 和一系列的 instance meshes $Y = {Y^1,…,Y^N}$. Model mesh $X = {V_X, P_X}$  包含有一个顶点集 $V_X = {x_1,…x_M}$ 和一个三角集（表示的是顶点和顶点之间的关联，因为mesh是又三角形构成的曲面(triangle mesh)）$P_X = {p_1, …p_P}$. Instance mesh就包含有 同一个人在不同动作下的扫描模型，以及不同的人在同一个动作下的扫描模型。因为在之前我们做的Non-rigid registration，我们可以得知这些meshes都有相同的点和triangle。 因此，让$Y^i = {y_1^i, …y_m^i}$ 作为第$i$个模型的点集，对于每一个 $Y_i$ 我么还有一个旋转集 $R^i$ 其中包含了不同的刚性关节的旋转系数 记做 $R_l^i$ 。</li>
+</ol>
+<h1 id="Pose-Deformation"><a href="#Pose-Deformation" class="headerlink" title="Pose Deformation"></a>Pose Deformation</h1><p>这部分主要说明的是模型的姿态变换。目标是对 $Y_i$ 中同一个人不同动作的mesh进行建模（找到变化矩阵），与template mesh相匹配。</p>
+<h2 id="Deformation-process"><a href="#Deformation-process" class="headerlink" title="Deformation process"></a>Deformation process</h2><p>模型的变形使用了一个两步的，三角形位移不变量表达，来负责一个非刚性和一个刚性变形的部分。</p>
+<p>假设我们有个一triangle 的connectivity $p<em>k$ ,包含三个顶点 $x</em>{k,1}, x<em>{k,2}, x</em>{k,3}$. 在我们把 $x<em>{k,1}$ 平移到全局坐标原点下后，变形是应用的三角形的局部坐标系下的。这样变形将会用在三角形的边 $\hat v</em>{k,j} = x<em>{k,j} - x</em>{k,1}, j = 2, 3$</p>
+<p>对于这个triangel $p_k$ 而言，有两个部分的变换，一部分是属于非刚性部分的变化，另一部分是属于刚性部分的旋转。</p>
+<ol>
+<li>首先，对于非刚性部分而言有一个 $3 \times 3$ 的线性变化矩阵 $Q_k^i$ ，这部分变化由非刚性的姿态引入（人体肌肉的变形），这部分的变化针对mesh $Y_i$ 中的每一个三角形$p_k$；</li>
+<li>然后根据每个三角所在的刚性部位（根据骨骼节点划分）得到这个三角形的旋转矩阵 $R<em>l^i$, 若这里三角形 $p_k$ 属于刚性 $l$ 部分，则这个三角形的旋转矩阵表示为 $R^i</em>{l[k]}$. </li>
+<li>这样经过刚性部分和非刚性部分变化之后， 之前定义的三角形$p<em>k$ 的一条边 $\hat v</em>{k,j}$ 经过这两部分的变化后可以表示成：$v<em>{k,j}^i = R</em>{l[k]}^iQ^i<em>k\hat v</em>{k,j}$</li>
+</ol>
+<p>这样的话，如果对所有的三角形的所有边进行优化，那么我们可以得到优化方程：</p>
+<p>${\arg\min}<em>{y_1,…y_M}\sum\limits_k\sum\limits</em>{j = 2,3}||R<em>{l[k]}^iQ^i_k\hat v</em>{k,j} - (y<em>{j,k} - y</em>{1,k})||^2$</p>
+<p>要优化的是所有点，不然的话找到对应的三角形不是连续的。</p>
+<h2 id="Learning-the-Pose-Deformation-Model"><a href="#Learning-the-Pose-Deformation-Model" class="headerlink" title="Learning the Pose Deformation Model"></a>Learning the Pose Deformation Model</h2><p>以上展示了如何将姿态引入的变形建模为针对 $p_k$ 的一系列变化 $Q_k^i$ 的矩阵（非刚性变化部分）。文章希望可以通过骨骼的刚性变化来预测这些非刚性变化的矩阵。</p>
+<p>【已知对于每一个mesh $Y_i$ 而言都有一组 ${ R_l^i}$ 来表示该mesh的刚性关节旋转状态。】</p>
+<p>假设 $R<em>{l_1}$ 和 $R</em>{l<em>2}$ 是两个相邻刚性部分关于某joint的绝对旋转矩阵，那么两个相邻部分的相对旋转矩阵就是 $R</em>{l<em>1}^TR</em>{l_2}$ （relative joint rotation）</p>
+<p>关节旋转(joint rotation)可以用他们的扭转坐标来表示。如果用 $M$ 来表示一个 $3 \times 3$ 的旋转矩阵， 这个么这个关节叫的扭转 $t$ 则是一个3D 向量：</p>
+<p>$t = \frac{||\theta||}{2sin||\theta||}\left[\begin{matrix}m<em>{32} - m</em>{23}\m<em>{13} - m</em>{31}\m<em>21 - m</em>{12}\end{matrix}\right]$</p>
+<h1 id="Body-Shape-deformation"><a href="#Body-Shape-deformation" class="headerlink" title="Body-Shape deformation"></a>Body-Shape deformation</h1>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/3D/" rel="tag"># 3D</a>
+              <a href="/tags/SCAPE/" rel="tag"># SCAPE</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/12/28/Algorithm-Computational-Complexity/" rel="prev" title="Algorithm | Computational Complexity">
+                  <i class="fa fa-chevron-left"></i> Algorithm | Computational Complexity
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/12/31/Paper-Reading-Active-Shape-Model-their-training-and-application/" rel="next" title="论文阅读 | Active Shape Model - their training and application">
+                  论文阅读 | Active Shape Model - their training and application <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenxi</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

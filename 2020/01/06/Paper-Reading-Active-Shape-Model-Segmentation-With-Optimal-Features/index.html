@@ -1,37 +1,465 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="论文题目：Active Shape Model Segmentation With Optimal Features  论文作者：$Bram van Ginneken*, Alejandro F. Frangi, \Joes J. Staal, Bart M. ter Haar Romeny, Max A. Viergever$  论文原文中的一些翻译可能不准确，（）中的部分为论文原文中的术语">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读 | Active Shape Model Segmentation With Optimal Features">
+<meta property="og:url" content="http://yoursite.com/2020/01/06/Paper-Reading-Active-Shape-Model-Segmentation-With-Optimal-Features/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="论文题目：Active Shape Model Segmentation With Optimal Features  论文作者：$Bram van Ginneken*, Alejandro F. Frangi, \Joes J. Staal, Bart M. ter Haar Romeny, Max A. Viergever$  论文原文中的一些翻译可能不准确，（）中的部分为论文原文中的术语">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-01-06T05:00:00.000Z">
+<meta property="article:modified_time" content="2020-01-06T05:00:00.000Z">
+<meta property="article:author" content="Chenxi">
+<meta property="article:tag" content="ASM">
+<meta name="twitter:card" content="summary">
 
 
-{% block content %}
+<link rel="canonical" href="http://yoursite.com/2020/01/06/Paper-Reading-Active-Shape-Model-Segmentation-With-Optimal-Features/">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>论文阅读 | Active Shape Model Segmentation With Optimal Features | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Active-Shape-Model"><span class="nav-number">3.</span> <span class="nav-text">Active Shape Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Shape-Model"><span class="nav-number">3.1.</span> <span class="nav-text">Shape Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gray-Level-Appearance-Model"><span class="nav-number">3.2.</span> <span class="nav-text">Gray-Level Appearance Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mutiresoluation-Framework"><span class="nav-number">3.3.</span> <span class="nav-text">Mutiresoluation Framework</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimization-Algorithm"><span class="nav-number">3.4.</span> <span class="nav-text">Optimization Algorithm</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Improving-ASMs"><span class="nav-number">4.</span> <span class="nav-text">Improving ASMs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ASMs-with-optimal-features"><span class="nav-number">5.</span> <span class="nav-text">ASMs with optimal features</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Features-%E5%9B%BE%E7%89%87%E7%89%B9%E5%BE%81"><span class="nav-number">5.1.</span> <span class="nav-text">Image Features(图片特征)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-the-moments-of-histogram"><span class="nav-number">5.1.1.</span> <span class="nav-text">What is the moments of histogram?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training-and-Classification"><span class="nav-number">5.2.</span> <span class="nav-text">Training and Classification</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-Sequential-feature-forward-selection"><span class="nav-number">5.2.1.</span> <span class="nav-text">What is Sequential feature forward selection?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary-of-Training-and-Segmentation-Algorithm"><span class="nav-number">5.3.</span> <span class="nav-text">Summary of Training and Segmentation Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Computational-Considerations"><span class="nav-number">5.4.</span> <span class="nav-text">Computational Considerations</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Experiment"><span class="nav-number">6.</span> <span class="nav-text">Experiment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93"><span class="nav-number">7.</span> <span class="nav-text">个人总结</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Chenxi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/06/Paper-Reading-Active-Shape-Model-Segmentation-With-Optimal-Features/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          论文阅读 | Active Shape Model Segmentation With Optimal Features
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-06T00:00:00-05:00">2020-01-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li><p>论文题目：<a target="_blank" rel="noopener" href="http://www.mate.tue.nl/mate/pdfs/6466.pdf">Active Shape Model Segmentation With Optimal Features</a></p>
+</li>
+<li><p>论文作者：$Bram van Ginneken*, Alejandro F. Frangi, \Joes J. Staal, Bart M. ter Haar Romeny, Max A. Viergever$</p>
+</li>
+<li><strong>论文原文中的一些翻译可能不准确，（）中的部分为论文原文中的术语</strong></li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文介绍了一种由ASM 模型为基础的分割模型，与ASM原作者提出的一阶导数的profile特征不同，文中提出了一种更为优化的局部特征。和原作者提出的利用马氏距离为标准来更新点模型上控制点位置不同的是，本文提出了一种利用非线性kNN分类器来寻找特征点的位置。对于每一个描述object形状的控制点点来说，在不同分辨率的分割模型上都会有有一个特征。选择特征的过程是自动的，使用了训练集中的图片和一些列向前和前后的特征。</p>
+<p>本文提出的新方法应用在了四个不同的分割任务中，并且取得了很高的正确率。</p>
+<a id="more"></a>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>这部分一开始谈到了图像segmentation的两种思路，一种是bottom-up另一种是top-down。对于bottom-up的结构而言，主要是在说一个图片会有很多种元素构成，但是这种思路进行图片分割的效率并不高。对于top-down的结构而言，主要是对于某种特定的模板进行匹配。但是在进行模板匹配的时候，如果图中的object和模板之间有较大的差异，那么匹配上的概率还是很低的。由此引入了不同的模板拟合object的shape model。本文选择的是 ASM模型，对于这个模型来说匹配的步骤大致分为以下几步：</p>
+<ul>
+<li>获取一个能够分割出大致形状的模型；</li>
+<li>一个基于灰度的外观模型来确保在分割图像中的object的时候，它周围边界上的点的特征和训练过程中有序连接点的特征是一致的；</li>
+<li>来拟合模型以达到最小误差的损失函数</li>
+</ul>
+<p>本文主要介绍的是一种对于模型中的每个控制点的新的特征的选取和表达形式。</p>
+<h1 id="Active-Shape-Model"><a href="#Active-Shape-Model" class="headerlink" title="Active Shape Model"></a>Active Shape Model</h1><p>这部分主要回顾了 ASM model的建模过程和应用过程。</p>
+<p>具体的流程在这篇博文里有介绍：<a target="_blank" rel="noopener" href="https://capchenxi.github.io/2019/12/31/Paper-Reading-Active-Shape-Model-their-training-and-application/">论文阅读|Active Shape Model - their training and application</a></p>
+<p>此处稍微提一下本文中会用到的一些不同的notation：</p>
+<h2 id="Shape-Model"><a href="#Shape-Model" class="headerlink" title="Shape Model"></a>Shape Model</h2><p>我们要对某个object建模时，首先将这个object用 n 个有序的点来表示，这 n 个点被称作是每个训练数据的landmarks。 对于每个训练数据来讲，这 n 个点必须是等价的在每个不同训练集中表示相同特征的点，且标注的顺序需要一致。</p>
+<p>对于一个包含了 s 个训练数据的训练集来讲，每个训练数据都是这 n  个点堆积起来的向量 记做 $\bf x$</p>
+<p>${\bf x} = (x_1, y_1, …x_n, y_n)^T$</p>
+<p>那么我们对着 s 个训练数据取平均，计算数据的协方差:</p>
+<p>$\bar{\bf x} = \frac{1}{s}\sum\limits^{s}_{i = 1}{\bf x}_i$</p>
+<p>${\bf S} = \frac{1}{s-1}\sum\limits_{i = 1}^s({\bf x}_i - \bar{\bf x})({\bf x}_i - \bar{\bf x})^T$</p>
+<p>然后对协方差矩阵进行PCA分析，若我们在计算 PCA中的主成分向量时只取 $t$ 个，即主成分矩阵${\bf \Phi = (\phi_1|\phi_2|…|\phi_t)}$，那么训练集中的每个shape都可以记做：</p>
+<p>${\bf x}\approx \bar{\bf x} + {\bf \Phi b}$</p>
+<p>这里的${\bf b}$ 也是一个长度为 $t$ 的向量，用来表示每一个训练数据 ${\bf x}$ 在 $ t$ 个主成分下，每个主成分前面的系数是多少。${\bf b = \Phi^T(x - \bar x)}$</p>
+<p>通过改变 $\bf b$ 的值，我们也可以计算出不同的shape</p>
+<h2 id="Gray-Level-Appearance-Model"><a href="#Gray-Level-Appearance-Model" class="headerlink" title="Gray-Level Appearance Model"></a>Gray-Level Appearance Model</h2><p>这个gray-level 外观模型是用来描述图像中针对于每个控制点的特征的，在两个相邻的控制点中间，垂直于轮廓线性插入的，从像素级别获取的特征。</p>
+<p>这里说到的垂直于控制点 $(x<em>n, y_n)$ 的方向是 $(x</em>{n-1}, y<em>{n-1})$ 和 $(x</em>{n+1}, y_{n+1})$ 的连线旋转 $90^{\circ}$. 对于本文来讲，控制点连成的边界是闭合的，所以第一个点的垂直线由第二个点和倒数第一个点决定。</p>
+<p>在计算的控制点的两边分别选择 $k$ 个像素，这样的话我们会得到一个长度为 $2k+1$ 的profile。Cootes和Taylor提出要计算归一化的一阶导数，在这些profile的周围各取一个点，然后进行一阶导数的归一化，然后计算出的微分profile分别是 $g_1, …, g_s$, 并且求出平均profile $\bar g$ 和profile的写方差矩阵 $\bf S_g$. 如果有一个新的特征 $g_i$, 他和这个特征之间的马氏距离是 $f({\bf g}_i) = ({\bf g_i} - \bar{\bf g}){\bf S}_g^{-1}({\bf g}_i - \bar{\bf g})^T$</p>
+<h2 id="Mutiresoluation-Framework"><a href="#Mutiresoluation-Framework" class="headerlink" title="Mutiresoluation Framework"></a>Mutiresoluation Framework</h2><p>以上说的对于每个控制点建立的特征 $\bar {\bf g}$ 和$\bf S_g$ 要针对不同的分辨率构建。</p>
+<h2 id="Optimization-Algorithm"><a href="#Optimization-Algorithm" class="headerlink" title="Optimization Algorithm"></a>Optimization Algorithm</h2><p>在不同的分辨率下，都要计算模型上的点和更新后的点之间的距离。在实际实验过程中，这个更新的过程是收敛的。</p>
+<h1 id="Improving-ASMs"><a href="#Improving-ASMs" class="headerlink" title="Improving ASMs"></a>Improving ASMs</h1><p>文章作者列出了很多可以对原有的ASM 进行提升的地方，本文作者只提出了两点文章关注的点：</p>
+<ul>
+<li>Normalized First Derivative Profiles 文中提到的灰度外观模型（也就是针对于每个控制点的特征模型）并没有严格的原因要提取特征点的一阶微分量，在这里，作者提出了一个新的方法。</li>
+<li>Mahalanobis Distance 文中提到的测量新的特征值和原油的训练之之间的距离远近利用的是马氏距离，但在实际过程中，训练数据profile不一定都是正态分布，文中提出了ASM的策略是利用一个非线性的分类器来解决非正态分布的问题。</li>
+</ul>
+<h1 id="ASMs-with-optimal-features"><a href="#ASMs-with-optimal-features" class="headerlink" title="ASMs with optimal features"></a>ASMs with optimal features</h1><p>这部分提出了一个新的灰度外观模型（对于每一个控制点建立的特征）。这里基于每一个控制点提取特征的一行垂直于物体边界的像素被称作profile，而对每个控制点提取特征的目的在于在优化过程中能将这个控制点移动到更好的位置。对号的位置就是profile的一半的物体内部，一半在物体外部。因此，针对每个控制点周围的部分，一个位置究竟在object的内部还是外部需要被估计。我们基于这个分类建立了kNN分类器。</p>
+<h2 id="Image-Features-图片特征"><a href="#Image-Features-图片特征" class="headerlink" title="Image Features(图片特征)"></a>Image Features(图片特征)</h2><p>这部分文章再寻找一个通用的图像结构描述子。</p>
+<p>针对于点 $x<em>0$ 的 $N$ 阶泰勒展开为：$f(x) \approx \sum\limits^{N}</em>{n = 0}\frac{1}{n!}f^{(n)}(x_0)(x - x_0)^n$</p>
+<p>每一项之前的系数都是在 $x_0$ 点的 $f^{(n)}$ 的值。</p>
+<p>图片的微分通过计算和在某个 $\sigma$ 尺度下高斯算子的卷积得到，这就激发了我们可以用不同尺度下的高斯倒数的滤波器库来计算局部图片的结构。图片的泰勒展开被称作是局部流(local jet)，或者说是多尺度的局部流在尺度空间的泰勒展开。</p>
+<p>给定一系列经过滤波器的图片，我们可以从每一个点提取该点周围的强度直方图的前几项的矩(first few moments)。最合适的计算直方图的窗口方程是高斯算子。窗口方程的大小由第二个给定的尺度的参数 $\alpha$ 决定。使用经过一些滤波器后的直方图的矩是分析texure的标准方法。</p>
+<h3 id="What-is-the-moments-of-histogram"><a href="#What-is-the-moments-of-histogram" class="headerlink" title="What is the moments of histogram?"></a>What is the moments of histogram?</h3><p>（填坑）</p>
+<h2 id="Training-and-Classification"><a href="#Training-and-Classification" class="headerlink" title="Training and Classification"></a>Training and Classification</h2><p>这部分介绍如何建立训练集，使用哪种训练器，如何实现特征选择。</p>
+<p>首先，在更新shape的每一次迭代中，对于每个控制点(landmark)我们都会在一个和object/shape边界垂直的长度为 $2k+1$ 的profile上。对于每个控制点来说，图片结构(image structure)都是不同的，并且，由于不同的分辨率，位置也是不同的（谁的位置？）因此对于每个控制点在每个分辨率上，我们分别提取不同的feature，总共提取 $nL_{max}$ 个。</p>
+<p>对于每一个分辨率上每一个控制点来说，定义一个 $N<em>{grid}\times N</em>{grid}$ 的方形网格，$N_{grid}$ 的值为基数，控制点处在这个网格的中心。对于第 $i$th 分辨率层来说，间距（spacing）是 $2^{(i-1)}$.</p>
+<p>将 $N_{grid}$ 的大小设置为5， 那么对于每个分辨率上的每个控制点，都会有一个包含60个元素的向量在这网格的25个点上取样。这60个特征点要么在object内部，要么在object外部。训练集被分为两个部分，一部分为训练集，一部分为验证集。分类器这里用到的是加权$kNN$ 分类器，每一项的权重是 $exp(-d^2)$. $d$ 这里代表的是在feature空间中的欧氏距离</p>
+<p>Sequential feature forward selection用在此处来选择最多 $f_{max}$ 个特征。这个方法用在这里可以对feature进行降维处理。通过不断的移开能够增强性能的特征，特征向量集逐渐被减小(trimmed)。这个过程是最有效的选择特征的过程。得到的特征及便是最优的特征集【？】</p>
+<h3 id="What-is-Sequential-feature-forward-selection"><a href="#What-is-Sequential-feature-forward-selection" class="headerlink" title="What is Sequential feature forward selection?"></a>What is Sequential feature forward selection?</h3><p>在这里出现了迷惑，好像是对于feature选取产生的迷惑。然后顺手查了一下sequential feature forward selection.</p>
+<p>对于已有的features，在很多feature的情况下，我们要对feature进行降维处理。这种将为处理有两种说法，一种叫feature extraction, 另一种叫 feature selection. feature extraction就是在一提到“降维”就立马想到的PCA 还有LDA。这种降维需要把现有的features做某种变换，然后提取少量的占主要地位的feature。另一种的feature selection则是不做任何的变换，直接来割舍一些没那么重要的feature。而文中提到的sequential feature forward selection就是feature selection的一种。</p>
+<p>于是，在feature selection中，有这些分类：</p>
+<ul>
+<li><p>Sequential forward selection 和Sequential backward selection </p>
+<p>这两个是比较常见和简单的，Sequential forward selection 是从 0 feature开始，针对一个目标函数，如果新加入的feature能够使得目标函数的值增大，那么就把这个feature加入选定的特征集。而 Sequential backward selection 恰恰相反，它是从 full features开始的，针对一个目标函数，如果将这个feature剔除，可以最小程度减小目标函数的损失，那么就将它从feature集中去掉。</p>
+</li>
+<li><p>Sequential floating selection</p>
+<p>文中提到的 Sequential feature forward selection属于 sequential floating selection的一种。是先做forward selection再做backward selection。也就是在每次forward选择一个feature之后，再进行一次backward将之前选择的某个feature去除，但是这个去除feature的选择是建立在目标函数增大的基础上的。</p>
+</li>
+</ul>
+<p>文中这部分应该就是在通过 floating selection的方法提供一个较小的feature（？）</p>
+<h2 id="Summary-of-Training-and-Segmentation-Algorithm"><a href="#Summary-of-Training-and-Segmentation-Algorithm" class="headerlink" title="Summary of Training and Segmentation Algorithm"></a>Summary of Training and Segmentation Algorithm</h2><ul>
+<li><p>Traning the shape model</p>
+<p>1) 建立shape model $\bar{\bf x}, {\bf \Phi}$</p>
+</li>
+<li><p>Training the gray-level appearance model</p>
+<p>1) 对于每个训练集中的图片计算60个特征图片</p>
+<p>2）对于每个控制点，在每个分辨率下，在周围提取一些训练数据</p>
+<p>3）对于每个训练数据，对于选定的features建立 $kNN$ 分类器。所以在最后的训练阶段，有一组数量为 $nL_{max}$ 的分类器组。</p>
+</li>
+<li><p>Segmentation</p>
+<p>1) 以 $\bar{\bf x}$ 作为初始的平均形状</p>
+<p>2) 从最粗糙的分辨率开始</p>
+<p>3）对于每个控制点，把它放在 $2n_s +1$ 个新的地方，通过 $kNN$ 分类器进行评价，将这个控制点移到更好的地方</p>
+<p>4）将shape model和调整后的控制点相匹配（调整shape mode 在PCA空间的parameters）</p>
+<p>5）重复 3) 和4) $N_{max}$ 次</p>
+<p>6）如果当前的分辨率还不是最好的分辨率，那就移动至较好的分辨率然后进行 step 3）</p>
+</li>
+</ul>
+<h2 id="Computational-Considerations"><a href="#Computational-Considerations" class="headerlink" title="Computational Considerations"></a>Computational Considerations</h2><p>对于计算复杂度的一些分析。</p>
+<p>这部分主要说的是新提升ASM的方法比原有的ASM的方法要慢，主要是因为在计算feature images的时候需要在线计算，且在对landmark进行更新的时候使用的$kNN$ 分类器要比原文中使用的马氏距离慢。</p>
+<h1 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h1><p>这部分就是文章做的一部分关于定landmark的点和关于segmentation准确率的实验。</p>
+<h1 id="个人总结"><a href="#个人总结" class="headerlink" title="个人总结"></a>个人总结</h1><p>这篇文章主要是在讲对于原有的ASM过程中，关于如何在现有的图片上进行landmark更新进行的讨论。我感觉我好像还没有特别明白这里的60个features是怎么找的，相对于原文中比较简单的profile和新的profile的选定，本文更偏重于在landmark周围找特征和对这些备选点进行投票的过程。这里在landmark周围找特征更偏向于在图片的texture中找到特征的方法。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ASM/" rel="tag"># ASM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/12/31/Paper-Reading-Active-Shape-Model-their-training-and-application/" rel="prev" title="论文阅读 | Active Shape Model - their training and application">
+                  <i class="fa fa-chevron-left"></i> 论文阅读 | Active Shape Model - their training and application
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/01/06/Notes-Different-distances/" rel="next" title="干货 | 各种各样的distance">
+                  干货 | 各种各样的distance <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenxi</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

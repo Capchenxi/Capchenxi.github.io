@@ -1,23 +1,1188 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="光">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:locale">
+<meta property="article:author" content="Chenxi">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/page/3/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Chenxi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+      
+
+      
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/whatidid-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B8%AD%E4%B8%8D%E5%90%8C%E4%BB%BB%E5%8A%A1%E4%B8%8B%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/05/whatidid-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B8%AD%E4%B8%8D%E5%90%8C%E4%BB%BB%E5%8A%A1%E4%B8%8B%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Whatilearnt | 计算机视觉中不同任务下的数据读取总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-04-05 16:08:44" itemprop="dateCreated datePublished" datetime="2020-04-05T16:08:44-04:00">2020-04-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%B8%80%E7%82%B9%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">一点总结</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>最近参加了百度Aistudio深度学习七天训练营cv疫情的课程，临近结束，发布了PaddlePaddle的比赛，是关于人流密度检测的比赛。于是我打开电脑，一时不知道如何下手。虽然我知道任务的目的是什么，也有一些了解的网络结构可以应用，但我被卡在了看似最基础的部分 : 数据准备。</p>
+<p>计算机视觉的任务主要分为三种：图像分类，图像分割，图像检测。</p>
+<ul>
+<li>分类任务很简单，数据的输入输出对之间有明确的一一对应的关系，最主要的形式就是(Img图片, class类别)。一般情况下class类别以是个hot vector </li>
+<li>分割任务也很明确，输入输出数据之间的关系也很明显，主要形式就是（IMG图片, MASK掩膜），输出的mask和输入图片的大小一致，mask上像素级别的分类可以告诉我们实际图片上对应像素属于哪一类，从而实现将原图片分割为不同类别的目标。</li>
+</ul>
+<p>但到了图像检测（目标检测）的任务我就有些慌乱，为啥呢，前两个任务的输入输出都很明确且是固定的，但对于检测任务来说，没一张图片上可以检测出来的目标是不确定的，那这个数据应该怎么准备呢。我陷入了思考。但幸运的是，课程老师发布了Baseline的版本，上面带有对数据的处理，于是，我来研究和总结一下对于目标检测的任务，他的数据是怎么准备的。</p>
+<p>当然了，也可以说，在人流密度检测中可以简单将任务的数据处理为（IMG图片， COUNT人数），这样就变成了一个回归问题，但我还是想借此机会了解一下不定数量的标注框在目标检测任务中，是怎么放到模型中去的。</p>
+<p>【2 Days Later】</p>
+<p>朋友们，我看了baseline的程序之后发现，原来人流密度计算更多是用人流密度图来做参考的，也就是说这边作为目标的不是一个一个框框的位置标定，而是将框转化为点，然后将点表示在和输入图像相同大小的图片中。因为数据集还考虑了ignore region，也就是需要被忽略部分的点，而这些点在density图上被直接挖空，不再考虑。</p>
+<p>（可能也还是有用人像的框做标记的人流密度计算的方法的？这里先考虑的是转化为人流密度图）</p>
+<p>那我们就先来看一下人流密度图的数据是如何构造的。</p>
+<h1 id="数据整理"><a href="#数据整理" class="headerlink" title="数据整理"></a>数据整理</h1><p>其实对于数据的整理和读取也是很范式化的过程。</p>
+<ol>
+<li>明确已有数据构成</li>
+<li>明确需要数据构成</li>
+</ol>
+<p>这其实是很简单也显而易见的，并且正因为这部分的大同小异，我们在参考别人的porject的时候，关于数据的读取部分也是相似的。除了一些训练上的需要，其他部分都类似。</p>
+<h2 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h2><h3 id="以文件夹形式存在的"><a href="#以文件夹形式存在的" class="headerlink" title="以文件夹形式存在的"></a>以文件夹形式存在的</h3><p>我见识的比较少，一般常见的都是以文件夹形式存在的，也就是说，每个文件夹的名称代表的数据类别。这种一般出现在分类和分割的任务中。我们一般会把训练集的文件名保存在.txt 文件中，之后用的时候直接读取就可以了。</p>
+<ul>
+<li><p>文件夹已分好类别，很简单，只要了解一些电脑的io知识以及读写txt文件的知识就可以了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.listdir(path) <span class="comment"># 根据输入的path输出不同的path中的文件名</span></span><br><span class="line">os.listdir(os.path.join(path +<span class="string">&#x27;***&#x27;</span>)) <span class="comment"># 可拼凑组合不同给的文件夹名称</span></span><br><span class="line"><span class="keyword">with</span> (<span class="string">&#x27;filename&#x27;</span>) <span class="built_in">open</span> <span class="keyword">as</span> f:</span><br><span class="line">		f.write()</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文件夹没分好类，类别在文件名中表示，这时候需要一些简单的字符串处理就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  </span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="以json和文件夹形式存在的"><a href="#以json和文件夹形式存在的" class="headerlink" title="以json和文件夹形式存在的"></a>以json和文件夹形式存在的</h3><p>如果除了图片本身和文件夹说明的标签之外我们还需要其他的信息，那么这时候，就需要用json文件描述更多信息。我接触的目标检测的project不是很多，目前来说就见到了这一种。但很显然的是，除了文件夹能表示的标签之外，这类任务需要其他的文件来表明更多的信息。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/28/PaperReading-Google-s-Neural-Machine-Translation-System-Bridging-the-Gap-between-Human-and-Machine-Translation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/28/PaperReading-Google-s-Neural-Machine-Translation-System-Bridging-the-Gap-between-Human-and-Machine-Translation/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-28 15:15:49" itemprop="dateCreated datePublished" datetime="2020-03-28T15:15:49-04:00">2020-03-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li>论文题目：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1609.08144.pdf">Google’s Neural Machine Translation System: Bridging the Gap<br>  between Human and Machine Translation</a></li>
+<li>论文作者：<a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wu%2C+Y">Yonghui Wu</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Schuster%2C+M">Mike Schuster</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Chen%2C+Z">Zhifeng Chen</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Le%2C+Q+V">Quoc V. Le</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Norouzi%2C+M">Mohammad Norouzi</a> et al</li>
+<li>相关代码</li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p> 神经网络为基础的机器翻译（Neural Machine Translation, NMT）是自动翻译的端到端学习方法，它具有克服很多传统基于词组的劣势的潜质。但不幸的是，我们都知道NMT的计算复杂度和空间复杂度过高，在训练和翻译应用时需要很多的资源，当数据资源和模型过大的时候，NMT是不适合运用的。一些研究者表明，NMT的鲁棒性是很低的，尤其是当输入的句子包含有某些少见的单词的时候。</p>
+<p>在这片文章中，我们引入了 Google’s Neural Machine Translation System, GNMT， 来解决这些潜在的问题。这个模型包含了8个编译层和8个解码层，使用残差网络和注意力模块来连接编译和解码层。</p>
+<ul>
+<li>为了增强平行性来减少训练时间，我们的注意力模块连接的只有编码层的最高层和解码层的最底层。</li>
+<li>为了加速最终的翻译速度，我们在进行inference计算的时候运用了低精度的计算</li>
+<li><p>为了增强对不常见词的处理能力，我们将输入和输出的词语分解为常见的sub-words单元</p>
+</li>
+<li><p>我们的定向搜索技术运用了长度归一化的方法，并且加上了收敛损失，使得翻译输出的句子能够将输入的信息全部囊括。</p>
+</li>
+<li><p>为了优化翻译的BLEU 分数，我们加入了强化学习，但是增高的BLEU分数并没有反映在人工评价的提升上。</p>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/28/PaperReading-Google-s-Neural-Machine-Translation-System-Bridging-the-Gap-between-Human-and-Machine-Translation/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/28/Machine-Learning-2020-Lecture-2-Classification/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/28/Machine-Learning-2020-Lecture-2-Classification/" class="post-title-link" itemprop="url">Machine Learning-2020|Lecture#2 Classification</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-28 11:09:15" itemprop="dateCreated datePublished" datetime="2020-03-28T11:09:15-04:00">2020-03-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>讲过了第一大类的Regression，自然就到了机器学习的另一个问题：Classification。Regression主要是处理和数值相关的问题，比如我们需要预测某种结果的时候。但Classification着重于分类，比如说我们在看病的时候，需要一种模型来告诉我们究竟是否得病了，再比如一些手写识别，人脸识别。在这部分，我们也会通过举出某种实例来说明分类的问题。</p>
+<h1 id="Example：Classification-of-Pokemon"><a href="#Example：Classification-of-Pokemon" class="headerlink" title="Example：Classification of Pokemon"></a>Example：Classification of Pokemon</h1><p>这部分举例主要是通过不同的宝可梦的特征值，来判断它是什么属性的。</p>
+<p>可能你也会问，那既然如此，我们何不利用regression定义一条直线，然后通过的两边来定义不同的类呢。</p>
+<p>这样的想法是合理的，但如果用regression其实拔高了各类之间的关系。怎么说呢，可能现在有两组分类，但由于其中一组一些data过于正确，这条分类的regression的线就会过度偏向于有很多正确data的一方。所以Regression的方法是不合适的。</p>
+<p>所以我们还是通过既定的步骤来找合适的模型：</p>
+<ul>
+<li>分类问题该应用怎样的模型</li>
+<li>分类问题该应用怎样的损失函数进行训练</li>
+<li>最佳的模型是什么</li>
+</ul>
+<h2 id="Probability-Generative-Model"><a href="#Probability-Generative-Model" class="headerlink" title="Probability Generative Model"></a>Probability Generative Model</h2><p>首先，回答第一个问题的是，我们该通过怎样的模型对分类问题进行训练。这里选择的是概率模型。至于为什么叫Generative，是因为在我们得知模型之后就可以自己生成数据了。</p>
+<p>这里把问题建模为一个概率模型，即当我们得知数据 $\bf x$ 之后，它处于每一类的概率是多少，概率越大的类别有更大的可能性，我们就将数据分到概率最大的类别。若是二分类，直接看概率是否大于0.5即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/PaperReading-Unsupervised-Prepresentation-Learning-with-Deep-Convolutional-GAN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/24/PaperReading-Unsupervised-Prepresentation-Learning-with-Deep-Convolutional-GAN/" class="post-title-link" itemprop="url">论文阅读 | Unsupervised Prepresentation Learning with Deep Convolutional Generative Adversarial Network</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-24 15:39:50" itemprop="dateCreated datePublished" datetime="2020-03-24T15:39:50-04:00">2020-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li><p>论文题目：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1511.06434.pdf">UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS</a></p>
+</li>
+<li><p>论文作者：<a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Radford%2C+A">Alec Radford</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Metz%2C+L">Luke Metz</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Chintala%2C+S">Soumith Chintala</a></p>
+</li>
+<li>相关代码</li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>目前，有监督的卷积网络收获了极大地成功。但是无监督的卷积神经网络受到的关注度就比较低。这篇文章主要是希望可以构建有监督和无监督学习之间的桥梁。文章介绍了一类被称为是深度卷积生成网络的结构，他们有很浅给的结构上的限制并且说明了在无监督学习方面这类网络是很有优势的，并且会通过一系列的任务来体现这类网络的优势。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>从大量的无标记图片数据库中学习重复出现的特征是热门研究的方向。在计算机视觉中，我们可以利用大量的无标记数据来学习他们的中间特征，这些学到的特征可以完成分类的任务。本文提出一种通过训练GAN（生成对抗网络）来建立图片的特征，并且之后再利用生成器和判别器中的网络作为有监督学习中的特征提取器。GAN模型提供了一个很好的对于最大化估计的替代手段。GAN模型的训练不是很稳定，明显的表现在生成器生成一些奇怪的图片上；展现GAN学习到了什么特征的可视化研究也很少。</p>
+<p>这篇文章的贡献主要有几个方面：</p>
+<ul>
+<li>提出和评价了卷积对抗生成网络中结构的限制，希望这些限制能帮助GAN结构更稳定地训练。并且命名为DCGAN</li>
+<li>训练了可以进行图片分类的生成器，和其他无监督分类模型进行比较</li>
+<li>可视化GAN模型学习到的filter，并且展示了特定的filter可以画出特定的物体</li>
+<li>展示了生成器有很多有趣的向量计算，可以直接反映在生成的图片上。</li>
+</ul>
+<h1 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h1><ul>
+<li>从无标签数据中学习特征表达</li>
+<li>生成自然的图片（比较像真的的图片）</li>
+<li>可视化内部CNN层</li>
+</ul>
+<h1 id="Approach-and-Model-Architecture"><a href="#Approach-and-Model-Architecture" class="headerlink" title="Approach and Model Architecture"></a>Approach and Model Architecture</h1><p>历来将CNN结构用在GAN的模型中生成图片展示的效果都不是很好。这让LAPGAN的作者想到逐步提高生成图片的分辨率使得生成图片的模型更加稳定。我们同样也遇到了将CNN运用在GAN模型中常见的不稳定的问题。然而在一些列的模型探索以后，我们选定了一组模型可以在训练时稳定生成高清晰度的图片。</p>
+<p>我们方法的核心是采用和修改最近在CNN结构中提出的改变</p>
+<ol>
+<li>用带有确定stride参数的卷积层替代池化层，这可以使网络自己去学习适用于自身的下采样的方法。我们在生成器generator中采用这个改变</li>
+<li>去除卷积网络顶部的全连接层。最强有力的证明是使用平均池化层，我们发现global average pooling会提升模型的稳定性但是会减缓收敛速度。折中的办法是直接用卷积特征连接生成器和判别器的输入和输出层。（？）。GAN网络的第一层，也就是随机 z 向量这一层可以被称作全连接层，因为这只是矩阵的乘法，但是他得出的结果会变形为4维tensor，并且开启以后一堆卷积。对于判别器来讲，最后一层的卷积层会被放入单一的sigmoid方程中作为输出。</li>
+<li>Batch Normalization可以稳定学习过程。但是在每一层增加BN层会导致生成的样本不稳定，所以在生成器的输出和判别器的输入层，我们不会用到BN。</li>
+<li>在生成器除了输出层职位都用ReLU，在判别器用leaky ReLU会好一些</li>
+</ol>
+<h1 id="对抗训练的细节"><a href="#对抗训练的细节" class="headerlink" title="对抗训练的细节"></a>对抗训练的细节</h1><p>我们用三个数据库： LSUN， Imagenet，组合人脸作为训练数据，训练了DCGAN模型。</p>
+<ul>
+<li>对于训练图片 scale到 tanh方程的范围 [-1, 1] </li>
+<li>所有训练中用size 128 mini-batch的SGD进行梯度下降运算</li>
+<li>初始化z向量都来自于deviation为0.02的高斯分布</li>
+<li>LeakyReLU中的斜率为0.2</li>
+<li>利用Adam优化器，momentum设置为0.5</li>
+<li>学习率设置为0.0002</li>
+</ul>
+<h2 id="LSUN"><a href="#LSUN" class="headerlink" title="LSUN"></a>LSUN</h2><p>随着由GAN网络生成的图片质量的提高，对于网络是否过拟合的讨论也随之增加。为了说明我们的模型是如何处理更多数据并且生成更高分辨率的图片，我们在LSUN大约三百万张图上做了训练。最近的分析显示了模型学习速度之快和生成图片质量之间的关系。我们展示了训练一次过后的sample，模仿在线学习，显示我们的模型并不是通过过拟合生成高质量图片的。训练的图片没有进行数据增广。</p>
+<h2 id="Faces"><a href="#Faces" class="headerlink" title="Faces"></a>Faces</h2><p>Faces的数据库是从网上下载了一些包含人的图片。每一个人都做了确认，保证他们是处于现代的人。对于这些图片，通过OpenCV里的人脸detector将脸从图片中识别出来。这些face boxes就被当做是训练数据。同样这部分的图片没有进行数据增广。</p>
+<h2 id="ImageNet-1k"><a href="#ImageNet-1k" class="headerlink" title="ImageNet-1k"></a>ImageNet-1k</h2><p>我们用了ImageNet数据库中的图片作为无监督学习的图片来源。训练是在大小为 $32\times32$ 尺寸的图片上展开。图片同样没有做数据增广。</p>
+<h1 id="Empirical-Validation-of-DCGAN-capabilities"><a href="#Empirical-Validation-of-DCGAN-capabilities" class="headerlink" title="Empirical Validation of DCGAN capabilities"></a>Empirical Validation of DCGAN capabilities</h1><h2 id="Classifying-CIFAR-10-using-GANs-as-a-feature-extractor"><a href="#Classifying-CIFAR-10-using-GANs-as-a-feature-extractor" class="headerlink" title="Classifying CIFAR-10 using GANs as a feature extractor"></a>Classifying CIFAR-10 using GANs as a feature extractor</h2><p>常见的评价无监督特征学习的算法就是将他们用作特征提取器用在有监督的数据库中，然后看他表现如何。</p>
+<p>在CIFAR-10数据库中，用K-means算法作为单层网络的特征提取器已经可以得到很好的分类结果。当特征map的数量增加到4800的时候，可以达到的准确略为80.6%，若是将它拓展为多层特征学习，那么准确率可以高达82%。为了评价DCGAN学到的特征，我们将模型在ImageNet-1k上进行训练，然后用判别器每一层的卷积特征进行最大池化处理，将每一层生成一个 $4\times4$ 的网格。这些特征然后被展开形成一个 28672 维的向量，然后用 L2-svm分类器进行分类，可以得到准确率为82.8%的结果。DCGAN的结果还是没有直接训练CNN的结果好。另外，因为DCGAN不是在CIFAR-10本来的数据库上训练的，也可以说明该模型真的学到了特征，并且不受训练数据的影响。</p>
+<h2 id="Classifiying-SVHN-digits-using-GAN-as-a-feature-extractor"><a href="#Classifiying-SVHN-digits-using-GAN-as-a-feature-extractor" class="headerlink" title="Classifiying SVHN digits using GAN as a feature extractor"></a>Classifiying SVHN digits using GAN as a feature extractor</h2><p>这部分和上部分的内容差不多，是在另一个数据集上面的测试。如果用DCGAN的判别器做有监督学习，能够得到比较小的test error。另外，我们验证了DCGAN里面的CNN结构并不是模型分类的关键点，因为如果纯训练一个CNN的有监督模型，达到的误差更大。</p>
+<h1 id="Investigating-and-visualizing-the-internals-of-the-networks"><a href="#Investigating-and-visualizing-the-internals-of-the-networks" class="headerlink" title="Investigating and visualizing the internals of the networks"></a>Investigating and visualizing the internals of the networks</h1><p>我们从多方面研究了训练的生成器和判别器。我们不做任何 nearest neighbor的搜索。在像素级别或者特征级别的nearest neighbor容易被愚弄，童谣的我们不用log-likelihood标准来评价模型，因为这种标准很弱。</p>
+<h2 id="Walking-in-the-latent-space"><a href="#Walking-in-the-latent-space" class="headerlink" title="Walking in the latent space"></a>Walking in the latent space</h2><p>我们做的第一个实验是去理解隐层的样貌。顺着训练中学习到的流我们可以找到一些出现剧烈变化时表现出的训练模型memorization的标志，以及那些信息被破坏了。如果在隐层中探索的过程中，某一层的语义发生了变化（比如增加或减少了某个部分）那么我们可以以此作为模型学习到的相关和有趣的特征。</p>
+<h2 id="Visualizing-the-discriminator-features"><a href="#Visualizing-the-discriminator-features" class="headerlink" title="Visualizing the discriminator features"></a>Visualizing the discriminator features</h2><p>之前的工作显示了在有监督训练下的CNN网络会学到很有力的特征。特别是对以一些场景而言，CNN网络会学习到一些物体的detector。我们介绍了DCGAN也同样从大量的图片数据库中学到有趣的特征。特别是在卧室的场景中，可以看到学习到了一些床，窗户这样的特征。</p>
+<h2 id="Manipulating-the-generator-representation"><a href="#Manipulating-the-generator-representation" class="headerlink" title="Manipulating the generator representation"></a>Manipulating the generator representation</h2><p>除了从判别器学习到的特征之外，我们也需要考虑生成器学到了什么。从生成的图片的质量上来讲，生学期学习到了场景一些主要的特征，比如床，窗户，台灯，门还有奢华的家具。为了探索更多的特征的性能，我们做事杨尝试去除生成器中的窗户。</p>
+<p>在150个sample中，52个窗户被人为地框起来。在第二高的卷积特征层，应用了logistic regression去预测窗户的特征是否被激活。圈出的窗户盒子内的激活层是正值还是随机值。【这部分是没怎么弄明白是怎么把窗户给搞没有的】</p>
+<h2 id="Vector-arithmetic-on-face-samples"><a href="#Vector-arithmetic-on-face-samples" class="headerlink" title="Vector arithmetic on face samples"></a>Vector arithmetic on face samples</h2><p>学习了用在自然语言处理上的对于词向量的操作。这里是直接将加减操作用在Z向量上，最后生成的图片也会产生某种特征上的变化。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/23/PaperReading-Semantic-Human-Matting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/23/PaperReading-Semantic-Human-Matting/" class="post-title-link" itemprop="url">论文阅读 | Semantic Human Matting</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-23 15:01:59" itemprop="dateCreated datePublished" datetime="2020-03-23T15:01:59-04:00">2020-03-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li><p>论文题目：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1809.01354">Semantic Human Matting</a></p>
+</li>
+<li><p>论文作者：<a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Chen%2C+Q">Quan Chen</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Ge%2C+T">Tiezheng Ge</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Xu%2C+Y">Yanyu Xu</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhang%2C+Z">Zhiqiang Zhang</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Yang%2C+X">Xinxin Yang</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Gai%2C+K">Kun Gai</a></p>
+</li>
+<li><p>相关代码</p>
+</li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>Semantic Human Matting也被称作是人像的抠图，是一种高质量的图像分割。在图像硬分割的任务中，我们的分割只分为前景和背景两个部分，所以分割看到的边界比较明确。但是human matting的输出并不是一个 非零即一的掩码，而是一个透明度的层，这样可以将分离出的人像的边界有比较好的过度，而不至于太硬。</p>
+<p>现存的很多抠图的算法是需要人标定出前景和背景的一小部分，然后根据标定的位置进行抠图。这篇文章提出了一个自动进行图像抠图的算法 — 语义人像抠图。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/23/PaperReading-Semantic-Human-Matting/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/PaperReading-MobileNetsV1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/22/PaperReading-MobileNetsV1/" class="post-title-link" itemprop="url">论文阅读 | MobileNets - Efﬁcient Convolutional Neural Networks for Mobile Vision Applications</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-22 15:43:20" itemprop="dateCreated datePublished" datetime="2020-03-22T15:43:20-04:00">2020-03-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li><p>论文题目：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1704.04861">MobileNets: Efﬁcient Convolutional Neural Networks for Mobile Vision Applications</a></p>
+</li>
+<li><p>论文作者：<a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Howard%2C+A+G">Andrew G. Howard</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhu%2C+M">Menglong Zhu</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Chen%2C+B">Bo Chen</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Kalenichenko%2C+D">Dmitry Kalenichenko</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang%2C+W">Weijun Wang</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Weyand%2C+T">Tobias Weyand</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Andreetto%2C+M">Marco Andreetto</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Adam%2C+H">Hartwig Adam</a></p>
+</li>
+<li><p>相关代码</p>
+</li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>这篇文章介绍了一个新的网络MobileNet，可用在移动设备的视觉应用中。MobileNet是基于深度可分离卷积建立的。同时介绍了两个可以在准确性和运算复杂度进行衡量的超参。超参可以针对不同的问题选择一个最优的模型。这篇文章展示在不同任务上的不同实验。</p>
+<p>【这篇文章提出了新的网络结构，将标准卷积结构替换为depthwise seperable convolution，减少计算复杂度以及网络参数；引入两个超参：Width Multiplier $\alpha$ 用来缩减特征channel，Resolution Multiplier $\rho$ 用来缩减特征的大小 】</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/22/PaperReading-MobileNetsV1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/21/Paper-Reading-MobileNetV2-Inverted-Residuals-and-Linear-Bottlenecks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/21/Paper-Reading-MobileNetV2-Inverted-Residuals-and-Linear-Bottlenecks/" class="post-title-link" itemprop="url">论文阅读 | MobileNetV2: Inverted Residuals and Linear Bottlenecks</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-21 20:50:21" itemprop="dateCreated datePublished" datetime="2020-03-21T20:50:21-04:00">2020-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li><p>论文题目：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1801.04381">MobileNetV2: Inverted Residuals and Linear Bottlenecks</a></p>
+</li>
+<li><p>论文作者：<a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Sandler%2C+M">Mark Sandler</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Howard%2C+A">Andrew Howard</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhu%2C+M">Menglong Zhu</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Zhmoginov%2C+A">Andrey Zhmoginov</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Chen%2C+L">Liang-Chieh Chen</a></p>
+</li>
+<li><p>相关代码：</p>
+</li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>文章介绍了新的提高应用于多任务上的轻型网络；介绍了将模型应用于新的SSDLite框架上。这个模型是基于倒置残差结构； 发现移除比较narrow的神经网络层中的非线性比较重要。分别在分类和目标检测的任务上做了实验。</p>
+<p>【这篇文章主要提出的是inverted bottleneck结构和结构中线性的加入，都是为了在传播过程中可以最大化保留输入数据的信息】</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/21/Paper-Reading-MobileNetV2-Inverted-Residuals-and-Linear-Bottlenecks/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/19/Machine-Learning-2020-Lecture-0-Introduction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/19/Machine-Learning-2020-Lecture-0-Introduction/" class="post-title-link" itemprop="url">Machine Learning-2020| Lecture#0 Introduction</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 16:26:21" itemprop="dateCreated datePublished" datetime="2020-03-19T16:26:21-04:00">2020-03-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我整了半天的Advances in Machine Learning，然后发现我还有前半部分的没听。其实之前Machine Learning听过Andrew Ng的课，比较纯理论，基本上是用黑板上课全部推公式的过程，也是很受益匪浅的课。然后现在又跑来听李宏毅老师的课，希望可以做一下作业吧，包括后面很多用Neural Network的部分。Andrew的课和我后来上的estimation and detection很像，用到Neural Network部分的比较少,基本上都传统的有监督和无监督学习,包括贝叶斯, SVM， K-means, EM 这些算法的推论和讲解。</p>
+<p>感觉自己的实践还是比较少的，所以又来听课了，并且还是记录一下可能会比较好复习。</p>
+<p>这部分是课程Introduction。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/19/Machine-Learning-2020-Lecture-0-Introduction/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/19/Machine-Learning-2020-Lecture-1-Regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/19/Machine-Learning-2020-Lecture-1-Regression/" class="post-title-link" itemprop="url">Machine Learning-2020| Lecture#1 Regression&Gradient Descent</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 16:14:07" itemprop="dateCreated datePublished" datetime="2020-03-19T16:14:07-04:00">2020-03-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>第一部分主要讲了Regression。【我曾经纠结于regression的意思很久，在中文regression是回归的意思。刚开始我一直纠结于回归究竟是啥意思，但后来忘记听哪个课，老师说不用在意regression的意思，他没有特别的含义，但是大家一直这么叫regression，所以就用regression了。如果还是纠结就想想高中学的线性<strong>回归</strong>，好像就没那么神秘了】</p>
+<p>Regression类的问题主要用来根据输入量预测某一数值。常见的应用场景有：股票市场，自动驾驶，广告推荐。那么我们来举例看看Regression究竟是怎么用的吧。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/19/Machine-Learning-2020-Lecture-1-Regression/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/18/%E5%B9%B2%E8%B4%A7-BLEU-score/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/18/%E5%B9%B2%E8%B4%A7-BLEU-score/" class="post-title-link" itemprop="url">干货 | BLEU score - 机器翻译的衡量标准</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-18 15:33:45" itemprop="dateCreated datePublished" datetime="2020-03-18T15:33:45-04:00">2020-03-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B9%B2%E8%B4%A7/" itemprop="url" rel="index"><span itemprop="name">干货</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>BLEU score - 机器翻译的衡量标准</p>
+<p>BLEU(<strong>bilingual evaluation understudy</strong>) 被用来衡量双语翻译片段的翻译质量。</p>
+<p>他的评价标准也很简单，机器翻译的的结果越接近exprerts的翻译结果，那么机器翻译的效果越好。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/18/%E5%B9%B2%E8%B4%A7-BLEU-score/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenxi</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

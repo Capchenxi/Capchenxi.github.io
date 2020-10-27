@@ -1,23 +1,1189 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="光">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:locale">
+<meta property="article:author" content="Chenxi">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/page/2/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Chenxi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+      
+
+      
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/23/Algorithm-Binary-Tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/23/Algorithm-Binary-Tree/" class="post-title-link" itemprop="url">Algorithm | Binary Tree</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-06-23 16:56:13" itemprop="dateCreated datePublished" datetime="2020-06-23T16:56:13-04:00">2020-06-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>参考网页： <a target="_blank" rel="noopener" href="https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/trees.html">https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/trees.html</a></p>
+<h1 id="二叉树的定义"><a href="#二叉树的定义" class="headerlink" title="二叉树的定义"></a>二叉树的定义</h1><p>我们将Linked Data Structure的结构拓展，使得一个节点可以和两个node相连接。二叉树的结构由节点构成，有左节点和右节点并且和它本身的值。最顶层的node被称为根root</p>
+<p>每一个node（包括root在内）都只和另一个node相连，它们之间的连接成为edge，而该node被称为parent。另一方面来讲，一个node可以和任意多个node相连，每一个node都是他的children（就是在说一个node可以有多个children但是只能有一个parent），没有children的node被称作leaves， 处在中间的node都叫内部节点，拥有相同parent的node被称为siblings.</p>
+<h1 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h1><h2 id="前序遍历-preorder"><a href="#前序遍历-preorder" class="headerlink" title="前序遍历 preorder"></a>前序遍历 preorder</h2><p>遍历顺序是：parent-left-right</p>
+<ul>
+<li><p>给定Binary Tree， 求前序遍历得到的数值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Recursive</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preorder</span>(<span class="params">self, root</span>):</span></span><br><span class="line">  ans = []</span><br><span class="line">  self.helper(root, ans)</span><br><span class="line">  <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">self, root, ans</span>):</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> root:</span><br><span class="line">    ans.append(root.val)</span><br><span class="line">    self.helper(root.left, ans)</span><br><span class="line">    self.helper(root.right, ans)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Iterative</span></span><br><span class="line"></span><br><span class="line">    stack = []</span><br><span class="line">    ans = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> root <span class="keyword">or</span> <span class="built_in">len</span>(stack) &gt; <span class="number">0</span>:</span><br><span class="line">      <span class="keyword">while</span> root:</span><br><span class="line">        ans.append(root.val)</span><br><span class="line">        stack.append(root.right)</span><br><span class="line">        root = root.left</span><br><span class="line">      root = stack.pop()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="中序遍历-inorder"><a href="#中序遍历-inorder" class="headerlink" title="中序遍历 inorder"></a>中序遍历 inorder</h2><p>遍历顺序是：left-parent-left</p>
+<ul>
+<li><p>给定Binary Tree， 求中序遍历得到的数值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Recursive</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inorder</span>(<span class="params">self, root</span>):</span></span><br><span class="line">  ans = []</span><br><span class="line">  </span><br><span class="line">  self.helper(root, ans)</span><br><span class="line">  <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">self, root, ans</span>):</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> root:</span><br><span class="line">    self.helper(root.left)</span><br><span class="line">    ans.append(root.val)</span><br><span class="line">    self.helper(root.right)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Iteration</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inorder</span>(<span class="params">self, root</span>):</span></span><br><span class="line">  ans, stack = [], []</span><br><span class="line">  <span class="keyword">while</span> root <span class="keyword">or</span> <span class="built_in">len</span>(stack) &gt; <span class="number">0</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> root:</span><br><span class="line">      stack.append(root)</span><br><span class="line">      root = root.left</span><br><span class="line">      </span><br><span class="line">    root = stack.pop()</span><br><span class="line">    ans.append(root.val)</span><br><span class="line">    root = root.right</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">return</span> ans</span><br><span class="line">    </span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="后序遍历-postorder"><a href="#后序遍历-postorder" class="headerlink" title="后序遍历 postorder"></a>后序遍历 postorder</h2><p>遍历顺序是：left-right-parent</p>
+<ul>
+<li><p>给定Binary Tree，求后序遍历输出的数列</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Recursive</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">postorder</span>(<span class="params">self, root</span>):</span></span><br><span class="line">  </span><br><span class="line">  ans = []</span><br><span class="line">  <span class="keyword">return</span> self.helper(self, root, ans)</span><br><span class="line">  </span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">helper</span>(<span class="params">self, root, ans</span>):</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> root:</span><br><span class="line">    self.helper(root.left)</span><br><span class="line">    self.helper(root.right)</span><br><span class="line">    ans.append(root.val)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Iterative</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">postorderTraversal</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        ans, stack = [], [root]</span><br><span class="line">        </span><br><span class="line">            </span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">len</span>(stack) &gt; <span class="number">0</span> <span class="keyword">and</span> root:</span><br><span class="line"></span><br><span class="line">            root = stack.pop()</span><br><span class="line">            ans.append(root.val)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> root.left:</span><br><span class="line">                stack.append(root.left)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> root.right:</span><br><span class="line">                stack.append(root.right)</span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">return</span> ans[::<span class="number">-1</span>]</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/12/PaperReading-SMPL-A-Skinned-Multi-Person-Linear-Model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/12/PaperReading-SMPL-A-Skinned-Multi-Person-Linear-Model/" class="post-title-link" itemprop="url">论文阅读 | SMPL: A Skinned Multi-Person Linear Model</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-06-12 16:40:44" itemprop="dateCreated datePublished" datetime="2020-06-12T16:40:44-04:00">2020-06-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li>论文题目： <a target="_blank" rel="noopener" href="http://files.is.tue.mpg.de/black/papers/SMPL2015.pdf">SMPL: A Skinned Multi-Person Linear Model</a></li>
+<li>论文作者：\ $Matthew Loper, Naureen Mahmood, Javier Romero, Gerard Pons-Moll,  Michael J. Black$</li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>我们学习了一种描述人体形状和姿态变换模型，这种模型应用了类似的资源并且较之前的模型更为精确。我们的Skinned Multi-Person Linear （SMPL）模型是基于skinned vertex的模型，可以准确得描述人的形状和姿态。模型的参数从包括了静态姿态模板，blend weight，基于姿态的blend shape还有基于人个体的blend shape还有一个由人体模型中的顶点到骨骼joint的regressor中学习。（这些专业的名词太多了，一会儿也会说到）。和之前模型不一样的是，pose-dependent blend shape是姿态旋转矩阵的线性方程。这个 简单的模型可以让我们在大量的对齐人体不同姿态中学习。 SMPL模型的准确度比SCAPE要高，并且因为SMPL模型是基于blend skinning的，所以在渲染engine中也可以使用。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/12/PaperReading-SMPL-A-Skinned-Multi-Person-Linear-Model/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/08/Algorithm-Sorting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/08/Algorithm-Sorting/" class="post-title-link" itemprop="url">Algorithm | Sorting</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-06-08 21:52:40" itemprop="dateCreated datePublished" datetime="2020-06-08T21:52:40-04:00">2020-06-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>排序算法</p>
+<h1 id="Quick-Sort-快速排序"><a href="#Quick-Sort-快速排序" class="headerlink" title="Quick Sort - 快速排序"></a>Quick Sort - 快速排序</h1><p>快排的主要思想是divide and conquer，是把一个大问题划分成几个小问题然后再合并在一起的方法。</p>
+<p>核心问题就是找到一个pivot的位置，使得pivot左边的数字都小于pivot，而右边的数字都大于pivot，这样pivot的位置就定了，然后我们再分别对两边的数字再进行：寻找pivot - 找左边 - 找右边。</p>
+<p>这种循环进行的操作的好处在于，我们找到的pivot的位置是正确的，然后在每个小问题中，不断地实施这个操作，就可以让每个数字找到合适自己的位置。 </p>
+<p>假设我们有一个可以帮助我们寻找pivot的函数 Partition，那么排序的过程就可以写为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quicksort</span>(<span class="params">arr, low, high</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> low &lt; high:</span><br><span class="line">        pivot = partition(arr, low, high)</span><br><span class="line"></span><br><span class="line">        quicksort(arr, low, pivot<span class="number">-1</span>)</span><br><span class="line">        quicksort(arr, pivot+<span class="number">1</span>, high)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
+<p>返回pivot的位置可以帮助我们固定pivot，更好得对pivot之前和之后个数组进行操作。</p>
+<p>那么问题是，现在如何定义函数Partition?</p>
+<p>函数Partition的主要作用是，将输入array中的某一个数定义为pivot，并且确定它在array中的位置。我们一般选取array最后一个值作为pivot，然后将这个pivot放在正确的地方：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span>(<span class="params">arr, low, high</span>):</span></span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    mid = (low + high)//<span class="number">2</span></span><br><span class="line">    arr[mid], arr[<span class="number">-1</span>] = arr[<span class="number">-1</span>], arr[mid]</span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(arr) - <span class="number">1</span>:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> arr[i] &lt; arr[<span class="number">-1</span>]:</span><br><span class="line">            arr[i], arr[j] = arr[j], arr[i]</span><br><span class="line">            <span class="comment"># print(arr)</span></span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    arr[j], arr[<span class="number">-1</span>] = arr[<span class="number">-1</span>], arr[j]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> j</span><br></pre></td></tr></table></figure>
+<h1 id="Bubble-Sort-冒泡排序"><a href="#Bubble-Sort-冒泡排序" class="headerlink" title="Bubble Sort - 冒泡排序"></a>Bubble Sort - 冒泡排序</h1><p>冒泡排序的核心思想在于两两比较数字之间的大小然后将最大的移动到最后。</p>
+<p>第一步bul</p>
+<p>时间复杂度 ： O(n^2)</p>
+<p>空间复杂度：O(1)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubblesort</span>(<span class="params">arr</span>):</span></span><br><span class="line">    k = <span class="built_in">len</span>(arr)</span><br><span class="line">    <span class="keyword">while</span> k &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, k):</span><br><span class="line">            <span class="keyword">if</span> arr[i] &lt; arr[i<span class="number">-1</span>]:</span><br><span class="line">                arr[i], arr[i<span class="number">-1</span>] = arr[i<span class="number">-1</span>], arr[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        k -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
+<p>算是比较简单明白的排序，注意一点的是 <code>while k &gt; 0</code> 和后面的<code>k -= 0</code> 同样可以用一句 <code>for _ in range(len(arr))</code> 代替，这样时间复杂度会更高。之前用while是考虑到后面比较大的数字已经放在最后就不需要考虑了。时间复杂度是 $O(n^2)$</p>
+<h1 id="Merge-Sort-归并排序"><a href="#Merge-Sort-归并排序" class="headerlink" title="Merge Sort - 归并排序"></a>Merge Sort - 归并排序</h1><p>归并排序的方法主要思想也是divide and conquer，既然如此，我们需要把大的排序分解成小的序列，然后排序之后再合并在一起。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span>(<span class="params">left, right</span>):</span></span><br><span class="line">    <span class="comment"># print(left, right)</span></span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    merge_arr = []</span><br><span class="line">    <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(left) <span class="keyword">and</span> j &lt; <span class="built_in">len</span>(right):</span><br><span class="line">        <span class="keyword">if</span> left[i] &lt;= right[j]:</span><br><span class="line">            merge_arr.append(left[i])</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            merge_arr.append(right[j])</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> i == <span class="built_in">len</span>(left):</span><br><span class="line">        merge_arr = merge_arr + right[j:]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        merge_arr = merge_arr + left[i:]</span><br><span class="line">    print(merge_arr)</span><br><span class="line">    <span class="keyword">return</span> merge_arr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mergeSort</span>(<span class="params">arr, start, end</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> start == end:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> arr[start:end+<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    mid = (start + end)//<span class="number">2</span></span><br><span class="line">    left = mergeSort(arr, start, mid)</span><br><span class="line">    right = mergeSort(arr, mid + <span class="number">1</span>, end)</span><br><span class="line"></span><br><span class="line">    merge_arr = merge(left, right)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> merge_arr</span><br></pre></td></tr></table></figure>
+<h1 id="Insertion-Sort-插入排序"><a href="#Insertion-Sort-插入排序" class="headerlink" title="Insertion Sort - 插入排序"></a>Insertion Sort - 插入排序</h1><p>插入排序的思想是将未排序的值插入到之前的已经排序的数列中去。</p>
+<p>时间复杂度：O(n^2)</p>
+<p>空间复杂度：O(1)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insertionsort</span>(<span class="params">arr</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(arr)):</span><br><span class="line">        print(arr)</span><br><span class="line">        k = i</span><br><span class="line">        <span class="keyword">while</span> k &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> arr[k] &lt; arr[k - <span class="number">1</span>]:</span><br><span class="line">                arr[k], arr[k<span class="number">-1</span>] = arr[k<span class="number">-1</span>], arr[k]</span><br><span class="line">                k -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/06/Algorithm-Leetcode-June%20Challenge/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/06/Algorithm-Leetcode-June%20Challenge/" class="post-title-link" itemprop="url">Algorithm | LeetCode - June Challenge</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-06-06 23:31:47" itemprop="dateCreated datePublished" datetime="2020-06-06T23:31:47-04:00">2020-06-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>【LeetCode】- June Challenge</p>
+<p><a href="#lc1029">0606 - Leetcode1029 - Two City Scheduling - Easy</a></p>
+<p><a href="#lc518">0607 - Leetcode518 - Coin Change 2 - Medium</a></p>
+<p><a href="#lc322">补充 - Leetcode322 - Coin Change - Medium</a></p>
+<p><a href="#lc231">0608 - Leetcode231-Power Of Two - Easy</a></p>
+<p><a href="#lc392">0609 - Leetcode392 - Is Subsequence - Easy</a></p>
+<p><a href="#lc115">补充 - Leetcode115 - Distinct Subsequence - Hard</a></p>
+<p><a href="#lc35">0610 - Leetcode35 - Search Insert Position - Easy</a></p>
+<p><a href="#lc75">0611 - Leetcode75 - Sorting Colors - Medium</a></p>
+<p><a href="#lc380">0612 - Leetcode380 - Insert Delete GetRandom O(1) - Medium</a></p>
+<p><a href="#lc368">0613 - Leetcode368 - Largest Divisible Subset - Medium</a></p>
+<p><a href="#lc300">补充 - Leetcode300 - Longest Increasing Subsequence - Medium</a></p>
+<p><a href="#lc787">0614 - Leetcode787 - Cheapest Flights within K stops - Medium</a></p>
+<p><a href="#lc700">0615 - Leetcode700 - Search in a Binary Search Tree - Easy</a></p>
+<p><a href="#lc468">0616 - Leetcode468 - Validate IP Address - Medium</a></p>
+<p><a href="#lc130">0617 - Leetcode130 - Surrounded Regions - Medium</a></p>
+<p><a href="#lc200">补充 - Leetcode200 - Number of Islands - Medium</a></p>
+<p><a href="#lc547">补充 - Leetcode547 - Friend Circles - Medium</a></p>
+<p><a href="#lc275">0618 - Leetcode275 - H-index II - Medium</a></p>
+<p><a href="#lc1044">0619 - Leetcode1044 - Longest Duplicate Substring - Hard</a></p>
+<p><a href="#lc60">0620 - Leetcode60 - Permutation Sequence - Medium</a></p>
+<p><a href="#lc31">补充 - Leetcode31 - Next Permutation - Medium</a></p>
+<p><a href="#lc46">补充 - Leetcode46 - Permutations - Medium</a></p>
+<p><a href="#lc174">0621 - Leetcode174 - Dungeon Games - Hard</a></p>
+<p><a href="#lc137">0622 - Leetcode137 - Single Number II - Medium</a></p>
+<p><a href="#lc136">补充 - Leetcode136 - Single Number I - Easy</a></p>
+<p><a href="#lc260">补充 - Leetcode260 - Single Number III - Medium</a></p>
+<p><a href="#lc222">0623 - Leetcode222 - Count Complete Tree Node - Medium</a></p>
+<p><a href="#lc96">0624 - Leetcode96 - Unique Binary Search Trees - Medium</a></p>
+<p><a href="#lc95">补充 - Leetcode95 -Unique Binary Search Trre II - Medium</a></p>
+<p><a href="#lc287">0625 - Leetcode287 - Find the Duplicate Number - Medium</a></p>
+<p><a href="#lc142">补充 - Leetcode142 - Linked List Cycle II - Medium</a></p>
+<p><a href="#lc129">0626 - Leetcode129 - Sum Root to Leaf Number - Medium</a></p>
+<p><a href="#lc279">0627 - Leetcode279 - Perfect squares - Medium</a></p>
+<p><a href="#lc322">0628 - Leetcode322 - Reconstruct Itenerary - Medium</a></p>
+<p><a href="#lc62">0629 - Leetcode62 - Unique Paths - Medium</a></p>
+<p><a href="#lc63">补充 - Leetcode63 - Unique Paths II - Medium</a></p>
+<p><a href="#lc212">0630 - Leetcode212 - Word Search II - Hard</a></p>
+<p><a href="#lc74">补充 - Leetcode79 - Word Search I - Medium</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/06/Algorithm-Leetcode-June%20Challenge/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/16/whatidid-%E6%8F%90%E5%8F%96CCL%E8%AF%AD%E6%96%99%E6%A3%80%E7%B4%A2%E5%BA%93%E6%A3%80%E7%B4%A2%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/16/whatidid-%E6%8F%90%E5%8F%96CCL%E8%AF%AD%E6%96%99%E6%A3%80%E7%B4%A2%E5%BA%93%E6%A3%80%E7%B4%A2%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">whatidid | 提取CCL双语语料检索库检索数据</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-05-16 18:59:00" itemprop="dateCreated datePublished" datetime="2020-05-16T18:59:00-04:00">2020-05-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>提取CCL双语语料库信息【简易网页内容抓取】</p>
+<p>说明：此程序非商用，纯属个人提取数据时写的简单的抓取网页信息的程序，具体内容请参阅 <a target="_blank" rel="noopener" href="http://ccl.pku.edu.cn:8080/ccl_corpus/CCLCorpus_Readme.html">CCL语料库使用说明</a> 。感谢CCL语料库的创建和维护者。<strong>转载请标明出处</strong></p>
+<p>适用范围：CCL双语语料库</p>
+<p>输入信息：查询词汇query，词汇左右两边限定词汇长度max_left, max_right</p>
+<p>返回内容：无 (会在当前文件夹下创建 ./CCL_corpus/ 文件夹保存目标词汇的搜索结果)</p>
+<p>图片说明：</p>
+<p><img src="/images/3281589670804_.pic_hd.jpg" alt="3281589670804_.pic_hd"><img src="/images/3291589670915_.pic_hd.jpg" alt="3291589670915_.pic_hd"></p>
+<p>具体程序：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">extract_sentences</span>(<span class="params">query:<span class="built_in">str</span>=<span class="string">&#x27;bill&#x27;</span>, max_left:<span class="built_in">int</span>=<span class="number">300</span>, max_right:<span class="built_in">int</span>=<span class="number">300</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :param query: 目标搜索词 target word</span></span><br><span class="line"><span class="string">    :param max_left: 左侧提取最多字数(以char为单位) maximum str length before target word</span></span><br><span class="line"><span class="string">    :param max_right: 右侧提取最多字数(以char为单位)minmum str length after target word</span></span><br><span class="line"><span class="string">    :return: None. (Generate the file containing sentences)</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    page = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        web = <span class="string">&#x27;http://ccl.pku.edu.cn:8080/ccl_corpus/search?dir=chen&amp;q=&#x27;</span>+query+<span class="string">&#x27;&amp;LastQuery=&#x27;</span>+query+<span class="string">&#x27;&amp;start=&#x27;</span>+<span class="built_in">str</span>((page<span class="number">-1</span>)*<span class="number">50</span>)+<span class="string">&#x27;&amp;num=50&#x27;</span>+\</span><br><span class="line">              <span class="string">&#x27;&amp;index=FullIndex&amp;outputFormat=HTML&amp;orderStyle=score&amp;encoding=UTF-8&amp;neighborSortLength=0&amp;maxLeftLength=&#x27;</span>+<span class="built_in">str</span>(max_left)+<span class="string">&#x27;&amp;maxRightLength=&#x27;</span>+<span class="built_in">str</span>(max_right)+<span class="string">&#x27;&amp;isForReading=yes&#x27;</span></span><br><span class="line">        response = requests.get(web)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> response.raise_for_status(): <span class="comment"># check if the website is available</span></span><br><span class="line">            print(response.raise_for_status())</span><br><span class="line"></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        url_text = response.content.decode()</span><br><span class="line"></span><br><span class="line">        se = re.search(</span><br><span class="line">            <span class="string">r&#x27;&lt;td width=\&quot;3%\&quot;&gt;(\d+)&lt;\/td&gt;&lt;td width=\&quot;45%\&quot; valign=\&quot;top\&quot; colspan=\&quot;3\&quot; align=\&quot;left\&quot;&gt;(.+?)&lt;\/td&gt;&lt;td width=\&quot;45%\&quot; valign=\&quot;top\&quot; colspan=\&quot;3\&quot; align=\&quot;left\&quot;&gt;(.+?)&lt;\/td&gt;&lt;\/tr&gt;&#x27;</span>,</span><br><span class="line">            url_text, re.S)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> se: <span class="comment"># If there is no matching pattern, break</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        match = re.finditer(<span class="string">r&#x27;&lt;td width=\&quot;3%\&quot;&gt;(\d+)&lt;\/td&gt;&lt;td width=\&quot;45%\&quot; valign=\&quot;top\&quot; colspan=\&quot;3\&quot; align=\&quot;left\&quot;&gt;(.+?)&lt;\/td&gt;&lt;td width=\&quot;45%\&quot; valign=\&quot;top\&quot; colspan=\&quot;3\&quot; align=\&quot;left\&quot;&gt;(.+?)&lt;\/td&gt;&lt;\/tr&gt;&#x27;</span>,</span><br><span class="line">                                url_text, re.S)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(<span class="string">&#x27;../CCL_corpus&#x27;</span>):</span><br><span class="line">            os.mkdir(<span class="string">&#x27;../CCL_corpus&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;../CCL_corpus/ccl_&#x27;</span>+query+<span class="string">&#x27;.txt&#x27;</span>,<span class="string">&#x27;a&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="keyword">for</span> m <span class="keyword">in</span> match:</span><br><span class="line"></span><br><span class="line">                f.write(m.group(<span class="number">1</span>)+<span class="string">&#x27; &#x27;</span>+ re.sub(<span class="string">&#x27; +&#x27;</span>, <span class="string">&#x27; &#x27;</span>, re.sub(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27; &#x27;</span>, m.group(<span class="number">2</span>)))+<span class="string">&#x27; &#x27;</span>+</span><br><span class="line">                        re.sub(<span class="string">&#x27; +&#x27;</span>, <span class="string">&#x27; &#x27;</span>, re.sub(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27; &#x27;</span>, m.group(<span class="number">3</span>)))+<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        page += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    target_words_list = [<span class="string">&#x27;address&#x27;</span>, <span class="string">&#x27;appreciate&#x27;</span>, <span class="string">&#x27;beat&#x27;</span>, <span class="string">&#x27;bill&#x27;</span>, <span class="string">&#x27;bond&#x27;</span>, <span class="string">&#x27;column&#x27;</span>, <span class="string">&#x27;cover&#x27;</span>, <span class="string">&#x27;deliver&#x27;</span>, <span class="string">&#x27;exploit&#x27;</span>, <span class="string">&#x27;figure&#x27;</span>,<span class="string">&#x27;perspective&#x27;</span>, <span class="string">&#x27;platform&#x27;</span>, <span class="string">&#x27;provision&#x27;</span>, <span class="string">&#x27;rest&#x27;</span>]</span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> target_words_list:</span><br><span class="line">        extract_sentences(t)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/19/whatidid-gensim-word2vec-doc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/19/whatidid-gensim-word2vec-doc/" class="post-title-link" itemprop="url">杂学 | 对于Word2Vec的一点理解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-04-19 15:53:08" itemprop="dateCreated datePublished" datetime="2020-04-19T15:53:08-04:00">2020-04-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>解读Gensim中Word2Vec Model，<a target="_blank" rel="noopener" href="https://radimrehurek.com/gensim/auto_examples/tutorials/run_word2vec.html#sphx-glr-download-auto-examples-tutorials-run-word2vec-py">文档</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/14/Machine-Learning-2020-Week-4-Deep-Learning-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/14/Machine-Learning-2020-Week-4-Deep-Learning-%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86/" class="post-title-link" itemprop="url">Machine-Learning-2020 | Lecture#3 Deep Learning 预备知识</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-04-14 11:28:00" itemprop="dateCreated datePublished" datetime="2020-04-14T11:28:00-04:00">2020-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="对Deep-Learning的简介"><a href="#对Deep-Learning的简介" class="headerlink" title="对Deep Learning的简介"></a>对Deep Learning的简介</h1><p>简单来说，Deep Learning的发展从最早的Perceptron开始一直到现在的蓬勃发展也是经历了很多。</p>
+<p>就像之前说的，在做Machine Learning的时候，分为3步，Deep Learning也是一样。</p>
+<ol>
+<li>Define Function sets 这里的function sets就是neural network，因为neural network中参数不同，所以这些是一系列的方程集。</li>
+<li>Goodness of function 在寻找比较适合模型的参数的时候，我们找到的评价模型的是损失函数。根绝不同的任务，会有不同的损失函数</li>
+<li>Minimize loss function 无论我们最终应用的损失函数是什么，我们最终的目的都是最小化损失函数。在最小化的过程中我们可以用到一些优化的方法。</li>
+</ol>
+<p>在之前的分类和回归的任务中，我们所做的基本上都是一层网络。在regression任务中，是输入数据经过一个参数方程然后得到输出；在classfication任务中，是输入经过一个参数方程，再经过一个sigmoid方程进行分类。</p>
+<p>但有时候，只通过一个参数方程无法满足我们复杂的需求，所以神经网络就是让这些参数方程横向变多，纵向变厚。我们通过计算不同的参数方程，再结合不同参数方程的结果得到我们最终想要的分类或回归结果。</p>
+<p>这些中间不断生成和组合的层就叫做Hidden Layers，结合了很多隐藏层的网络就被称为深度网络。</p>
+<p>目前我我们可以用很多框架（tensorflow，pytorch等）来实现深度神经网络的搭建和计算。</p>
+<h2 id="BackPropagation"><a href="#BackPropagation" class="headerlink" title="BackPropagation"></a>BackPropagation</h2><p>其实在之前我们提到的梯度下降和Backpropagation差不多, 差别是BackPropagation所涉及的参数和流程更为复杂, 因为在Neural Network中存在的参数更多。</p>
+<p>在linear regression和logistic regression中，我们更新参数的步骤很简单，因为预测的结果很简单，可以可以直接用feature $\bf x$ 乘以各自的权重 $\bf w$ 得到预测值 $\bf y = xw$，所以我们在更新参数 $\bf w$ 的时候只用一步计算$\bf w = w - \frac{\part L(w)}{\part w}$参数对结果的导数，然后就可以更新了，但是Neural Network的参数有很多，而且有很多层。</p>
+<p>我们先来看一下NeuralNetwork的结构：</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/13/Machine-Learning-2020-Lecture-2-New-Optimization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/13/Machine-Learning-2020-Lecture-2-New-Optimization/" class="post-title-link" itemprop="url">Machine-Learning-2020| Lecture #2 New Optimization</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-04-13 13:08:51" itemprop="dateCreated datePublished" datetime="2020-04-13T13:08:51-04:00">2020-04-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>这部分介绍的是对于当前大家在做深度学习用到的optimization的几种方法的总结介绍以及改进的方面。首先会介绍常用的几种optimization的方法，然后是对现行几种方法的总结和优劣势分析。</p>
+<h1 id="标注说明"><a href="#标注说明" class="headerlink" title="标注说明"></a>标注说明</h1><ul>
+<li>$\theta_t$ 表示时刻 $t$ 的参数值。这个参数就是我们要训练的模型中的参数集合；</li>
+<li>$\Delta L(\theta_t) / g_t$ 表示时刻 $t$ 参数的gradient，这个是我们在更新参数时需要用到的；</li>
+<li>$m_t$ 表示截止到 $t$ 时刻，之前累积的 momentum的和</li>
+<li>$\eta$ 表示学习率</li>
+</ul>
+<h1 id="常见的Optimization回顾"><a href="#常见的Optimization回顾" class="headerlink" title="常见的Optimization回顾"></a>常见的Optimization回顾</h1><ul>
+<li><p>SGD（stochastic gradient descent）</p>
+<p>这里说的是随机梯度下降，也就是输入一个example之后就对这个example的梯度进行计算，然后根据公式</p>
+<script type="math/tex; mode=display">
+\theta_{t+1} = \theta_{t}-\eta g_t</script><p>表示模型中的参数会根据本次的梯度，在固定学习率$\eta$ 的状态下进行变化。</p>
+</li>
+<li><p>SGDM （stochastic gradient descent with momentum）</p>
+<p>这里说的是在之前随机梯度下降的基础上加上了对梯度的改进，也就是加上了Momentum对梯度的影响:</p>
+<script type="math/tex; mode=display">
+\theta_{t+1} = \theta_{t} + v_t
+\\ v_t = \lambda v_{t-1} - \eta g_t</script><p>这里若是将 $v<em>t$ 带回第一个公式中，就变为 $\theta</em>{t+1} = \theta<em>{t}-\eta g_t + \lambda v</em>{t-1}$, 和SGD的公式比起来，多加了一项 $\lambda v_{t-1}$ 这项是之前的momentum的历史。</p>
+</li>
+<li><p>Adagrad</p>
+<p>最理想的学习率的变化是在一开始学习的时候，学习率会比较大，这样的话可以减少寻找最佳位置的时间，但是随着我们寻找越接近最佳的点，学习率需要变小，这样的话不至于一步错过需要找寻的点。所以我们希望学习率会随着时间的变化减小，即 $\eta_t = \frac{\eta}{\sqrt{t+1}}$.</p>
+<p>但只做这点改变是不够的的，即使我们对学习率做了变化，它也是随着时间的变化。对于不同的参数，学习率的变化量仍旧是个定值。我们期望学习率能够在自己参数本身变化的情况下进行改变，也就是说有些参数变化的波动大，有些参数变化的波动小，我们希望学习率能根据参数本身做出变化。</p>
+<p>因此, 我们希望考虑过去所有计算过的梯度:</p>
+<script type="math/tex; mode=display">
+\theta_{t+1} = \theta_{t} - \frac{\eta_t}{\sqrt{\frac{1}{t+1}\sum\limits_{i = 0}^{t} g_i^2}}g_t = \theta_{t} - \frac{\eta}{\sqrt{\sum\limits_{i = 0}^{t} g_i^2}}g_t</script></li>
+<li><p>RMSProp</p>
+<p>当我们在进行Adagrad的时候，分母的梯度平方和会不停累计变大，如果在一开始我们遇到了一个比较大的梯度，那么会造成</p>
+<p>我们考虑的梯度变化公式为：</p>
+<script type="math/tex; mode=display">
+\theta_{t+1} = \theta_{t} - \frac{\eta}{\sqrt{v_{t+1}}}g_t
+\\ v_t = \alpha v_{t-1} +(1 - \alpha)g_{t-1}^2</script><p>如果将第二个式子带入梯度更新的式子中去，我们会得到:</p>
+<script type="math/tex; mode=display">
+v_{t+1} = (1-\alpha)g_{t}^2 + \alpha(1 - \alpha)g_{t-1}^2 + \alpha^2(1-\alpha)g_{t-2}^2+...</script><p>这样就可以得到，当 $\alpha$ 的值很小的时候，学习率的分母将会只记住和现在时刻离得比较近的梯度值，时间比较靠前的梯度值都被 $\alpha^n$ 给消去了。</p>
+</li>
+<li><p>Adam</p>
+<p>最后来说一下Adam，Adam是结合了SGDM 和 RMSProp的方法。</p>
+<p>主要的更新公式为：</p>
+<script type="math/tex; mode=display">
+\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{\hat v_{t+1}}+\epsilon}\hat m_{t+1}
+\\ \hat m_{t+1} = \frac{m_{t+1}}{1 - \beta_1^{t+1}}
+\\ \hat v_{t+1} = \frac{v_{t+1}}{1 - \beta_1^{t+1}}</script><p>$m_t$ 的部分就是采用了之前SGDM对梯度的改变，而 $v_t$ 的部分采用的是RMSProp对学习率的改变。</p>
+</li>
+</ul>
+<h2 id="对于SGDM和Adam的改进"><a href="#对于SGDM和Adam的改进" class="headerlink" title="对于SGDM和Adam的改进"></a>对于SGDM和Adam的改进</h2><p>在神经网络急速发展的现在，我们除了上述的几种optimization之外，还记过什么其他别的optimization的方法吗？有，但是很少。在计算机视觉任务中，我们常见到的就是Adam优化方法，和SGD优化方法。其他的很少见也很少尝试，那究竟是为什么呢？</p>
+<p>因为SGDM和Adam占尽了先机。我们说，普通的梯度下降 $\theta<em>{t+1} = \theta</em>{t}-\eta g_t$， 在这其中，影响梯度下降的两个因素，一个就是学习率 $\eta$ 另一个就是 梯度 $g_t$。 SGD包括SGDM可以说是对梯度做了调整，而Ada-系是调整了学习率。所以这两种方法从两个方面改进了梯度下降时的自我调整水平。</p>
+<p>但是SGDM和Adam分别有各自的优缺点：</p>
+<ul>
+<li>SGDM在训练的时候下降比较慢，训练集上的精度没有Adam高，但是测试集上的精度会比较高</li>
+<li>Adam在训练的时候下井比较迅速且精度较高，但是在测试时达到的精度不是很高。</li>
+</ul>
+<p>那大家就像根据SGDM和Adam各自的优点和缺点来进行改进。</p>
+<h2 id="针对SGDM进行改进"><a href="#针对SGDM进行改进" class="headerlink" title="针对SGDM进行改进"></a>针对SGDM进行改进</h2><h2 id="针对Adam进行改进"><a href="#针对Adam进行改进" class="headerlink" title="针对Adam进行改进"></a>针对Adam进行改进</h2>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/12/whatidid-%E3%80%90%E7%99%BE%E5%BA%A6PaddlePaddle%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A07%E6%97%A5%E5%85%A5%E9%97%A8-CV%E7%96%AB%E6%83%85%E4%B8%93%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/12/whatidid-%E3%80%90%E7%99%BE%E5%BA%A6PaddlePaddle%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A07%E6%97%A5%E5%85%A5%E9%97%A8-CV%E7%96%AB%E6%83%85%E4%B8%93%E9%A2%98/" class="post-title-link" itemprop="url">杂学 | 【百度PaddlePaddle】深度学习7日入门-CV疫情专题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-04-12 17:28:27" itemprop="dateCreated datePublished" datetime="2020-04-12T17:28:27-04:00">2020-04-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B9%B2%E8%B4%A7/" itemprop="url" rel="index"><span itemprop="name">干货</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="【百度PaddlePaddle】深度学习7日入门-CV疫情"><a href="#【百度PaddlePaddle】深度学习7日入门-CV疫情" class="headerlink" title="【百度PaddlePaddle】深度学习7日入门-CV疫情"></a>【百度PaddlePaddle】深度学习7日入门-CV疫情</h1><p>本文件夹为百度Aistudio课程《深度学习7日入门-CV疫情》</p>
+<ul>
+<li>数据： 从百度Aistudio数据集下载</li>
+<li>框架： PaddlePaddle</li>
+<li>语言： Python</li>
+</ul>
+<p>作业调试详解及心得体会请参照各作业文件夹。</p>
+<h2 id="1-数据可视化-已完成"><a href="#1-数据可视化-已完成" class="headerlink" title="1. 数据可视化[已完成])"></a>1. 数据可视化<a href="(https://github.com/Capchenxi/Aistudio/tree/master/深度学习7日入门-CV疫情特辑/HW1">[已完成]</a>)</h2><p>基于 <a target="_blank" rel="noopener" href="https://ncov.dxy.cn/ncovh5/view/pneumonia">丁香园</a> 整合全国疫情数据更新制作可视化数据图。</p>
+<p>作业任务：</p>
+<pre><code> 1. 下载安装 PaddlePaddle，课程中有详细介绍
+ 2. 应用学习pyecharts库学习应用，将全国疫情数据可视化在饼状图中
+</code></pre><p>作业举例：</p>
+<pre><code>1. 已提供爬虫script，将丁香园中的数据下载整合到本地
+2. 已提供pyecharts部分地图和趋势图的实现代码
+</code></pre><h2 id="2-构建DNN神经网络手势识别-已完成"><a href="#2-构建DNN神经网络手势识别-已完成" class="headerlink" title="2. 构建DNN神经网络手势识别[已完成)]"></a>2. 构建DNN神经网络手势识别[<a href="(https://github.com/Capchenxi/Aistudio/tree/master/深度学习7日入门-CV疫情特辑/HW2">已完成</a>)]</h2><p>基于DNN全连接神经网络对手势和对应数字进行识别。</p>
+<p>作业任务：</p>
+<pre><code> 1. 完成DNN 神经网络
+ 2. 优化自己的DNN神经网络(test_acc:0.83, SGD, lr = 0.001, epoch = 200)
+</code></pre><h2 id="3-构建CNN神经网络车牌识别-已完成"><a href="#3-构建CNN神经网络车牌识别-已完成" class="headerlink" title="3. 构建CNN神经网络车牌识别[已完成)]"></a>3. 构建CNN神经网络车牌识别[<a href="(https://github.com/Capchenxi/Aistudio/tree/master/深度学习7日入门-CV疫情特辑/HW3">已完成</a>)]</h2><p>基于CNN卷积神经网络对车牌的(数字/ 字母/ 省简称)进行识别</p>
+<p>作业任务：</p>
+<pre><code> 1. 完成CNN神经网络
+ 2. 优化自己的CNN神经网络(test_acc:0.93, SGD, lr 0.01, epoch = 200)
+</code></pre><h2 id="4-模块化构建VGG神经网络口罩识别-已完成"><a href="#4-模块化构建VGG神经网络口罩识别-已完成" class="headerlink" title="4. 模块化构建VGG神经网络口罩识别[已完成)]"></a>4. 模块化构建VGG神经网络口罩识别[<a href="(https://github.com/Capchenxi/Aistudio/tree/master/深度学习7日入门-CV疫情特辑/HW4">已完成</a>)]</h2><p>定义重复出现的CNN网络结构使其模块化，二分类识别图片中的人是否戴口罩。（更完整的完成任务还需要识别图片中人脸的位置）</p>
+<p>作业任务：</p>
+<pre><code>1. 完成CNN神经网络
+2. 优化自己的CNN神经网络（+BatchNorm test_acc=1.0, Adam, lr = 0.0001, epoch=50）
+</code></pre><h2 id="5-Paddle-Slim-对模型进行精简-已完成"><a href="#5-Paddle-Slim-对模型进行精简-已完成" class="headerlink" title="5. Paddle Slim 对模型进行精简[已完成]"></a>5. Paddle Slim 对模型进行精简[已完成]</h2><p>学习实践Paddle Slim对模型精简模块，可以有效提高模型速度，减小模型所占内存。</p>
+<p>作业任务：</p>
+<pre><code>1. 概念选择题
+2. 完成定点量化精简
+</code></pre><h2 id="比赛：人流密度检测-得分：0-49469分-排名：51-368-已完成-https-github-com-Capchenxi-Aistudio-tree-master-深度学习7日入门-CV疫情特辑-Compete"><a href="#比赛：人流密度检测-得分：0-49469分-排名：51-368-已完成-https-github-com-Capchenxi-Aistudio-tree-master-深度学习7日入门-CV疫情特辑-Compete" class="headerlink" title="比赛：人流密度检测[得分：0.49469分 排名：51/368] [已完成][(https://github.com/Capchenxi/Aistudio/tree/master/深度学习7日入门-CV疫情特辑/Compete)]"></a>比赛：人流密度检测[得分：0.49469分 排名：51/368] [已完成][(<a target="_blank" rel="noopener" href="https://github.com/Capchenxi/Aistudio/tree/master/深度学习7日入门-CV疫情特辑/Compete">https://github.com/Capchenxi/Aistudio/tree/master/深度学习7日入门-CV疫情特辑/Compete</a>)]</h2><p>比赛任务:检测人流密度，得分应该是错误率之类的，越低越好。<br>训练数据：常规赛-人流密度检测<br>试验方法：</p>
+<ul>
+<li>Baseline: 老师给出的baseline就已经了不起了，跑通了大概能排到200+左右目前，单纯的cnn放在一起提取的人流密度热力图。的粉黛该是0.68左右</li>
+<li>我的方法：参考了 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1906.09707.pdf">Dense Scale Network for Crowd Counting</a> 这篇文章中密集的残差连接结构，除了MSE作为loss之外还加入了不同尺度下的MAE（mean absolute error）作为loss。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/09/PaperReading-BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/09/PaperReading-BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/" class="post-title-link" itemprop="url">PaperReading | BERT:Pre-training of Deep Bidirectional Transformers for Language Understanding</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-04-09 21:59:10" itemprop="dateCreated datePublished" datetime="2020-04-09T21:59:10-04:00">2020-04-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>我们介绍了一个新的语言表达模型叫做 BERT （Bidirectional-Encoder-Representations from Transformers）.和最近出现的语言表达模型不同， Bert是基于前后上下文来预训练深度双向表达未标注文本的。所以说，预训练BERT模型可以通过只增加一个输出层来调优以便得到适用于各种任务的最佳模型。</p>
+<p>BERT is conceptually simple and empirically powerful. 从理论和实践上来讲，BERT很强大。他得到了新的GLUE高分。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenxi</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

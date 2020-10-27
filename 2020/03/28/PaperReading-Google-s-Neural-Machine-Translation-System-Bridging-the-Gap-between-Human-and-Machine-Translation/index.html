@@ -1,37 +1,499 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="论文题目：Google’s Neural Machine Translation System: Bridging the Gap  between Human and Machine Translation 论文作者：Yonghui Wu, Mike Schuster, Zhifeng Chen, Quoc V. Le, Mohammad Norouzi et al 相关代码  摘要 神经网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="光">
+<meta property="og:url" content="http://yoursite.com/2020/03/28/PaperReading-Google-s-Neural-Machine-Translation-System-Bridging-the-Gap-between-Human-and-Machine-Translation/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="论文题目：Google’s Neural Machine Translation System: Bridging the Gap  between Human and Machine Translation 论文作者：Yonghui Wu, Mike Schuster, Zhifeng Chen, Quoc V. Le, Mohammad Norouzi et al 相关代码  摘要 神经网络">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/2020/03/28/images/WeChat605e0a53cd1a817f567bbaf8f96fe9dc.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/28/images/WeChatadf12b2e2dc2264bd3d9ffe8b543f997.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/28/images/560791585579646_.pic_hd.jpg">
+<meta property="article:published_time" content="2020-03-28T19:15:49.000Z">
+<meta property="article:modified_time" content="2020-03-28T19:15:49.000Z">
+<meta property="article:author" content="Chenxi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/28/images/WeChat605e0a53cd1a817f567bbaf8f96fe9dc.png">
 
 
-{% block content %}
+<link rel="canonical" href="http://yoursite.com/2020/03/28/PaperReading-Google-s-Neural-Machine-Translation-System-Bridging-the-Gap-between-Human-and-Machine-Translation/">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title> | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">相关工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">模型结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Residual-Connections"><span class="nav-number">4.1.</span> <span class="nav-text">Residual Connections</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bi-directional-Encoder-for-First-Layer"><span class="nav-number">4.2.</span> <span class="nav-text">Bi-directional Encoder for First Layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Parallelism"><span class="nav-number">4.3.</span> <span class="nav-text">Model Parallelism</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Segmentation-Approaches"><span class="nav-number">5.</span> <span class="nav-text">Segmentation Approaches</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Wordpiece-Model"><span class="nav-number">5.1.</span> <span class="nav-text">Wordpiece Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mixed-Woed-Character-MOdel"><span class="nav-number">5.2.</span> <span class="nav-text">Mixed Woed&#x2F; Character MOdel</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Training-Criteria"><span class="nav-number">6.</span> <span class="nav-text">Training Criteria</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Quantizable-Model-and-Quantized-Inference"><span class="nav-number">7.</span> <span class="nav-text">Quantizable Model and Quantized Inference</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Chenxi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/28/PaperReading-Google-s-Neural-Machine-Translation-System-Bridging-the-Gap-between-Human-and-Machine-Translation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-28 15:15:49" itemprop="dateCreated datePublished" datetime="2020-03-28T15:15:49-04:00">2020-03-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li>论文题目：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1609.08144.pdf">Google’s Neural Machine Translation System: Bridging the Gap<br>  between Human and Machine Translation</a></li>
+<li>论文作者：<a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wu%2C+Y">Yonghui Wu</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Schuster%2C+M">Mike Schuster</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Chen%2C+Z">Zhifeng Chen</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Le%2C+Q+V">Quoc V. Le</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Norouzi%2C+M">Mohammad Norouzi</a> et al</li>
+<li>相关代码</li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p> 神经网络为基础的机器翻译（Neural Machine Translation, NMT）是自动翻译的端到端学习方法，它具有克服很多传统基于词组的劣势的潜质。但不幸的是，我们都知道NMT的计算复杂度和空间复杂度过高，在训练和翻译应用时需要很多的资源，当数据资源和模型过大的时候，NMT是不适合运用的。一些研究者表明，NMT的鲁棒性是很低的，尤其是当输入的句子包含有某些少见的单词的时候。</p>
+<p>在这片文章中，我们引入了 Google’s Neural Machine Translation System, GNMT， 来解决这些潜在的问题。这个模型包含了8个编译层和8个解码层，使用残差网络和注意力模块来连接编译和解码层。</p>
+<ul>
+<li>为了增强平行性来减少训练时间，我们的注意力模块连接的只有编码层的最高层和解码层的最底层。</li>
+<li>为了加速最终的翻译速度，我们在进行inference计算的时候运用了低精度的计算</li>
+<li><p>为了增强对不常见词的处理能力，我们将输入和输出的词语分解为常见的sub-words单元</p>
+</li>
+<li><p>我们的定向搜索技术运用了长度归一化的方法，并且加上了收敛损失，使得翻译输出的句子能够将输入的信息全部囊括。</p>
+</li>
+<li><p>为了优化翻译的BLEU 分数，我们加入了强化学习，但是增高的BLEU分数并没有反映在人工评价的提升上。</p>
+</li>
+</ul>
+<a id="more"></a>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>NMT目前是大势所趋，因为他有能够克服传统机器翻译系统的潜力。NMT的好处是输入文字可以直接翻译到输出文字，运用端到端的结构进行直接学习。典型的NMT结构一般包括两个RNN网络，一个来消化输入的文字，另一个来生成输出的文字。另外，NMT经常和attention模块放在一起使用，能有效地对长句进行翻译。</p>
+<p>NMT有一个很大的优势是它避免了很多在传统的phrase-based翻译机制上拥有的脆弱的设计。然而在实践中，NMT翻译系统在准确率方面仍然比不过phrase-based翻译系统，特别是在训练数据库很大的时候。NMT有三个弱点：</p>
+<ul>
+<li>它在训练和翻译时候速度较慢</li>
+<li>在处理少见词的时候效率低下</li>
+<li>有时候会忽略翻译输入句子的信息</li>
+</ul>
+<p>【这里提出的问题也同样是摘要中描述的本文所解决的主要问题。】</p>
+<p>这篇文章就展示了对于GNMT的设计和应用，主要是为了解决上述的三种问题。在GNMT结构中，我们运用的RNN网络是LSTM。我们的LSTM有8层，加入了残差连接来加强梯度流动。考虑到平行性，我们在编码层的最高层和解码层的最底层加入了attention模块。</p>
+<ul>
+<li>在翻译过程中运用的是进度较低的计算方法</li>
+<li>为了加强处理少见词的能力运用了sub-words单元，用常见的词单元来代替输入和输出</li>
+<li>使用定向搜索来优化对每个单词都翻译。</li>
+</ul>
+<p>我们这种模型结构很可靠，并且在多种模型上都适用。运用同样的模型，我们可以达到一个目前为止最佳的效果。</p>
+<h1 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h1><ul>
+<li>统计机器翻译模型（SMT）在翻译界统领了很多年，其中应用的点发就是phrase-based翻译系统，可以翻译一系列的单词和短语</li>
+<li>在NMT之前，也有将神经网络作为一个模块应用在SMT上面的。有将神经网络模块运用来学习词表达式的，也有人提出学习phrase特征向量或学习神经网络端到端的翻译系统通过给出一些hints的。但最终提升结果并不是很大，效果也没有SMT好</li>
+<li>一些端到端NMT的系统也引入了一些新的技术模块。</li>
+</ul>
+<h1 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h1><p>我们的模型遵循常用的带有attention模块的sequence-to-sequence学习框架。总共有三个元素：</p>
+<ul>
+<li>an encoder network</li>
+<li>a decoder network</li>
+<li>an attention network</li>
+</ul>
+<p><code>Encoder</code>将源句子转化为一系列的向量，对于每个输入值（per symbol）都有一个对应向量。给定这一系列的向量，<code>Decoder</code>将会每一次生成一个输出（symbol）知道句终的EOS字符生成。Encoder和Decoder由<code>attention</code>模块连接，它可以让decoder在解码输出的时候注意力集中在输入句子的不同位置。</p>
+<p>首先来声明一些notation：</p>
+<ul>
+<li>小写加粗代表向量 $\bf v, o_i$</li>
+<li>大写加粗代表矩阵 $\bf U, W$</li>
+<li>卷曲体代表集合 $\mathscr {V, J}$ </li>
+<li>大写字母代表 sequence， $X,Y$</li>
+<li>小写字母代表sequence中的symbol，$x_1, x_2$</li>
+</ul>
+<p>这样的话，我们就可以将 $(X,Y)$ 定义为一对输入输出对，若 $X = x_1, x_2,…x_M$ 为源输入语句，$Y = y_1, y_2, …y_N$ 为输出语句。那么 编码的过程就可以简单表示为 ${\bf x_1, x_2, …x_M} = EncoderRNN(x_1, x_2,…x_M)$, 在这个方程中，${\bf x_1, x_2, …x_M}$ 的每个向量的长度是相同的，因为是每一个输入语句中的symbol生成一个向量，所以向量的个数和symbol的个数是相同的，即M个。</p>
+<p>这样的话我们可以得到条件概率，由输入 $X$ 生成 输出 $Y$ 的概率为：</p>
+<script type="math/tex; mode=display">
+P(Y|X) = P(Y|{\bf x_1, x_2, ...x_M}) = \prod\limits_{i=1}^{N}P(y_i|y_1, y_2, ...y_{i-1};{\bf x_1, x_2,...x_M})</script><p>$y_0$ 是代表一句话开始的特殊符号。</p>
+<p>在翻译的过程中，我们计算当给出对于输入句的编译和目前为止的输出symbol之后，下一个symbol出现的概率。</p>
+<script type="math/tex; mode=display">
+P(y_i|y_1, y_2, ...y_{i-1};{\bf x_1, x_2,...x_M})</script><p>我们的解码器是RNN 网络和softmax层的结合。解码RNN网络会对下一个要预测的symbol生成一个隐藏态 ${\bf y_i}$ ，之后他会通过softmax层然后在备选output symbol中生成一个概率分布。</p>
+<p>在我们的实验中，我们发现，若NMT想要达到一个很好的准确率，encoder和decoder的RNN层需要有一定的深度才能捕捉到源语言和目标语言之间的变化规则。这个发现和之前深层LSTM比浅层LSTM好得多的发现是类似的。在之前的发现中，多一层LSTM，perplexity就会减少10%。所以在这里encoder和decoder的RNN网络都是多个LSTM层叠在一起。</p>
+<p>我们的attention模块和<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1409.0473.pdf">这篇文章类似</a>.更确切地说，如果 ${\bf y_{i-1}}$ 是decode-RNN 上一步的输出， 当前一步的Attension 内容 $\bf a_i$就由下式计算：</p>
+<script type="math/tex; mode=display">
+s_t = AttentionFunction({\bf y_{i-1}}, {\bf x}_t)  \forall t, 1\leq t\leq M
+\\p_t = \frac{exp(s_t)}{\sum\limits^{M}_{t=1}exp(s_t)} \\ {\bf a}_i = \sum \limits_{t = 1}^Mp_t\cdot{\bf x_t}</script><h2 id="Residual-Connections"><a href="#Residual-Connections" class="headerlink" title="Residual Connections"></a>Residual Connections</h2><p> 之前说过越深层的LSTM可以达到越好的精度，但是单纯叠加LSTM网络并不能达到很好的效果，单纯叠加LSTM网络到4层会表现很好，然后6层的时候会差一些，8层的时候表现的就更弱了。过多的LSTM叠加会导致梯度爆炸或梯度消失。</p>
+<p>在输入和输出层之间建模，我们引入了residual connections残差连接方式，连接LSTM中的层。更确切地说，若 $LSTM<em>i$ 和$LSTM</em>{i-1}$ 表示LSTM堆中的第 i 和 第 i-1层，用 ${\bf W^i}$ 和 ${\bf W^{i-1}}$ 表示每一层的参数。那么在第 $t$  次传播中，这些 LSTM 层的连接关系在有residual connection和没有residual connection时如下所示：</p>
+<ul>
+<li>Without residual connection<script type="math/tex; mode=display">
+{\bf c}_t^i, {\bf m}_t^i = LSTM_i({\bf c}_{t-1}^i, {\bf m}_{t-1}^i, {\bf x}_t^{i-1}; {\bf W}^i)
+\\{\bf x}_i^t = {\bf m}_t^i
+\\ {\bf c}_t^i, {\bf m}_t^{i+1} = LSTM_{i+1}({\bf c}_{t-1}^{i+1}, {\bf m}_{t-1}^{i+1}, {\bf x}_t^{i}; {\bf W}^{i+1})</script></li>
+</ul>
+<p><img src="../images/WeChat605e0a53cd1a817f567bbaf8f96fe9dc.png" alt="WeChat605e0a53cd1a817f567bbaf8f96fe9dc"></p>
+<ul>
+<li>With connection<script type="math/tex; mode=display">
+{\bf c}_t^i, {\bf m}_t^i = LSTM_i({\bf c}_{t-1}^i, {\bf m}_{t-1}^i, {\bf x}_t^{i-1}; {\bf W}^i)
+\\{\bf x}_i^t = {\bf m}_t^i + {\bf x}_t^{i-1}
+\\ {\bf c}_t^{i+1}, {\bf m}_t^{i+1} = LSTM_{i+1}({\bf c}_{t-1}^{i+1}, {\bf m}_{t-1}^{i+1}, {\bf x}_t^{i}; {\bf W}^{i+1})</script></li>
+</ul>
+<p><img src="../images/WeChatadf12b2e2dc2264bd3d9ffe8b543f997.png" alt="WeChatadf12b2e2dc2264bd3d9ffe8b543f997"></p>
+<p>残差连接很大程度上改进了反向传播中梯度的波动，这样我们就可以将很多的LSTM叠加在一起训练了。在我们多数的实验中，选择了用8层LSTM层作为编码和解码器。</p>
+<h2 id="Bi-directional-Encoder-for-First-Layer"><a href="#Bi-directional-Encoder-for-First-Layer" class="headerlink" title="Bi-directional Encoder for First Layer"></a>Bi-directional Encoder for First Layer</h2><p>对于翻译系统来说，需要被翻译的某个单词会出现在源语言的任何一个地方。通常来讲，源语言一边的信息和目标语言一侧的信息大致都是从左到右的顺序，但对于不同的目标语言，某些特定的词可能会出现在源语言的任何一个位置，并不遵循从左到右的原则。</p>
+<p>为了在encoder网络中提供最佳的上下文信息，我们需要在编码层中加入双向LSTM。为了在计算过程中最大可能性保持网络的平行性（Parallelzation），双向连接只用在encoder网络的最底层，其他encoder层都是单一方向的。<img src="../images/560791585579646_.pic_hd.jpg" alt="560791585579646_.pic_hd"></p>
+<p>正反向的LSTM层输出会concatenate在一起然后传向下一层。</p>
+<h2 id="Model-Parallelism"><a href="#Model-Parallelism" class="headerlink" title="Model Parallelism"></a>Model Parallelism</h2><p>由于模型的计算和空间复杂度，我们用模型结构和数据的平行性来加速训练。</p>
+<ul>
+<li><p>Data Parallelism: </p>
+<p>同时训练 n 个 replica model，每个replica都用Adam 和SGD算法进行优化。着这里n常取10，每一个replica model训练的时候会batch-size为128的mini batch训练。</p>
+</li>
+<li><p>Model Parallelism:</p>
+<p>model parallelism可以提高模型的计算速度。编译器和解码器在深度上被分开并且被放置在不同的GPU上，因为除了第一层之外的所有层的LSTM都是单向传播的，第 i+1 层可以在 第i层完全算完之前就开始计算，从而提高训练速度。softmax层也被分段了，每一段都负责输出词汇的一小部分。</p>
+</li>
+</ul>
+<h1 id="Segmentation-Approaches"><a href="#Segmentation-Approaches" class="headerlink" title="Segmentation Approaches"></a>Segmentation Approaches</h1><p>即使翻译任务其实是个开放的模型，NMT 模型经常是在固定的词汇表中进行训练和翻译。有两种广泛运用的来应用对 OOV（out-of-vocabulary 词汇表外）词汇的方法。</p>
+<ul>
+<li>直接复制法</li>
+<li>分段词汇法</li>
+</ul>
+<h2 id="Wordpiece-Model"><a href="#Wordpiece-Model" class="headerlink" title="Wordpiece Model"></a>Wordpiece Model</h2><p>我们成功解决OOV词汇翻译的方法属于第二类，并且我们将一种wordpiece model的方法应用在日语/韩语分割方法中。这个方法是在多数据下训练的可以保证生成确定性的分词的方法。在训练好的wordpiece model下，每一个句子中的特殊的词汇（没见过的词汇）都会用特殊得字符分开。</p>
+<p>在翻译过程中，对于不常见词最常见的翻译方法是直接复制（比如说人名地名日期），为了防止直接的复制翻译，我们在源语言和目标语言同时使用了wordpiece model，可以使得在复制翻译的时候更好的处理这些少见词。</p>
+<p>wordpiece模型处理了字符灵活性和单词有效性之间的关系。这样以来翻译系统的BLEU又升高了，可能是因为翻译的句子加入了对少见词的翻译长度变长了。</p>
+<h2 id="Mixed-Woed-Character-MOdel"><a href="#Mixed-Woed-Character-MOdel" class="headerlink" title="Mixed Woed/ Character MOdel"></a>Mixed Woed/ Character MOdel</h2><p>我们使用的第二种发发是mixed word/character model. 在 word model中，对于词汇表的大小是固定的。然而，和传统的将OOV单词处理为UNK词汇模型不同，我们将OOV单词转化为部分字符的结合体（一小段一小段的字符）。特殊的前缀是为了：1.区分字符在单词中的位置；2.为了将这些字符和已经在词汇表中的字符区分开。</p>
+<p>【不太明白这部分】</p>
+<h1 id="Training-Criteria"><a href="#Training-Criteria" class="headerlink" title="Training Criteria"></a>Training Criteria</h1><p>给定训练的平行语料库中的N对sequence pair， 将其记为 $\mathcal D \equiv {(X^{(i)}, Y^{*(i)})}_{i = 1}^{N}$, 标准的maximum-liklihood的训练旨在最大化每一句的log liklihood的和。</p>
+<script type="math/tex; mode=display">
+\mathcal O_{ML}({\bf \theta}) = \sum \limits_{i=1}^{N}\log P_{\theta}(Y^{*(i)} | X^{(i)})</script><p>但这个损失函数的最大问题在于，他并没有反映BLEU score里面的reward function奖惩机制。也就是说，训练过程中的数据都是正确的数据，并没有考虑翻译不正确的数据。若是不考虑翻译错误的问题，那么模型在错误面前会变得不稳定。</p>
+<p>有很多论文都考虑到了用多种不同的方法将reward放在优化的的sequence-to-sequence模型中。在这片文章中，我们同样尝试将预训练模型直接加上task reward。我们真名了，及时是很大的数据库，优化最好的只在maximum-likelihood上训练的预训练模型加上task reward也同样可以很大程度提升结果的准确性。</p>
+<p>我们将改进后加上了task reward的模型的目标函数表示：</p>
+<script type="math/tex; mode=display">
+\mathcal O_{RL}({\bf \theta}) = \sum\limits_{i = 1}^N\sum\limits_{Y \in \mathcal Y}P_{\theta}(Y|X^{(i)}r(Y,Y^{*(i)}))</script><p>$r(Y,Y^{*(i)}))$表示的是每一句的分数，我们在计算的时候考虑所有的输出 $Y$</p>
+<p>在计算单个句子的准确度的时候BLEU分数是不理想的，它本来是设计计算整个语料库的准确性的。所以在这里我们在强化学习中用了另一个分数叫做 GLEU分数。我们分别记录模型输出和目标输出的1，2，3，4-gram的sequence，然后分别算去recall 和precision的分数。GLEU分数取的就是recall或者precision的最小值。实验证明GLEU分数可以很好的反应BLEU的分数，但是没有BLEU分数的缺点。</p>
+<p>最终进行RL学习的目标函数是：$\mathcal O<em>{Mixed}({\bf \theta}) = \alpha * \mathcal O</em>{ML}({\bf \theta}) + \mathcal O_{RL}({\bf \theta})$</p>
+<h1 id="Quantizable-Model-and-Quantized-Inference"><a href="#Quantizable-Model-and-Quantized-Inference" class="headerlink" title="Quantizable Model and Quantized Inference"></a>Quantizable Model and Quantized Inference</h1><p>应用NMT的一个巨大挑战是我们的交互翻译服务在翻译的时候有有很大的计算强度，这样就使得低延迟翻译很难实现，并且大量的翻译会使得计算困难。运用了简化精度的Quantized inference可以减少计算复杂度，并且提升运行的效率。往常，这种技术都被应用在CNN网络中。</p>
+<p>这部分我们介绍了我们的应用quantized（量化）技术来提升inference速度的方法。为了减小量化产生的误差，我们会在训练的过程中在模型上加上限制使得对模型的伤害最小。那就是，一旦模型和这些限制一起训练时，它可以在没有转化误差的条件下被继续量化。我们的实验结果表示，一旦模型收敛，这些另加的条件并不会对模型本身造成损害。</p>
+<p>在带有残差连接的LSTM模块中，我们看到：</p>
+<script type="math/tex; mode=display">
+{\bf c}_t^i, {\bf m}_t^i = LSTM_i({\bf c}_{t-1}^i, {\bf m}_{t-1}^i, {\bf x}_t^{i-1}; {\bf W}^i)\\{\bf x}_i^t = {\bf m}_t^i + {\bf x}_t^{i-1}\\ {\bf c}_t^{i+1}, {\bf m}_t^{i+1} = LSTM_{i+1}({\bf c}_{t-1}^{i+1}, {\bf m}_{t-1}^{i+1}, {\bf x}_t^{i}; {\bf W}^{i+1})</script><p>这里存在两个储存量，一个是时间上的储存量 ${\bf c}_t^i$， 另一个是深度上的储存量 ${\bf x}_t^i$。理论上来讲，这两个储存量都是无边界的，但实验中我们发现这两个量都很小。所以为了做量化处理，我们将这两个量控制在 $[-\delta, \delta]$ 之间，来保证之后量化处理的区间。上式就会变为：</p>
+<script type="math/tex; mode=display">
+{\bf c}_t^i, {\bf m}_t^i = LSTM_i({\bf c}_{t-1}^i, {\bf m}_{t-1}^i, {\bf x}_t^{i-1}; {\bf W}^i)\\
+{\bf c}_t^i = \max(-\delta, min(\delta, {\bf c}_t^i))\\{\bf x}_i^t = {\bf m}_t^i + {\bf x}_t^{i-1}\\{\bf x}_t^i = \max(-\delta, min(\delta, {\bf x}_t^i))\\ {\bf c}_t^i, {\bf m}_t^{i+1} = LSTM_{i+1}({\bf c}_{t-1}^{i+1}, {\bf m}_{t-1}^{i+1}, {\bf x}_t^{i}; {\bf W}^{i+1})\\{\bf c}_t^{i+1} = \max(-\delta, min(\delta, {\bf c}_t^{i+1}))</script><p>如果展开写上式（加上所有的gate的具体写法），那么上式可以表示为：</p>
+<script type="math/tex; mode=display">
+{\bf W = [W_1, W_2, W_3, W_4, W_5, W_6, W_7, W_8]}\\
+{\bf i}_t = sigmoid({\bf W_1 x_t + W_2 m_t})\\
+{\bf i}'_t = tanh({\bf W_3 x_t + W_4 m_t})\\
+{\bf f}_t = sigmoid({\bf W_1 x_t + W_2 m_t})\\
+{\bf o}_t = sigmoid({\bf W_1 x_t + W_2 m_t})\\
+{\bf c}_t = {\bf c}_{t-1} \odot{\bf f}_t + {\bf i'}_t \odot{\bf i}_t\\
+{\bf m}_t = {\bf c}_t \odot {\bf o}_t</script><p>当在做量化处理的时候，将所有的floating数字全都换位有固定点的整形（8-bit或16-bit）数字,</p>
+<p>之后是一些对各种参数矩阵和运算的量化算法。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/03/28/Machine-Learning-2020-Lecture-2-Classification/" rel="prev" title="Machine Learning-2020|Lecture#2 Classification">
+                  <i class="fa fa-chevron-left"></i> Machine Learning-2020|Lecture#2 Classification
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/04/05/whatidid-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B8%AD%E4%B8%8D%E5%90%8C%E4%BB%BB%E5%8A%A1%E4%B8%8B%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E6%80%BB%E7%BB%93/" rel="next" title="Whatilearnt | 计算机视觉中不同任务下的数据读取总结">
+                  Whatilearnt | 计算机视觉中不同任务下的数据读取总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenxi</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

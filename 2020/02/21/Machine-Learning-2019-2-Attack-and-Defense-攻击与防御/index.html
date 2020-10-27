@@ -1,37 +1,456 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="Chapter 2. Attack and Defense 这部分主要来说明对于通过Machine Learning 训练好的模型如何进行攻击 和防止攻击。 Machine Learning 的目的在于通过大量的数据捕捉和学习来完成我们人类要做的事。 我们在第一章讲的大致就是对于异常数据的检测，既然我们的机器有检测异常的能力，那么发布异常的人当然有像一个方法来绕过我们的机器，让这种可以检测异常的模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning-2019| 2 Attack and Defense 攻击与防御">
+<meta property="og:url" content="http://yoursite.com/2020/02/21/Machine-Learning-2019-2-Attack-and-Defense-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="Chapter 2. Attack and Defense 这部分主要来说明对于通过Machine Learning 训练好的模型如何进行攻击 和防止攻击。 Machine Learning 的目的在于通过大量的数据捕捉和学习来完成我们人类要做的事。 我们在第一章讲的大致就是对于异常数据的检测，既然我们的机器有检测异常的能力，那么发布异常的人当然有像一个方法来绕过我们的机器，让这种可以检测异常的模">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/2020/02/21/images/Screen%20Shot%202020-02-21%20at%2012.21.33.png">
+<meta property="article:published_time" content="2020-02-21T16:39:31.000Z">
+<meta property="article:modified_time" content="2020-02-21T16:39:31.000Z">
+<meta property="article:author" content="Chenxi">
+<meta property="article:tag" content="lecture notes">
+<meta property="article:tag" content="Machine Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/02/21/images/Screen%20Shot%202020-02-21%20at%2012.21.33.png">
 
 
-{% block content %}
+<link rel="canonical" href="http://yoursite.com/2020/02/21/Machine-Learning-2019-2-Attack-and-Defense-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Machine Learning-2019| 2 Attack and Defense 攻击与防御 | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Attack"><span class="nav-number">1.</span> <span class="nav-text">Attack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Attack-%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%94%BB%E5%87%BB"><span class="nav-number">1.0.1.</span> <span class="nav-text">Attack 如何进行攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%AE%AD%E7%BB%83%E6%94%BB%E5%87%BB%E6%97%B6%E5%A2%9E%E5%8A%A0%E7%9A%84%E6%89%B0%E5%8A%A8%E5%9B%A0%E7%B4%A0-Delta-x"><span class="nav-number">1.0.2.</span> <span class="nav-text">如何训练攻击时增加的扰动因素 $\Delta x$</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Non-target-%E6%97%A0%E7%9B%AE%E6%A0%87%E6%94%BB%E5%87%BB"><span class="nav-number">1.0.3.</span> <span class="nav-text">Non-target 无目标攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Target-%E6%9C%89%E7%9B%AE%E6%A0%87%E6%94%BB%E5%87%BB"><span class="nav-number">1.0.4.</span> <span class="nav-text">Target 有目标攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Constraint"><span class="nav-number">1.0.5.</span> <span class="nav-text">Constraint</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%9C%A8%E6%9C%89%E9%99%90%E5%88%B6%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E8%BF%9B%E8%A1%8C%E8%AE%AD%E7%BB%83"><span class="nav-number">1.1.</span> <span class="nav-text">如何在有限制的情况下进行训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%94%BB%E5%87%BB%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">常见的攻击网络的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E5%87%BB%E5%88%86%E7%B1%BB%EF%BC%9A%E7%99%BD%E7%9B%92%E6%94%BB%E5%87%BB-amp-%E9%BB%91%E7%9B%92%E6%94%BB%E5%87%BB"><span class="nav-number">1.1.2.</span> <span class="nav-text">攻击分类：白盒攻击&amp;黑盒攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E9%9B%B6%E7%A2%8E%E7%9A%84%E8%AE%B0%E5%BD%95"><span class="nav-number">1.1.3.</span> <span class="nav-text">一些零碎的记录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Universal-Adversarial-Attack"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">Universal Adversarial Attack</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Adversarial-ReProgramming"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">Adversarial ReProgramming</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Application"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">Application</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Defense"><span class="nav-number">2.</span> <span class="nav-text">Defense</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Passive-defense-%E8%A2%AB%E5%8A%A8%E9%98%B2%E5%BE%A1"><span class="nav-number">2.1.</span> <span class="nav-text">Passive defense 被动防御</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Proactive-defense-%E4%B8%BB%E5%8A%A8%E9%98%B2%E5%BE%A1"><span class="nav-number">2.2.</span> <span class="nav-text">Proactive defense 主动防御</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Chenxi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/21/Machine-Learning-2019-2-Attack-and-Defense-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Machine Learning-2019| 2 Attack and Defense 攻击与防御
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-02-21 11:39:31" itemprop="dateCreated datePublished" datetime="2020-02-21T11:39:31-05:00">2020-02-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Chapter 2. Attack and Defense</p>
+<p>这部分主要来说明对于通过Machine Learning 训练好的模型如何进行攻击 和防止攻击。</p>
+<p>Machine Learning 的目的在于通过大量的数据捕捉和学习来完成我们人类要做的事。 我们在第一章讲的大致就是对于异常数据的检测，既然我们的机器有检测异常的能力，那么发布异常的人当然有像一个方法来绕过我们的机器，让这种可以检测异常的模型对异常数据失效。这就构成了对模型的 Attack，我们要先了解敌人才能打败敌人，所以这部分先说明什么是 Attack，之后再讲如何根据恶意的攻击做出防御 Defense。</p>
+<a id="more"></a>
+<h1 id="Attack"><a href="#Attack" class="headerlink" title="Attack"></a>Attack</h1><p>在简介部分已经大致说了为什么会有对训练好的模型进行攻击和对自身的模型进行防御的行为，但事实上，这种攻击还可能造成更加严重的后果。如果对一个自动驾驶汽车的网络进行攻击以至于汽车错误识别前方遇到的物体做出错误的判断，这种后果将是很严重的。</p>
+<h3 id="Attack-如何进行攻击"><a href="#Attack-如何进行攻击" class="headerlink" title="Attack 如何进行攻击"></a>Attack 如何进行攻击</h3><p>那恶意的攻击，究竟是怎样的攻击呢？</p>
+<p>首先，出现了攻击肯定就有被攻击的模型，因此被攻击的肯定是某个已经训练好的模型。这里说到的攻击也不是恶意的损坏，导致这个网络无法工作，而是对网络的输入加上一些因素，使得已经训练好的模型无法正常识别。因此，攻击者的输入是对模型准确性造成的打击，让模型无法做出正确的判断，因而无法做出正确的决策。</p>
+<p>其次，我们要注意的是。在训练模型的时候，我们说训练集是为了训练学习模型的参数。但对于攻击者来讲，攻击对象是已经训练好，即固定的参数。所以在这个过程中，攻击者要不断训练或是改变的是自己的攻击数据，即如何让自己的攻击数据能更好的“骗”过已经训练好的模型。</p>
+<p>下图展示的就是 对于模型的攻击。</p>
+<p><img src="../images/Screen%20Shot%202020-02-21%20at%2012.21.33.png" alt="Screen Shot 2020-02-21 at 12.21.33"></p>
+<p>在图中，对于Attack的定义就是，若将本来具有特征 $\left[\begin{array}{c}x_1\x_2\…\end{array}\right]$ 的原图 $x^0$ 放入已经训练好的模型中（这里是神经网络模型），然后得到判定图片的类别Tiger Cat 的分数是0.64. 但如果将 这个图片加上一系列的干扰因素 即 $\left[\begin{array}{c}x_1\x_2\…\end{array}\right] + \left[\begin{array}{c}\Delta x_1\\Delta x_2\…\end{array}\right]$ , 这样的话后，将图片放入模型中，得出的是一些错误的分类。简而言之，我们希望一个新的输入数据 $x’ = x^0+\Delta x$ ，通过模型后，能和原图 $x^0$ 得到不同集错误的结果。但我们不希望这个 添加的扰动因素 $\Delta x$ 过大，导致 $x’$ 根本不像原图。因为如果直接变成企鹅而输出一个企鹅的结果，这个攻击则毫无意义。就是要在看不见的地方动手hhhhh。</p>
+<h3 id="如何训练攻击时增加的扰动因素-Delta-x"><a href="#如何训练攻击时增加的扰动因素-Delta-x" class="headerlink" title="如何训练攻击时增加的扰动因素 $\Delta x$"></a>如何训练攻击时增加的扰动因素 $\Delta x$</h3><p>我们在训练分类模型（classification model）的时候，训练集是由训练数据 $x^0 = \left[\begin{array}{c}x<em>1\x_2\…\end{array}\right]$ 和他们的真实标签 $\hat y = \left[\begin{array}{c}\hat y_1\\hat y_2\…\end{array}\right]$ 构成，训练的目标函数（cost function）则是关于预测出的标签 $y^0 =\left[\begin{array}{c}y_1\y_2\…\end{array}\right]$ 和真实标签$\hat y$的函数$L</em>{train}(\theta) = C(y^0, \hat y)$ ，这里我们的模型主要是通过训练数据不断更新模型$f_{\theta}(\cdot)$中的参数 $\theta$ ,所以cost function是关于 $\theta$ 的函数。</p>
+<p>假设已经训练好的参数模型为$f_{\theta^*}(\cdot)$， 则对于攻击网络的输入 $x’ = x^0 + \Delta x$, 得到的输出为 $y’$， 值得注意的是，因为此处我们是对攻击的输入进行训练，网络的参数是固定（即训练一个合适的输入数据能骗得过已经训练好的模型），所以这里cost function的是关于 $x’$ 的函数。</p>
+<p>对已经训练好的模型进行的攻击主要分为两种：</p>
+<h3 id="Non-target-无目标攻击"><a href="#Non-target-无目标攻击" class="headerlink" title="Non-target 无目标攻击"></a>Non-target 无目标攻击</h3><p>也就是说，对于进行攻击的输入数据，模型只要输出错误的答案即可。比如说对图片分类网络进行攻击的图片是一张tiger cat的图片加上干扰因素，那么我们希望这个图片通过模型之后得出一个 非tiger cat 的标签，但是至于得出的标签是什么，我们并不在意。</p>
+<p>因此，这里的cost function 为 $L(x’) = -C(y’, y^{true})$， $y^{true}$ 是正确的结果。【其实也就是$x^0$ 的标签 $y^0$，因为我们在改造 $x’$ 的时候就希望 $x’$ 和 $x^0$ 很像。】</p>
+<h3 id="Target-有目标攻击"><a href="#Target-有目标攻击" class="headerlink" title="Target 有目标攻击"></a>Target 有目标攻击</h3><p> 也就是说，对于进行攻击的输入数据，我们期待模型给出一个特定的结果。比如说对图片分类网络进行攻击的图片是一张tiger cat的图片加上干扰因素，那么我们希望这个图片通过模型之后得出的标签必须是企鹅。</p>
+<p>因此，这里的cost function 为 $L(x’) = -C(y’, y^{true}) + C(y’, y^{false})$, $y^{false}$ 就是指定的错误的标签。</p>
+<h3 id="Constraint"><a href="#Constraint" class="headerlink" title="Constraint"></a>Constraint</h3><p> 这里限制条件就是我们之前说的，我们希望扰动因素 $\Delta x$ 很小，希望我们进行攻击的数据 $x’$ 和原数据 $x^0$ 很像，能 “骗” 过机器。所以这里有个现实条件就是 $x’$ 和 $x^0$ 之间的距离小于一个不被人发现的距离，$d(x’, x^0) &lt; \epsilon$. </p>
+<p>因为我们知道$x’ = x^0 + \Delta x$ , 展开成向量的公式就可得到： $\left[\begin{array}{c}x<em>1’\x_2’\…\end{array}\right] = \left[\begin{array}{c}x_1\x_2\…\end{array}\right] + \left[\begin{array}{c}\Delta x_1\\Delta x_2\…\end{array}\right]$，那么二者之间的距离就是关于$\Delta x$ 的函数。我们常用的表示两组数据之间的距离函数是 $L_2$ norm 和 $L</em>{\infty} $ norm。</p>
+<ul>
+<li><p>$L_2$ norm  就是我们经常说的欧氏距离，也就是向量的magnitude。</p>
+</li>
+<li><p>$L_{\infty} $ norm 则是取向量中的最大值。</p>
+</li>
+</ul>
+<p>一般情况下，我们会选择 $L_{\infty}$ ，因为在攻击数据中，我们希望和原数据差异最大的一个点 也很小，这样的话，攻击数据就不容易被察觉。</p>
+<h2 id="如何在有限制的情况下进行训练"><a href="#如何在有限制的情况下进行训练" class="headerlink" title="如何在有限制的情况下进行训练"></a>如何在有限制的情况下进行训练</h2><p>在明确了cost function之后，我们的问题又变成了对cost function求最小值：</p>
+<script type="math/tex; mode=display">
+x^* = arg\ \min\limits_{d(x^0, x')<\epsilon}\ L_{\theta^*}(x')</script><p>首先，我们面临的问题是如何在有限制条件的情况下求cost function的最小值。我们可以将有限制的优化问题转化为无限制条件的优化问题，然后再用限制条件对求出的解进行优化。</p>
+<ol>
+<li><p>去掉限制条件，求出 $x^<em> = arg\ \min\ L_{\theta^</em>}(x’)$。 </p>
+</li>
+<li><p>进入更新循环：</p>
+<ul>
+<li><p>更新 $x^*$ 的方法可以用普通的梯度下降法， $x’$ 的取值从原图 $x^0$ 开始；</p>
+</li>
+<li><p>在第 $t$ 次循环时， $x^t\longleftarrow x^{t-1} - \eta\Delta C(x^{t-1})$， $\eta$ 表示学习率</p>
+</li>
+<li><p>判断 $d(x^0, x^t) \leq \epsilon$</p>
+</li>
+<li><p>If true: $x^t\longleftarrow fix(x^{t})$</p>
+<p>这里的 $fix(\cdot)$ 表示对第 $t$ 次更新的数据进行修正，将它强行拉回最近的符合 $d(x^0, x^t) \leq \epsilon$ 的 $x$ 的值。</p>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code> 需要说明的一点是如何理解“强行将他拉回最近的符合 $d(x^0, x^t) \leq \epsilon$ 的值”。需要注意的是这和distance方程$d(\cdot)$ 相关。拿二维特征平面举例，如果我们的distance方程计算的是 $L_2$ 距离，那么这个限制区域就是一个圆，我们只要把数据拉回到圆的边界即可；若计算方程是 $L_\infty$ 距离，那么这个限制区域就是一个矩形，表示在每一维的最大值都不可大于 $\epsilon$ 。
+
+ 若求出的点 $x^t$ 在限制区域之外，我们就强行把他进限制区域即可。
+</code></pre><h3 id="常见的攻击网络的方法"><a href="#常见的攻击网络的方法" class="headerlink" title="常见的攻击网络的方法"></a>常见的攻击网络的方法</h3><p>这里介绍一个常见的方法训练攻击数据的方法：FGSM（ Fast Gradient Signed Method）</p>
+<p>这个方法其实和上述的方法类似，但不同的是，FGSM并不关注更新时 $x^0$ 改变的具体数值大小，只关心他们的符号。</p>
+<p>因此在更新参数第二步的时候 $x’ \longleftarrow \eta\Delta C(x^{t-1})$ 中的 $\Delta C(x^{t-1}) = \left[\begin{array}{c}sign(\frac{\partial L}{\partial x_1})\ sign(\frac{\partial L}{\partial x_1})\…\end{array}\right]$, 这里之所以用到了sign函数主要是因为在更新的时候，因为我们有限制条件，在抑制了更新方向之后，我们可以利用限制条件将预测点直接强行拉到限制区域内。</p>
+<h3 id="攻击分类：白盒攻击-amp-黑盒攻击"><a href="#攻击分类：白盒攻击-amp-黑盒攻击" class="headerlink" title="攻击分类：白盒攻击&amp;黑盒攻击"></a>攻击分类：白盒攻击&amp;黑盒攻击</h3><p>根据对于想要攻击的模型的参数是否已知，将攻击分为白盒攻击和黑盒攻击。之前介绍的在已知模型参数情况下对攻击数据进行训练的都是白盒攻击。而对于参数未知的模型进行攻击是黑盒攻击。</p>
+<p>对于白盒攻击来讲，最有效的防护措施大概就是保护好自己的模型参数，如果模型参数是未知的，那么在模型cost function下进行的攻击数据参数更新都是不存在的。</p>
+<p>但是即使不知道模型以及模型的参数，我们也可以进行黑盒攻击。我们可以将相同的训练数据输入到想要攻击的未知模型和自定义模型network proxy中。然后通过收取想要攻击的模型的输出结果来训练我们自定义的network proxy，最后通过训练能够攻击我们自定义网络的攻击数据来完成对黑盒的攻击。【反正就是一个方法，你没有的数据可以不停地去试，去破解你想要攻破的黑盒，然后根据你自己搞出来的模型再训练攻击模型去攻击黑盒】</p>
+<h3 id="一些零碎的记录"><a href="#一些零碎的记录" class="headerlink" title="一些零碎的记录"></a>一些零碎的记录</h3><h4 id="Universal-Adversarial-Attack"><a href="#Universal-Adversarial-Attack" class="headerlink" title="Universal Adversarial Attack"></a>Universal Adversarial Attack</h4><p>既然对于不同的任务，不容的输入数据，我们都要训练攻击干扰因素，那么有没有可能对于所有的数据有一种普遍适用的干扰因素可能用在所有的输入数据中让模型出错呢。答案是有的。</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1610.08401.pdf">Universal adversarial perturbations</a></p>
+<h4 id="Adversarial-ReProgramming"><a href="#Adversarial-ReProgramming" class="headerlink" title="Adversarial ReProgramming"></a>Adversarial ReProgramming</h4><p>这部分的思想是，我们可不可以通过攻击因素，让模型帮我们做一些别的事，即改变模型的功能。</p>
+<p>比如说我们现在有一个 $4\times4$ 的方块阵，我们想要知道这个方块阵中有几个方块被涂黑。我们可以将方块阵图片加在一个干扰因素上，在通过Image Net 的classifier 然后对它进行训练，希望得到的结果是，当我们输入 有  $n$ 个方块为黑色的图片到这个分类模型中时，他会反馈给我们一些图片中的分类。【这里将数方块的任务转化成了图片分类的任务】</p>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1806.11146.pdf">ADVERSARIAL REPROGRAMMING OF NEURAL NETWORKS</a></p>
+<h4 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h4><p>这部分是说，我们是否可以将扰乱的二维因素变化到三维中来，看是否还是可以骗过机器。主要做了两个实验，一个是在人脸周围训练一个眼镜状的干扰因素，使得不同的图片加上干扰因素后就会被识别成另一个人。这个方法在二维空间中是有效的，作者尝试将干扰因素真的打印出来，然后带到一个真人身上，发现这个真人通过机器识别的时候同样会被识别错误。还有一个是将已经训练好的攻击数据和原数据都打印出来让机器识别，肉眼是看不出什么区别的，但是让机器识别时，攻击数据还是会攻击成功，得到一个错误的分类。【这部分很有趣，除了攻击之外，个人感觉也可以做成水印或者一些隐性的防伪标志让机器识别，但是这对于打印的技术和干扰因素自身的变化要求还是挺高的，因为我们不希望打印造成的不清晰或者干扰因素自身变化太多造成打印出的图片和pixel-by-pixel的电脑存储图片查的太多】</p>
+<h1 id="Defense"><a href="#Defense" class="headerlink" title="Defense"></a>Defense</h1><p>说完对模型的攻击，我们还要说一下对模型的防御。防御主要分为两种，一种是主动防御，另一种是被动防御。</p>
+<h2 id="Passive-defense-被动防御"><a href="#Passive-defense-被动防御" class="headerlink" title="Passive defense 被动防御"></a>Passive defense 被动防御</h2><p>被动防御指的是对于现有的模型，我们不对模型和模型参数本身做任何调整，我们要做的防御工作是给已有的模型加上一些filter，让攻击数据丧失攻击功能。为什么叫“被动防御” 也很好理解，因为我们并不修改模型，所以可以看做是我们在应用网络的时候发现有人攻击，这时候才想起来要防御。</p>
+<ul>
+<li><p>作为被动防御，我们一般会在输入图片之后再加一层平滑层来减弱干扰因素造成的影响。</p>
+</li>
+<li><p>或者也可以将输入图片本身，和做两种不同的特征压缩后的图片同时通过模型。之后计算原图的预测结果和两种压缩后的结果之间的距离，如果距离很大，说明攻击数据的干扰因素对图片造成了影响，可判定为被攻击了，反之则没有。</p>
+</li>
+<li>或者可以将输入图片做一些随机的大小resize 以及一些padding的处理，之后通过模型，查看预测结果</li>
+</ul>
+<h2 id="Proactive-defense-主动防御"><a href="#Proactive-defense-主动防御" class="headerlink" title="Proactive defense 主动防御"></a>Proactive defense 主动防御</h2><p>和被动防御不同，主动防御就是调整模型参数，使得模型的参数有能力抵抗加了干扰因素的输入数据。所以这里的防御是在一开始训练模型的时候就有预料到的，因此叫做主动防御。</p>
+<p>其实这个过程就是自己给自己找敌人，自己生成有攻击能力的图片，然后训练模型让他不要犯错，之后对参数进行更新，更新过后再根据新的参数模型和新的有供给能力的图片再对模型进行更新。【总的来说就是尽量把能造成攻击的数据都在训练中较量一遍，这样训练出的新的模型就有防御能力了。】</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/lecture-notes/" rel="tag"># lecture notes</a>
+              <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/02/19/Machine-Learning-2019-1-Anomaly-Detection-%E5%BC%82%E5%B8%B8%E4%BE%A6%E6%B5%8B/" rel="prev" title=" Machine Learning-2019| 1 Anomaly Detection 异常侦测">
+                  <i class="fa fa-chevron-left"></i>  Machine Learning-2019| 1 Anomaly Detection 异常侦测
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/02/23/Machine-Learning-2019-3-Explainable-Machine-Learning-%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="next" title="Machine Learning-2019| 3 Explainable Machine Learning 可解释机器学习">
+                  Machine Learning-2019| 3 Explainable Machine Learning 可解释机器学习 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenxi</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

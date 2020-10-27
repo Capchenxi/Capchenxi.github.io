@@ -1,37 +1,543 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="数组Tag部分这部分主要用来记录总结Leetcode中数组部分的题目和思路分析 语言：python NO.1 Two Sums  NO.4 Median of Two Sorted Arrays">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法 | 【Leetcode】数组array类题目总结">
+<meta property="og:url" content="http://yoursite.com/2020/01/09/Algorithm-Leetcode-array/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="数组Tag部分这部分主要用来记录总结Leetcode中数组部分的题目和思路分析 语言：python NO.1 Two Sums  NO.4 Median of Two Sorted Arrays">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-01-09T15:24:56.000Z">
+<meta property="article:modified_time" content="2020-01-09T15:24:56.000Z">
+<meta property="article:author" content="Chenxi">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="array">
+<meta name="twitter:card" content="summary">
 
 
-{% block content %}
+<link rel="canonical" href="http://yoursite.com/2020/01/09/Algorithm-Leetcode-array/">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>算法 | 【Leetcode】数组array类题目总结 | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84Tag%E9%83%A8%E5%88%86"><span class="nav-number">1.</span> <span class="nav-text">数组Tag部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NO-1-Two-Sums"><span class="nav-number">2.</span> <span class="nav-text">NO.1 Two Sums</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#solution"><span class="nav-number">2.2.</span> <span class="nav-text">solution</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NO-4-Median-of-Two-Sorted-Arrays"><span class="nav-number">3.</span> <span class="nav-text">NO.4 Median of Two Sorted Arrays</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="nav-number">3.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">3.2.</span> <span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NO-11-Container-with-most-water"><span class="nav-number">4.</span> <span class="nav-text">NO.11 Container with most water</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="nav-number">5.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution-1"><span class="nav-number">6.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NO-15-3-Sums"><span class="nav-number">7.</span> <span class="nav-text">NO.15 3 Sums</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-3"><span class="nav-number">7.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NO-33-Search-in-Rotated-Array"><span class="nav-number">8.</span> <span class="nav-text">NO. 33 Search in Rotated Array</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">8.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-number">8.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-2"><span class="nav-number">8.3.</span> <span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NO-153-amp-154-Find-Minimum-in-Rotated-Sorted-Array"><span class="nav-number">9.</span> <span class="nav-text">NO.153&amp;154 Find Minimum in Rotated Sorted Array</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-1"><span class="nav-number">10.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-1"><span class="nav-number">11.</span> <span class="nav-text">解题思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-3"><span class="nav-number">11.1.</span> <span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NO-34-Find-First-and-Last-Position-of-Element-in-Sorted-Array"><span class="nav-number">12.</span> <span class="nav-text">NO.34 Find First and Last Position of Element in Sorted Array</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-2"><span class="nav-number">13.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-2"><span class="nav-number">13.1.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-4"><span class="nav-number">13.2.</span> <span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NO-35-Search-insert-position"><span class="nav-number">14.</span> <span class="nav-text">NO. 35 Search insert position</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE-3"><span class="nav-number">14.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF-3"><span class="nav-number">14.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-5"><span class="nav-number">14.3.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Chenxi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/09/Algorithm-Leetcode-array/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          算法 | 【Leetcode】数组array类题目总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-09 10:24:56" itemprop="dateCreated datePublished" datetime="2020-01-09T10:24:56-05:00">2020-01-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="数组Tag部分"><a href="#数组Tag部分" class="headerlink" title="数组Tag部分"></a>数组Tag部分</h1><p>这部分主要用来记录总结Leetcode中数组部分的题目和思路分析</p>
+<p>语言：python</p>
+<p><a href="# NO.1 Two Sums">NO.1 Two Sums</a> </p>
+<p><a href="# NO.4 Median of Two Sorted Arrays">NO.4 Median of Two Sorted Arrays</a></p>
+<a id="more"></a>
+<h1 id="NO-1-Two-Sums"><a href="#NO-1-Two-Sums" class="headerlink" title="NO.1 Two Sums"></a>NO.1 Two Sums</h1><blockquote>
+<p>Given an array of integers, return <strong>indices</strong> of the two numbers such that they add up to a specific target.</p>
+<p>You may assume that each input would have <strong><em>exactly\</em></strong> one solution, and you may not use the <em>same</em> element twice.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Given nums &#x3D; [2, 7, 11, 15], target &#x3D; 9,</span><br><span class="line"></span><br><span class="line">Because nums[0] + nums[1] &#x3D; 2 + 7 &#x3D; 9,</span><br><span class="line">return [0, 1].</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>首先想到的主要是两个循环，即首先挑选一个nums中的数nums[i]，然后在剩下的数里面寻找是否有符合 target - nums[i] 的数字【brute force】。但两个循环下，算法复杂度为 $O(n^2)$ 。于是我们想到了用Hash table把数据存起来，然后再对合适的key进行访问。这里所谓的合适的key就是target - nums[i] 的值。于是我们可以选择先把nums中的数字循环存储起来，然后再访问key为target - nums[i]【two-pass hash table】,或者我们可以进行一次pass在存储的过程中寻找指定的key【one-pass hash table】.</p>
+<ul>
+<li>在使用python的时候判断 if A in dict, 判断的是A是否在dict的key中，若想要判断A是否是其中的一个value，那么我们需要用 if A in dict.values(),然后通过 .index(value) 函数来找到对应的键值</li>
+<li>在使用python的时候可以直接用dict，方便查找，但是在使用其他语言的时候需要用到hash map</li>
+</ul>
+<h2 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">twoSum</span>(<span class="params">self, nums, target</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        diff = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            <span class="keyword">if</span> target - nums[i] <span class="keyword">in</span> diff:</span><br><span class="line">                <span class="keyword">return</span> [i, diff[target - nums[i]]]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                diff[nums[i]] = i </span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> [<span class="number">-1</span>, <span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<h1 id="NO-4-Median-of-Two-Sorted-Arrays"><a href="#NO-4-Median-of-Two-Sorted-Arrays" class="headerlink" title="NO.4 Median of Two Sorted Arrays"></a>NO.4 Median of Two Sorted Arrays</h1><blockquote>
+<p>There are two sorted arrays <strong>nums1</strong> and <strong>nums2</strong> of size m and n respectively.</p>
+<p>Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p>
+<p>You may assume <strong>nums1</strong> and <strong>nums2</strong> cannot be both empty.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nums1 &#x3D; [1, 3]</span><br><span class="line">nums2 &#x3D; [2]</span><br><span class="line"></span><br><span class="line">The median is 2.0</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nums1 &#x3D; [1, 2]</span><br><span class="line">nums2 &#x3D; [3, 4]</span><br><span class="line"></span><br><span class="line">The median is (2 + 3)&#x2F;2 &#x3D; 2.5</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2><p>首先想到的就是：那我可以把两个数列按顺序排列在一起，然后找到中值(X)，这样的话算法复杂度是 $O(m+n)$【brute force】</p>
+<p>现在已知的信息是：1. 中值必定是两个数列按序放在一起之后 第 (m+n)/2 个；2. 两个数列都是有序排列的；3. 如果要求算法复杂度是 $O(log(m+n))$，那么可能有二分法的类似方法。</p>
+<p>（那么怎么做呢）</p>
+<p>这样想一下，中值就是处在一个已排列的数列中间的数，如果是奇数，那么第 $\frac{n+1}{2}$ 个位置就是中位数，如果是偶数，那么中位数 为 $\frac{n}{2}$ 和 $\frac{n}{2}+1$ 个数的平均值。所以说我们想要做的就是在数列 nums1 和数列nums2中分别找到不同的partition，将两个数列分别分成两个部分，若两个数组左侧的部分的合集恰好都小于右侧部分的合集，那么这两个partition都是正确的，然后我们再根据两个数列中的总个数来计算中位数。</p>
+<p>所以现在首要的问题就是考虑如何将两个partition分割正确。</p>
+<ol>
+<li><p>因为两个数列中的数总个数是不变，因此如果对于nums1和nums2来说，两个数列分割后左侧数字的总和是一个定值，我们计算这个定值为 $\frac{m+n+1}{2}$. </p>
+<ul>
+<li><p>若 $m+n$ 是偶数，则 $max(nums1right[max], num2right[max])$ 就为 合并后数列的中位数</p>
+</li>
+<li><p>若 $m+n$ 是奇数，则 $\frac{max(nums1left[max], num2left[max])+min(nums1right[min], num2right[min])}{2}$ 就为合并后数列的中位数。</p>
+<p>【这里也就是在讲，当把nums1 和nums2 分别分成两部分的时候，若总数为奇数，那么中位数是左侧两部分的最大值，若总数为偶数，那么中位数是右侧两部分的最小值和左侧两部分最大值的平均数。】</p>
+</li>
+</ul>
+</li>
+<li><p>接下来就是要确定如何找到正确的针对于nums1 和nums2 的partition的位置。</p>
+<p>1)  因为我们想要在比较短的数列中找partition，然后根据上面的定值 $\frac{m+n+1}{2}$ 得到比较长数列中的partition，所以我们定义较短的数列为 nums1, 另一个为 nums2.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">m = <span class="built_in">len</span>(nums1)</span><br><span class="line">n = <span class="built_in">len</span>(nums2)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> n &lt; m:</span><br><span class="line">  nums1, nums2, m, n = nums2, nums1, n, m</span><br></pre></td></tr></table></figure>
+<p>2)  接下来我们在nums1上进行初始partition定位，然后通过 $\frac{m+n+1}{2}$ 找到nums2 上的partition的定位。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i &#x3D; (start + end)&#x2F;2</span><br><span class="line">j &#x3D; (m + n + 1)&#x2F;2 - i</span><br></pre></td></tr></table></figure>
+<p>3) 再开始判定之前，需要先确保输入的数组都不是空集，则，如果 $i == 0$ 那么我们可以得知 nums1 的左侧将是一个空集，nums1左侧的空集表明它总符合条件，相当于在集合中放置了一个 $-\infin $ .所以我们定义，若 partition的位置在最开头或者最末尾，会分别造成左侧的最大值为 $-\infin $ 右侧的最小值为 $+\infin $</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">maxleft1 = -<span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">maxleft1 = nums1[i<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> i == m:</span><br><span class="line">minright1 = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)             </span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">minright1 = nums1[i]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> j == <span class="number">0</span>:</span><br><span class="line">maxleft2 = -<span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">maxleft2 = nums2[j<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> j == n:</span><br><span class="line">minright2 = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)          </span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">minright2 = nums2[j]</span><br></pre></td></tr></table></figure>
+<p>4) 结束了边界情况的定义之后，我们来讨论一下何时需要移动这些partition。</p>
+<ul>
+<li><p>最佳情况是 maxleft1 &lt;= minright2 &amp;&amp; maxleft2 &lt;= minright1, 如果这个成立，我们就可以根据总数 的奇偶个数来判断中位数了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (maxleft1 &lt;= minright2) <span class="keyword">and</span> (maxleft2 &lt;= minright1):</span><br><span class="line">  <span class="keyword">if</span> (m + n) % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">  <span class="keyword">return</span> (<span class="built_in">max</span>(maxleft1, maxleft2) + <span class="built_in">min</span>(minright1 , minright2)) / <span class="number">2.0</span></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">max</span>(maxleft1, maxleft2)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果maxleft1 &gt; minright2, 那么我们就说明数组一左侧的最大值 大于 数组二右侧的最小值，我们应该将数组一的partition向左移动，相应的数组二的partition向右移动。于是这里我们更新 end 的值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">elif</span> (maxleft1 &gt; minright2):</span><br><span class="line">	end = i - <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>反之，我们把数组一的partition向右移动</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  start = i + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>然后我们就一直重复这个步骤直到找到正确的中位数。</p>
+</li>
+</ol>
+<ul>
+<li>在python中，表示正负无穷的时候需要用 float(‘inf’)</li>
+</ul>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMedianSortedArrays</span>(<span class="params">self, nums1, nums2</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums1: List[int]</span></span><br><span class="line"><span class="string">        :type nums2: List[int]</span></span><br><span class="line"><span class="string">        :rtype: float</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        m = <span class="built_in">len</span>(nums1)</span><br><span class="line">        n = <span class="built_in">len</span>(nums2)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> n &lt; m:</span><br><span class="line">            nums1, nums2, m, n = nums2, nums1, n, m</span><br><span class="line">            </span><br><span class="line">        start = <span class="number">0</span></span><br><span class="line">        end = m </span><br><span class="line">        <span class="keyword">while</span> start &lt;= end:</span><br><span class="line">            </span><br><span class="line">            i = (start + end)/<span class="number">2</span></span><br><span class="line">            j = (m + n + <span class="number">1</span>)/<span class="number">2</span> - i</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">                maxleft1 = -<span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                maxleft1 = nums1[i<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> i == m:</span><br><span class="line">                minright1 = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)             </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                minright1 = nums1[i]</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> j == <span class="number">0</span>:</span><br><span class="line">                maxleft2 = -<span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                maxleft2 = nums2[j<span class="number">-1</span>]</span><br><span class="line">                </span><br><span class="line">            <span class="keyword">if</span> j == n:</span><br><span class="line">                minright2 = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)          </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                minright2 = nums2[j]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (maxleft1 &lt;= minright2) <span class="keyword">and</span> (maxleft2 &lt;= minright1):</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (m + n) % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">                    <span class="keyword">return</span> (<span class="built_in">max</span>(maxleft1, maxleft2) + <span class="built_in">min</span>(minright1 , minright2)) / <span class="number">2.0</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="built_in">max</span>(maxleft1, maxleft2)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">elif</span> (maxleft1 &gt; minright2):</span><br><span class="line">                end = i - <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                start = i + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h1 id="NO-11-Container-with-most-water"><a href="#NO-11-Container-with-most-water" class="headerlink" title="NO.11 Container with most water"></a>NO.11 Container with most water</h1><h1 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h1><p>首先想到的就是把所有可能的container的area都求一遍【brute force】。这样的话就造成了两个循环，时间复杂度为 $O(n^2)$. 但如果有一种方法能让两边的边界都动起来，那可能会更容易一些。</p>
+<p>那我们来想一下，一个水桶的容量大小由什么决定，是由两个边之间的距离以及两条边之中的最短边决定。所以说在一开始，我们不断的改变最短边，祈求下一个边界是一个长一些的边界。</p>
+<h1 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxArea</span>(<span class="params">self, height</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type height: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        j = <span class="built_in">len</span>(height) - <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        area = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; j:</span><br><span class="line">            left_bound = height[i]</span><br><span class="line">            right_bound = height[j]</span><br><span class="line">            width = j - i</span><br><span class="line">            <span class="keyword">if</span> width * <span class="built_in">min</span>(left_bound, right_bound) &gt; area:</span><br><span class="line">                area = width * <span class="built_in">min</span>(left_bound, right_bound)</span><br><span class="line">                </span><br><span class="line">            <span class="keyword">if</span> left_bound &lt; right_bound:</span><br><span class="line">                i = i + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                j = j - <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> area</span><br></pre></td></tr></table></figure>
+<h1 id="NO-15-3-Sums"><a href="#NO-15-3-Sums" class="headerlink" title="NO.15 3 Sums"></a>NO.15 3 Sums</h1><h2 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h2><p>以数组中的某个数为标准去找另外两个数的和，使得三个数加在一起的总和为0.</p>
+<h1 id="NO-33-Search-in-Rotated-Array"><a href="#NO-33-Search-in-Rotated-Array" class="headerlink" title="NO. 33 Search in Rotated Array"></a>NO. 33 Search in Rotated Array</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e., <code>[0,1,2,4,5,6,7]</code> might become <code>[4,5,6,7,0,1,2]</code>).</p>
+<p>You are given a target value to search. If found in the array return its index, otherwise return <code>-1</code>.</p>
+<p>You may assume no duplicate exists in the array.</p>
+<p>Your algorithm’s runtime complexity must be in the order of <em>O</em>(log <em>n</em>).</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums &#x3D; [4,5,6,7,0,1,2], target &#x3D; 0</span><br><span class="line">Output: 4</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>【午夜梦回，我拍着胸口问我自己，为啥别人的二分法就正好找到，而我的就总是Time Limit Exceeded。是我的上下界出了什么问题吗。是的。】</p>
+<p>这道题和传统的二分法查找类似，有一个不同的点就是 这里是转了圈了循环数列。针对于循环数列，不同的点就在于不能按照平常的根据中值来判断target的位置。我们首先需要判断的是pivot的位置，也就是从哪里开始循环的。正常情况下，如果一个数列是顺序排列，那么它左边端点的值会小于右边端点的值，这里有两个判断：</p>
+<ul>
+<li>if nums[left] &gt; nums[mid]: 这里说明的是nums数列的最左值大于nums中间值，表明pivot在左半边</li>
+<li>if nums[mid] &gt; nums[right]: 表明pivot在右半边</li>
+</ul>
+<p>但值得注意的是，朋友们，这两种不是全部的情况，因为有可能你分着分着，你寻找的数列就变成一个正常顺序的数列了，对于正常的数列来说，上面两个调节都不成立，于是你将会陷入无限的while循环。</p>
+<p>所以在选择上面的一个条件，之后用else，表明pivot在另一边，或者数列已经回归正常排序了</p>
+<p>对于二分法来说，有两个部分是重要的（我觉得）。一个是要考虑什么时候找到了target，一个是要考虑什么时候更换边界。在更换边界的时候不需要考虑在更换边界过后怎么去找target，只需要更换边界值就行了。</p>
+<p>还有一个是在更换边界的时候不要直接用mid的值去更换left或者right，要进行 + 1和 -1的处理，不然也会造成无限while循环。因为当left和right是相连的时候，mid和right相等，就会造成不断更新right，但其实没动。</p>
+<h2 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span>(<span class="params">self, nums, target</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span>    </span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        right = <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">            </span><br><span class="line">            mid = (left +  right)/<span class="number">2</span></span><br><span class="line">            <span class="comment"># When find the value</span></span><br><span class="line">            <span class="keyword">if</span> nums[left] == target: <span class="keyword">return</span> left</span><br><span class="line">            <span class="keyword">if</span> nums[right] == target: <span class="keyword">return</span> right</span><br><span class="line">            <span class="keyword">if</span> nums[mid] == target: <span class="keyword">return</span> mid</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># Updating end point.</span></span><br><span class="line">            <span class="keyword">if</span> nums[left] &gt; nums[mid]:</span><br><span class="line">                <span class="comment"># pivot on the left, right part sorted</span></span><br><span class="line">                <span class="keyword">if</span> target &gt; nums[mid] <span class="keyword">and</span> target &lt; nums[right]:</span><br><span class="line">                    left = mid + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    right = mid - <span class="number">1</span>                   </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># pivot on the right, left part sorted</span></span><br><span class="line">                <span class="keyword">if</span> target &gt; nums[left] <span class="keyword">and</span> target &lt; nums[mid]:</span><br><span class="line">                    right = mid - <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    left = mid + <span class="number">1</span></span><br><span class="line">                    </span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
+<h1 id="NO-153-amp-154-Find-Minimum-in-Rotated-Sorted-Array"><a href="#NO-153-amp-154-Find-Minimum-in-Rotated-Sorted-Array" class="headerlink" title="NO.153&amp;154 Find Minimum in Rotated Sorted Array"></a>NO.153&amp;154 Find Minimum in Rotated Sorted Array</h1><p>既然说到了循环数列，就不得不提一下相似的题。</p>
+<h1 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h1><blockquote>
+<p>Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e.,  <code>[0,1,2,4,5,6,7]</code> might become  <code>[4,5,6,7,0,1,2]</code>).</p>
+<p>Find the minimum element.</p>
+<p>You may assume no duplicate exists in the array.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,4,5,1,2] </span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h1><p>这个题和上面一样，也用二分法来，同样也要注意的两个点是：什么时候停下来得到return的值，什么时候更新边界点。</p>
+<p>之前一道题因为有给定的target，所以只需要判定basis case是不是等于target就可以了。这道题在问找到最小值，那什么时候返回最小值呢。rotate的数列有个特点就是左边端点的值大于右边端点的值，一旦我们得知左边端点的值小于右边端点的值，那么pivot一定在另一侧。pivot还有一个特点就是小于等于右边的值，同时小于等于左侧的值。但是这个只能用在长度大于三的数列中，所以放弃这个条件。</p>
+<p>这个帖子说的特别好奥：<a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/discuss/167981/Beats-100-Binary-Search-with-Explanations">https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/discuss/167981/Beats-100-Binary-Search-with-Explanations</a> 看的很明白</p>
+<p>说白了，找最小值就是找最小的值，我们在做比较，更换端点index的时候其实就可以得出这些结论。假设我们的左边端点用left表示，右边端点用right表示，中间点用mid表示，那么，有以下几种情况：</p>
+<ul>
+<li>nums[Left] &lt;= nums[mid] &lt;= nums[right], 这种是标准的，完全没有rotate的部分，在这种情况下，为了找到最小值，我们更新寻找数列的右端点right = right -1 逐渐往里缩就可以。</li>
+<li>nums[Left] &lt;= nums[mid] &gt; nums[right],  这种情况下 左半边的部分是排序好的，右半边是不好的，所以我们要把左侧端点缩至 mid +1, 因为这里mid比right大，所以我们可以舍弃mid这一点上的值。</li>
+<li>nums[Left] &gt;= nums[mid] &lt; nums[right], 这种情况下，右半边部分是排序好的，左半边是不好的，所以我们要focus在左侧，又因为nums[Left] &gt;= nums[mid]，所以right只能缩到mid这个值，不能为mid-1，因为mid可能是最小值，但Left可以缩为Left + 1</li>
+<li>nums[Left]&gt;nums[mid]&gt;nums[right],这种情况不符合题目要求。</li>
+</ul>
+<h2 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findMin</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        </span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        right = <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">            mid = (left +  right)/<span class="number">2</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> nums[left] &gt; nums[mid]:</span><br><span class="line">                left = left + <span class="number">1</span></span><br><span class="line">                right = mid</span><br><span class="line">            <span class="keyword">elif</span> nums[mid] &gt; nums[right]:</span><br><span class="line">                left = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                right = right - <span class="number">1</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> nums[left]</span><br></pre></td></tr></table></figure>
+<h1 id="NO-34-Find-First-and-Last-Position-of-Element-in-Sorted-Array"><a href="#NO-34-Find-First-and-Last-Position-of-Element-in-Sorted-Array" class="headerlink" title="NO.34 Find First and Last Position of Element in Sorted Array"></a>NO.34 Find First and Last Position of Element in Sorted Array</h1><h1 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h1><p>Given an array of integers <code>nums</code> sorted in ascending order, find the starting and ending position of a given <code>target</code> value.</p>
+<p>Your algorithm’s runtime complexity must be in the order of <em>O</em>(log <em>n</em>).</p>
+<p>If the target is not found in the array, return <code>[-1, -1]</code>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [5,7,7,8,8,10], target = 8</span><br><span class="line">Output: [3,4]</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h2><p>这就麻烦了，让找两个点，但是又要用binary search，怎么搞呢。我们就分开找这个起始点和终止点。这个<a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/discuss/14699/Clean-iterative-solution-with-two-binary-searches-(with-explanation">leetcode帖子</a>)写的比较完善。</p>
+<ol>
+<li><p>我们先找target value的起始点，如果找不到的话，叮，结束，返回 [-1, -1]</p>
+<p>怎么找呢.找点的话还是要设置左边界，设置右边界，然后不断的更新，有点像单纯的binary search：</p>
+<ul>
+<li>如果 nums[mid] &gt; target, 那么所求点在mid右侧，更新 right = mid - 1</li>
+<li>如果nums[mid] &lt; target, 那么所求点在mid左侧，更新 left = mid + 1</li>
+<li>如果nums[mid] == target, 那么所求点要么是mid这点，要么在mid的左侧，更新 right = mid</li>
+</ul>
+</li>
+<li><p>然后再寻找target value的终止点。和上面一样</p>
+<ul>
+<li>如果 nums[mid] &gt; target, 那么所求点在mid右侧，更新 right = mid - 1</li>
+<li>如果nums[mid] &lt; target, 那么所求点在mid左侧，更新 left = mid + 1</li>
+<li>如果nums[mid] == target, 那么所求点要么是mid这点，要么在mid的右侧，更新 left = mid</li>
+</ul>
+</li>
+</ol>
+<p>然后更新这两个点就可以。</p>
+<ul>
+<li>注意这里在更新左右临界点的时候有个trick，如果是 mid = (left + right)/2 那么在更新left的的时候就不能单纯的left = mid，这样当只有两个数的时候就会陷入无限循环，因为left = (left + right)/2，所以在过程中若是存在left = mid的更新步骤，需要将mid定义为 mid = (left + right)/2 +1。同样的，若是在过程总存在right = mid的更新步骤，直接用 mid = (left + right)/2 即可。</li>
+</ul>
+<h2 id="Solution-4"><a href="#Solution-4" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">searchRange</span>(<span class="params">self, nums, target</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">            <span class="keyword">return</span> [<span class="number">-1</span>, <span class="number">-1</span>]</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">findstart</span>(<span class="params">nums, target</span>):</span></span><br><span class="line">            left = <span class="number">0</span></span><br><span class="line">            right = <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">            <span class="keyword">while</span> left &lt; right:</span><br><span class="line">                mid = (left + right) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> nums[mid] &gt;= target:</span><br><span class="line">                    right = mid                 </span><br><span class="line">                <span class="keyword">elif</span> nums[mid] &lt; target:</span><br><span class="line">                    left = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> left</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">findend</span>(<span class="params">nums, target</span>):</span></span><br><span class="line">        </span><br><span class="line">            left = <span class="number">0</span></span><br><span class="line">            right = <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> left &lt; right:</span><br><span class="line">                mid = (left + right)/<span class="number">2</span> + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> nums[mid] &gt; target:</span><br><span class="line">                    right = mid - <span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> nums[mid] &lt;= target:</span><br><span class="line">                    left = mid </span><br><span class="line">                                </span><br><span class="line">            <span class="keyword">return</span> left</span><br><span class="line">    </span><br><span class="line">        start = findstart(nums, target)</span><br><span class="line">        print(start)</span><br><span class="line">        end = findend(nums, target)</span><br><span class="line">        print(end)</span><br><span class="line">        <span class="keyword">if</span> nums[start] == target:</span><br><span class="line">            <span class="keyword">return</span> [start, end]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> [<span class="number">-1</span>, <span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<h1 id="NO-35-Search-insert-position"><a href="#NO-35-Search-insert-position" class="headerlink" title="NO. 35 Search insert position"></a><a name="lc35"/>NO. 35 Search insert position</h1><h2 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
+<p>You may assume no duplicates in the array.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,3,5,6], 5</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,3,5,6], 2</span><br><span class="line">Output: 1</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h2><p>给定的是sorted的数列，那么在找插入点的时候该点前面的值肯定都比target要小，所以就要找到第一个比target大的数，那个点就是我们要找的点，如果遍历整个数列都没有比target大的值，那就说明target最大，返回nums的长度+1【Brute force】</p>
+<p>可以用二分法吗？当然可以辽，就还是要分清，什么时候停止，什么时候更新边界。若要找到插入的位置，那么就说明该位置是刚刚大于或等于target的，所以我们可以缩小边界，来找到target的插入点。因为数列是有序排列的，所以该点右侧的数字都会大于或等于target，所以我们停止的条件就是</p>
+<ul>
+<li>if nums[left] &gt;= target: return left</li>
+</ul>
+<p>然后看一下更新的条件， 同样是对mid的值进行判断：</p>
+<ul>
+<li>if nums[mid] == target: left = mid 【这里其实可以直接返回mid的值，但是为了保持逻辑的连贯性，我们把左index赋值为mid，这样再经过一次循环就可以return left 了】</li>
+<li>if nums[mid] &gt; target: right = mid【中值比target要大，所以target在mid左侧，更新right。因为我们要找的也是大于等于target的值，所以mid这一点不能错过，于是我们更新： right = mid】</li>
+<li>if nums[mid] &lt; target: left = mid + 1【中值比target要小，所以target在mid右侧，更新left。因为我们要找的是大于等于target的值，所以此处的mid可以跳过，更新left = mid + 1】</li>
+<li>check一下 left更新的时候有mid + 1，所以这里mid取 （left+right）/2不会造成持续的循环。</li>
+</ul>
+<p>有一个特殊情况存在，就是我遍历了所有的值都没有得到想要得到的点，此时说明数列中所有的值都比target要小，所以直接返回数列长度。</p>
+<h2 id="Solution-5"><a href="#Solution-5" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">searchInsert</span>(<span class="params">self, nums, target</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        </span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        right = <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">            </span><br><span class="line">            mid = (left + right)/<span class="number">2</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> nums[left] &gt;= target: <span class="keyword">return</span> left</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> nums[mid] == target:</span><br><span class="line">                left = mid</span><br><span class="line">            <span class="keyword">elif</span> nums[mid] &lt; target:</span><br><span class="line">                left = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                right = mid</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(nums)</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+              <a href="/tags/array/" rel="tag"># array</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/01/07/Paper-Reading-U-Net-Convolutional-Networks-for-Biomedical-Image-Segmentation/" rel="prev" title="论文阅读 |U-Net: Convolutional Networks for Biomedical Image Segmentation">
+                  <i class="fa fa-chevron-left"></i> 论文阅读 |U-Net: Convolutional Networks for Biomedical Image Segmentation
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/01/13/Algorithm-Leetcode-search/" rel="next" title="Algorithm | Leetcode - search">
+                  Algorithm | Leetcode - search <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenxi</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

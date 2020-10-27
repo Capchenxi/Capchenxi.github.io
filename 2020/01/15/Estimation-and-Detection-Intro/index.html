@@ -1,37 +1,434 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="Estimation and Detection哈哈哈哈哈哈没想到吧我又来挖坑了，之前的坑会赶紧补上的。 这部分是开坑新课，也就是检测与估计，说白了会包含模式识别的内容。然后是自己和老师的笔记稍微整理和回顾一下。我们老师的课都偏数学，所以一切推导过程如果清晰，那么整个内容就清晰明了了。希望之前你学过概率论。 课程目录 Bayes decision theory Classifier Probabi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Estimation and Detection| Introduction">
+<meta property="og:url" content="http://yoursite.com/2020/01/15/Estimation-and-Detection-Intro/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="Estimation and Detection哈哈哈哈哈哈没想到吧我又来挖坑了，之前的坑会赶紧补上的。 这部分是开坑新课，也就是检测与估计，说白了会包含模式识别的内容。然后是自己和老师的笔记稍微整理和回顾一下。我们老师的课都偏数学，所以一切推导过程如果清晰，那么整个内容就清晰明了了。希望之前你学过概率论。 课程目录 Bayes decision theory Classifier Probabi">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-01-15T15:31:16.000Z">
+<meta property="article:modified_time" content="2020-01-15T15:31:16.000Z">
+<meta property="article:author" content="Chenxi">
+<meta property="article:tag" content="lecture notes">
+<meta name="twitter:card" content="summary">
 
 
-{% block content %}
+<link rel="canonical" href="http://yoursite.com/2020/01/15/Estimation-and-Detection-Intro/">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Estimation and Detection| Introduction | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Estimation-and-Detection"><span class="nav-number">1.</span> <span class="nav-text">Estimation and Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BE%E7%A8%8B%E7%9B%AE%E5%BD%95"><span class="nav-number">1.1.</span> <span class="nav-text">课程目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BE%E7%A8%8B%E8%AF%B4%E6%98%8E"><span class="nav-number">1.2.</span> <span class="nav-text">课程说明</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Chenxi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/15/Estimation-and-Detection-Intro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Estimation and Detection| Introduction
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-15 10:31:16" itemprop="dateCreated datePublished" datetime="2020-01-15T10:31:16-05:00">2020-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Estimation-and-Detection"><a href="#Estimation-and-Detection" class="headerlink" title="Estimation and Detection"></a>Estimation and Detection</h1><p>哈哈哈哈哈哈没想到吧我又来挖坑了，之前的坑会赶紧补上的。</p>
+<p>这部分是开坑新课，也就是检测与估计，说白了会包含模式识别的内容。然后是自己和老师的笔记稍微整理和回顾一下。我们老师的课都偏数学，所以一切推导过程如果清晰，那么整个内容就清晰明了了。希望之前你学过概率论。</p>
+<h2 id="课程目录"><a href="#课程目录" class="headerlink" title="课程目录"></a>课程目录</h2><ol>
+<li>Bayes decision theory<ul>
+<li>Classifier</li>
+<li>Probability of error and SNR</li>
+<li>Feature selection</li>
+</ul>
+</li>
+<li>Parametric Estimation and Supervised Learning<ul>
+<li>Optimal Estimatiors</li>
+<li>Sufficient Statistics</li>
+<li>Maximum Likelihood Estimation</li>
+<li>Cramer Rao Bounds</li>
+<li>Bayesian Learning</li>
+</ul>
+</li>
+<li>Hypothesis testing<ul>
+<li>NP Lemma</li>
+<li>GLRT</li>
+</ul>
+</li>
+<li>Unbiased Classifier and Asymptotic Bayesian Methods<ul>
+<li>KL Information</li>
+<li>The concept of Parsimony</li>
+</ul>
+</li>
+<li>Decision fusion</li>
+<li>Parametric Estimation and Unsupervised Learning<ul>
+<li>Mixture density estimation</li>
+<li>EM algorithm</li>
+</ul>
+</li>
+<li>Nonparametric Supervised Learning<ul>
+<li>Nonparametric testing</li>
+</ul>
+</li>
+</ol>
+<a id="more"></a>
+<h2 id="课程说明"><a href="#课程说明" class="headerlink" title="课程说明"></a>课程说明</h2><p>这部分想串联一下整个课程的逻辑引入顺序：</p>
+<p>在日常生活中我们常常需要做很多决策，最常见的状况就是去医院看病，医生如何诊断你有A疾病呢？通常情况下，你到了医院之后需要对你自己的病情进行申诉：医生，我是不是得了A？【虽然实际情况是你去了医生问你各症状你回答是或不是。但这里我们先根据提供的场景进行。】</p>
+<p>医生可能会问你一些问题：他会根据自己以往看到得A病的经验来询问你，这里疼吗，你说不疼，这里痒吗，你说痒，在一系列的询问过后，医生得出结论：你没有得A病。【这就相当于一个决策树的过程】【但是不是别的病就另当别论】</p>
+<p>或者，医生会根据之前看过的A病的经验告诉你：你去做一下x,y,z检查。等你绕了一上午做完了xyz检查并且终于拿到了检查报告之后，你去见医生，医生根据之前得A病的病人xyz的数据和没得A病的病人的xyz数据，会告诉你你没有得A病。然后你就开开心心回家了。过了一周之后，你觉得自己的身体还是不好，于是你又返回医院，增加做了n检查，医生发现之前误诊了，现在才发现你得了A病。【这就相当于一个概率推算过程，我们这个课程主要来介绍这种情况下，医生是如何判断你是否得A病的。】</p>
+<p>那么，在我们举出的第二种场景中，有几个重要的关键词：</p>
+<ul>
+<li>医生是知道得A病和没得A病的人，他们的xyz数据分别是怎样的。这里就属于Supervised Learning。</li>
+<li>医生让你去做 x y z检查。这里相当于对A病做了三个方面的特征提取。</li>
+<li>医生得出结论。这里相当于用概率来推算你的病的可能性。</li>
+<li>医生做出了错误结论，你其实得病了，但是他告诉你没得病。这里相当于一个misdetection，医生误判了。</li>
+</ul>
+<p>那这些关键词代表的概念究竟是什么意思呢，我们来看看：</p>
+<p>在去医院之后，你最关心的其实就是到底有没有得病。那其实他的诊断会用四类，为什么会是四类呢？难道不是只有两类吗？得病和没得病。确实是这样，但别忘了还有你的身体，究竟有没有生病，不是医生说的算。所以这里就有了四种分类：1.医生说你得病了，你也确实得病了【true positive】； 2. 医生说你得病了，其实你没得病【false positive】；3. 医生说你没得病，你也确实没得病【ture negative】；4. 医生说你没得病，其实你得病了【false negative】。</p>
+<p>我们把1和3 叫做正确的判断，2和4叫做错误的判断。实际情况中，因为4带来的代价（cost）是最大的，因为医生宁愿诊断你得病，给你少量的药治疗，也好过告诉你什么事都没有。所以我们也会把false positive叫false alarm【错误的警报，给了你警报，但其实是虚惊一场】，false negative 称作misdetection【你其实有病，但你是个漏网之鱼】。正确的判断当然是我们所追求的，所以决策的终极目的就是要 minimize error。</p>
+<p>在这整个过程中，医生充当一个决策角色，来判断你是否得病，所以这里的医生可以看做是分类器 <strong>classifier</strong>. 作为一个classifier来说，他一般有两个假设<strong>hypothesis</strong>：一个是没生病：$H_0$, 一个是生病：$H_1$. 我们在构建分类器的时候，目标是要最小化分类器的error，这样的话，我们有几种分类器可选：<strong>Bayesian Classifier, NP classifier, Generalized likelibood ratio test </strong>. 对于这些分类器来说，重要的是医生输入的xyz三项检查结果<strong>features</strong> 的值。如果我们选择Bayesian分类器，就需要知道xyz的概率模型。对于三种不同的检查来说，每一种检查数据都有一个自己的分布或者三者合起来服从某个分布（PDF），也就是说，如果病人得了A病，那这三项xyz的检查结果看起来可能是什么样子的。如果这些分布能用标准的分布，如 Gaussion， Possion 或者其他可以参数化的模型表示，我们就把这个分布叫做 <strong>Parametric Modeling</strong>, 否则就称作 <strong>Nonparametric Modeling</strong>. 对于Parametric模型来说，重要的就是要论证我们为什么选取某个特定的参数模型以及对参数模型中参数的估计<strong>Parametric Estimation</strong>。如果我们选择NP 分类器<strong>Hypothesis testing</strong>，我们就是固定了misdetection的值，然后来判定我们的决策阈值。虽然选择的分类器不同，但我们希望我们选择的分类器是无偏差的<strong>Unbiased Classifier</strong>, 并且希望针对于这个A病来说，让病人做xyz检查是正确且最具有判断性的<strong>Decision Fusion</strong>。不过以上我们说的都是在医生知道xyz这些数据和A病有什么关系时做出的判断，说明在之前，有很多有A病和无A病的人做了xyz的检查，并且医生知道之间的关联<strong>Supervised Learning</strong>, 但如果医生之前只知道一些人的xyz数据，但并不知道他们是否得了A病，那该如何将两个人群进行分类呢<strong>Unsupervised Learning</strong>. 最后，对于Nonparametric的模型，我们就需要进行大量的数据收集，来得到分类的标准<strong>Nonparametric testing</strong>.</p>
+<p>上文中粗体字的部分是这个课程会涉及到的内容，我用了之前的医生看病的例子举出了这个课程中的一些简单的概念，课程的目的，以及会涉及的内容的引出顺序。希望可以把这些内容更好得串起来。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/lecture-notes/" rel="tag"># lecture notes</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/01/13/Paper-Reading-ClothFlow-A-Flow-Based-Model-for-Clothed-Person-Generation/" rel="prev" title="Paper Reading | ClothFlow: A Flow-Based Model for Clothed Person Generation">
+                  <i class="fa fa-chevron-left"></i> Paper Reading | ClothFlow: A Flow-Based Model for Clothed Person Generation
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/01/15/Estimation-and-Detection-Bayes-Decision-Theory/" rel="next" title="Estimation and Detection| Bayes Decision Theory">
+                  Estimation and Detection| Bayes Decision Theory <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenxi</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

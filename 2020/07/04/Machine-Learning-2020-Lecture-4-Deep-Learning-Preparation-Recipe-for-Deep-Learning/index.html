@@ -1,37 +1,473 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="我们在一开始介绍Machine Learning的时候提到找寻最佳模型的方法，同样这散步也可以应用在deep learning上面：  Step 1: Define a set of function - 定义神经网络的类型结构和框架 Step 2: Goodness of function - 定义评价神经网络的cost function Step 3: Pick the best functi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine-Learning-2020 | Lecture#4 Deep Learning Preparation - Recipe for Deep Learning">
+<meta property="og:url" content="http://yoursite.com/2020/07/04/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Recipe-for-Deep-Learning/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="我们在一开始介绍Machine Learning的时候提到找寻最佳模型的方法，同样这散步也可以应用在deep learning上面：  Step 1: Define a set of function - 定义神经网络的类型结构和框架 Step 2: Goodness of function - 定义评价神经网络的cost function Step 3: Pick the best functi">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-07-04T20:46:52.000Z">
+<meta property="article:modified_time" content="2020-07-04T20:46:52.000Z">
+<meta property="article:author" content="Chenxi">
+<meta property="article:tag" content="lecture notes">
+<meta property="article:tag" content="Deep Learning">
+<meta name="twitter:card" content="summary">
 
 
-{% block content %}
+<link rel="canonical" href="http://yoursite.com/2020/07/04/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Recipe-for-Deep-Learning/">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
 
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Machine-Learning-2020 | Lecture#4 Deep Learning Preparation - Recipe for Deep Learning | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
     </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-Training-set"><span class="nav-number">1.</span> <span class="nav-text">查看 Training set</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E6%95%B4-Activation-Function"><span class="nav-number">1.1.</span> <span class="nav-text">调整 Activation Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E6%95%B4Adaptive-Learning-Rate"><span class="nav-number">1.2.</span> <span class="nav-text">调整Adaptive Learning Rate</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B-Validation-set"><span class="nav-number">2.</span> <span class="nav-text">查看 Validation set</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Early-stopping"><span class="nav-number">2.1.</span> <span class="nav-text">Early stopping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regularization"><span class="nav-number">2.2.</span> <span class="nav-text">Regularization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dropout"><span class="nav-number">2.3.</span> <span class="nav-text">Dropout</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Chenxi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Recipe-for-Deep-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Machine-Learning-2020 | Lecture#4 Deep Learning Preparation - Recipe for Deep Learning
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-07-04 16:46:52" itemprop="dateCreated datePublished" datetime="2020-07-04T16:46:52-04:00">2020-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>我们在一开始介绍Machine Learning的时候提到找寻最佳模型的方法，同样这散步也可以应用在deep learning上面：</p>
+<ul>
+<li>Step 1: Define a set of function - 定义神经网络的类型结构和框架</li>
+<li>Step 2: Goodness of function - 定义评价神经网络的cost function</li>
+<li>Step 3: Pick the best function - 训练能够得到最佳效果的神经网络的各种参数</li>
+</ul>
+<p>这部分的课程要介绍的是，当我们在训练深度神经网络的时候，如果训练的效果不好，究竟是哪部分出了问题呢？在训练的时候，我们要查看哪些训练结果呢？</p>
+<a id="more"></a>
+<p>和传统的Machine Learning不同之处在于，我们在训练神经网络的时候需要查看的是两方面的误差： <strong>Training error</strong> 和 <strong>Testing error</strong>。而传统Machine Learning中, 我们只需要尽量减小训练误差,然后得到相符的模型参数就好了，实在不行我们就换模型。但是在深度神经网络中，由于我们的选择更多，不确定性也会变多，有可能选择的模型没错，但是一些参数或者中间的连接层有问题，也会造成误差变大。</p>
+<h1 id="查看-Training-set"><a href="#查看-Training-set" class="headerlink" title="查看 Training set"></a>查看 Training set</h1><p>在训练模型的时候，我们首先接触的就是training set得到的error。如果本来你training set的error就很大的话，那无论怎样，在testing set上得到的误差也不会很小。</p>
+<p>如果在training set上面的误差比较大，那么我们可以尝试一下几个方式来调整：</p>
+<h2 id="调整-Activation-Function"><a href="#调整-Activation-Function" class="headerlink" title="调整 Activation Function"></a>调整 Activation Function</h2><p>我们在之前regression和classification中使用的activation function经常是 sigmoid function。sigmoid function可以很好的帮我们解决二分类的问题，但是它也有一些缺点。</p>
+<p>在深度神经网络中，我们的激活函数通常是放在层与层之间的，这样的话，如果我们有一个很多层的神经网络，且每一层之间都用sigmoid连接，那么我们在利用gradient descent 求解的时候，就会出现连续对很多的sigmoid function求导，这样的话，就会出现梯度消失的问题。（近output的参数训练到了，但是近input的参数并没有被训练到）</p>
+<blockquote>
+<p>为什么Sigmoid Function会造成梯度消失？</p>
+<ol>
+<li>直观来讲，如果我们有一个很深的神经网络，每一层都用sigmoid来连接，那么 $\frac{\part C}{\part w}$ 代表的是我们某一个参数对cost function的偏导数。可以想象，在离输入层越近的地方，如果我们改变一点参数的值，它对cost function的影响并不会很大。因为改变了一点参数$w$ 的值，在层层经过sigmoid function之后，它的影响会被弱化，以至于到最后一层，对于cost function的影响就会变得很小。所以这会造成梯度消失。</li>
+<li>数学上来讲，我们来看看gradient descent的公式。</li>
+</ol>
+</blockquote>
+<p>这样的话，我们的解决方案就是： 改变激活函数</p>
+<ol>
+<li><p>ReLU</p>
+<p>ReLU就很直接，小于零的部分为0，大于零的部分为属于本身。虽然我们在使用ReLU的时候，有可能因为输入值小于零得到的输出就小于零了，但是我们的神经网络并不会因此变为线性。因为对于这个神经网络整体来说，还是nonlinear的，只有我们在对input做出的改动特别小以至于没有改变input的region（大于零和小于零的部分保持不变）的时候，才可能是linear的，所以当我们改变了输入的值的时候，对于网络整体来说还是non-linear的。</p>
+<p>对于ReLU的改进也有很多种，比如 Leaky ReLU（将小于零的部分也赋予一个斜率比较小的直线）， Parametric ReLU（将小于零的部分的直线的斜率也作为一个被学习的参数）， Maxout（学习这个piecewise的两端的直线究竟是怎样的）</p>
+<p>ReLU还存在一个问题就是0点是不可导的，对于这个的解释是，一般我们不一定就会正好取到0这个点。</p>
+</li>
+<li><p>MaxOut</p>
+<p>上面提到了Maxout是已经不仅仅限于ReLU方程的那个样子了，而是我们要学习这个piece-wise的线性方程究竟张什么样，可以说ReLU是Maxout的一种特殊形式。</p>
+<p>Maxout这个激活函数其实和CNN中的max pooling差不多，就是在通过这个激活层的时候，没有具体的函数，而是我们要取的是输出里面的最大值。那么存在的问题就是在反向传播的过程中该如何求导呢？因为我们在输出的时候取的是较大值，那么就等于说在这部分，网络变成了线性的。其实训练的就只有被选择了的神经元的参数了。</p>
+</li>
+</ol>
+<h2 id="调整Adaptive-Learning-Rate"><a href="#调整Adaptive-Learning-Rate" class="headerlink" title="调整Adaptive Learning Rate"></a>调整Adaptive Learning Rate</h2><p>在训练的时候，最长遇到的问题或者说无法确定的事是害怕被困在Local Minima中。这样的话，我们就需要做一些调整来防止训练的时候陷入泥潭。</p>
+<ol>
+<li><p>Adagrad</p>
+<p>对于Gradient Descent而言，普遍的更新参数的公式就是: $w^{t+1} = w^{t} - \eta\frac{\part L}{\part w^t} = w^t - \eta g^t$</p>
+<p>但是这个更新方程存在的问题就是，对于所有的参数，我们更新时候的学习率是相同的，那么就导致，再从头到尾的时间里，我们一直是秉承着同一学习率的。但是，我们希望我们的learning rate可以有自己的适应过程，可与根据之前的变化来改变自身的大小。这时候，我们引入了Adagrad</p>
+<p>Adagrad 把之前学习过的gradient放在了更新的过程中。</p>
+<script type="math/tex; mode=display">
+w^{t+1} = w^t - \frac{\eta}{\sqrt{\sum\limits_{i=0}^{t}(g^i)^2}}g^t</script><p>这个式子就表现了说，如果我们之前的gradient就变化很大，那就说明此处比较陡峭，我们希望学习率稍微小一些，不要错过正确的点。而如果之前的gradient变化比较小，那就说明这部分比较平坦，我们就希望学习率大一些，每次走的多一些。</p>
+</li>
+<li><p>RMSProp</p>
+<p>但是Adagrad存在一个问题，那就是，我们的假设只在当变化的表面比较有规律的时候才可以实现。但是，我们在训练的时候并不能保证前面的cost surface平坦，后面也会一直平坦，有可能在某一个地方就突然变的很陡峭。在这种时候${\sqrt{\sum\limits_{i=0}^{t}(g^i)^2}}$ 就会造成困扰，因为之前的$g^i$ 很小，所以累积起来的平方和也很小，导致我们的自适应学习率会很大，那如果这时候突然来了一个稍微陡峭的坡路，我们的这个很大的学习率是停不下来的。所以很容易错过合适的最低点。</p>
+<p>所以这时候，我们就期望给之前累积的gradient和当前的gradient加上权重。这时候就引入了RMSProp。</p>
+<script type="math/tex; mode=display">
+w_{t+1} = w_{t} - \frac{\eta}{\sqrt{v_{t}}}g_t
+\\ v_{t} = \alpha v_{t-1} +(1 - \alpha)g_{t}^2, v_0 = g_0</script><p>如果用历史gradient来表示 $v<em>t$ 我们可以得到 $v</em>{t+1} = (1-\alpha)g<em>{t}^2 + \alpha(1 - \alpha)g</em>{t-1}^2 + \alpha^2(1-\alpha)g_{t-2}^2+…$</p>
+<p>那如果我们将 $\alpha$ 设置的比较小，那么 $\alpha^{t-i}$ 会作用在$g_i$ 上面，使得其对后面的影响越来越小，而离 $g_t$越近，影响越大。</p>
+</li>
+<li><p>Momentum</p>
+<p>在上面更新参数的过程我们都是运用了$w^{t+1} = w^t - \eta g^t$ 这个式子，做出的改变都是改变$\eta$ 的数值。</p>
+<p>但还有另一种思路是利用momentum的知识，让我们在更新 $t$ 时刻的参数的时候，也考虑一下之前$t-1$时刻的参数对他的影响。也就是利用</p>
+<script type="math/tex; mode=display">
+w_{t+1} = w_t + \lambda v_{t} - \eta g_t
+\\ v_t =  \lambda v_t - \eta g_t = -\eta g_{t-1}- \lambda\eta g_{t-2} - \lambda^2\eta g_{t-3} - ...</script><p>这里的lambda也是一个参数，表示的是对之前gradient的参考权重，表示的是之前gradient的方向，对现在gradient方向的影响。</p>
+</li>
+<li><p>Adam = RMSProp + Momentum</p>
+<p>同时考虑变化 学习率 $\eta$ 和变换规则加起来，我们就可以得到Adam</p>
+</li>
+</ol>
+<script type="math/tex; mode=display">
+   w_{t+1} = w_t - \frac{\eta}{\sqrt{\hat v_{t+1}}+\epsilon}\hat m_{t+1}
+   \\ m_{t+1} = \beta_1 m_t + (1 - \beta_1)g_t
+   \\ v_{t+1} = \beta_2 v_{t} + (1-\beta_2)g_t^2
+   \\ \hat m_{t+1} = \frac{m_{t+1}}{1 - \beta_1^{t+1}}
+   \\ \hat v_{t+1} = \frac{v_{t+1}}{1 - \beta_1^{t+1}}</script><h1 id="查看-Validation-set"><a href="#查看-Validation-set" class="headerlink" title="查看 Validation set"></a>查看 Validation set</h1><p>之前的那些步骤都是要当我们的training set本身就没得到什么好结果的时候，需要更改的内容。</p>
+<p>那么如果我们的training set本身答到了好的准确率，但是我们的validation/test上面的结果很差的时候应该怎么办呢。这时候说的是带有标签用来调整参数的验证集，而不是未知标签的测试集。</p>
+<h2 id="Early-stopping"><a href="#Early-stopping" class="headerlink" title="Early stopping"></a>Early stopping</h2><p>其实这种状况发生的时候，我们可以断定是过拟合了，所以按照之前我们对待其他machine learning algoorithm的方式，我们需要尽早结束训练。</p>
+<h2 id="Regularization"><a href="#Regularization" class="headerlink" title="Regularization"></a>Regularization</h2><p>那么我们来看看只有神经网络才具有的正则化的步骤。正则化其实就是在cost function的后面加上一个限制的term。</p>
+<ol>
+<li><p>L1正则化</p>
+<p>$L’(w) = L(w) + \lambda ||w||_1$ </p>
+<p>这里的 $L’(w)$ 表示的是加了正则项之后的损失函数，并不是求导。</p>
+<p>那么在加了正则项之后，我们在梯度下降的过程中对参数求导会得到什么呢？</p>
+<p>$\frac{\part L’}{\part w} = \frac{\part L}{\part w} + \lambda sgn(w)$ </p>
+<p>因为我们的正则项是绝对值，所以得到的 $sgn(w)$ 就正值为+1 负值为 -1</p>
+<p>那么我们看看在更新参数的时候：</p>
+<script type="math/tex; mode=display">
+w^{t+1} = w^{t} - \eta \frac{\part L}{\part w} - \eta \lambda sgn(w^t)</script><p>也就是说，我们在更新参数的时候，除了之前正常的减掉参数对损失函数的导数，还要再减去一个固定的值。那无论我们的 参数 $w^t$ 是大是小，更新的时候减掉的都是一个固定的值，所以参数比较小的时候训练出来的结果会得到接近0的数，但参数比较大的时候，训练出来的结果还是会很大。这样的话，就会消除一些特征，有利于特征的选择，得到稀疏的结果。</p>
+</li>
+<li><p>L2正则化</p>
+<p>$L’(w) = L(w) + \lambda \frac{1}{2}||w||_2$</p>
+<p>在加上正则项之后再对损失函数求导，我们会得到什么呢：</p>
+<script type="math/tex; mode=display">
+\frac{\part L'}{\part w} = \frac{\part L}{\part w} + \lambda w</script><p>这时候我们在更新参数的时候就会得到:</p>
+<script type="math/tex; mode=display">
+w^{t+1} = w^t - \eta \frac{\part L}{\part w} - \eta \lambda w^t = (1 - \eta \lambda)w^t - \eta \frac{\part L}{\part w}</script><p>和之前的加上L1正则项不同的是，我们这里加上L2Z正则项更新参数的时候，等于在之前的参数前面乘以一个比较小的量，造成一个 weight decay。这样一来，不管我们之前的参数 $w^t$ 是大是小，每次更新的时候都会被按照相同的比率衰减，最后 比较大的参数会下降到比较小，但是比较小的参数也不会下降特别多。就会使得所有的参数的值比较平均，可以减弱某些权重，让gradient descent朝比较正确的方向走。</p>
+</li>
+</ol>
+<h2 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h2><p>Dropout可以说是最具神经网络结构特征的一种防止过拟合的方法了。</p>
+<p>它的主要思想就是我们在训练的过程中，对于每一层而言，放弃 $p\%$ 的神经元，只对剩下的 $(1 - p\%)$ 个神经元进行训练。而在每一个训练的batch里面，我们对于神经元的放弃都是随机的，这样可以保证每一个神经元都可以被训练到。</p>
+<p>主要需要注意的地方就是：在test的时候，我们要保存所有的神经元，但是每一层的的weight都要乘以 $(1 - p\%)$ 来保证和训练的时候总weight达到一致的需求。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/lecture-notes/" rel="tag"># lecture notes</a>
+              <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/07/02/Algorithm-Binary-Heap/" rel="prev" title="Algorithm | Binary Heap">
+                  <i class="fa fa-chevron-left"></i> Algorithm | Binary Heap
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/07/05/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Backpropagation/" rel="next" title="Machine-Learning-2020 | Lecture#4 Deep Learning Preparation - Backpropagation">
+                  Machine-Learning-2020 | Lecture#4 Deep Learning Preparation - Backpropagation <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenxi</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

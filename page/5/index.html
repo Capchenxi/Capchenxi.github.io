@@ -1,23 +1,1178 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block title %}{{ config.title }}{% if theme.index_with_subtitle and config.subtitle %} - {{config.subtitle }}{% endif %}{% endblock %}
+<link rel="stylesheet" href="/css/main.css">
 
-{% block page_class %}
-  {% if is_home() %}page-home{% endif -%}
-{% endblock %}
 
-{% block content %}
-  <section id="posts" class="posts-expand">
-    {% for post in page.posts %}
-      {{ post_template.render(post, true) }}
-    {% endfor %}
-  </section>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="光">
+<meta property="og:url" content="http://yoursite.com/page/5/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:locale">
+<meta property="article:author" content="Chenxi">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/page/5/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Chenxi</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+      
+
+      
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/16/Estimation-and-Detection-Properties-of-estimators/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/16/Estimation-and-Detection-Properties-of-estimators/" class="post-title-link" itemprop="url">Estimation and Detection | Properties of estimators</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-16 21:34:06" itemprop="dateCreated datePublished" datetime="2020-01-16T21:34:06-05:00">2020-01-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>这部分主要讲的是对于已知分布的随机变量的分布参数的估计，这里对参数的估计可以具备三种不同的性质：分别置无偏，有效，一致。这些性质可以帮我们更好的对参数进行估计。另外，在我们发现有多个</p>
+<h1 id="Properties-of-estimators"><a href="#Properties-of-estimators" class="headerlink" title="Properties of estimators"></a>Properties of estimators</h1><p>在现实生活中，我们想到得知一个整体的某个特征 $k$，也就是 $k$ 值的大小。但有时候由于整体太过庞大，我们无法对整体中的每一个个体的该特征 $k$ 都进行统计计算，这时候我们只能抽样整体中的一小部分的个体，由他们组成我们要估计的样本空间。那对于这些小部分个体的 $k$ 我们需要构建估计量，来估计 $k$ 的值。</p>
+<p>这时候，对于估计量来说，有三个特征：无偏，有效，一致</p>
+<h2 id="Unbiased-无偏"><a href="#Unbiased-无偏" class="headerlink" title="Unbiased (无偏)"></a>Unbiased (无偏)</h2><p>假设现在我们的样本空间${X_1, X_2,…,X_N}$ ，无偏估计是指当我们在对样本的 $\theta$ 特征进行估计的时候，估计量 $T{(\theta)}$ 的期望等于 $\theta$， 即 $E{T(\theta)} = \theta$. 若该估计量是有偏估计，那么 $E{T(\theta)} = g(\theta)$，即估计量的期望是关于被估计参数的方程，如果这个方程是线性的，那么这个估计量是可以从有偏变到无偏的。</p>
+<h2 id="Consistency（一致）"><a href="#Consistency（一致）" class="headerlink" title="Consistency（一致）"></a>Consistency（一致）</h2><p>对于一致估计量，我们希望在我们增大样本数据的时候，估计量的方差会趋近于0. </p>
+<p>假设现在我们的样本${X_1, X_2,…,X_N}$  作为估计样本$\theta$ 的估计量 为 $T{X_1, X_2,…,X_N}$ ,若样本量增大 N值变大，$Var{T{X_1, X_2,…,X_N}}$ 趋近于0，那么我们称这个估计量是一致的。</p>
+<h2 id="Efficient-有效"><a href="#Efficient-有效" class="headerlink" title="Efficient (有效)"></a>Efficient (有效)</h2><h2 id="Finsher-Neyman-Factorization-theorem"><a href="#Finsher-Neyman-Factorization-theorem" class="headerlink" title="Finsher-Neyman Factorization theorem"></a>Finsher-Neyman Factorization theorem</h2><script type="math/tex; mode=display">
+p(\underline{X}|\theta) = h(\underline{X})g(T(\underline{X}),\theta)</script><p>上式表示，当且仅当$T(\underline{X})$ 是充分统计量的时候，样本空间的联合概率 $p(\underline{X}|\theta)$ 可以表示为分离的两部分的乘积。</p>
+<h1 id="MVUE-amp-Sufficient-Statistics"><a href="#MVUE-amp-Sufficient-Statistics" class="headerlink" title="MVUE &amp; Sufficient Statistics"></a>MVUE &amp; Sufficient Statistics</h1><p>为什么需要MVUE呢，因为在我们对 ${X_1, X_2,…,X_N}$  分布的参数进行估计的时候，可能 $\theta$ 的估计量有很多都是无偏估计（unbiased）。如何在这么多的无偏估计中选一个最好的呢，我们选择那个variance比较小的。</p>
+<p>引入MVUE的时候，我们需要先说明一个概念：sufficient statistics</p>
+<h2 id="Sufficient-Statistics"><a href="#Sufficient-Statistics" class="headerlink" title="Sufficient Statistics"></a>Sufficient Statistics</h2><ul>
+<li>假设样本空间 ${X_1, X_2,…,X_N}$ ,IID (independent and identical distribution)</li>
+<li>服从分布 $p_i(X_i|\theta)$</li>
+</ul>
+<p>这时，如果联合分布 $P(X_1,…X_N|T{X_1, X_2,…,X_N},\theta)$中的估计量是不含 $\theta$ 变量的，那么估计量 $T{X_1, X_2,…,X_N}$ 就是充分统计量(sufficient statistics)。其实也就是说我们可以用 $T{X_1, X_2,…,X_N}$ 来估计样本 ${X_1, X_2,…,X_N}$ 的分布而不需要用到样本分布的参数 $\theta$ 的时候，我们就说此时 $T{X_1, X_2,…,X_N}$ 是充分统计量。</p>
+<p>我们在计算充分统计量的时候可以通过计算 ${X_1, X_2,…,X_N}$ 这些变量的联合概率，然后提取和 $\theta$ 不相关的部分提取出来，就是充分统计量。提取的方法我们称作 Fishser-Neyman factorization theorem.</p>
+<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3><p>假设 $x<em>1, x_2, …,x_n$ 服从伯努利分布，即： $\begin{align}x_i = \begin{cases} 1 &amp;{w.p. \theta}\0 &amp; w.p. (1-\theta)\end{cases}\end{align}$ 表示$x_i$ 在伯努利分布下，取 1 的概率是 $\theta$ 取 0 的概率是 $1- \theta$. 这样的话，联合分布 $p({\bf x}|\theta) = \prod</em>\limits{i = 1}^{n}\theta^{x<em>i}(1 - \theta)^{1 - x_i} = \theta^{\sum\limits</em>{i = 1}^{n}x<em>i}(1 - \theta)^{n - \sum\limits</em>{i = 1}^{n}x_i}$</p>
+<p>这样可以得到，$\theta$ 的充分统计量是 $T(x<em>1,x_2,…,x_n) = \sum\limits</em>{i = 1}^{n}x_i$. 这样的话，充分统计量就是独立于参数$\theta$ 外的量了，也就是说$p({\bf x}|\theta) = \theta^{T}(1 - \theta)^{n - T}$</p>
+<p>既然得知了 $\theta$ 的充分统计量  $T(x<em>1,x_2,…,x_n) = \sum\limits</em>{i = 1}^{n}x_i$， 我们可以首先来看一下 $T$ 的取值范围：$0\leq T\leq n$, 那么关于 $T(x_1,x_2,…,x_n) $ 就有 $n$ 个不同的取值，$T(x_1, x_2, …,x_n)$ 的分布 就为 $P(T(x_1, x_2, …,x_n) = k | \theta) = {\tbinom{k}{n}\theta^k(1 - \theta)^{n-k}}$，$P(x_1, …,x_n,T(x_1, x_2, …,x_n) = k |\theta) = {\theta^k(1 - \theta)^{n-k}}$ 这样的话：$P(x_1,…x_n|T(x_1, x_2, …,x_n) = k , \theta) = \frac{\theta^k(1 - \theta)^{n-k}}{\tbinom{k}{n}\theta^k(1 - \theta)^{n-k}} = \frac{1}{\tbinom{k}{n}}$.</p>
+<p>这说明 ,在已知充分统计量的时候， 联合分布是和参数 $\theta$ 无关的。同时充分统计量也减少了在数据中和 参数 $\theta$ 相关的部分。</p>
+<h2 id="Rao-Backwell-theorem"><a href="#Rao-Backwell-theorem" class="headerlink" title="Rao-Backwell theorem"></a>Rao-Backwell theorem</h2><ul>
+<li>令 $g(x_1, x_2, …x_n)$ 为参数 $\theta$ 的一个无偏估计量，那么 $E{g({\bf x})} |T({\bf x})}$则是参数  $\theta$ 的MVUE，也就是说 $E{\hat g} = E{E{g({\bf x})} |T({\bf x})} = \theta$, 且 $VAR{\hat g({\bf x})} \leq VAR{g({\bf x})}$</li>
+</ul>
+<h2 id="How-to-find-the-MVUE"><a href="#How-to-find-the-MVUE" class="headerlink" title="How to find the MVUE"></a>How to find the MVUE</h2><ul>
+<li>找到参数的 $T$, 充分统计量</li>
+<li>找到任意一个参数的 无偏估计量 $g({\bf x})$</li>
+<li>计算 MVUE 为 $\hat g({\bf x}) = E{ g({\bf x}) | T({\bf x })}$</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/15/Estimation-and-Detection-Bayes-Decision-Theory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/15/Estimation-and-Detection-Bayes-Decision-Theory/" class="post-title-link" itemprop="url">Estimation and Detection| Bayes Decision Theory</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-15 12:07:31" itemprop="dateCreated datePublished" datetime="2020-01-15T12:07:31-05:00">2020-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>这部分就是贝叶斯分类器，也是模式识别中最简单的分类器。贝叶斯分类器的思想在神经网络的目标方程中也有所涉及。对于贝叶斯分类器来讲，重要的是进行分类的指标，也就是feature的分布，以及不同类别的<a href="[https://baike.baidu.com/item/%E5%85%88%E9%AA%8C%E6%A6%82%E7%8E%87](https://baike.baidu.com/item/先验概率">先验概率</a>)。</p>
+<p>*先验概率和后验概率的区别在于是否观测到x</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/15/Estimation-and-Detection-Bayes-Decision-Theory/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/15/Estimation-and-Detection-Intro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/15/Estimation-and-Detection-Intro/" class="post-title-link" itemprop="url">Estimation and Detection| Introduction</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-15 10:31:16" itemprop="dateCreated datePublished" datetime="2020-01-15T10:31:16-05:00">2020-01-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Estimation-and-Detection"><a href="#Estimation-and-Detection" class="headerlink" title="Estimation and Detection"></a>Estimation and Detection</h1><p>哈哈哈哈哈哈没想到吧我又来挖坑了，之前的坑会赶紧补上的。</p>
+<p>这部分是开坑新课，也就是检测与估计，说白了会包含模式识别的内容。然后是自己和老师的笔记稍微整理和回顾一下。我们老师的课都偏数学，所以一切推导过程如果清晰，那么整个内容就清晰明了了。希望之前你学过概率论。</p>
+<h2 id="课程目录"><a href="#课程目录" class="headerlink" title="课程目录"></a>课程目录</h2><ol>
+<li>Bayes decision theory<ul>
+<li>Classifier</li>
+<li>Probability of error and SNR</li>
+<li>Feature selection</li>
+</ul>
+</li>
+<li>Parametric Estimation and Supervised Learning<ul>
+<li>Optimal Estimatiors</li>
+<li>Sufficient Statistics</li>
+<li>Maximum Likelihood Estimation</li>
+<li>Cramer Rao Bounds</li>
+<li>Bayesian Learning</li>
+</ul>
+</li>
+<li>Hypothesis testing<ul>
+<li>NP Lemma</li>
+<li>GLRT</li>
+</ul>
+</li>
+<li>Unbiased Classifier and Asymptotic Bayesian Methods<ul>
+<li>KL Information</li>
+<li>The concept of Parsimony</li>
+</ul>
+</li>
+<li>Decision fusion</li>
+<li>Parametric Estimation and Unsupervised Learning<ul>
+<li>Mixture density estimation</li>
+<li>EM algorithm</li>
+</ul>
+</li>
+<li>Nonparametric Supervised Learning<ul>
+<li>Nonparametric testing</li>
+</ul>
+</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/15/Estimation-and-Detection-Intro/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/Paper-Reading-ClothFlow-A-Flow-Based-Model-for-Clothed-Person-Generation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/13/Paper-Reading-ClothFlow-A-Flow-Based-Model-for-Clothed-Person-Generation/" class="post-title-link" itemprop="url">Paper Reading | ClothFlow: A Flow-Based Model for Clothed Person Generation</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-13 23:52:58" itemprop="dateCreated datePublished" datetime="2020-01-13T23:52:58-05:00">2020-01-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li>论文题目： <a target="_blank" rel="noopener" href="http://openaccess.thecvf.com/content_ICCV_2019/papers/Han_ClothFlow_A_Flow-Based_Model_for_Clothed_Person_Generation_ICCV_2019_paper.pdf">ClothFlow: A Flow-Based Model for Clothed Person Generation</a></li>
+<li>论文作者：$Xintong Han, Xiaojun Hu, Weilin Huang∗, Matthew R. Scott$</li>
+<li><strong>论文原文中的一些翻译可能不准确，（）中的部分为论文原文中的术语</strong></li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/Algorithm-Leetcode-search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/13/Algorithm-Leetcode-search/" class="post-title-link" itemprop="url">Algorithm | Leetcode - search</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-13 21:03:29" itemprop="dateCreated datePublished" datetime="2020-01-13T21:03:29-05:00">2020-01-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="搜索Tag部分"><a href="#搜索Tag部分" class="headerlink" title="搜索Tag部分"></a>搜索Tag部分</h1><p>这部分主要用来记录总结Leetcode中数组部分的题目和思路分析</p>
+<p>语言：python</p>
+<h1 id="NO-39-Combination-Sum"><a href="#NO-39-Combination-Sum" class="headerlink" title="NO.39 Combination Sum"></a>NO.39 Combination Sum</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Given a <strong>set</strong> of candidate numbers (<code>candidates</code>) <strong>(without duplicates)</strong> and a target number (<code>target</code>), find all unique combinations in <code>candidates</code> where the candidate numbers sums to <code>target</code>.</p>
+<p>The <strong>same</strong> repeated number may be chosen from <code>candidates</code> unlimited number of times.</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>All numbers (including <code>target</code>) will be positive integers.</li>
+<li>The solution set must not contain duplicate combinations.</li>
+</ul>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: candidates &#x3D; [2,3,6,7], target &#x3D; 7,</span><br><span class="line">A solution set is:</span><br><span class="line">[</span><br><span class="line">  [7],</span><br><span class="line">  [2,2,3]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: candidates = [2,3,5], target = 8,</span><br><span class="line">A solution set is:</span><br><span class="line">[</span><br><span class="line">  [2,2,2,2],</span><br><span class="line">  [2,3,3],</span><br><span class="line">  [3,5]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这道题是搜索类题目，需要用到DFS。</p>
+<p>DFS其实是一个递归的过程，对于所有的递归过程我们需要知道的是停止的点，以及边界的变化。这个组合数求和的题目终止的点就是当所加数之和大于target或者等于target的时候。更新的部分应该就是target的变化，以及path的变化。</p>
+<p>几个值得注意的地方：</p>
+<ul>
+<li>什么时候变化target？</li>
+<li>什么时候更新path？</li>
+</ul>
+<p>在做下次的变化的时候同时跟新target和path</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dfs</span>(<span class="params">nums, idx, target, path, sol</span>):</span></span><br><span class="line">  <span class="keyword">if</span> target == <span class="number">0</span>: </span><br><span class="line">    sol.append(path)</span><br><span class="line">    <span class="keyword">return</span> </span><br><span class="line">  <span class="keyword">if</span> target &lt; <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(idx, <span class="built_in">len</span>(nums)):</span><br><span class="line">    dfs(nums, i , target - nums[i], path + [nums[i]], sol)</span><br></pre></td></tr></table></figure>
+<p>需要用到动态规划：</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combinationSum</span>(<span class="params">self, candidates, target</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type candidates: List[int]</span></span><br><span class="line"><span class="string">        :type target: int</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        sol = []</span><br><span class="line">        candidates.sort()</span><br><span class="line">        self.dfs(candidates, <span class="number">0</span>, [], sol, target)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> sol</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span>(<span class="params">self, nums, idx, path, sol, target</span>):</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> target == <span class="number">0</span>:</span><br><span class="line">            sol.append(path)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> target &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(idx, <span class="built_in">len</span>(nums)):</span><br><span class="line">            self.dfs(nums, i, path + [nums[i]], sol, target - nums[i])</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/09/Algorithm-Leetcode-array/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/09/Algorithm-Leetcode-array/" class="post-title-link" itemprop="url">算法 | 【Leetcode】数组array类题目总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-09 10:24:56" itemprop="dateCreated datePublished" datetime="2020-01-09T10:24:56-05:00">2020-01-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="数组Tag部分"><a href="#数组Tag部分" class="headerlink" title="数组Tag部分"></a>数组Tag部分</h1><p>这部分主要用来记录总结Leetcode中数组部分的题目和思路分析</p>
+<p>语言：python</p>
+<p><a href="# NO.1 Two Sums">NO.1 Two Sums</a> </p>
+<p><a href="# NO.4 Median of Two Sorted Arrays">NO.4 Median of Two Sorted Arrays</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/09/Algorithm-Leetcode-array/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/07/Paper-Reading-U-Net-Convolutional-Networks-for-Biomedical-Image-Segmentation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/07/Paper-Reading-U-Net-Convolutional-Networks-for-Biomedical-Image-Segmentation/" class="post-title-link" itemprop="url">论文阅读 |U-Net: Convolutional Networks for Biomedical Image Segmentation</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-07 22:21:50" itemprop="dateCreated datePublished" datetime="2020-01-07T22:21:50-05:00">2020-01-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li><p>论文题目：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1505.04597.pdf">U-Net: Convolutional Networks for Biomedical Image Segmentation</a></p>
+</li>
+<li><p>论文作者：$Olaf Ronneberger, Philipp Fischer, Thomas Bro$</p>
+</li>
+<li><p>相关代码：<a target="_blank" rel="noopener" href="https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/">https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/</a></p>
+</li>
+<li><p><strong>论文原文中的一些翻译可能不准确，（）中的部分为论文原文中的术语</strong></p>
+</li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文主要介绍了一种能够最大程度利用数据增强进行训练的模型，并且在数据分割任务中表现出色。这个网络结构包含了一个降维采样（contracting path）的过程来提取图片中的内容信息，以及一个对称的上采样（expanding path）可以准确提供分割的位置。文章展示了该网络可以通过比较少的图片进行训练，然后得到比之前的方法更好的分割数据。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/07/Paper-Reading-U-Net-Convolutional-Networks-for-Biomedical-Image-Segmentation/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/07/Notes-Kmeans-and-KNN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/07/Notes-Kmeans-and-KNN/" class="post-title-link" itemprop="url">Notes | Kmeans 和 KNN</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-07 11:45:45" itemprop="dateCreated datePublished" datetime="2020-01-07T11:45:45-05:00">2020-01-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B9%B2%E8%B4%A7/" itemprop="url" rel="index"><span itemprop="name">干货</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="KNN（k-Nearest-Neighbor）"><a href="#KNN（k-Nearest-Neighbor）" class="headerlink" title="KNN（k-Nearest Neighbor）"></a>KNN（k-Nearest Neighbor）</h1><p>字面意思可以理解为是K个最近的近邻点。</p>
+<p>这个方法主要用于有监督学习的分类算法，即给定一个点不知道它属于哪个类的时候，根据这个点和周围k个最近已分类的点进行判断。相当于一个投票机制下的分类器，需要看这个新的引入点周围的k个临近点，占哪个分类的比较多，则这个新的引入点就被称作是分类较多的那一类。</p>
+<h1 id="K-means"><a href="#K-means" class="headerlink" title="K means"></a>K means</h1><p>字面意思可以理解为是k个平均，也就是k个平均中心。</p>
+<p>这个方法主要用于无监督学习的聚类算法，即对一堆未分类的数据，根据已知的类的数目K（即，已知这堆点可以被分为K类），进行分类。</p>
+<h2 id="主要流程"><a href="#主要流程" class="headerlink" title="主要流程"></a>主要流程</h2><p>已知：一堆未分类点，K值</p>
+<p>随意在这堆点中选择 K 个点，每个点为K个分类个子的中心，然后对于这堆点中其他的点进行分类。分类的方法是，对于任意一个点，计算它和之前随机选定的K个点之间的距离，该点离哪个中心点最近，这个点就属于那一类。在对所有的点进行分类之后，可以根据每一类已有的点计算他们每一类的中心点（即均值中心点），然后进行中心点的更新，中心点更新之后，对该点集中所有的点重新进行分类计算，然后计算个点新的类别。重复这个步骤直到更新后的中心点与上次计算的中心点之间的差距小于一个阈值。这样就得到了K类。</p>
+<h2 id="如果我不知道K怎么办"><a href="#如果我不知道K怎么办" class="headerlink" title="如果我不知道K怎么办"></a>如果我不知道K怎么办</h2><p>可以通过<strong>手肘法</strong>或<strong>轮廓间距法</strong>对K值进行估计</p>
+<ul>
+<li>手肘法</li>
+<li>轮廓间距法</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/06/Notes-Different-distances/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/06/Notes-Different-distances/" class="post-title-link" itemprop="url">干货 | 各种各样的distance</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-06 12:22:07" itemprop="dateCreated datePublished" datetime="2020-01-06T12:22:07-05:00">2020-01-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B9%B2%E8%B4%A7/" itemprop="url" rel="index"><span itemprop="name">干货</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Mahalanobis-distance-马氏距离"><a href="#Mahalanobis-distance-马氏距离" class="headerlink" title="Mahalanobis distance (马氏距离)"></a>Mahalanobis distance (马氏距离)</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The Mahalanobis distance is a measure of the distance between a point P and a distribution D, introduced by P. C. Mahalanobis in 1936. It is a multi-dimensional generalization of the idea of measuring how many standard deviations away P is from the mean of D. This distance is zero if P is at the mean of D, and grows as P moves away from the mean along each principal component axis. If each of these axes is re-scaled to have unit variance, then the Mahalanobis distance corresponds to standard Euclidean distance in the transformed space. The Mahalanobis distance is thus unitless and scale-invariant, and takes into account the correlations of the data set.</span><br></pre></td></tr></table></figure>
+<p>Mahalanobis distance 是用来测量一个样本 $\vec x = (x_1, x_2, x_3, …,x_N)^T$和已有的一个样本集之间的相似度，因此需要用的该样本集的均值$\vec \mu = (\mu_1, \mu_2, \mu_3,…,\mu_N)^T$和协方差矩阵$S$（当样本的变量不唯一时）。</p>
+<p>$D_M(\vec{x}) = \sqrt{(\vec x - \vec\mu )^TS^{-1}(\vec x - \vec \mu)}$</p>
+<p>或者测量服从相同分布的两个样本之间的距离：</p>
+<p>$d(\vec x, \vec y) = \sqrt{(\vec x - \vec y)^TS^{-1}(\vec x - \vec y)}$</p>
+<p>如果协方差矩阵是identity matrix （对角线上的值为1），那么此时的马氏距离和欧氏距离相等。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/06/Paper-Reading-Active-Shape-Model-Segmentation-With-Optimal-Features/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/06/Paper-Reading-Active-Shape-Model-Segmentation-With-Optimal-Features/" class="post-title-link" itemprop="url">论文阅读 | Active Shape Model Segmentation With Optimal Features</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-06T00:00:00-05:00">2020-01-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li><p>论文题目：<a target="_blank" rel="noopener" href="http://www.mate.tue.nl/mate/pdfs/6466.pdf">Active Shape Model Segmentation With Optimal Features</a></p>
+</li>
+<li><p>论文作者：$Bram van Ginneken*, Alejandro F. Frangi, \Joes J. Staal, Bart M. ter Haar Romeny, Max A. Viergever$</p>
+</li>
+<li><strong>论文原文中的一些翻译可能不准确，（）中的部分为论文原文中的术语</strong></li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文介绍了一种由ASM 模型为基础的分割模型，与ASM原作者提出的一阶导数的profile特征不同，文中提出了一种更为优化的局部特征。和原作者提出的利用马氏距离为标准来更新点模型上控制点位置不同的是，本文提出了一种利用非线性kNN分类器来寻找特征点的位置。对于每一个描述object形状的控制点点来说，在不同分辨率的分割模型上都会有有一个特征。选择特征的过程是自动的，使用了训练集中的图片和一些列向前和前后的特征。</p>
+<p>本文提出的新方法应用在了四个不同的分割任务中，并且取得了很高的正确率。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/06/Paper-Reading-Active-Shape-Model-Segmentation-With-Optimal-Features/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chenxi</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
