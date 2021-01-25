@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="论文题目：The space of human body shapes: reconstruction and parameterization from range scans ​                   人体形态空间：大范围扫描得到的重建和参数化模型  论文作者：  $Brett Allen, Brian Curless, Zoran Popovi\acute{c}$   0 摘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读 | The space of human body shapes - reconstruction and parameterization from range scans">
+<meta property="og:url" content="http://yoursite.com/2019/12/25/Paper%20Reading%20|%20The%20spaces%20of%20human%20body%20shapes:%20reconstruction%20and%20parameterization%20from%20range%20scans./index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="论文题目：The space of human body shapes: reconstruction and parameterization from range scans ​                   人体形态空间：大范围扫描得到的重建和参数化模型  论文作者：  $Brett Allen, Brian Curless, Zoran Popovi\acute{c}$   0 摘">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-12-25T01:21:13.000Z">
+<meta property="article:modified_time" content="2019-12-25T01:21:13.000Z">
+<meta property="article:author" content="Chenxi">
+<meta property="article:tag" content="PCA">
+<meta property="article:tag" content="3D">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2019/12/25/Paper%20Reading%20|%20The%20spaces%20of%20human%20body%20shapes:%20reconstruction%20and%20parameterization%20from%20range%20scans./">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>论文阅读 | The space of human body shapes - reconstruction and parameterization from range scans | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">0 摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E4%B8%BB%E8%A6%81%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">3 主要算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Data-Error"><span class="nav-number">2.1.</span> <span class="nav-text">3.1 Data Error</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Smoothness-error"><span class="nav-number">2.2.</span> <span class="nav-text">3.2 Smoothness error</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-Marker-Error"><span class="nav-number">2.3.</span> <span class="nav-text">3.3 Marker Error</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-Combining-the-error"><span class="nav-number">2.4.</span> <span class="nav-text">3.4 Combining the error</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-Hole-fitting"><span class="nav-number">2.5.</span> <span class="nav-text">3.5 Hole-fitting</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E5%BA%94%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">4 应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Transfer-of-texures-and-morphing"><span class="nav-number">3.1.</span> <span class="nav-text">4.1 Transfer of texures and morphing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Principle-Component-Analysis"><span class="nav-number">3.2.</span> <span class="nav-text">4.2 Principle Component Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-Feature-Analysis"><span class="nav-number">3.3.</span> <span class="nav-text">4.3 Feature Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-Markerless-matching"><span class="nav-number">3.4.</span> <span class="nav-text">4.4 Markerless matching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-Marker-only-matching"><span class="nav-number">3.5.</span> <span class="nav-text">4.5 Marker-only matching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-Instrumentation-transfer"><span class="nav-number">3.6.</span> <span class="nav-text">4.6 Instrumentation transfer</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Author</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/25/Paper%20Reading%20|%20The%20spaces%20of%20human%20body%20shapes:%20reconstruction%20and%20parameterization%20from%20range%20scans./">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          论文阅读 | The space of human body shapes - reconstruction and parameterization from range scans
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-12-25 09:21:13" itemprop="dateCreated datePublished" datetime="2019-12-25T09:21:13+08:00">2019-12-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li><p><strong>论文题目</strong>：<a target="_blank" rel="noopener" href="https://grail.cs.washington.edu/projects/digital-human/pub/allen03space-submit.pdf">The space of human body shapes: reconstruction and parameterization from range scans</a></p>
+<p>​                   人体形态空间：大范围扫描得到的重建和参数化模型</p>
+</li>
+<li><p><strong>论文作者</strong>：  $Brett Allen, Brian Curless, Zoran Popovi\acute{c}$</p>
+</li>
+</ul>
+<h1 id="0-摘要"><a href="#0-摘要" class="headerlink" title="0 摘要"></a>0 摘要</h1><p>本文主要提出了一种新的能够利用稀疏标记点将高分辨率的mesh模板（high-resolution mesh template）拟合在精细的身体范围扫描上的方法。本文将拟合问题转化成了对模型中每个顶点进行affine transformation的优化问题，所用到的优化函数由三个加权因素构成： 变换后的顶点与原扫描数据之间的距离， 临近顶点所做的affine transformation的相似性， 以及稀疏标记点在模板和在扫描面的距离。主要用到的范围扫描数据来自于CAESAR数据库。</p>
+<p>文章主要介绍的就是一种基于模板的(template-based)非刚性的，可以形成点对点对应关系的，对于整体形状相似，但部分指标（如身高，三维）有所差异的扫描模型的registration方法。</p>
+<a id="more"></a>
+<h1 id="3-主要算法"><a href="#3-主要算法" class="headerlink" title="3 主要算法"></a>3 主要算法</h1><p>我们现在把模板surface(template)记做$\mathcal{T}$, 将需要被拟合的扫描surface(scanned example)记做$\mathcal{D}$. 每一个surface都看作是<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Triangle_mesh">tiangle mesh</a>，也就是由三角形构成的曲面。（文中提到，$\mathcal{D}$的形式可以是别的，不一定是triangle mesh）。接下来就要将拟合问题转化为一个优化问题了，在template surface找那个的每一个顶点 $\bf{v}_i$ 都被一个$4 \times 4$的affine matrix $\bf{T}_i$所影响， 并且这些affine transformation的matrix决定了我们在优化过程中的自由度，也就是对于每个顶点而言，他的affine transformation的自由度都是12。那我们的优化问题就转变成了：找寻一个$\bf{T}_i$的集合，使得所有的在 $\mathcal{T}$ 中的顶点 $\bf{v}_i$ 在经过相应的affine变换之后形成一个新的 $\mathcal{T}’$ 与目标 $\mathcal{D}$ 最为接近。</p>
+<p>在评价变换后的 $\mathcal{T}’$ 与 $\mathcal{D}$ 的接近程度时，我们引入三个error： data error， smoothness error 和 marker error</p>
+<h2 id="3-1-Data-Error"><a href="#3-1-Data-Error" class="headerlink" title="3.1 Data Error"></a>3.1 Data Error</h2><p>一个好的拟合最先关注的是template suface是否和target surface也就是目标拟合的扫描模型是否足够接近。</p>
+<p>从这方面来看，我们定义了一个 data objective term $E<em>d$ 计算template上的顶点和对应target上的顶点的距离平方和：$E_d = \sum\limits</em>{i = 1}^{n} w_i dist^2(\bf{T}_i\bf{v}_i, \mathcal{D})$</p>
+<p>此处的 $n$ 指的是 $\mathcal{T}$ 中的顶点个数， $w_i$是一个权重项用来控制不同的部分的数据对error的影响， dist()则是距离函数，计算的是 当前变换后的顶点$\bf{T}_i\bf{v}_i$ 和 $\mathcal{D}$ 上最近可兼容点(compatible point)的距离。这里说的的compatible是指，若 ${\mathcal{T’}}$ 上一点与$\mathcal{D}$ 上一点是compatible的，那么他们的曲面法线(surface normals)的夹角不超过$90^\circ$, 距离不超过threshold(文中所用经验threshold为10cm)。</p>
+<h2 id="3-2-Smoothness-error"><a href="#3-2-Smoothness-error" class="headerlink" title="3.2 Smoothness error"></a>3.2 Smoothness error</h2><p>当然了仅用一个 $E_d$ 项是无法形成可靠的网格面（mesh）的， 因为在 $\mathcal{T}$ 中的临近点可能会映射到 $\mathcal{D}$ 中的不同部分，而且会用无数的affine transformation matrix 会对一个点产生相同的结果，因此我们的约束不能仅仅只有 $E_d$ 一项。 </p>
+<p>为了约束我们的优化问题，文中引入了第二个error，也就是Smoothness error $E_s$ . 这里的平滑度（smoothness）并不是指变换后的曲面 $\mathcal{T}’$ 的平滑度，而是指变化本身(actual deformation)的平滑度。文中指的是在一部分区域内(region)的affine transformation 的相似性。 因为整体的变换并没有改变template的大致形状，而只是改变了点和点之间的相对关系，因此相邻的点在变换后也大部分为相邻的点，所以文章指出针对于相邻点的变换矩阵(affine transformation matrix)也会是相似的。</p>
+<p>定义这里的: $E<em>s = \sum\limits</em>{}|| \bf{T}_i - \bf{T}_j||^2_F$ </p>
+<p>此处的$||\cdot||_F$ 是<a target="_blank" rel="noopener" href="http://mathworld.wolfram.com/FrobeniusNorm.html">Frobenius norm</a>, 也就是矩阵的范数。</p>
+<p>此项error避免了模板上的临近点被映射到目标曲面的不同位置，也避免了相似形状的点被映射到其他位置（如模板的鼻子被映射到目标曲面的一侧脸颊，而另一侧脸颊则长出一个鼻子的现象）。</p>
+<h2 id="3-3-Marker-Error"><a href="#3-3-Marker-Error" class="headerlink" title="3.3 Marker Error"></a>3.3 Marker Error</h2><p>如果template的曲面和target的曲面很接近的话，那么 $E<em>d$ 和 $E_s$ 两个error就足够了。 在大部分的情况下，$\mathcal{T}$ 和$\mathcal{D}$ 并不接近， 这种情况下优化过程会被限制在局部最小值而无法进行下去。比如说，如果template的左臂一开始就和target的右臂匹配在了一起，那么gradient decent算法可能无法让我们得到正确的拟合结果。因此文中定义了一组marker，也就是之前提到的稀疏标记点， 用来避免这些问题。这些标记点都是一些典型的人体测量学（antropometric）数据点。如果将target面上的点记做$\bf{m}</em>{1,…m}$, 对应的template上的这些已知点记做$\bf{\kappa}<em>{1,…m}$, 那么这些标记点产生的error $E_m$ 定义为： $E_s = \sum\limits</em>{i = 1}^{m}||\bf{T}<em>{\kappa_i}\bf{v}</em>{\kappa_i} - \bf{m}_i||^2$， 用来最小化对应marker之间的距离。（template和target上的marker的对应关系是提前知道的）</p>
+<h2 id="3-4-Combining-the-error"><a href="#3-4-Combining-the-error" class="headerlink" title="3.4 Combining the error"></a>3.4 Combining the error</h2><p>最终的目标函数$E = \alpha E_d + \beta E_s + \gamma E_m$， 优化方法是 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Limited-memory_BFGS">L-BFGS-B</a>。</p>
+<h2 id="3-5-Hole-fitting"><a href="#3-5-Hole-fitting" class="headerlink" title="3.5 Hole-fitting"></a>3.5 Hole-fitting</h2><p>由于scan的时候会有一些没有顾及到的地方，所以在target model的曲面上会有一些空缺的部分。这部分空缺的部分会影响到 $E_d$ 计算过程中，变换后的 $\mathcal{T}’$ 上的点在 $\mathcal{D}$ 上compatible点的寻找（因为如果 $\mathcal{D}$ 上本身就有些点空缺/不存在，那找到的关于  $\mathcal{T}’$ 的上一点的最近点也是不准确的）。于是，文中提到，若是在计算$E_d$ 时， 得到的关于 $\mathcal{T}’$ 上一点 $\bf{T}_i\bf{v}_i$ 在 $\mathcal{D}$ 上的寻找到的最近点处于曲面 $\mathcal{D}$ 的边缘(edge)上时， 此时目标函数 $E_d$ 中该点的 $w_i$ 设为0， 该点的 $\bf{T}_i$ 将取决于smooth error项。由此，得到的deformed template $\mathcal{T}’$ 会是一个平滑的，无缝的(seamless)曲面.</p>
+<h1 id="4-应用"><a href="#4-应用" class="headerlink" title="4 应用"></a>4 应用</h1><h2 id="4-1-Transfer-of-texures-and-morphing"><a href="#4-1-Transfer-of-texures-and-morphing" class="headerlink" title="4.1 Transfer of texures and morphing"></a>4.1 Transfer of texures and morphing</h2><p>因为进行拟合后的target model都和template有着一样的点分布和连接（topology），所以可以轻易的进行texture的变化。另外，如果我们想要进行从一个模型到另一个模型的变换(拟合后的)，那么直接对对应的模型之间的顶点(vertex)做线性变换即可。</p>
+<h2 id="4-2-Principle-Component-Analysis"><a href="#4-2-Principle-Component-Analysis" class="headerlink" title="4.2 Principle Component Analysis"></a>4.2 Principle Component Analysis</h2><p>文中提到，假设我们拟合了$k$ 个target example, 并且每一个拟合过后的model都有 $n$ 个顶点。这样的话，对于一个example来说，我们就可以得到一个关于顶点的 $n \times 3$ 的矩阵，对于 $k$ 个example来说就是 $k $ 个 $n \times 3$ 的矩阵。如果我们将每一个example的 $n \times 3$  矩阵堆叠起来变为一列，那么对于一个example，就是一个 $3n \times 1$ 的列向量， 若将 $k$ 个example的顶点数据排列起来，我们就可以得到一个 $ 3n \times k$ 的大矩阵。这个矩阵中，每一列代表一个example的数据，将每个列向量记做 $\bf{s}<em>i$ 。对这 $k$ 个 列向量 ${\bf{s}_i | i = 1,…k}$求平均可以得到一个平均向量 $\bar{\bf{s}}$ 即是平均模型，并且可以得到差值向量 $\bf{u}_i = \bf{s}_i - \bar{\bf{s}}$. 此时，将 $\bf{u}_i$ 组合起来变成一个 $ 3n \times (k-1)$ 的矩阵 $\bf{U}$. (我猜测这里使用$k-1$维的矩阵是因为 ${\bf{u}_i}$中只有 $k-1$ 个独立列向量，剩下的一个可以用 $ - \sum\limits</em>{i = 1}^{k-1}\bf{u}<em>i$ 来表示，因为$ \sum\limits</em>{i = 1}^{k}\bf{u}<em>i = \sum\limits</em>{i = 1}^{k}\bf{s}<em>i - k \bar{\bf{s}}= 0$)。 之后再对矩阵 $\bf{U}$做主成分分析（PCA），得到的principle vector $\bf{c}</em>{1,…k-1}$, 每一个都是 维度为$3n$ 的列向量，对应的variance $\sigma^2_i$ 从大到小排列。</p>
+<p>主成分分析可以帮助分析出来对于人体模型的每一个example而言，哪个是变化分布比较广的变量（variable），这样的话，当我们已知了$\sigma_i^2$ 和其对应的影响人体形态的因素（如，身高，三维）后，我们通过改变$\sigma_i^2$ 的大小，便可得到不同的人体模型。</p>
+<h2 id="4-3-Feature-Analysis"><a href="#4-3-Feature-Analysis" class="headerlink" title="4.3 Feature Analysis"></a>4.3 Feature Analysis</h2><p>这部分进一步说明了，应该如何进一步的建立主成分分析后得到的weights和实际三维空间中人体的直接的控制量(intuitive controls)之间的联系。 如果我们有 $l$ 个控制量，那么这种映射可以表示为一个 $(k - 1) \times (l+1)$ 的矩阵 $\bf{M}$: ${\bf{M}}[f_1 \quad … \quad {f_l}\quad    1]^T = \bf{p}$, 此处的 $f_i$ 是 每一个个体的feature值，而$\bf{p}$ 则是对应的PCA weight。可以这么想，现在我们通过PCA得到的和PCA vector相关权重是$\bf{p}$ 我们改变 $\bf{p}$ 的值，和PCA vector相乘后得到的模型也会变化。但是我们不明白每一个 $\bf{p}$ 中的权重的现实意义是什么，所以我们想要把 $\bf{p}$ 中的每一项和 现实意义的features，比如身高体重联系起来，而这个联系的映射map就是 $\bf M$. 这里的weights指的是对应的PCA vector前面的权重。feature值可以通过example本身的人体测量数据得到。 </p>
+<p>如果将 $k$ 个数据堆叠后同时进行矩阵运算，即 $\bf F = [f<em>1 \quad … \quad {f_k}]$, ${\bf f_i} = [f</em>{i1} \quad … \quad f_{il}\quad    1]^T$ 代表的是第 $i$ 个example的feature向量。这个堆叠的 ${\bf F}$ 矩阵是一个 $(l+1) \times k$ 的矩阵。而 $\bf P$ 则是堆叠起来的 $\bf p$ 构成的。 通过 $\bf P$ 和$F$ 我们可以得到 $\bf M = PF^+$, $F^+$ 是$\bf F$ 的pseudoinverse. 通过这个mapping matrix 我们可以得到对应指定控制量下的模型。 </p>
+<p>另外我们也可以编辑增量 $\Delta {\bf f} = [\Delta f_1 \quad … \quad \Delta f_l \quad 0]^T$, 此处的 $\Delta f_i$ 表示的是目标feature的值和实际feature的值之间的差值。通过计算 $\Delta {\bf p} = \bf M \Delta f$可以得到 $\bf p$ 的增量以便从PCA空间改变模型。</p>
+<h2 id="4-4-Markerless-matching"><a href="#4-4-Markerless-matching" class="headerlink" title="4.4 Markerless matching"></a>4.4 Markerless matching</h2><p>同样我们也可以在PCA空间做匹配。假设现在的扫描模型是没有那么稀疏标记点(sparse marker)，那么我们可以通过在PCA寻找相似的PCA weight来实现拟合。这时我们 $E<em>p$代替 $E_s$.  这里的$E_p = \sum\limits^{k’}</em>{i = 1}(p_i/\sigma_i)^2$,  此处的 $p_i$ 是PCA weights， $\sigma^2$ 为对应的PCA分解后的variance的值， $k’$ 是使用的PCA component的个数。这里我理解的 $p_i$ 是根据前面的已知的扫描模型所得到的feature和前面算出来的 $\bf M$ matrix得到的。这样的话，就可以变相将还未拟合在template上的扫描模型的人体测量feature转化在和template一样的PCA空间内，然后来做优化。</p>
+<p>在PCA空间中新的计算点的距离的的error重新定义为 $E_d’$. </p>
+<p>$E<em>d’ = \sum\limits^{n}</em>{i = 1}w<em>idist^2([r</em>{3i}\ \ r<em>{3i+1} \ \ r</em>{3i+2}]^T, \mathcal{D})$</p>
+<p>${\bf r} = {\bf \bar s} + \sum\limits_{j=1}^{k’}p_j{\bf c}_j$</p>
+<p>这里的 $\bf r$ 是基于PCA空间下的重建的曲面。这样一来，优化的error就建立在 $E_p$ 和 $E_d’$ 的基础上了。</p>
+<h2 id="4-5-Marker-only-matching"><a href="#4-5-Marker-only-matching" class="headerlink" title="4.5 Marker-only matching"></a>4.5 Marker-only matching</h2><p>这部分和上部分类似，我们可以使用 $E_p$ 项和 $E_m$ 项来做优化。</p>
+<h2 id="4-6-Instrumentation-transfer"><a href="#4-6-Instrumentation-transfer" class="headerlink" title="4.6 Instrumentation transfer"></a>4.6 Instrumentation transfer</h2><p>这部分阐述的是，除了将扫描的scan拟合在开始设定的template上，我们还想让这些scanned model动起来。</p>
+<p>首先需要将我们的template和一个controlled skeleton联系起来。这样的话，template上的每个vertex都和skeleton有着相关性。如果我们在某个model的template上取2-3个点作为标记点来控制动作，那么我们也可以只在在其他的model上这2-3个点的位置（应为template是相同的），从而控制和改变对应model的动作。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文最大的贡献在于对范围扫描模型进行同样的模板注册，使得所有的扫描模型都有了同样的topology。另外在此基础上可以对数据进行PCA分析，得到和现实相结合的模型重建和变形。 </p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/PCA/" rel="tag"># PCA</a>
+              <a href="/tags/3D/" rel="tag"># 3D</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/12/25/System%20and%20Signals%20%7C%20Chapter%201_2%20/" rel="prev" title="">
+                  <i class="fa fa-chevron-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/12/27/%E5%B9%B2%E8%B4%A7-hexo%E4%BD%BF%E7%94%A8%E5%87%BA%E7%8E%B0%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/" rel="next" title="干货 | hexo使用出现的小问题">
+                  干货 | hexo使用出现的小问题 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

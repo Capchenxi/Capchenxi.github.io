@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="环境： Mac os linux 编译器：vscode 管理包：brew 安装包：  opencv eigen g2o sophus  主要步骤  opencv 123456brew search opencv #可以搜索brew可以安装的opencv的versionbrew install opencv@2 #选择要安装的opencvbrew info opencv #检查安装结果，若某个依赖包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac使用brew在vscode下安装并配置【opencv】【g2o】【sophus】">
+<meta property="og:url" content="http://yoursite.com/2021/01/24/Mac-brew-vscode-opencv/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="环境： Mac os linux 编译器：vscode 管理包：brew 安装包：  opencv eigen g2o sophus  主要步骤  opencv 123456brew search opencv #可以搜索brew可以安装的opencv的versionbrew install opencv@2 #选择要安装的opencvbrew info opencv #检查安装结果，若某个依赖包">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-01-24T14:31:53.000Z">
+<meta property="article:modified_time" content="2021-01-24T14:31:53.000Z">
+<meta property="article:author" content="Chenxi">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2021/01/24/Mac-brew-vscode-opencv/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Mac使用brew在vscode下安装并配置【opencv】【g2o】【sophus】 | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vscode-%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">vscode 配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cmakelist-%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">cmakelist 配置</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Author</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/24/Mac-brew-vscode-opencv/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Mac使用brew在vscode下安装并配置【opencv】【g2o】【sophus】
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-01-24 22:31:53" itemprop="dateCreated datePublished" datetime="2021-01-24T22:31:53+08:00">2021-01-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>环境： Mac os linux</p>
+<p>编译器：vscode</p>
+<p>管理包：brew</p>
+<p>安装包：</p>
+<ul>
+<li>opencv</li>
+<li>eigen</li>
+<li>g2o</li>
+<li>sophus</li>
+</ul>
+<p>主要步骤</p>
+<ol>
+<li><p>opencv</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">brew search opencv <span class="comment">#可以搜索brew可以安装的opencv的version</span></span><br><span class="line"></span><br><span class="line">brew install opencv@2 <span class="comment">#选择要安装的opencv</span></span><br><span class="line"></span><br><span class="line">brew info opencv <span class="comment">#检查安装结果，若某个依赖包的后面没有✅，可以直接brew install安装这个包</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>安装完成之后会出现以下的提示，记得需要分别执行，这样可以把opencv的头文件和lib放到相应的位置以便随后配置</p>
+<blockquote>
+<p>If you need to have opencv@2 first in your PATH run:<br> echo ‘export PATH=”/usr/local/opt/opencv@2/bin:$PATH”‘ &gt;&gt; ~/.zshrc</p>
+<p>For compilers to find opencv@2 you may need to set:<br> export LDFLAGS=”-L/usr/local/opt/opencv@2/lib”<br> export CPPFLAGS=”-I/usr/local/opt/opencv@2/include”</p>
+<p>For pkg-config to find opencv@2 you may need to set:<br> export PKG_CONFIG_PATH=”/usr/local/opt/opencv@2/lib/pkgconfig”</p>
+</blockquote>
+</li>
+<li><p>opencv@2 和 opencv@3有一些包有区别，所以有时候编译找不到其中一个包可以看一下版本是否有误</p>
+</li>
+</ul>
+<p>这样安装好的opencv的include的内容是在 <code>/usr/local/opt/opencv@2/include</code></p>
+<p>而link library是在当前文件夹 <code>/usr/local/opt/opencv@2/lib</code>    </p>
+</li>
+<li><p>eigen</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install eigen</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这样安装好的opencv的include的内容是在 <code>/usr/local/opt/eigen/include</code></p>
+<p>而link library是在当前文件夹 <code>/usr/local/opt/eigen/lib</code>    </p>
+</li>
+<li><p>Sophus</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/strasdat/Sophus">https://github.com/strasdat/Sophus</a></p>
+<p>Sophus 是 应用在二维和三维问题中的李群方法的一个包，可以直接git clone下载然后按照网页提示步骤安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/strasdat/Sophus.git <span class="comment">#下载包到本地</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> Sophus <span class="comment">#打开文件夹</span></span><br><span class="line"></span><br><span class="line">mkdir build <span class="comment">#创建build文件夹用于存放makefile</span></span><br><span class="line"></span><br><span class="line">cmake .. <span class="comment">#cmake上级的 cmakelist.txt</span></span><br><span class="line"></span><br><span class="line">make <span class="comment">#运行上一步在build文件夹中生成的makefile</span></span><br><span class="line"></span><br><span class="line">sudo install make <span class="comment">#在 /usr/local/include 中安装sophus的头文件之类的文件</span></span><br></pre></td></tr></table></figure>
+<p>这样安装好的sophus的include的内容是在 <code>/usr/local/include/sophus</code></p>
+<p>而link library是在当前文件夹 <code>../sophus</code>    (就一个lib文件)</p>
+<ul>
+<li><p>在  <code>cmake ..</code> 这一步下，可能会出现以下错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;Users&#x2F;wangcaimeng&#x2F;Sophus&#x2F;sophus&#x2F;so2.cpp:32:24: error: expression is not assignable unit_complex_.real() &#x3D; 1.;</span><br><span class="line">&#x2F;Users&#x2F;wangcaimeng&#x2F;Sophus&#x2F;sophus&#x2F;so2.cpp:33:24: error: expression is not    assignable unit_complex_.imag() &#x3D; 0.; </span><br><span class="line">~~~~~~~~~~~~~~~~~~~~ ^ 2 errors generated. make[2]: *** [CMakeFiles&#x2F;Sophus.dir&#x2F;sophus&#x2F;so2.cpp.o] Error 1 make[1]: *** [CMakeFiles&#x2F;Sophus.dir&#x2F;all] Error 2 make: *** [all] Error 2</span><br></pre></td></tr></table></figure>
+<p>解决方案是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">将 so2.cpp 文件的32和33行改为：</span><br><span class="line"></span><br><span class="line">unit_complex_.real(1.);</span><br><span class="line">unit_complex_.imag(0.);</span><br><span class="line">参考自：https:&#x2F;&#x2F;github.com&#x2F;gaoxiang12&#x2F;slambook&#x2F;issues&#x2F;56#issuecomment-334946067</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>g2o</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/RainerKuemmerle/g2o">https://github.com/RainerKuemmerle/g2o</a></p>
+<p>g2o是brewsci中的一个用于非线性优化的包，在官方git的readme.md文件中，提及到macos系统可以直接用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install brewsci&#x2F;science&#x2F;g2o</span><br></pre></td></tr></table></figure>
+<p>来安装相关的包，但是我在安装的的过程中会涉及到 <code>Cannot tap brewsci/science</code> 的报错信息，这个问题没有查到明确的解法，所以就按照 sophus相同的办法安装了g2o。在官方的g2o文件的<strong>Compilation</strong> 部分也有具体提到安装的步骤：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/RainerKuemmerle/g2o.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> g2o</span><br><span class="line"></span><br><span class="line">mkdir build</span><br><span class="line"></span><br><span class="line">cmake ..</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">sudo install make <span class="comment">#在 /usr/local/include 中安装g2o的头文件之类的文件</span></span><br></pre></td></tr></table></figure>
+<p>这样安装好的g2o的include的内容是在 <code>/usr/local/include/g2o</code></p>
+<p>而link library是在当前文件夹 <code>../g2o/lib</code>    </p>
+</li>
+</ol>
+<p><strong>由此可得，基于brew install 安装的包都比较统一地把include文件和lib文件放在 <code>/usr/local/opt/opencv@2/include</code> 和 <code>/usr/local/opt/opencv@2/lib</code>中，但是直接从git下载并且需要cmake的包需要自行确定include和lib文件夹在哪里。</strong></p>
+<p>如果在安装过后都使用了    <code>sudo install make</code> 那么include的包会被安装在 <code>/usr/local/include/</code> 下</p>
+<h1 id="vscode-配置"><a href="#vscode-配置" class="headerlink" title="vscode 配置"></a>vscode 配置</h1><p>vscode的配置文件又四个，分别是: <strong>launch.json, tasks.json, settngs.json, c_cpp_properties.json</strong></p>
+<ol>
+<li><p>lauch.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Use IntelliSense to learn about possible attributes.</span><br><span class="line">    &#x2F;&#x2F; Hover to view descriptions of existing attributes.</span><br><span class="line">    &#x2F;&#x2F; For more information, visit: https:&#x2F;&#x2F;go.microsoft.com&#x2F;fwlink&#x2F;?linkid&#x3D;830387</span><br><span class="line">    &quot;version&quot;: &quot;0.2.0&quot;,</span><br><span class="line">    &quot;configurations&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;(lldb) Launch&quot;,</span><br><span class="line">            &quot;type&quot;: &quot;cppdbg&quot;,</span><br><span class="line">            &quot;request&quot;: &quot;launch&quot;,</span><br><span class="line">            &quot;program&quot;: &quot;$&#123;fileDirname&#125;&#x2F;a.out&quot;,</span><br><span class="line">            &quot;args&quot;: [],</span><br><span class="line">            &quot;stopAtEntry&quot;: true,</span><br><span class="line">            &quot;cwd&quot;: &quot;$&#123;workspaceFolder&#125;&quot;,</span><br><span class="line">            &quot;environment&quot;: [],</span><br><span class="line">            &quot;externalConsole&quot;: false,</span><br><span class="line">            &quot;MIMode&quot;: &quot;lldb&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>settings.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;settings.json</span><br><span class="line">&#123;</span><br><span class="line">    &quot;python.pythonPath&quot;: &quot;usr&#x2F;bin&#x2F;python&quot;,</span><br><span class="line">    &quot;code-runner.executorMap&quot;: &#123;</span><br><span class="line">        &quot;c&quot;: &quot;cd $dir &amp;&amp; make  &amp;&amp; .&#x2F;$fileNameWithoutExt &amp;&amp; make clean&quot;,</span><br><span class="line">        &quot;cpp&quot;: &quot;cd $dir &amp;&amp; make  &amp;&amp; .&#x2F;$fileNameWithoutExt &amp;&amp; make clean&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;editor.renderWhitespace&quot;: &quot;all&quot;,</span><br><span class="line">    &quot;editor.renderLineHighlight&quot;: &quot;all&quot;,</span><br><span class="line">    &quot;editor.formatOnSave&quot;: true,</span><br><span class="line">    &quot;code-runner.runInTerminal&quot;: true,</span><br><span class="line">    &quot;code-runner.ignoreSelection&quot;: true,</span><br><span class="line">    &quot;code-runner.enableAppInsights&quot;: false,</span><br><span class="line">    &quot;C_Cpp.updateChannel&quot;: &quot;Insiders&quot;,</span><br><span class="line">    &quot;[makefile]&quot;: &#123;</span><br><span class="line">        &quot;editor.insertSpaces&quot;: true</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;C_Cpp.default.includePath&quot;: [</span><br><span class="line">        &quot;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;opencv@2&#x2F;2.4.13.7_11&#x2F;include&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>tasks.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;tasks&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;type&quot;: &quot;shell&quot;,</span><br><span class="line">            &quot;label&quot;: &quot;Build&quot;,</span><br><span class="line">            &quot;command&quot;: &quot;g++&quot;,</span><br><span class="line">            &quot;args&quot;: [</span><br><span class="line">                &#x2F;&#x2F;&quot;main.cpp&quot;,</span><br><span class="line">                &quot;$&#123;file&#125;&quot;,</span><br><span class="line">                &quot;-o&quot;,</span><br><span class="line">                &quot;$&#123;fileDirname&#125;&#x2F;$&#123;fileBasenameNoExtension&#125;.out&quot;,</span><br><span class="line">                &quot;-I&quot;,</span><br><span class="line">                &quot;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;opencv@2&#x2F;2.4.13.7_11&#x2F;include&#x2F;opencv&quot;,</span><br><span class="line">                &quot;-I&quot;,</span><br><span class="line">                &quot;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;opencv@2&#x2F;2.4.13.7_11&#x2F;include&quot;,</span><br><span class="line">                &quot;-L&quot;,</span><br><span class="line">                &quot;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;opencv@2&#x2F;2.4.13.7_11&#x2F;lib&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_stitching&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_superres&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_videostab&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_aruco&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_bgsegm&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_bioinspired&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_ccalib&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_dnn_objdetect&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_dpm&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_face&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_fuzzy&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_hfs&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_img_hash&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_line_descriptor&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_optflow&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_reg&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_rgbd&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_saliency&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_stereo&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_structured_light&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_phase_unwrapping&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_surface_matching&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_tracking&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_datasets&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_dnn&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_plot&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_xfeatures2d&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_shape&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_video&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_ml&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_ximgproc&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_xobjdetect&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_objdetect&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_calib3d&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_features2d&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_highgui&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_videoio&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_imgcodecs&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_flann&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_xphoto&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_photo&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_imgproc&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_core&quot;,</span><br><span class="line">                &quot;-g&quot;</span><br><span class="line"></span><br><span class="line">            ],</span><br><span class="line">            </span><br><span class="line">            &quot;group&quot;: &#123;</span><br><span class="line">                &quot;kind&quot;: &quot;build&quot;,</span><br><span class="line">                &quot;isDefault&quot;: true</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;problemMatcher&quot;: [</span><br><span class="line">                &quot;$gcc&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;version&quot;: &quot;2.0.0&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>c_cpp_properties.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;configurations&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;Mac&quot;,</span><br><span class="line">            &quot;includePath&quot;: [</span><br><span class="line">                &quot;$&#123;workspaceFolder&#125;&#x2F;**&quot;,</span><br><span class="line">                &quot;&#x2F;usr&#x2F;local&#x2F;opt&#x2F;opencv@2&#x2F;include&quot;,</span><br><span class="line">                &quot;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;opencv@2&#x2F;2.4.13.7_11&#x2F;include&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;defines&quot;: [],</span><br><span class="line">            &quot;macFrameworkPath&quot;: [],</span><br><span class="line">            &quot;compilerPath&quot;: &quot;&#x2F;usr&#x2F;bin&#x2F;g++&quot;,</span><br><span class="line">            &quot;cStandard&quot;: &quot;c11&quot;,</span><br><span class="line">            &quot;cppStandard&quot;: &quot;c++11&quot;,</span><br><span class="line">            &quot;intelliSenseMode&quot;: &quot;clang-x64&quot;,</span><br><span class="line">            &quot;browse&quot;: &#123;</span><br><span class="line">                &quot;path&quot;: [</span><br><span class="line">                    &quot;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;opencv@2&#x2F;2.4.13.7_11&#x2F;include&quot;</span><br><span class="line">                ],</span><br><span class="line">                &quot;limitSymbolsToIncludedHeaders&quot;: true,</span><br><span class="line">                &quot;databaseFilename&quot;: &quot;&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;version&quot;: 4</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="cmakelist-配置"><a href="#cmakelist-配置" class="headerlink" title="cmakelist 配置"></a>cmakelist 配置</h1><p>cmake中主要配置的是 <strong>INCLUDE_DIRECTORIES , link_directoryies</strong></p>
+<p>注意着两部分的路径药分别和之前安装的不同的包的路径相匹配，这样就可以运行cmake进行编译了</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/14/C-wk1-write-a-c-program/" rel="prev" title="C++ | wk1 write a c++ program">
+                  <i class="fa fa-chevron-left"></i> C++ | wk1 write a c++ program
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="BLEU score - 机器翻译的衡量标准 BLEU(bilingual evaluation understudy) 被用来衡量双语翻译片段的翻译质量。 他的评价标准也很简单，机器翻译的的结果越接近exprerts的翻译结果，那么机器翻译的效果越好。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="干货 | BLEU score - 机器翻译的衡量标准">
+<meta property="og:url" content="http://yoursite.com/2020/03/19/%E5%B9%B2%E8%B4%A7-BLEU-score/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="BLEU score - 机器翻译的衡量标准 BLEU(bilingual evaluation understudy) 被用来衡量双语翻译片段的翻译质量。 他的评价标准也很简单，机器翻译的的结果越接近exprerts的翻译结果，那么机器翻译的效果越好。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-03-18T19:33:45.000Z">
+<meta property="article:modified_time" content="2020-03-18T19:33:45.000Z">
+<meta property="article:author" content="Chenxi">
+<meta property="article:tag" content="NLP">
+<meta property="article:tag" content="Machine Translation">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/03/19/%E5%B9%B2%E8%B4%A7-BLEU-score/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>干货 | BLEU score - 机器翻译的衡量标准 | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#N-gram%E7%9A%84%E5%87%86%E7%A1%AE%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">N-gram的准确性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Brevity-Penalty"><span class="nav-number">2.</span> <span class="nav-text">Brevity Penalty</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Author</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/19/%E5%B9%B2%E8%B4%A7-BLEU-score/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          干货 | BLEU score - 机器翻译的衡量标准
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-19 03:33:45" itemprop="dateCreated datePublished" datetime="2020-03-19T03:33:45+08:00">2020-03-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B9%B2%E8%B4%A7/" itemprop="url" rel="index"><span itemprop="name">干货</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>BLEU score - 机器翻译的衡量标准</p>
+<p>BLEU(<strong>bilingual evaluation understudy</strong>) 被用来衡量双语翻译片段的翻译质量。</p>
+<p>他的评价标准也很简单，机器翻译的的结果越接近exprerts的翻译结果，那么机器翻译的效果越好。</p>
+<a id="more"></a>
+<p>BLEU 分数是一个综合分数，机器翻译的段落得到的分数越高，则说明该机器翻译的效果越好。</p>
+<p>在BLEU metric中占主要影响的有两个部分：1. n-gram的准确性；2. Brevity Penalty</p>
+<p>我们在做BLEU分数计算的时候，需要准备的是待测的机器翻译的语句 $ S$, 以及一系列由expert（专业人士）翻译的语句 ${ S_1, S_2, …S_n}$. </p>
+<h1 id="N-gram的准确性"><a href="#N-gram的准确性" class="headerlink" title="N-gram的准确性"></a>N-gram的准确性</h1><p>一个好的机器翻译的句子将会和expert翻译的句子之间有很多重合的部分。</p>
+<p>通常情况下，如果我们只计算机器翻译句子 $S$ 的precision，即对于 $S$ 中存在的 n-gram的片段，需要看它是否存在于expert翻译的那些句子中。所以按照precision的公式，我们得到的准确率是，对于机器翻译的句子，在expert翻译的句子中出现的单词的个数比该句中总共的单词数。但是这种计算方法存在一些问题，比如说机器翻译的句子是七个同样的常用冠词 the， 这个冠词也在expert翻译的句子中出现。如果按照之前计算precision的方法，那么我们这里得到的precision 将是1. 但很明显，这句机器翻译的话是不正确的。因此，我将会将N-gram precision稍作修改。</p>
+<script type="math/tex; mode=display">
+p_n = \frac{\sum\limits_{C\in \{candidates\}}\sum\limits_{n-gram\in C}Count_{clip}(n-gram)}{\sum\limits_{C'\in \{candidates\}}\sum\limits_{n-gram\in C'}Count(n-gram)}</script><p>这里做出的调整就是，对于在 $S$ 中存在的 n-gram的片段而言，我们会将它的数量clip到reference中出现的最大次数。</p>
+<p>对于例子而言，也就是说，在the作为uni-gram时，我们计算它的准确的次数由7次（7个the都在expert翻译句中出现）改变为 2次（expert翻译句中，一句话最多出现两次the），有一些recall 的感觉。</p>
+<p>这里做出的clip长度的修改，就叫做modified n-gram precision. 在BLEU metric中，用logrithm average来统计不同n的情况下，平均准确度为</p>
+<script type="math/tex; mode=display">
+exp\{\sum\limits_{n = 1}^{N}w_n\log p_n\}</script><p>这里的 $w_n$ 表示的是各项的权重，此处的 $w_n = \frac{1}{N}$</p>
+<h1 id="Brevity-Penalty"><a href="#Brevity-Penalty" class="headerlink" title="Brevity Penalty"></a>Brevity Penalty</h1><p>另一个存在于机器翻译句中的问题是，翻译的句子是否包含了原句中所有的信息。若翻译的信息不完整，我们也能得到很高的modified precision的值。</p>
+<p>所以在平均precision的基础上，我们会再加上长度的penalty，即，</p>
+<script type="math/tex; mode=display">
+BP = \left\{\begin{array}{h}
+1 & if\ c >r \\ e^{(1-r/c)} & if \ c\leq r\end{array} \right.</script><p>这里的 $c$ 用来表示机器翻译的句子的长度，$r$ 表示expert翻译的句子的长度。</p>
+<p>最终 BLEU 的表示方式为：</p>
+<script type="math/tex; mode=display">
+BLEU = BP \cdot exp(\sum\limits_{n = 1}^{N}w_n\log p_n)</script><p>BLEU的分数处于 0 - 1 之间。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/NLP/" rel="tag"># NLP</a>
+              <a href="/tags/Machine-Translation/" rel="tag"># Machine Translation</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/03/08/Machine-Learning-2019-5-Meta-Learning/" rel="prev" title="Machine Learning-2019| 5 Meta Learning">
+                  <i class="fa fa-chevron-left"></i> Machine Learning-2019| 5 Meta Learning
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/03/20/Machine-Learning-2020-Lecture-1-Regression/" rel="next" title="Machine Learning-2020| Lecture#1 Regression&Gradient Descent">
+                  Machine Learning-2020| Lecture#1 Regression&Gradient Descent <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

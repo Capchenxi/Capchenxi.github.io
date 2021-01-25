@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="【LeetCode】- July Challenge 0701 - Leetcode441 - Arranging coins - Easy 0702 - Leetcode107 - Binary Tree Level Order Traversal II 补充 - Leetcode104 - Binary Tree Level Order Traversal 0703 - Leetcode957">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm | LeetCode - July Challenge">
+<meta property="og:url" content="http://yoursite.com/2020/07/01/Algorithm-LeetCode-July-Challenge/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="【LeetCode】- July Challenge 0701 - Leetcode441 - Arranging coins - Easy 0702 - Leetcode107 - Binary Tree Level Order Traversal II 补充 - Leetcode104 - Binary Tree Level Order Traversal 0703 - Leetcode957">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-06-30T21:49:49.000Z">
+<meta property="article:modified_time" content="2020-06-30T21:49:49.000Z">
+<meta property="article:author" content="Chenxi">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="leetcode">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/07/01/Algorithm-LeetCode-July-Challenge/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Algorithm | LeetCode - July Challenge | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0724-Leetcode797-All-Paths-From-Source-to-Target"><span class="nav-number">1.</span> <span class="nav-text">0724 - Leetcode797 - All Paths From Source to Target</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0722-Leetcode103-Binary-Tree-Zigzag-Level-Order-Traversal"><span class="nav-number">2.</span> <span class="nav-text">0722 - Leetcode103 - Binary Tree Zigzag Level Order Traversal</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0720-Leetcode-Remove-Linked-List-Elements"><span class="nav-number">3.</span> <span class="nav-text">0720 - Leetcode - Remove Linked List Elements</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0718-Leetcode210-Course-Scheduel-II"><span class="nav-number">4.</span> <span class="nav-text">0718 - Leetcode210 - Course Scheduel II</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0717-Leetcode347-Top-K-Frequent-Elements"><span class="nav-number">5.</span> <span class="nav-text">0717 - Leetcode347 - Top K Frequent Elements</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0714-Leetcode1344-Angle-Between-Hands-of-a-Clock"><span class="nav-number">6.</span> <span class="nav-text">0714 - Leetcode1344 - Angle Between Hands of a Clock</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0713-Leetcode100-Same-Tree"><span class="nav-number">7.</span> <span class="nav-text">0713 - Leetcode100 - Same Tree</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0711-Leetcode78-Subsets"><span class="nav-number">8.</span> <span class="nav-text">0711 - Leetcode78 - Subsets</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0708-3Sum"><span class="nav-number">9.</span> <span class="nav-text">0708 - 3Sum</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0707-Leetcode463-Island-Perimeter"><span class="nav-number">10.</span> <span class="nav-text">0707 - Leetcode463 - Island Perimeter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A5%E5%85%85-Leetcode695-Max-Area-of-Island"><span class="nav-number">11.</span> <span class="nav-text">补充 - Leetcode695 - Max Area of Island</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0706-Leetcode66-Plus-One"><span class="nav-number">12.</span> <span class="nav-text">0706 - Leetcode66 - Plus One</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0705-Leetcode461-Hamming-Distance"><span class="nav-number">13.</span> <span class="nav-text">0705 - Leetcode461 - Hamming Distance</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A5%E5%85%85-Leetcode477-Total-Hamming-Distance"><span class="nav-number">14.</span> <span class="nav-text">补充 - Leetcode477 - Total Hamming Distance</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0704-Leetcode264-Ugly-Number-II"><span class="nav-number">15.</span> <span class="nav-text">0704 - Leetcode264 - Ugly Number II</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A5%E5%85%85-Leetcode263-Ugly-Number"><span class="nav-number">16.</span> <span class="nav-text">补充 - Leetcode263 - Ugly Number</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0703-Leetcode957-Prison-Cells-After-N-days"><span class="nav-number">17.</span> <span class="nav-text">0703 - Leetcode957 - Prison Cells After N days</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0702-Leetcode107-Binary-Tree-Level-Order-Traversal-II-%EF%BC%88104%E5%90%8C%E7%90%86%EF%BC%89"><span class="nav-number">18.</span> <span class="nav-text">0702 - Leetcode107 - Binary Tree Level Order Traversal II （104同理）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0701-Leetcode441-Arranging-coins"><span class="nav-number">19.</span> <span class="nav-text">0701 - Leetcode441 - Arranging coins</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Author</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/01/Algorithm-LeetCode-July-Challenge/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Algorithm | LeetCode - July Challenge
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-07-01 05:49:49" itemprop="dateCreated datePublished" datetime="2020-07-01T05:49:49+08:00">2020-07-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>【LeetCode】- July Challenge</p>
+<p><a href="#lc441">0701 - Leetcode441 - Arranging coins - Easy</a></p>
+<p><a href="#lc107">0702 - Leetcode107 - Binary Tree Level Order Traversal II</a></p>
+<p><a href="#lc104">补充 - Leetcode104 - Binary Tree Level Order Traversal</a></p>
+<p><a href="#lc957">0703 - Leetcode957 - Prison Cells After N days</a></p>
+<p><a href="#lc264">0704 - Leetcode264 - Ugly Number II</a></p>
+<p><a href="#lc263">补充 - Leetcode263 - Ugly Number </a></p>
+<p><a href="#lc461">0705 - Leetcode461 - Hamming Distance</a></p>
+<p><a href="#lc477">补充 - Leetcode477 - Total Hamming Distance - Medium</a></p>
+<p><a href="#lc66">0706 - Leetcode66 - Plus One - Easy</a></p>
+<p><a href="#lc463">0707 - Leetcode463 - Island Perimeter - Easy</a></p>
+<p><a href="#lc15">0708 - 3Sum - Medium</a></p>
+<p><a href="#lc78">0711 - Leetcode78 - Subsets - Medium</a></p>
+<p><a href="#lc100">0713 - Leetcode100 - Same Tree - Easy</a></p>
+<p><a href="#lc1344">0714 - Leetcode1344 - Angle Between Hands of a Clock - Medium</a></p>
+<p><a href="#lc347">0717 - Leetcode - Top K Frequent Elements - Medium</a></p>
+<p><a href="#lc210">0718 - Leetcode210 - Course Scheduel II - Medium</a></p>
+<p>[0719 - Leetcode64 - ]</p>
+<p><a href="#lc">0720 - Leetcode - Remove Linked List Elements - Medium</a></p>
+<p><a href="#lc103">0722 - Leetcode103 - Binary Tree Zigzag Level Order Traversal - Medium</a></p>
+<p><a href="#lc797">0724 - Leetcode797 - All Paths from source to Target - Medium</a></p>
+<p>-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</p>
+<h1 id="0724-Leetcode797-All-Paths-From-Source-to-Target"><a href="#0724-Leetcode797-All-Paths-From-Source-to-Target" class="headerlink" title="0724 - Leetcode797 - All Paths From Source to Target"></a>0724 - Leetcode797 - All Paths From Source to Target</h1><blockquote>
+<p>Given a directed, acyclic graph of <code>N</code> nodes. Find all possible paths from node <code>0</code> to node <code>N-1</code>, and return them in any order.</p>
+<p>The graph is given as follows: the nodes are 0, 1, …, graph.length - 1. graph[i] is a list of all nodes j for which the edge (i, j) exists.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">Input: [[1,2], [3], [3], []] </span><br><span class="line">Output: [[0,1,3],[0,2,3]] </span><br><span class="line">Explanation: The graph looks like this:</span><br><span class="line">0---&gt;1</span><br><span class="line">|    |</span><br><span class="line">v    v</span><br><span class="line">2---&gt;3</span><br><span class="line">There are two paths: 0 -&gt; 1 -&gt; 3 and 0 -&gt; 2 -&gt; 3.</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>解题思路：</p>
+<p>把edge储存为 ： {到达点：[上一个可能点]} 的字典格式，如果上一个可能的点存在0的话就跳出循环，否则的话就一直循环下去。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">allPathsSourceTarget</span>(<span class="params">self, graph</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type graph: List[List[int]]</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        edge = defaultdict(<span class="built_in">list</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(graph)):</span><br><span class="line">            link = graph[i]</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> link:</span><br><span class="line">                edge[k] += [i]</span><br><span class="line">                </span><br><span class="line">        ans = []</span><br><span class="line">        self.dfs(edge, <span class="built_in">len</span>(graph) - <span class="number">1</span>, [], ans)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span>(<span class="params">self, edge, lastnode, path, ans</span>):</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> lastnode == <span class="number">0</span>:</span><br><span class="line">            path = path + [<span class="number">0</span>]</span><br><span class="line">            ans.append( path[::<span class="number">-1</span>] )</span><br><span class="line">            <span class="keyword">return</span> </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> edge[lastnode]:</span><br><span class="line">            self.dfs(edge, node, path + [lastnode], ans)</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+<h1 id="0722-Leetcode103-Binary-Tree-Zigzag-Level-Order-Traversal"><a href="#0722-Leetcode103-Binary-Tree-Zigzag-Level-Order-Traversal" class="headerlink" title="0722 - Leetcode103 - Binary Tree Zigzag Level Order Traversal"></a>0722 - Leetcode103 - Binary Tree Zigzag Level Order Traversal</h1><blockquote>
+<p>Given a binary tree, return the <em>zigzag level order</em> traversal of its nodes’ values. (ie, from left to right, then right to left for the next level and alternate between).</p>
+<p>For example:<br>Given binary tree <code>[3,9,20,null,null,15,7]</code>,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> &#x2F; \</span><br><span class="line">9  20</span><br><span class="line">  &#x2F;  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
+<p>return its zigzag level order traversal as:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [3],</span><br><span class="line">  [20,9],</span><br><span class="line">  [15,7]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>解题思路</p>
+<p>BFS + 正反向输出 + flag决定</p>
+<p>BFS输出，然后设置flag，每次都*-1 可以控制正反向输出。</p>
+<h1 id="0720-Leetcode-Remove-Linked-List-Elements"><a href="#0720-Leetcode-Remove-Linked-List-Elements" class="headerlink" title="0720 - Leetcode - Remove Linked List Elements"></a>0720 - Leetcode - Remove Linked List Elements</h1><blockquote>
+<p>Remove all elements from a linked list of integers that have value <strong><em>val\</em></strong>.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input:  1-&gt;2-&gt;6-&gt;3-&gt;4-&gt;5-&gt;6, val = 6</span><br><span class="line">Output: 1-&gt;2-&gt;3-&gt;4-&gt;5</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>解题思路：</p>
+<p>设置dummy node，查看next.val是否和要去掉的val相同，如果相同，定义next = next.next. 指针不动；如果不同，指针后移一位。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">removeElements</span>(<span class="params">self, head, val</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :type val: int</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        </span><br><span class="line">        dummy.<span class="built_in">next</span> = head</span><br><span class="line">        head = dummy</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> head.<span class="built_in">next</span>:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> head.<span class="built_in">next</span>.val == val:</span><br><span class="line">                <span class="keyword">if</span> head.<span class="built_in">next</span>.<span class="built_in">next</span>:</span><br><span class="line">                    head.<span class="built_in">next</span> = head.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    head.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                head = head.<span class="built_in">next</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> dummy.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
+<h1 id="0718-Leetcode210-Course-Scheduel-II"><a href="#0718-Leetcode210-Course-Scheduel-II" class="headerlink" title="0718 - Leetcode210 - Course Scheduel II"></a>0718 - Leetcode210 - Course Scheduel II</h1><blockquote>
+<p>There are a total of <em>n</em> courses you have to take, labeled from <code>0</code> to <code>n-1</code>.</p>
+<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: <code>[0,1]</code></p>
+<p>Given the total number of courses and a list of prerequisite <strong>pairs</strong>, return the ordering of courses you should take to finish all courses.</p>
+<p>There may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.</p>
+</blockquote>
+<p>解题思路：</p>
+<ol>
+<li><p>DFS</p>
+</li>
+<li><p>Node in degree（入度）</p>
+<p>当我们把pre课程当做出发点，而现在要选的课程当做目的地</p>
+</li>
+</ol>
+<h1 id="0717-Leetcode347-Top-K-Frequent-Elements"><a href="#0717-Leetcode347-Top-K-Frequent-Elements" class="headerlink" title="0717 - Leetcode347 - Top K Frequent Elements"></a>0717 - Leetcode347 - Top K Frequent Elements</h1><h1 id="0714-Leetcode1344-Angle-Between-Hands-of-a-Clock"><a href="#0714-Leetcode1344-Angle-Between-Hands-of-a-Clock" class="headerlink" title="0714 - Leetcode1344 - Angle Between Hands of a Clock"></a>0714 - Leetcode1344 - Angle Between Hands of a Clock</h1><blockquote>
+<p>Given two numbers, <code>hour</code> and <code>minutes</code>. Return the smaller angle (in degrees) formed between the <code>hour</code> and the <code>minute</code> hand.</p>
+</blockquote>
+<p>解题思路：</p>
+<p>就直接写，然后钝角转化为 360 - 本身</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">angleClock</span>(<span class="params">self, hour, minutes</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type hour: int</span></span><br><span class="line"><span class="string">        :type minutes: int</span></span><br><span class="line"><span class="string">        :rtype: float</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        angle_h = (hour%<span class="number">12</span>) * <span class="number">30</span> + minutes * <span class="number">0.5</span></span><br><span class="line">        </span><br><span class="line">        angle_m = minutes * <span class="number">6</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># print(angle_h, angle_m)</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">abs</span>(angle_h - angle_m) &gt; <span class="number">180</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">360</span> - <span class="built_in">abs</span>(angle_h - angle_m)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">abs</span>(angle_h - angle_m)</span><br><span class="line">       </span><br></pre></td></tr></table></figure>
+<h1 id="0713-Leetcode100-Same-Tree"><a href="#0713-Leetcode100-Same-Tree" class="headerlink" title="0713 - Leetcode100 - Same Tree"></a>0713 - Leetcode100 - Same Tree</h1><blockquote>
+<p>Given two binary trees, write a function to check if they are the same or not.</p>
+<p>Two binary trees are considered the same if they are structurally identical and the nodes have the same value.</p>
+</blockquote>
+<p>解题思路：</p>
+<p>Recursive - 分别判断每个节点是否相等</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isSameTree</span>(<span class="params">self, p, q</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type p: TreeNode</span></span><br><span class="line"><span class="string">        :type q: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.checkNode(p, q)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">checkNode</span>(<span class="params">self, node1, node2</span>):</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> node1 <span class="keyword">and</span> <span class="keyword">not</span> node2:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> node1 <span class="keyword">or</span> <span class="keyword">not</span> node2 <span class="keyword">or</span> node1.val != node2.val:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> self.checkNode(node1.left, node2.left) <span class="keyword">and</span> self.checkNode(node1.right, node2.right)</span><br></pre></td></tr></table></figure>
+<h1 id="0711-Leetcode78-Subsets"><a href="#0711-Leetcode78-Subsets" class="headerlink" title="0711 - Leetcode78 - Subsets"></a>0711 - Leetcode78 - Subsets</h1><blockquote>
+<p>Given a set of <strong>distinct</strong> integers, <em>nums</em>, return all possible subsets (the power set).</p>
+<p><strong>Note:</strong> The solution set must not contain duplicate subsets.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,2,3]</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  [3],</span><br><span class="line">  [1],</span><br><span class="line">  [2],</span><br><span class="line">  [1,2,3],</span><br><span class="line">  [1,3],</span><br><span class="line">  [2,3],</span><br><span class="line">  [1,2],</span><br><span class="line">  []</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>解题思路：</p>
+<p>用recursive吧，因为不希望出现重复项，所以新加进来的数可以视为前一个subset 加上 一个新的数字，而这个新的数字是subdet最后一位数字往后的。所以可以用resurcive。</p>
+<p>比如说 </p>
+<ul>
+<li>[] 是初始解，那么[] +[1], [] + [2], []+[3] 就是第一层解</li>
+<li>[1] + [2], [1]+[3] 就要继续下去。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subsets</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        ans = []</span><br><span class="line">        sub = []</span><br><span class="line">        ans.append(sub)</span><br><span class="line">        self.newsub(sub, nums, <span class="number">0</span>, ans)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line">        </span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">newsub</span>(<span class="params">self, sub, nums, i, ans</span>):</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(nums):</span><br><span class="line">            ans.append(sub + [nums[i]])</span><br><span class="line">            self.newsub(sub + [nums[i]], nums, i+<span class="number">1</span>, ans)</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">      </span><br></pre></td></tr></table></figure>
+<h1 id="0708-3Sum"><a href="#0708-3Sum" class="headerlink" title="0708 - 3Sum"></a>0708 - 3Sum</h1><blockquote>
+<p>Given an array <code>nums</code> of <em>n</em> integers, are there elements <em>a</em>, <em>b</em>, <em>c</em> in <code>nums</code> such that <em>a</em> + <em>b</em> + <em>c</em> = 0? Find all unique triplets in the array which gives the sum of zero.</p>
+<p><strong>Note:</strong></p>
+<p>The solution set must not contain duplicate triplets.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Given array nums = [-1, 0, 1, 2, -1, -4],</span><br><span class="line"></span><br><span class="line">A solution set is:</span><br><span class="line">[</span><br><span class="line">  [-1, 0, 1],</span><br><span class="line">  [-1, -1, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>解题思路：</p>
+<p>先排序，再固定指针 i ，然后从这个指针向右的序列确定两个指针 left, right, 寻找nums[i] = -(nums[left]+nums[right])。</p>
+<p>如果左右两指针相加大于  -(nums[left]+nums[right])，right -= 1, 否则 left+=1.如果相等就把者三个数的list放在ans中。</p>
+<p><strong>注意！！！</strong></p>
+<p>这个题直接这样写会超时，所以要考虑很多特殊的情况。</p>
+<ol>
+<li><p>if nums[i] &gt; 0, break 当最小值都大于零，右边的nums[left]和nums[right]肯定都大于零，就不可能存在三个数相加为0的情况；</p>
+</li>
+<li><p>判断是否有重复: if nums[left - 1] &gt; i and nums[left - 1] ==  nums[left]: 这时候left可以直接+1忽略</p>
+<p>同理，可以跳过重复的右指针。</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">threeSum</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        nums.sort()</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            left = i + <span class="number">1</span></span><br><span class="line">            right = <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> nums[i] == nums[i<span class="number">-1</span>]: <span class="keyword">continue</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span> left &lt; right:</span><br><span class="line">                <span class="keyword">if</span> left - <span class="number">1</span> &gt; i <span class="keyword">and</span> nums[left] == nums[left<span class="number">-1</span>]: </span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">if</span> right+<span class="number">1</span> &lt; <span class="built_in">len</span>(nums) <span class="keyword">and</span> nums[right] == nums[right+<span class="number">1</span>]:</span><br><span class="line">                    right -= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> nums[left] + nums[right] == -nums[i]:</span><br><span class="line">                    ans.append([nums[i], nums[left], nums[right]])</span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">                <span class="keyword">elif</span> nums[left] + nums[right] &gt; -nums[i]:</span><br><span class="line">                    right -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
+<h1 id="0707-Leetcode463-Island-Perimeter"><a href="#0707-Leetcode463-Island-Perimeter" class="headerlink" title="0707 - Leetcode463 - Island Perimeter"></a>0707 - Leetcode463 - Island Perimeter</h1><blockquote>
+<p>You are given a map in form of a two-dimensional integer grid where 1 represents land and 0 represents water.</p>
+<p>Grid cells are connected horizontally/vertically (not diagonally). The grid is completely surrounded by water, and there is exactly one island (i.e., one or more connected land cells).</p>
+<p>The island doesn’t have “lakes” (water inside that isn’t connected to the water around the island). One cell is a square with side length 1. The grid is rectangular, width and height don’t exceed 100. Determine the perimeter of the island.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[[0,1,0,0],</span><br><span class="line"> [1,1,1,0],</span><br><span class="line"> [0,1,0,0],</span><br><span class="line"> [1,1,0,0]]</span><br><span class="line"></span><br><span class="line">Output: 16</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>解题思路：</p>
+<p>很简单，遍历grid中的每一项，如果是1，那么他就会有4条边，然后减去临边也为1的数量，然后就可以得到小岛的周长。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">islandPerimeter</span>(<span class="params">self, grid</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type grid: List[List[int]]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        row = <span class="built_in">len</span>(grid)</span><br><span class="line">        col = <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        count1 = <span class="number">0</span></span><br><span class="line">        edge = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(row):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(col):</span><br><span class="line">                <span class="keyword">if</span> grid[i][j] == <span class="number">1</span>:</span><br><span class="line">                    count1 += <span class="number">1</span></span><br><span class="line">                    edge = edge + (self.countLand(grid, i+<span class="number">1</span>, j) +self.countLand(grid, i<span class="number">-1</span>, j)+self.countLand(grid, i, j+<span class="number">1</span>)+self.countLand(grid, i, j<span class="number">-1</span>))</span><br><span class="line">                    </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="number">4</span>*count1 - edge</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countLand</span>(<span class="params">self, grid, i, j</span>):</span></span><br><span class="line">        land = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> i &gt;= <span class="number">0</span> <span class="keyword">and</span> i &lt; <span class="built_in">len</span>(grid) <span class="keyword">and</span> j &gt;= <span class="number">0</span> <span class="keyword">and</span> j &lt; <span class="built_in">len</span>(grid[<span class="number">0</span>]):</span><br><span class="line">            land += grid[i][j]</span><br><span class="line">        <span class="keyword">return</span> land</span><br></pre></td></tr></table></figure>
+<h1 id="补充-Leetcode695-Max-Area-of-Island"><a href="#补充-Leetcode695-Max-Area-of-Island" class="headerlink" title="补充 - Leetcode695 - Max Area of Island"></a>补充 - Leetcode695 - Max Area of Island</h1><blockquote>
+<p>Given a non-empty 2D array <code>grid</code> of 0’s and 1’s, an <strong>island</strong> is a group of <code>1</code>‘s (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.</p>
+<p>Find the maximum area of an island in the given 2D array. (If there is no island, the maximum area is 0.)</p>
+</blockquote>
+<p>解题思路：</p>
+<ol>
+<li><p>DFS。寻找最大岛屿面积，遍历每一个点，然后从每一个点延伸开始寻找它周围的是1的点，遍历过的点改标记为0.</p>
+<p>之前有一个题，也是遍历每一个点，然后遍历的时候改为-1，之后遍历完又换回来。这种是 解跟解之间独立的，比如是某条路径（我实在找不到那道题了），还要换回来因为可能此路不通，我们还要走下一条路。但是这种求面积的，包括数岛屿个数的题，我们在换了标记之后表示我们已经count了这个grid[i][j]</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxAreaOfIsland</span>(<span class="params">self, grid</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type grid: List[List[int]]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        max_area = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(grid)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(grid[<span class="number">0</span>])):</span><br><span class="line">                max_area = <span class="built_in">max</span>(max_area, self.dfs(grid, i, j))</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> max_area</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span>(<span class="params">self, grid, i, j</span>):</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> i &lt; <span class="number">0</span> <span class="keyword">or</span> i &gt;= <span class="built_in">len</span>(grid) <span class="keyword">or</span> j &lt; <span class="number">0</span> <span class="keyword">or</span> j &gt;= <span class="built_in">len</span>(grid[<span class="number">0</span>]) <span class="keyword">or</span> grid[i][j] == <span class="number">0</span>: </span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        grid[i][j] = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> self.dfs(grid, i+<span class="number">1</span>, j) + self.dfs(grid, i<span class="number">-1</span>, j) + self.dfs(grid, i, j+<span class="number">1</span>) + self.dfs(grid, i, j<span class="number">-1</span>) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="0706-Leetcode66-Plus-One"><a href="#0706-Leetcode66-Plus-One" class="headerlink" title="0706 - Leetcode66 - Plus One"></a>0706 - Leetcode66 - Plus One</h1><blockquote>
+<p>Given a <strong>non-empty</strong> array of digits representing a non-negative integer, plus one to the integer.</p>
+<p>The digits are stored such that the most significant digit is at the head of the list, and each element in the array contain a single digit.</p>
+<p>You may assume the integer does not contain any leading zero, except the number 0 itself.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3]</span><br><span class="line">Output: [1,2,4]</span><br><span class="line">Explanation: The array represents the integer 123.</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>解题思路：</p>
+<ol>
+<li><p>硬做。这道题就是在问给出的list如果代表的是一个数字，那么这个数字加上1之后，得到的list会是什么样子。给出的例子都很简单，简直是迷惑人。因为有几种特殊的情况，一种是最后一位为9的时候，它加上1之后要进位的，另一种情况是最高位同样为9的时候，它加上一是要变多一位的。所以单纯对list里面的数字进行加1处理远远不够。 我一开始想的就是把给的list转化为数字，然后+1，然后再拆解成list。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plusOne</span>(<span class="params">self, digits</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type digits: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        num = <span class="number">0</span></span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(digits):</span><br><span class="line">            num = <span class="number">10</span>*num + digits[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        num = num+<span class="number">1</span>    </span><br><span class="line">        plus = []</span><br><span class="line">        <span class="keyword">while</span> num &gt; <span class="number">0</span>:</span><br><span class="line">            plus.append(num % <span class="number">10</span>)</span><br><span class="line">            num //= <span class="number">10</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> plus[::<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>recursion</p>
+<p>迭代去做考虑的因素就不需要分开考虑究竟最高位是不是9，那我们返回的值就是当我们所处的这一位是9的话，就把这个数字改换为0，然后对前面的数字进行+1处理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plusOne</span>(<span class="params">self, digits</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type digits: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(digits) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> [<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> digits[<span class="number">-1</span>] &lt; <span class="number">9</span>:</span><br><span class="line">            digits[<span class="number">-1</span>] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> digits        </span><br><span class="line">        <span class="keyword">elif</span> digits[<span class="number">-1</span>] == <span class="number">9</span>:         </span><br><span class="line">            <span class="keyword">return</span> self.plusOne(digits[:<span class="number">-1</span>]) + [<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="0705-Leetcode461-Hamming-Distance"><a href="#0705-Leetcode461-Hamming-Distance" class="headerlink" title="0705 - Leetcode461 - Hamming Distance"></a>0705 - Leetcode461 - Hamming Distance</h1><blockquote>
+<p>The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hamming_distance">Hamming distance</a> between two integers is the number of positions at which the corresponding bits are different.</p>
+<p>Given two integers <code>x</code> and <code>y</code>, calculate the Hamming distance.</p>
+<p><strong>Note:</strong><br>0 ≤ <code>x</code>, <code>y</code> &lt; 231.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: x = 1, y = 4</span><br><span class="line"></span><br><span class="line">Output: 2</span><br><span class="line"></span><br><span class="line">Explanation:</span><br><span class="line">1   (0 0 0 1)</span><br><span class="line">4   (0 1 0 0)</span><br><span class="line"><span class="code">       ↑   ↑</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>解题思路：</p>
+<p>我一开始是想着移位运算有没有取最后一位然后取异或的，但是没想起来该怎么写。于是就用了最原始的求数字二进制的方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hammingDistance</span>(<span class="params">self, x, y</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type x: int</span></span><br><span class="line"><span class="string">        :type y: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">if</span> x == <span class="number">0</span> <span class="keyword">and</span> y == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">                </span><br><span class="line">            count += (x%<span class="number">2</span>) ^ (y%<span class="number">2</span>)</span><br><span class="line">            </span><br><span class="line">            x = x // <span class="number">2</span></span><br><span class="line">            y = y // <span class="number">2</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+<p>后面查了一下确实有直接算二进制的：</p>
+<p><code>bin(x)</code> 可以返回x的二进制表示形式，但是返回的值是一个string</p>
+<p><code>int(x, 16)</code> 可以将16进制下的字符串类型x转化为一个十进制的int形式的数字</p>
+<h1 id="补充-Leetcode477-Total-Hamming-Distance"><a href="#补充-Leetcode477-Total-Hamming-Distance" class="headerlink" title="补充 - Leetcode477 - Total Hamming Distance"></a>补充 - Leetcode477 - Total Hamming Distance</h1><blockquote>
+<p>The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hamming_distance">Hamming distance</a> between two integers is the number of positions at which the corresponding bits are different.</p>
+<p>Now your job is to find the total Hamming distance between all pairs of the given numbers.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: 4, 14, 2</span><br><span class="line"></span><br><span class="line">Output: 6</span><br><span class="line"></span><br><span class="line">Explanation: In binary representation, the 4 is 0100, 14 is 1110, and 2 is 0010 (just</span><br><span class="line">showing the four bits relevant in this case). So the answer will be:</span><br><span class="line">HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 + 2 = 6.</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>解题思路：</p>
+<ol>
+<li><p>和上面一题不同，这道题如果每两对都要计算一下hamming distance再相加的话，就会造成很多重复的计算。所以我是直接想用数学方法写的，没有用到算法的技巧。</p>
+<p>假设我们的 list 中一共有 N 个数字，因为我们要求这些数字的二进制表示下的位数的差异，所以我们需要把这些数字都用0 1表示。那么对于这N个数字而言，拿出每两个数字然后逐位进行比较就相当于，对于每一位而言，我们把这N个0或1的数字拿出来，然后看看能有几个不一样。所以用到了排列组合的思想。</p>
+<p>对于每一位而言，N个数字一共会有个 $2 \choose N$ 种结果，$ {2 \choose N } = {N-2 \choose N} = (N-1)*N$， 而在这一位上面，我们只有两种选择，要么0 要么1，所以我们再利用一个count list来统计一下每一位1的个数<code>count[i]</code>。最后对于每一位而言，两两数字不同的可能性就有 ${2 \choose N} - {2 \choose count[i]} - {2 \choose N-count[i]}$.</p>
+<p>扫了一眼讨论区，哦，我好蠢，两两不同的可能性就是 $count[i] \times (N - count[i])$。大部分也是通过数学计算来解决这个问题的。</p>
+<p><strong>又学了一招 <code>&quot;&#123;0:b&#125;&quot;.format(num)</code> 可以把num转化为二进制字符串</strong></p>
+<p><code>print(&quot;bin: &#123;0:b&#125;, oct: &#123;0:o&#125;, hex: &#123;0:x&#125;&quot;.format(12))</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">totalHammingDistance</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">       <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">       :type nums: List[int]</span></span><br><span class="line"><span class="string">       :rtype: int</span></span><br><span class="line"><span class="string">       &quot;&quot;&quot;</span></span><br><span class="line">       count = [<span class="number">0</span>] * <span class="number">32</span></span><br><span class="line">       <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">           i = <span class="number">0</span></span><br><span class="line">           <span class="keyword">while</span> num != <span class="number">0</span>:</span><br><span class="line">               count[i] += num % <span class="number">2</span></span><br><span class="line">               num /= <span class="number">2</span></span><br><span class="line">               i += <span class="number">1</span>                </span><br><span class="line">       N = <span class="built_in">len</span>(nums)</span><br><span class="line">       total_ham = <span class="number">0</span></span><br><span class="line">               </span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(count)):            </span><br><span class="line">           <span class="keyword">if</span> count[i] &gt; <span class="number">0</span>:                </span><br><span class="line">               total_ham  += N * (N - <span class="number">1</span>)/<span class="number">2</span> - count[i]*(count[i]<span class="number">-1</span>)/<span class="number">2</span> - (N - count[i])*(N - count[i] - <span class="number">1</span>)/<span class="number">2</span></span><br><span class="line">               </span><br><span class="line">       <span class="keyword">return</span> total_ham</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="0704-Leetcode264-Ugly-Number-II"><a href="#0704-Leetcode264-Ugly-Number-II" class="headerlink" title="0704 - Leetcode264 - Ugly Number II"></a>0704 - Leetcode264 - Ugly Number II</h1><blockquote>
+<p>Write a program to find the <code>n</code>-th ugly number.</p>
+<p>Ugly numbers are <strong>positive numbers</strong> whose prime factors only include <code>2, 3, 5</code>. </p>
+<p><strong>Example:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 10</span><br><span class="line">Output: 12</span><br><span class="line">Explanation: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>解题思路：</p>
+<ol>
+<li><p>最小堆帮助排序：主要还是明确Ugly Number的定义吧，指的就是factor只有2，3，5的数字。那么就意味着我所有的数字只能是ugly number的乘积。所以就从1开始，之后所有的数字都是ugly number里面的数字 <em>2 </em>3 *5.</p>
+<p>一开始想用动态规划，但这里存在一个排序的问题，第一个数字乘 2 3 5和第二个数字乘2 3 5，哪个应该放在哪个后面。但后来想到用min heap这个结构，会把最小的放在上面，每次我们pop出来最小的数字放在我们的sorted ugly number lsit中，然后再把它乘以2 3 5的数字放进我们的min heap中，就行了。如果pop出来的数字已经在我们的sorted ugly number里面了，那我们就跳过这个数字。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nthUglyNumber</span>(<span class="params">self, n</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        sorted_ugly = []</span><br><span class="line">        heap = [<span class="number">1</span>]</span><br><span class="line">        heapq.heapify(heap)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">len</span>(sorted_ugly) &lt; n:            </span><br><span class="line">            next_ugly = heapq.heappop(heap)</span><br><span class="line">            <span class="keyword">if</span> next_ugly <span class="keyword">not</span> <span class="keyword">in</span> sorted_ugly:</span><br><span class="line">                sorted_ugly.append(next_ugly)</span><br><span class="line">                heapq.heappush(heap, next_ugly*<span class="number">2</span>)</span><br><span class="line">                heapq.heappush(heap, next_ugly*<span class="number">3</span>)</span><br><span class="line">                heapq.heappush(heap, next_ugly*<span class="number">5</span>)</span><br><span class="line">        <span class="keyword">return</span> sorted_ugly[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>动态规划</p>
+<p>把2 3 5需要乘的数字表示为指针，然后依次升高，进行排序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nthUglyNumber</span>(<span class="params">self, n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type n: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    dp = [<span class="number">1</span>]</span><br><span class="line">    pointer2 = <span class="number">0</span></span><br><span class="line">    pointer3 = <span class="number">0</span></span><br><span class="line">    pointer5 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(dp) &lt; n:</span><br><span class="line">        dp = dp + [<span class="built_in">min</span>(dp[pointer2]*<span class="number">2</span>, dp[pointer3]*<span class="number">3</span>, dp[pointer5]*<span class="number">5</span>)]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> dp[<span class="number">-1</span>] == dp[pointer2]*<span class="number">2</span>:</span><br><span class="line">            pointer2 += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> dp[<span class="number">-1</span>] == dp[pointer3]*<span class="number">3</span>:</span><br><span class="line">            pointer3 += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> dp[<span class="number">-1</span>] == dp[pointer5]*<span class="number">5</span>:</span><br><span class="line">            pointer5 += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="补充-Leetcode263-Ugly-Number"><a href="#补充-Leetcode263-Ugly-Number" class="headerlink" title="补充 - Leetcode263 - Ugly Number"></a>补充 - Leetcode263 - Ugly Number</h1><blockquote>
+<p>Write a program to check whether a given number is an ugly number.</p>
+<p>Ugly numbers are <strong>positive numbers</strong> whose prime factors only include <code>2, 3, 5</code>.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: 6</span><br><span class="line">Output: true</span><br><span class="line">Explanation: 6 = 2 × 3</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>解题思路：</p>
+<p>更直接一点，只用循环除以2 3 5 就可以了。注意小于0的数字和 =0 的数字</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isUgly</span>(<span class="params">self, num</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type num: int</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> num == <span class="number">1</span>: <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> num == <span class="number">0</span>: <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">        <span class="keyword">while</span> num != <span class="number">1</span>:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">                num = num //<span class="number">2</span></span><br><span class="line">            <span class="keyword">elif</span> num%<span class="number">3</span> == <span class="number">0</span>:</span><br><span class="line">                num = num//<span class="number">3</span></span><br><span class="line">            <span class="keyword">elif</span> num%<span class="number">5</span> == <span class="number">0</span>:</span><br><span class="line">                num = num//<span class="number">5</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<h1 id="0703-Leetcode957-Prison-Cells-After-N-days"><a href="#0703-Leetcode957-Prison-Cells-After-N-days" class="headerlink" title="0703 - Leetcode957 - Prison Cells After N days"></a>0703 - Leetcode957 - Prison Cells After N days</h1><blockquote>
+<p>There are 8 prison cells in a row, and each cell is either occupied or vacant.</p>
+<p>Each day, whether the cell is occupied or vacant changes according to the following rules:</p>
+<ul>
+<li>If a cell has two adjacent neighbors that are both occupied or both vacant, then the cell becomes occupied.</li>
+<li>Otherwise, it becomes vacant.</li>
+</ul>
+<p>(Note that because the prison is a row, the first and the last cells in the row can’t have two adjacent neighbors.)</p>
+<p>We describe the current state of the prison in the following way: <code>cells[i] == 1</code> if the <code>i</code>-th cell is occupied, else <code>cells[i] == 0</code>.</p>
+<p>Given the initial state of the prison, return the state of the prison after <code>N</code> days (and <code>N</code> such changes described above.)</p>
+</blockquote>
+<p>解题思路：</p>
+<ol>
+<li><p>规律总结，我是总结规律来的。因为如果写一个方程然后运行N次感觉时间复杂度会比较高。总结规律之后，14变换为一轮回，然后求余数就可以了。但是这个应该是有更底层的解释，为什么14个一个轮回。还有看到的规律是，几次之后，后面的模式和前面相比是前半部分和后半部分调换了位置。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Time: O(1), Space: O(1)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">prisonAfterNDays</span>(<span class="params">self, cells, N</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type cells: List[int]</span></span><br><span class="line"><span class="string">        :type N: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> N == <span class="number">0</span>: <span class="keyword">return</span> cells</span><br><span class="line">        temp = [<span class="number">0</span>]*<span class="number">8</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(cells) - <span class="number">1</span>):                </span><br><span class="line">                temp[i] = <span class="number">1</span> - cells[i<span class="number">-1</span>] ^ cells[i+<span class="number">1</span>]</span><br><span class="line">                </span><br><span class="line">        cells = temp</span><br><span class="line">        </span><br><span class="line">        re = (N - <span class="number">1</span>) % <span class="number">14</span></span><br><span class="line">        <span class="keyword">while</span> re &gt; <span class="number">0</span>:</span><br><span class="line">            temp = [<span class="number">0</span>]*<span class="number">8</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(cells) - <span class="number">1</span>):                </span><br><span class="line">                temp[i] = <span class="number">1</span> - cells[i<span class="number">-1</span>] ^ cells[i+<span class="number">1</span>]               </span><br><span class="line">            cells[<span class="number">1</span>:<span class="number">8</span>] = temp[<span class="number">1</span>:<span class="number">8</span>]            </span><br><span class="line">            re -= <span class="number">1</span>           </span><br><span class="line">        <span class="keyword">return</span> cells</span><br><span class="line">     </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>常规做法：将pattern保存在dictionary中，然后看几个一循环。（因为有的时候可能循环周期不同</p>
+<p>需要注意的是保存在字典里的数字是我们接下来要找的余数，余数是从 0 到 T-1（T为周期），所以N在计算的时候需要做-1.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Time: O(1) Space: O(1)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">prisonAfterNDays</span>(<span class="params">self, cells, N</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type cells: List[int]</span></span><br><span class="line"><span class="string">        :type N: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        pattern_dict = &#123;&#125;</span><br><span class="line">        <span class="comment"># cells = self.nextPattern(cells)</span></span><br><span class="line">        n = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            n += <span class="number">1</span></span><br><span class="line">            cells = self.nextPattern(cells)</span><br><span class="line">            <span class="keyword">if</span> cells <span class="keyword">in</span> pattern_dict.values():</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                pattern_dict[n<span class="number">-1</span>] = cells    </span><br><span class="line">        T = n - <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> pattern_dict[(N<span class="number">-1</span>) % T]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="0702-Leetcode107-Binary-Tree-Level-Order-Traversal-II-（104同理）"><a href="#0702-Leetcode107-Binary-Tree-Level-Order-Traversal-II-（104同理）" class="headerlink" title="0702 - Leetcode107 - Binary Tree Level Order Traversal II （104同理）"></a>0702 - Leetcode107 - Binary Tree Level Order Traversal II （104同理）</h1><blockquote>
+<p>Given a binary tree, return the <em>bottom-up level order</em> traversal of its nodes’ values. (ie, from left to right, level by level from leaf to root).</p>
+<p>For example:<br>Given binary tree <code>[3,9,20,null,null,15,7]</code>,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> &#x2F; \</span><br><span class="line">9  20</span><br><span class="line">  &#x2F;  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
+<p>return its bottom-up level order traversal as:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [15,7],</span><br><span class="line">  [9,20],</span><br><span class="line">  [3]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>解题思路:</p>
+<p>普通的BFS每层拿出，遍历，再将每层的left right放入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">levelOrderBottom</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span> []</span><br><span class="line">        </span><br><span class="line">        queue = [root]</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">len</span>(queue) &gt; <span class="number">0</span>:</span><br><span class="line">            nodes = []</span><br><span class="line">            <span class="keyword">while</span> <span class="built_in">len</span>(queue) &gt; <span class="number">0</span>:</span><br><span class="line">                nodes.append(queue.pop(<span class="number">0</span>))</span><br><span class="line">            <span class="comment"># print(nodes)</span></span><br><span class="line">            tmp = [n.val <span class="keyword">for</span> n <span class="keyword">in</span> nodes]</span><br><span class="line">            ans.append(tmp)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> n <span class="keyword">in</span> nodes:</span><br><span class="line">                <span class="keyword">if</span> n.left:</span><br><span class="line">                    queue.append(n.left)</span><br><span class="line">                <span class="keyword">if</span> n.right:  </span><br><span class="line">                    queue.append(n.right)</span><br><span class="line">        <span class="keyword">return</span> ans[::<span class="number">-1</span>]</span><br><span class="line">            </span><br></pre></td></tr></table></figure>
+<p>上述如果返回的是 <code>ans</code> 那就是不bottom up的 level traverse 遍历二叉树</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 学到了deque 读（deck）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line">deque.pop()</span><br><span class="line">deque.popleft() <span class="comment"># 和append组合相当于queue的FIFO</span></span><br></pre></td></tr></table></figure>
+<h1 id="0701-Leetcode441-Arranging-coins"><a href="#0701-Leetcode441-Arranging-coins" class="headerlink" title="0701 - Leetcode441 - Arranging coins"></a>0701 - Leetcode441 - Arranging coins</h1><blockquote>
+<p>You have a total of <em>n</em> coins that you want to form in a staircase shape, where every <em>k</em>-th row must have exactly <em>k</em> coins.</p>
+<p>Given <em>n</em>, find the total number of <strong>full</strong> staircase rows that can be formed.</p>
+<p><em>n</em> is a non-negative integer and fits within the range of a 32-bit signed integer.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">n = 5</span><br><span class="line"></span><br><span class="line">The coins can form the following rows:</span><br><span class="line">¤</span><br><span class="line">¤ ¤</span><br><span class="line">¤ ¤</span><br><span class="line"></span><br><span class="line">Because the 3rd row is incomplete, we return 2.</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>解题思路：</p>
+<ol>
+<li><p>看到这道题首先想到的是斐波那契数列，因而想到了用动态规划来写。这道题不是斐波那切数列啊！就是看到这个排列想到了。如果用动态规划写的话：</p>
+<ul>
+<li>dp[i] 表示的就是当第i行排满之后，总共需要几个coin</li>
+<li>状态转移方程 dp[i] = dp[i-1] + i</li>
+<li>实质上也是等差数列求和：求一个 <code>int(k)</code> 使得 $\frac{k(k+1)}{2} &lt;= n$， 得出的解是 $k = \frac{-1+\sqrt{1+8n}}{2} = \sqrt{2n + 0.25} - 0.5$</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Time: O(sqrt(n)) Space: O(sqrt(n))</span></span><br><span class="line"><span class="comment"># 这样写会TLE</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">arrangeCoins</span>(<span class="params">self, n</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        dp = []</span><br><span class="line">        dp = dp+[<span class="number">0</span>]</span><br><span class="line">        count = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> n &gt;= dp[<span class="number">-1</span>]:</span><br><span class="line">            dp = dp + [count + dp[<span class="number">-1</span>]]</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> count - <span class="number">2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>写的时候直接用n减去每次的循环序号（i.e. 第一次减去1，第二次减去2）当n小于0的时候就跳出循环，返回循环的次数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Time: O(sqrt(n))(?是这样吗) Space: O(1)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">arrangeCoins</span>(<span class="params">self, n</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n &lt;= <span class="number">2</span>: <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> n &gt;= <span class="number">0</span>:</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">            n -= count</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> count - <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>看了别人写的之后还有Binary Search. 二叉树的时候更新左右两个端点总是会忽略的一个问题是，如果你要保左端点，那在算中值的时候需要+1，这样才能保证不陷入死循环。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">arrangeCoins</span>(<span class="params">self, n</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        right = n</span><br><span class="line">        <span class="keyword">while</span> left &lt; right:</span><br><span class="line">            <span class="comment"># print(left, right)</span></span><br><span class="line">            mid = (left + right + <span class="number">1</span>)/<span class="number">2</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> mid*(mid+<span class="number">1</span>)/<span class="number">2</span> &lt; n: </span><br><span class="line">                left = mid </span><br><span class="line">            <span class="keyword">if</span> mid*(mid+<span class="number">1</span>)/<span class="number">2</span> &gt; n: </span><br><span class="line">                right = mid - <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> mid*(mid+<span class="number">1</span>)/<span class="number">2</span> == n: </span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> left </span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/06/24/Algorithm-Binary-Tree/" rel="prev" title="Algorithm | Binary Tree">
+                  <i class="fa fa-chevron-left"></i> Algorithm | Binary Tree
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/07/03/Algorithm-Binary-Heap/" rel="next" title="Algorithm | Binary Heap">
+                  Algorithm | Binary Heap <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

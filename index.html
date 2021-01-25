@@ -151,14 +151,14 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Chenxi</p>
+  <p class="site-author-name" itemprop="name">Author</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -169,7 +169,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">52</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -204,11 +204,11 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/17/test/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/24/Mac-brew-vscode-opencv/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="">
     </span>
 
@@ -221,7 +221,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/10/17/test/" class="post-title-link" itemprop="url">test</a>
+            <a href="/2021/01/24/Mac-brew-vscode-opencv/" class="post-title-link" itemprop="url">Mac使用brew在vscode下安装并配置【opencv】【g2o】【sophus】</a>
         </h2>
 
         <div class="post-meta-container">
@@ -232,7 +232,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2020-10-17 17:12:07" itemprop="dateCreated datePublished" datetime="2020-10-17T17:12:07-04:00">2020-10-17</time>
+      <time title="Created: 2021-01-24 22:31:53" itemprop="dateCreated datePublished" datetime="2021-01-24T22:31:53+08:00">2021-01-24</time>
     </span>
 
   
@@ -245,7 +245,83 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <p>环境： Mac os linux</p>
+<p>编译器：vscode</p>
+<p>管理包：brew</p>
+<p>安装包：</p>
+<ul>
+<li>opencv</li>
+<li>eigen</li>
+<li>g2o</li>
+<li>sophus</li>
+</ul>
+<p>主要步骤</p>
+<ol>
+<li><p>opencv</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">brew search opencv <span class="comment">#可以搜索brew可以安装的opencv的version</span></span><br><span class="line"></span><br><span class="line">brew install opencv@2 <span class="comment">#选择要安装的opencv</span></span><br><span class="line"></span><br><span class="line">brew info opencv <span class="comment">#检查安装结果，若某个依赖包的后面没有✅，可以直接brew install安装这个包</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>安装完成之后会出现以下的提示，记得需要分别执行，这样可以把opencv的头文件和lib放到相应的位置以便随后配置</p>
+<blockquote>
+<p>If you need to have opencv@2 first in your PATH run:<br> echo ‘export PATH=”/usr/local/opt/opencv@2/bin:$PATH”‘ &gt;&gt; ~/.zshrc</p>
+<p>For compilers to find opencv@2 you may need to set:<br> export LDFLAGS=”-L/usr/local/opt/opencv@2/lib”<br> export CPPFLAGS=”-I/usr/local/opt/opencv@2/include”</p>
+<p>For pkg-config to find opencv@2 you may need to set:<br> export PKG_CONFIG_PATH=”/usr/local/opt/opencv@2/lib/pkgconfig”</p>
+</blockquote>
+</li>
+<li><p>opencv@2 和 opencv@3有一些包有区别，所以有时候编译找不到其中一个包可以看一下版本是否有误</p>
+</li>
+</ul>
+<p>这样安装好的opencv的include的内容是在 <code>/usr/local/opt/opencv@2/include</code></p>
+<p>而link library是在当前文件夹 <code>/usr/local/opt/opencv@2/lib</code>    </p>
+</li>
+<li><p>eigen</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install eigen</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这样安装好的opencv的include的内容是在 <code>/usr/local/opt/eigen/include</code></p>
+<p>而link library是在当前文件夹 <code>/usr/local/opt/eigen/lib</code>    </p>
+</li>
+<li><p>Sophus</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/strasdat/Sophus">https://github.com/strasdat/Sophus</a></p>
+<p>Sophus 是 应用在二维和三维问题中的李群方法的一个包，可以直接git clone下载然后按照网页提示步骤安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/strasdat/Sophus.git <span class="comment">#下载包到本地</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> Sophus <span class="comment">#打开文件夹</span></span><br><span class="line"></span><br><span class="line">mkdir build <span class="comment">#创建build文件夹用于存放makefile</span></span><br><span class="line"></span><br><span class="line">cmake .. <span class="comment">#cmake上级的 cmakelist.txt</span></span><br><span class="line"></span><br><span class="line">make <span class="comment">#运行上一步在build文件夹中生成的makefile</span></span><br><span class="line"></span><br><span class="line">sudo install make <span class="comment">#在 /usr/local/include 中安装sophus的头文件之类的文件</span></span><br></pre></td></tr></table></figure>
+<p>这样安装好的sophus的include的内容是在 <code>/usr/local/include/sophus</code></p>
+<p>而link library是在当前文件夹 <code>../sophus</code>    (就一个lib文件)</p>
+<ul>
+<li><p>在  <code>cmake ..</code> 这一步下，可能会出现以下错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;Users&#x2F;wangcaimeng&#x2F;Sophus&#x2F;sophus&#x2F;so2.cpp:32:24: error: expression is not assignable unit_complex_.real() &#x3D; 1.;</span><br><span class="line">&#x2F;Users&#x2F;wangcaimeng&#x2F;Sophus&#x2F;sophus&#x2F;so2.cpp:33:24: error: expression is not    assignable unit_complex_.imag() &#x3D; 0.; </span><br><span class="line">~~~~~~~~~~~~~~~~~~~~ ^ 2 errors generated. make[2]: *** [CMakeFiles&#x2F;Sophus.dir&#x2F;sophus&#x2F;so2.cpp.o] Error 1 make[1]: *** [CMakeFiles&#x2F;Sophus.dir&#x2F;all] Error 2 make: *** [all] Error 2</span><br></pre></td></tr></table></figure>
+<p>解决方案是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">将 so2.cpp 文件的32和33行改为：</span><br><span class="line"></span><br><span class="line">unit_complex_.real(1.);</span><br><span class="line">unit_complex_.imag(0.);</span><br><span class="line">参考自：https:&#x2F;&#x2F;github.com&#x2F;gaoxiang12&#x2F;slambook&#x2F;issues&#x2F;56#issuecomment-334946067</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>g2o</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/RainerKuemmerle/g2o">https://github.com/RainerKuemmerle/g2o</a></p>
+<p>g2o是brewsci中的一个用于非线性优化的包，在官方git的readme.md文件中，提及到macos系统可以直接用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install brewsci&#x2F;science&#x2F;g2o</span><br></pre></td></tr></table></figure>
+<p>来安装相关的包，但是我在安装的的过程中会涉及到 <code>Cannot tap brewsci/science</code> 的报错信息，这个问题没有查到明确的解法，所以就按照 sophus相同的办法安装了g2o。在官方的g2o文件的<strong>Compilation</strong> 部分也有具体提到安装的步骤：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/RainerKuemmerle/g2o.git</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> g2o</span><br><span class="line"></span><br><span class="line">mkdir build</span><br><span class="line"></span><br><span class="line">cmake ..</span><br><span class="line"></span><br><span class="line">make</span><br><span class="line"></span><br><span class="line">sudo install make <span class="comment">#在 /usr/local/include 中安装g2o的头文件之类的文件</span></span><br></pre></td></tr></table></figure>
+<p>这样安装好的g2o的include的内容是在 <code>/usr/local/include/g2o</code></p>
+<p>而link library是在当前文件夹 <code>../g2o/lib</code>    </p>
+</li>
+</ol>
+<p><strong>由此可得，基于brew install 安装的包都比较统一地把include文件和lib文件放在 <code>/usr/local/opt/opencv@2/include</code> 和 <code>/usr/local/opt/opencv@2/lib</code>中，但是直接从git下载并且需要cmake的包需要自行确定include和lib文件夹在哪里。</strong></p>
+<p>如果在安装过后都使用了    <code>sudo install make</code> 那么include的包会被安装在 <code>/usr/local/include/</code> 下</p>
+<h1 id="vscode-配置"><a href="#vscode-配置" class="headerlink" title="vscode 配置"></a>vscode 配置</h1><p>vscode的配置文件又四个，分别是: <strong>launch.json, tasks.json, settngs.json, c_cpp_properties.json</strong></p>
+<ol>
+<li><p>lauch.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Use IntelliSense to learn about possible attributes.</span><br><span class="line">    &#x2F;&#x2F; Hover to view descriptions of existing attributes.</span><br><span class="line">    &#x2F;&#x2F; For more information, visit: https:&#x2F;&#x2F;go.microsoft.com&#x2F;fwlink&#x2F;?linkid&#x3D;830387</span><br><span class="line">    &quot;version&quot;: &quot;0.2.0&quot;,</span><br><span class="line">    &quot;configurations&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;(lldb) Launch&quot;,</span><br><span class="line">            &quot;type&quot;: &quot;cppdbg&quot;,</span><br><span class="line">            &quot;request&quot;: &quot;launch&quot;,</span><br><span class="line">            &quot;program&quot;: &quot;$&#123;fileDirname&#125;&#x2F;a.out&quot;,</span><br><span class="line">            &quot;args&quot;: [],</span><br><span class="line">            &quot;stopAtEntry&quot;: true,</span><br><span class="line">            &quot;cwd&quot;: &quot;$&#123;workspaceFolder&#125;&quot;,</span><br><span class="line">            &quot;environment&quot;: [],</span><br><span class="line">            &quot;externalConsole&quot;: false,</span><br><span class="line">            &quot;MIMode&quot;: &quot;lldb&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>settings.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;settings.json</span><br><span class="line">&#123;</span><br><span class="line">    &quot;python.pythonPath&quot;: &quot;usr&#x2F;bin&#x2F;python&quot;,</span><br><span class="line">    &quot;code-runner.executorMap&quot;: &#123;</span><br><span class="line">        &quot;c&quot;: &quot;cd $dir &amp;&amp; make  &amp;&amp; .&#x2F;$fileNameWithoutExt &amp;&amp; make clean&quot;,</span><br><span class="line">        &quot;cpp&quot;: &quot;cd $dir &amp;&amp; make  &amp;&amp; .&#x2F;$fileNameWithoutExt &amp;&amp; make clean&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;editor.renderWhitespace&quot;: &quot;all&quot;,</span><br><span class="line">    &quot;editor.renderLineHighlight&quot;: &quot;all&quot;,</span><br><span class="line">    &quot;editor.formatOnSave&quot;: true,</span><br><span class="line">    &quot;code-runner.runInTerminal&quot;: true,</span><br><span class="line">    &quot;code-runner.ignoreSelection&quot;: true,</span><br><span class="line">    &quot;code-runner.enableAppInsights&quot;: false,</span><br><span class="line">    &quot;C_Cpp.updateChannel&quot;: &quot;Insiders&quot;,</span><br><span class="line">    &quot;[makefile]&quot;: &#123;</span><br><span class="line">        &quot;editor.insertSpaces&quot;: true</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;C_Cpp.default.includePath&quot;: [</span><br><span class="line">        &quot;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;opencv@2&#x2F;2.4.13.7_11&#x2F;include&quot;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>tasks.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;tasks&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;type&quot;: &quot;shell&quot;,</span><br><span class="line">            &quot;label&quot;: &quot;Build&quot;,</span><br><span class="line">            &quot;command&quot;: &quot;g++&quot;,</span><br><span class="line">            &quot;args&quot;: [</span><br><span class="line">                &#x2F;&#x2F;&quot;main.cpp&quot;,</span><br><span class="line">                &quot;$&#123;file&#125;&quot;,</span><br><span class="line">                &quot;-o&quot;,</span><br><span class="line">                &quot;$&#123;fileDirname&#125;&#x2F;$&#123;fileBasenameNoExtension&#125;.out&quot;,</span><br><span class="line">                &quot;-I&quot;,</span><br><span class="line">                &quot;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;opencv@2&#x2F;2.4.13.7_11&#x2F;include&#x2F;opencv&quot;,</span><br><span class="line">                &quot;-I&quot;,</span><br><span class="line">                &quot;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;opencv@2&#x2F;2.4.13.7_11&#x2F;include&quot;,</span><br><span class="line">                &quot;-L&quot;,</span><br><span class="line">                &quot;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;opencv@2&#x2F;2.4.13.7_11&#x2F;lib&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_stitching&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_superres&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_videostab&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_aruco&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_bgsegm&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_bioinspired&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_ccalib&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_dnn_objdetect&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_dpm&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_face&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_fuzzy&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_hfs&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_img_hash&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_line_descriptor&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_optflow&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_reg&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_rgbd&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_saliency&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_stereo&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_structured_light&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_phase_unwrapping&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_surface_matching&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_tracking&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_datasets&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_dnn&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_plot&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_xfeatures2d&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_shape&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_video&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_ml&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_ximgproc&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_xobjdetect&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_objdetect&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_calib3d&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_features2d&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_highgui&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_videoio&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_imgcodecs&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_flann&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_xphoto&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_photo&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_imgproc&quot;,</span><br><span class="line">                &quot;-l&quot;,</span><br><span class="line">                &quot;opencv_core&quot;,</span><br><span class="line">                &quot;-g&quot;</span><br><span class="line"></span><br><span class="line">            ],</span><br><span class="line">            </span><br><span class="line">            &quot;group&quot;: &#123;</span><br><span class="line">                &quot;kind&quot;: &quot;build&quot;,</span><br><span class="line">                &quot;isDefault&quot;: true</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;problemMatcher&quot;: [</span><br><span class="line">                &quot;$gcc&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;version&quot;: &quot;2.0.0&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>c_cpp_properties.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;configurations&quot;: [</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;name&quot;: &quot;Mac&quot;,</span><br><span class="line">            &quot;includePath&quot;: [</span><br><span class="line">                &quot;$&#123;workspaceFolder&#125;&#x2F;**&quot;,</span><br><span class="line">                &quot;&#x2F;usr&#x2F;local&#x2F;opt&#x2F;opencv@2&#x2F;include&quot;,</span><br><span class="line">                &quot;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;opencv@2&#x2F;2.4.13.7_11&#x2F;include&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;defines&quot;: [],</span><br><span class="line">            &quot;macFrameworkPath&quot;: [],</span><br><span class="line">            &quot;compilerPath&quot;: &quot;&#x2F;usr&#x2F;bin&#x2F;g++&quot;,</span><br><span class="line">            &quot;cStandard&quot;: &quot;c11&quot;,</span><br><span class="line">            &quot;cppStandard&quot;: &quot;c++11&quot;,</span><br><span class="line">            &quot;intelliSenseMode&quot;: &quot;clang-x64&quot;,</span><br><span class="line">            &quot;browse&quot;: &#123;</span><br><span class="line">                &quot;path&quot;: [</span><br><span class="line">                    &quot;&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;opencv@2&#x2F;2.4.13.7_11&#x2F;include&quot;</span><br><span class="line">                ],</span><br><span class="line">                &quot;limitSymbolsToIncludedHeaders&quot;: true,</span><br><span class="line">                &quot;databaseFilename&quot;: &quot;&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    &quot;version&quot;: 4</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="cmakelist-配置"><a href="#cmakelist-配置" class="headerlink" title="cmakelist 配置"></a>cmakelist 配置</h1><p>cmake中主要配置的是 <strong>INCLUDE_DIRECTORIES , link_directoryies</strong></p>
+<p>注意着两部分的路径药分别和之前安装的不同的包的路径相匹配，这样就可以运行cmake进行编译了</p>
+
       
     </div>
 
@@ -266,11 +342,11 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/24/Paper-Reading-Deep-Residual-Learning-for-Image-Recognition/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/14/C-wk1-write-a-c-program/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="">
     </span>
 
@@ -283,7 +359,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/24/Paper-Reading-Deep-Residual-Learning-for-Image-Recognition/" class="post-title-link" itemprop="url">Paper Reading | Deep Residual Learning for Image Recognition</a>
+            <a href="/2020/12/14/C-wk1-write-a-c-program/" class="post-title-link" itemprop="url">C++ | wk1 write a c++ program</a>
         </h2>
 
         <div class="post-meta-container">
@@ -294,7 +370,170 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2020-07-24 12:18:53" itemprop="dateCreated datePublished" datetime="2020-07-24T12:18:53-04:00">2020-07-24</time>
+      <time title="Created: 2020-12-14 19:55:12" itemprop="dateCreated datePublished" datetime="2020-12-14T19:55:12+08:00">2020-12-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="WK-1-Orientation-Write-a-c-program"><a href="#WK-1-Orientation-Write-a-c-program" class="headerlink" title="WK 1 | Orientation - Write a c++program"></a>WK 1 | Orientation - Write a c++program</h2><h1 id="WK-2-Understanding-the-C-memory"><a href="#WK-2-Understanding-the-C-memory" class="headerlink" title="WK 2 | Understanding the C++ memory"></a>WK 2 | Understanding the C++ memory</h1><h2 id="stack-memory"><a href="#stack-memory" class="headerlink" title="stack memory"></a>stack memory</h2><p>普通声明变量的时候占用的是stack memory</p>
+<p>顺序是从位置最高的地方开始存，按顺序依次减小</p>
+<h2 id="heap-memory"><a href="#heap-memory" class="headerlink" title="heap memory"></a>heap memory</h2><p>需要用关键字new来进行生命</p>
+<p>顺序是从最低的位置开始从，按顺序依次增高</p>
+<p>没有东西存的时候位置是空</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/27/PaddlePaddle-%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/27/PaddlePaddle-%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/" class="post-title-link" itemprop="url">PaddlePaddle|图像分割</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-10-27 15:40:08" itemprop="dateCreated datePublished" datetime="2020-10-27T15:40:08+08:00">2020-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h2 id="pdb-python-自带调试器"><a href="#pdb-python-自带调试器" class="headerlink" title="pdb - python 自带调试器"></a>pdb - python 自带调试器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pdb</span><br><span class="line">pdb.set_tract() <span class="comment">#添加断点</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#运行之后会出现 （pdb）然后输入值</span></span><br><span class="line">运行下一行 - n</span><br><span class="line">打印 - p 变量名<span class="number">1</span> 变量名<span class="number">2</span></span><br><span class="line">退出调试 - q</span><br><span class="line">添加动态断点 - b 添加断点行数 ex. b <span class="number">23</span></span><br></pre></td></tr></table></figure>
+<h1 id="Paddle-Paddle"><a href="#Paddle-Paddle" class="headerlink" title="Paddle Paddle"></a>Paddle Paddle</h1><h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> paddle.fluid</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义两个constant张量</span></span><br><span class="line">x1 = fluid.layers.fill_constant(shape=[<span class="number">2</span>, <span class="number">2</span>], value=<span class="number">1</span>, dtype=<span class="string">&#x27;int64&#x27;</span>)</span><br><span class="line">x2 = fluid.layers.fill_constant(shape=[<span class="number">2</span>, <span class="number">2</span>], value=<span class="number">1</span>, dtype=<span class="string">&#x27;int64&#x27;</span>)</span><br><span class="line"><span class="comment"># 将两个张量求和</span></span><br><span class="line">y1 = fluid.layers.<span class="built_in">sum</span>(x=[x1, x2])</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义两层的place holder为张量变量 variable name / tensor name</span></span><br><span class="line">a = fluid.layers.create_tensor(dtype=<span class="string">&#x27;int64&#x27;</span>, name=<span class="string">&#x27;c&#x27;</span>)</span><br><span class="line">b = fluid.layers.create_tensor(dtype=<span class="string">&#x27;int64&#x27;</span>, name=<span class="string">&#x27;d&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义y为两层之和</span></span><br><span class="line">y = fluid.layers.<span class="built_in">sum</span>(x=[a, b])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个使用CPU的解释器</span></span><br><span class="line">place = fluid.CPUPlace()</span><br><span class="line">exe = fluid.executor.Executor(place)</span><br><span class="line"><span class="comment"># 进行参数初始化</span></span><br><span class="line">exe.run(fluid.default_startup_program())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个使用CPU的解释器</span></span><br><span class="line">place = fluid.CPUPlace()</span><br><span class="line">exe = fluid.executor.Executor(place)</span><br><span class="line"><span class="comment"># 进行参数初始化</span></span><br><span class="line">exe.run(fluid.default_startup_program())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义两个要计算的变量</span></span><br><span class="line">a1 = np.array([<span class="number">3</span>, <span class="number">2</span>]).astype(<span class="string">&#x27;int64&#x27;</span>)</span><br><span class="line">b1 = np.array([<span class="number">1</span>, <span class="number">1</span>]).astype(<span class="string">&#x27;int64&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行运算，并把y的结果输出</span></span><br><span class="line"><span class="comment"># feed进去的需要标明是 层名字：变量名</span></span><br><span class="line"><span class="comment"># fetch list是层的variable name</span></span><br><span class="line">out_a, out_b, result = exe.run(program=fluid.default_main_program(),</span><br><span class="line">                               feed=&#123;<span class="string">&#x27;c&#x27;</span>: a1, <span class="string">&#x27;d&#x27;</span>: b1&#125;,</span><br><span class="line">                               fetch_list=[a, b, y])</span><br><span class="line">print(out_a, <span class="string">&quot; + &quot;</span>, out_b,<span class="string">&quot; = &quot;</span>, result)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="定义简单网络"><a href="#定义简单网络" class="headerlink" title="定义简单网络"></a>定义简单网络</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> paddle.fluid <span class="keyword">as</span> fluid</span><br><span class="line"><span class="keyword">import</span> paddle </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">BUF_SIZE = <span class="number">500</span></span><br><span class="line">BATCH_SIZE = <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># preapare data</span></span><br><span class="line">trainer_reader = paddle.batch(paddle.reader.shuffle(paddle.uci.housing.train()), buf_size=BUF_SIZE)</span><br><span class="line">test_reader = paddle.batch(paddle.reader.shuffle(paddle.uci.housing.test()), buf_size=BUF_SIZE)</span><br><span class="line"></span><br><span class="line"><span class="comment"># build net</span></span><br><span class="line">x = fluid.layers.data(name=<span class="string">&#x27;x&#x27;</span>, shape=[<span class="number">13</span>], dtype=<span class="string">&#x27;float32&#x27;</span>)</span><br><span class="line">y_predict=fluid.layers.fc(<span class="built_in">input</span>=x,size=<span class="number">1</span>,act=<span class="literal">None</span>) <span class="comment">#定义一个简单的线性网络,连接输入和输出的全连接层</span></span><br><span class="line"></span><br><span class="line">y = fluid.layers.data(name=<span class="string">&#x27;y&#x27;</span>, shape=[<span class="number">1</span>], dtype=<span class="string">&#x27;float32&#x27;</span>) <span class="comment">#定义张量y,表示目标值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># define cost function</span></span><br><span class="line">cost = fluid.layers.square_error_cost(<span class="built_in">input</span>=y_predict, label=y) <span class="comment">#求一个batch的损失值</span></span><br><span class="line">avg_cost = fluid.layers.mean(cost)                              <span class="comment">#对损失值求平均值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># define optimization function</span></span><br><span class="line">optimizer = fluid.optimizer.SGDOptimizer(learning_rate=<span class="number">0.001</span>)</span><br><span class="line">opts = optimizer.minimize(avg_cost)</span><br><span class="line">test_program = fluid.default_main_program().clone(for_test=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># model training</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># build exector</span></span><br><span class="line">use_cuda = <span class="literal">False</span>                         <span class="comment">#use_cuda为False,表示运算场所为CPU;use_cuda为True,表示运算场所为GPU           </span></span><br><span class="line">place = fluid.CUDAPlace(<span class="number">0</span>) <span class="keyword">if</span> use_cuda <span class="keyword">else</span> fluid.CPUPlace()</span><br><span class="line">exe = fluid.Executor(place)              <span class="comment">#创建一个Executor实例exe</span></span><br><span class="line">exe.run(fluid.default_startup_program()) <span class="comment">#Executor的run()方法执行startup_program(),进行参数初始化</span></span><br><span class="line"></span><br><span class="line">feeder = fluid.DataFeeder(place=place, feed_list=[x, y])<span class="comment">#feed_list:向模型输入的变量表或变量表名</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">iter</span>=<span class="number">0</span>;</span><br><span class="line">iters=[]</span><br><span class="line">train_costs=[]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw_train_process</span>(<span class="params">iters,train_costs</span>):</span></span><br><span class="line">    title=<span class="string">&quot;training cost&quot;</span></span><br><span class="line">    plt.title(title, fontsize=<span class="number">24</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&quot;iter&quot;</span>, fontsize=<span class="number">14</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&quot;cost&quot;</span>, fontsize=<span class="number">14</span>)</span><br><span class="line">    plt.plot(iters, train_costs,color=<span class="string">&#x27;red&#x27;</span>,label=<span class="string">&#x27;training cost&#x27;</span>) </span><br><span class="line">    plt.grid()</span><br><span class="line">    plt.show()</span><br><span class="line">    </span><br><span class="line"><span class="comment"># save model </span></span><br><span class="line">EPOCH_NUM=<span class="number">50</span></span><br><span class="line">model_save_dir = <span class="string">&quot;/home/aistudio/work/fit_a_line.inference.model&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> pass_id <span class="keyword">in</span> <span class="built_in">range</span>(EPOCH_NUM):                                  <span class="comment">#训练EPOCH_NUM轮</span></span><br><span class="line">    <span class="comment"># 开始训练并输出最后一个batch的损失值</span></span><br><span class="line">    train_cost = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> batch_id, data <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_reader()):              <span class="comment">#遍历train_reader迭代器</span></span><br><span class="line">        train_cost = exe.run(program=fluid.default_main_program(),<span class="comment">#运行主程序</span></span><br><span class="line">                             feed=feeder.feed(data),              <span class="comment">#喂入一个batch的训练数据，根据feed_list和data提供的信息，将输入数据转成一种特殊的数据结构</span></span><br><span class="line">                             fetch_list=[avg_cost])    </span><br><span class="line">        <span class="keyword">if</span> batch_id % <span class="number">40</span> == <span class="number">0</span>:</span><br><span class="line">            print(<span class="string">&quot;Pass:%d, Cost:%0.5f&quot;</span> % (pass_id, train_cost[<span class="number">0</span>][<span class="number">0</span>]))    <span class="comment">#打印最后一个batch的损失值</span></span><br><span class="line">        <span class="built_in">iter</span>=<span class="built_in">iter</span>+BATCH_SIZE</span><br><span class="line">        iters.append(<span class="built_in">iter</span>)</span><br><span class="line">        train_costs.append(train_cost[<span class="number">0</span>][<span class="number">0</span>])</span><br><span class="line">       </span><br><span class="line">   </span><br><span class="line">    <span class="comment"># 开始测试并输出最后一个batch的损失值</span></span><br><span class="line">    test_cost = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> batch_id, data <span class="keyword">in</span> <span class="built_in">enumerate</span>(test_reader()):               <span class="comment">#遍历test_reader迭代器</span></span><br><span class="line">        test_cost= exe.run(program=test_program, <span class="comment">#运行测试cheng</span></span><br><span class="line">                            feed=feeder.feed(data),               <span class="comment">#喂入一个batch的测试数据</span></span><br><span class="line">                            fetch_list=[avg_cost])                <span class="comment">#fetch均方误差</span></span><br><span class="line">    print(<span class="string">&#x27;Test:%d, Cost:%0.5f&#x27;</span> % (pass_id, test_cost[<span class="number">0</span>][<span class="number">0</span>]))     <span class="comment">#打印最后一个batch的损失值</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#保存模型</span></span><br><span class="line">    <span class="comment"># 如果保存路径不存在就创建</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(model_save_dir):</span><br><span class="line">    os.makedirs(model_save_dir)</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;save models to %s&#x27;</span> % (model_save_dir))</span><br><span class="line">fluid.io.save_inference_model(model_save_dir,   <span class="comment">#保存推理model的路径</span></span><br><span class="line">                                  [<span class="string">&#x27;x&#x27;</span>],            <span class="comment">#推理（inference）需要 feed 的数据</span></span><br><span class="line">                                  [y_predict],      <span class="comment">#保存推理（inference）结果的 Variables</span></span><br><span class="line">                                  exe)              <span class="comment">#exe 保存 inference model</span></span><br><span class="line">draw_train_process(iters,train_costs)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># model prediction </span></span><br><span class="line"></span><br><span class="line">infer_exe = fluid.Executor(place)    <span class="comment">#创建推测用的executor</span></span><br><span class="line">inference_scope = fluid.core.Scope() <span class="comment">#Scope指定作用域</span></span><br><span class="line"></span><br><span class="line">infer_results=[]</span><br><span class="line">groud_truths=[]</span><br><span class="line"></span><br><span class="line"><span class="comment">#绘制真实值和预测值对比图</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw_infer_result</span>(<span class="params">groud_truths,infer_results</span>):</span></span><br><span class="line">    title=<span class="string">&#x27;Boston&#x27;</span></span><br><span class="line">    plt.title(title, fontsize=<span class="number">24</span>)</span><br><span class="line">    x = np.arange(<span class="number">1</span>,<span class="number">20</span>) </span><br><span class="line">    y = x</span><br><span class="line">    plt.plot(x, y)</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;ground truth&#x27;</span>, fontsize=<span class="number">14</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;infer result&#x27;</span>, fontsize=<span class="number">14</span>)</span><br><span class="line">    plt.scatter(groud_truths, infer_results,color=<span class="string">&#x27;green&#x27;</span>,label=<span class="string">&#x27;training cost&#x27;</span>) </span><br><span class="line">    plt.grid()</span><br><span class="line">    plt.show()</span><br><span class="line">    </span><br><span class="line"><span class="keyword">with</span> fluid.scope_guard(inference_scope):<span class="comment">#修改全局/默认作用域（scope）, 运行时中的所有变量都将分配给新的scope。</span></span><br><span class="line">    <span class="comment">#从指定目录中加载 推理model(inference model)</span></span><br><span class="line">    [inference_program,                             <span class="comment">#推理的program</span></span><br><span class="line">     feed_target_names,                             <span class="comment">#需要在推理program中提供数据的变量名称</span></span><br><span class="line">     fetch_targets] = fluid.io.load_inference_model(<span class="comment">#fetch_targets: 推断结果</span></span><br><span class="line">                                    model_save_dir, <span class="comment">#model_save_dir:模型训练路径 </span></span><br><span class="line">                                    infer_exe)      <span class="comment">#infer_exe: 预测用executor</span></span><br><span class="line">    <span class="comment">#获取预测数据</span></span><br><span class="line">    infer_reader = paddle.batch(paddle.dataset.uci_housing.test(),  <span class="comment">#获取uci_housing的测试数据</span></span><br><span class="line">                          batch_size=<span class="number">200</span>)                           <span class="comment">#从测试数据中读取一个大小为200的batch数据</span></span><br><span class="line">    <span class="comment">#从test_reader中分割x</span></span><br><span class="line">    test_data = <span class="built_in">next</span>(infer_reader())</span><br><span class="line">    test_x = np.array([data[<span class="number">0</span>] <span class="keyword">for</span> data <span class="keyword">in</span> test_data]).astype(<span class="string">&quot;float32&quot;</span>)</span><br><span class="line">    test_y= np.array([data[<span class="number">1</span>] <span class="keyword">for</span> data <span class="keyword">in</span> test_data]).astype(<span class="string">&quot;float32&quot;</span>)</span><br><span class="line">    results = infer_exe.run(inference_program,                              <span class="comment">#预测模型</span></span><br><span class="line">                            feed=&#123;feed_target_names[<span class="number">0</span>]: np.array(test_x)&#125;,  <span class="comment">#喂入要预测的x值</span></span><br><span class="line">                            fetch_list=fetch_targets)                       <span class="comment">#得到推测结果 </span></span><br><span class="line">                            </span><br><span class="line">    print(<span class="string">&quot;infer results: (House Price)&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> idx, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(results[<span class="number">0</span>]):</span><br><span class="line">        print(<span class="string">&quot;%d: %.2f&quot;</span> % (idx, val))</span><br><span class="line">        infer_results.append(val)</span><br><span class="line">    print(<span class="string">&quot;ground truth:&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> idx, val <span class="keyword">in</span> <span class="built_in">enumerate</span>(test_y):</span><br><span class="line">        print(<span class="string">&quot;%d: %.2f&quot;</span> % (idx, val))</span><br><span class="line">        groud_truths.append(val)</span><br><span class="line">    draw_infer_result(groud_truths,infer_results)</span><br></pre></td></tr></table></figure>
+<h1 id="Class-1-语义分割-intro"><a href="#Class-1-语义分割-intro" class="headerlink" title="Class 1 语义分割 intro"></a>Class 1 语义分割 intro</h1><p>图像分割的类型</p>
+<ol>
+<li>Image Segmentation</li>
+<li>Image Semantic Segmentation - 给每个pixel分类</li>
+<li>Image Instance Segmentation - 检测相关，给每个object 分mask cat1 cat2</li>
+<li>Image Panomic Segmentation - 背景pixel分类+框里mask</li>
+<li>Video Object Segmentation - 通常会给定目标mask</li>
+<li>Video Instance Segmentation</li>
+</ol>
+<h2 id="语义分割算法的基本概念"><a href="#语义分割算法的基本概念" class="headerlink" title="语义分割算法的基本概念"></a>语义分割算法的基本概念</h2><p><strong>语义分割算法的根本目的：像素级分类</strong></p>
+<h3 id="语义分割算法的基本流程"><a href="#语义分割算法的基本流程" class="headerlink" title="语义分割算法的基本流程"></a>语义分割算法的基本流程</h3><ol>
+<li>输入：图像（rgb） - dataloader imread batchsize</li>
+<li>算法：深度学习模型</li>
+<li>输出：分类结果 （与输入大小一致的单通道图像）</li>
+<li>训练过程：<ol>
+<li>输入： image + label</li>
+<li>前向：out = model（inage）</li>
+<li>计算损失</li>
+<li>反向</li>
+<li>更新权重</li>
+</ol>
+</li>
+</ol>
+<h3 id="语义分割性能指标"><a href="#语义分割性能指标" class="headerlink" title="语义分割性能指标"></a>语义分割性能指标</h3><ul>
+<li>mIoU：分割每一类别的交并比</li>
+<li>mAcc：pred 和gt 对应位置的“分类”标准率，更趋近于各种不同灰度</li>
+</ul>
+<p>为什么acc不够 还要有iou呢？忽略了很重要的一类</p>
+<h2 id="实践部分"><a href="#实践部分" class="headerlink" title="实践部分"></a>实践部分</h2><h2 id="basic-net"><a href="#basic-net" class="headerlink" title="basic net"></a>basic net</h2><h2 id="basic-DataLoader"><a href="#basic-DataLoader" class="headerlink" title="basic DataLoader"></a>basic DataLoader</h2><h1 id="Fully-Convolutional-Network-FCN-全卷积网络"><a href="#Fully-Convolutional-Network-FCN-全卷积网络" class="headerlink" title="Fully Convolutional Network. (FCN  全卷积网络)"></a>Fully Convolutional Network. (FCN  全卷积网络)</h1><h2 id="为什么要用FCN"><a href="#为什么要用FCN" class="headerlink" title="为什么要用FCN"></a>为什么要用FCN</h2><p>卷积神经网络首先被分类卷积网络 - 全卷积网络</p>
+<p>变大feature map - 上采样/反卷积/unpooling</p>
+<h2 id="什么是fcn"><a href="#什么是fcn" class="headerlink" title="什么是fcn"></a>什么是fcn</h2><h3 id="双线插值-（bilinear-interpolation）"><a href="#双线插值-（bilinear-interpolation）" class="headerlink" title="双线插值 （bilinear interpolation）"></a>双线插值 （bilinear interpolation）</h3><p>Nchw - nch’w’ 图像放大：简单，快 </p>
+<h3 id="un-pooling"><a href="#un-pooling" class="headerlink" title="un-pooling"></a>un-pooling</h3><h3 id="transpose-conv"><a href="#transpose-conv" class="headerlink" title="transpose conv"></a>transpose conv</h3><h2 id="如何建立一个fcn"><a href="#如何建立一个fcn" class="headerlink" title="如何建立一个fcn"></a>如何建立一个fcn</h2>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/25/Paper-Reading-Deep-Residual-Learning-for-Image-Recognition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/25/Paper-Reading-Deep-Residual-Learning-for-Image-Recognition/" class="post-title-link" itemprop="url">Paper Reading | Deep Residual Learning for Image Recognition</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-07-25 00:18:53" itemprop="dateCreated datePublished" datetime="2020-07-25T00:18:53+08:00">2020-07-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -353,11 +592,11 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/22/%E5%B9%B2%E8%B4%A7-%E5%87%A0%E7%A7%8D%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E7%BD%91%E7%BB%9C/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/23/%E5%B9%B2%E8%B4%A7-%E5%87%A0%E7%A7%8D%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E7%BD%91%E7%BB%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="">
     </span>
 
@@ -370,7 +609,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/22/%E5%B9%B2%E8%B4%A7-%E5%87%A0%E7%A7%8D%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E7%BD%91%E7%BB%9C/" class="post-title-link" itemprop="url">干货 | 几种目标检测的网络和变化</a>
+            <a href="/2020/07/23/%E5%B9%B2%E8%B4%A7-%E5%87%A0%E7%A7%8D%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E7%BD%91%E7%BB%9C/" class="post-title-link" itemprop="url">干货 | 几种目标检测的网络和变化</a>
         </h2>
 
         <div class="post-meta-container">
@@ -381,7 +620,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2020-07-22 15:42:46" itemprop="dateCreated datePublished" datetime="2020-07-22T15:42:46-04:00">2020-07-22</time>
+      <time title="Created: 2020-07-23 03:42:46" itemprop="dateCreated datePublished" datetime="2020-07-23T03:42:46+08:00">2020-07-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -460,7 +699,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="">
     </span>
 
@@ -484,7 +723,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2020-07-20 08:59:51" itemprop="dateCreated datePublished" datetime="2020-07-20T08:59:51-04:00">2020-07-20</time>
+      <time title="Created: 2020-07-20 20:59:51" itemprop="dateCreated datePublished" datetime="2020-07-20T20:59:51+08:00">2020-07-20</time>
     </span>
 
   
@@ -568,11 +807,11 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/%E5%B9%B2%E8%B4%A7-Canny-Edge-Detector/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/%E5%B9%B2%E8%B4%A7-Canny-Edge-Detector/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="">
     </span>
 
@@ -585,7 +824,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/19/%E5%B9%B2%E8%B4%A7-Canny-Edge-Detector/" class="post-title-link" itemprop="url">干货 | Canny Edge Detector</a>
+            <a href="/2020/07/20/%E5%B9%B2%E8%B4%A7-Canny-Edge-Detector/" class="post-title-link" itemprop="url">干货 | Canny Edge Detector</a>
         </h2>
 
         <div class="post-meta-container">
@@ -596,7 +835,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2020-07-19 22:15:18" itemprop="dateCreated datePublished" datetime="2020-07-19T22:15:18-04:00">2020-07-19</time>
+      <time title="Created: 2020-07-20 10:15:18" itemprop="dateCreated datePublished" datetime="2020-07-20T10:15:18+08:00">2020-07-20</time>
     </span>
 
   
@@ -634,7 +873,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="">
     </span>
 
@@ -658,7 +897,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2020-07-15 10:32:54" itemprop="dateCreated datePublished" datetime="2020-07-15T10:32:54-04:00">2020-07-15</time>
+      <time title="Created: 2020-07-15 22:32:54" itemprop="dateCreated datePublished" datetime="2020-07-15T22:32:54+08:00">2020-07-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -702,11 +941,11 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Backpropagation/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/06/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Backpropagation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="">
     </span>
 
@@ -719,7 +958,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/05/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Backpropagation/" class="post-title-link" itemprop="url">Machine-Learning-2020 | Lecture#4 Deep Learning Preparation - Backpropagation</a>
+            <a href="/2020/07/06/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Backpropagation/" class="post-title-link" itemprop="url">Machine-Learning-2020 | Lecture#4 Deep Learning Preparation - Backpropagation</a>
         </h2>
 
         <div class="post-meta-container">
@@ -730,7 +969,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2020-07-05 17:07:44" itemprop="dateCreated datePublished" datetime="2020-07-05T17:07:44-04:00">2020-07-05</time>
+      <time title="Created: 2020-07-06 05:07:44" itemprop="dateCreated datePublished" datetime="2020-07-06T05:07:44+08:00">2020-07-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -813,11 +1052,11 @@ a = \sigma(z)</script><p>从这一层中可以看出，如果我们要求  $w_1$
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/04/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Recipe-for-Deep-Learning/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Recipe-for-Deep-Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Chenxi">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="">
     </span>
 
@@ -830,7 +1069,7 @@ a = \sigma(z)</script><p>从这一层中可以看出，如果我们要求  $w_1$
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/04/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Recipe-for-Deep-Learning/" class="post-title-link" itemprop="url">Machine-Learning-2020 | Lecture#4 Deep Learning Preparation - Recipe for Deep Learning</a>
+            <a href="/2020/07/05/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Recipe-for-Deep-Learning/" class="post-title-link" itemprop="url">Machine-Learning-2020 | Lecture#4 Deep Learning Preparation - Recipe for Deep Learning</a>
         </h2>
 
         <div class="post-meta-container">
@@ -841,7 +1080,7 @@ a = \sigma(z)</script><p>从这一层中可以看出，如果我们要求  $w_1$
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2020-07-04 16:46:52" itemprop="dateCreated datePublished" datetime="2020-07-04T16:46:52-04:00">2020-07-04</time>
+      <time title="Created: 2020-07-05 04:46:52" itemprop="dateCreated datePublished" datetime="2020-07-05T04:46:52+08:00">2020-07-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -872,7 +1111,7 @@ a = \sigma(z)</script><p>从这一层中可以看出，如果我们要求  $w_1$
 <p>这部分的课程要介绍的是，当我们在训练深度神经网络的时候，如果训练的效果不好，究竟是哪部分出了问题呢？在训练的时候，我们要查看哪些训练结果呢？</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/07/04/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Recipe-for-Deep-Learning/#more" rel="contents">
+              <a class="btn" href="/2020/07/05/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Recipe-for-Deep-Learning/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -894,447 +1133,10 @@ a = \sigma(z)</script><p>从这一层中可以看出，如果我们要求  $w_1$
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/02/Algorithm-Binary-Heap/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Chenxi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="光">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/02/Algorithm-Binary-Heap/" class="post-title-link" itemprop="url">Algorithm | Binary Heap</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-07-02 14:35:12" itemprop="dateCreated datePublished" datetime="2020-07-02T14:35:12-04:00">2020-07-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>参考网页：</p>
-<p><a target="_blank" rel="noopener" href="https://www.cs.cmu.edu/~adamchik/15-121/lectures/Binary Heaps/heaps.html">https://www.cs.cmu.edu/~adamchik/15-121/lectures/Binary%20Heaps/heaps.html</a></p>
-<h1 id="Binary-Heap的定义"><a href="#Binary-Heap的定义" class="headerlink" title="Binary Heap的定义"></a>Binary Heap的定义</h1><p>这个堆又分为最小堆和最大堆，所以这里直接用Binary Heap来代替，叫二分堆（？）</p>
-<p>Binary heap是一个完整的二叉树,并且满足堆的排序性质，即每次都可以pop出来最大或者最小值，由于这种性质，我们也将堆称作priority queue</p>
-<blockquote>
-<p>完整二叉树说的是除了最后行,其他的分支都被填满的树</p>
-</blockquote>
-<p>根据堆的排序标准,它主要可以被分为两种:</p>
-<ul>
-<li>最小堆min-heap: 对于每一个节点来说，他都大于或者等于它的父节点</li>
-<li>最小堆max-heap：对于每一个节点来说，他都小于或者等于它的父节点</li>
-</ul>
-<p>这里我们只用最小堆minheap来举例。</p>
-<h2 id="Array-Implementation"><a href="#Array-Implementation" class="headerlink" title="Array Implementation"></a>Array Implementation</h2><p>在返回堆代表的序列时，是按照遍历每一层的顺序，因此最小堆结构的整体并不是有序的结构，只可能是部分有序，且第一项是最小值。</p>
-<p><img src="../images/Screen%20Shot%202020-07-05%20at%2013.43.19.png" alt="Screen Shot 2020-07-05 at 13.43.19"></p>
-<h2 id="Insert"><a href="#Insert" class="headerlink" title="Insert"></a>Insert</h2><p>往最小堆中插入一个数字，是先将该数字放在最小堆的末尾，然后和它的parent相比较，如果大于它的parent那就正好不用移动，如果小于它的parent那么就将它和parent换位置，直到到达符合小于parent的位置。</p>
-<h2 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h2><p>删除最小值的时候是先将root（最上面的parent，也就是我们的最小值）和堆的最后一位换位置，然后把它换下来。换在最上面的值会和左右两边的parent进行比较，然后往下放，直到换到一个合适的位置（符合最小堆性质）。</p>
-<h2 id="Heap-sort"><a href="#Heap-sort" class="headerlink" title="Heap sort"></a>Heap sort</h2><p>就是按照刚才delete的顺序，不听去掉root的值然后进行排序，最差的时长是 <code>O(nlogn)</code></p>
-<h1 id="Python中的heapq包"><a href="#Python中的heapq包" class="headerlink" title="Python中的heapq包"></a>Python中的heapq包</h1><p>常用的函数</p>
-<p><strong>注意heapq里面是按照最小堆来进行整合的，所以我们每次pop出来的都是最小值。</strong></p>
-<ul>
-<li><p><code>heapq.heappush(*heap*, *item*)</code></p>
-<p>Push the value <em>item</em> onto the <em>heap</em>, maintaining the heap invariant.</p>
-</li>
-<li><p><code>heapq.heappop(*heap*)</code></p>
-<p>Pop and return the smallest item from the <em>heap</em>, maintaining the heap invariant. If the heap is empty, <a target="_blank" rel="noopener" href="https://docs.python.org/2/library/exceptions.html#exceptions.IndexError"><code>IndexError</code></a> is raised. To access the smallest item without popping it, use <code>heap[0]</code>.</p>
-</li>
-<li><p><code>heapq.heapify(*x*)</code></p>
-<p>Transform list <em>x</em> into a heap, in-place, in linear time.</p>
-</li>
-</ul>
-<p><strong>如果我们想使用最大堆的话，可以再输入堆的数字前面加上负号，然后输出的时候再赋予负号</strong></p>
-<p>Python中的heapq包也同样有</p>
-<p><code>heapq._heapify_max(heap)</code> 这样的函数，但是目测，如果使用最大堆的话，需要一直使用隐函数的最大堆max的函数，不然的话，heap的顺序就会乱掉。</p>
-<p>比如一开始用<code>heapq._heapify_max(nums)</code> 排列了序列，然后再 <code>heapq.heappop(nums)</code> 这样的话输出的是最大值，且pop之后的序列的最小值会换上来，所以中间的序列顺序会被打乱。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans,en,zh_CN,default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/30/Algorithm-LeetCode-July-Challenge/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Chenxi">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="光">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/30/Algorithm-LeetCode-July-Challenge/" class="post-title-link" itemprop="url">Algorithm | LeetCode - July Challenge</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-06-30 17:49:49" itemprop="dateCreated datePublished" datetime="2020-06-30T17:49:49-04:00">2020-06-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>【LeetCode】- July Challenge</p>
-<p><a href="#lc441">0701 - Leetcode441 - Arranging coins - Easy</a></p>
-<p><a href="#lc107">0702 - Leetcode107 - Binary Tree Level Order Traversal II</a></p>
-<p><a href="#lc104">补充 - Leetcode104 - Binary Tree Level Order Traversal</a></p>
-<p><a href="#lc957">0703 - Leetcode957 - Prison Cells After N days</a></p>
-<p><a href="#lc264">0704 - Leetcode264 - Ugly Number II</a></p>
-<p><a href="#lc263">补充 - Leetcode263 - Ugly Number </a></p>
-<p><a href="#lc461">0705 - Leetcode461 - Hamming Distance</a></p>
-<p><a href="#lc477">补充 - Leetcode477 - Total Hamming Distance - Medium</a></p>
-<p><a href="#lc66">0706 - Leetcode66 - Plus One - Easy</a></p>
-<p><a href="#lc463">0707 - Leetcode463 - Island Perimeter - Easy</a></p>
-<p><a href="#lc15">0708 - 3Sum - Medium</a></p>
-<p><a href="#lc78">0711 - Leetcode78 - Subsets - Medium</a></p>
-<p><a href="#lc100">0713 - Leetcode100 - Same Tree - Easy</a></p>
-<p><a href="#lc1344">0714 - Leetcode1344 - Angle Between Hands of a Clock - Medium</a></p>
-<p><a href="#lc347">0717 - Leetcode - Top K Frequent Elements - Medium</a></p>
-<p><a href="#lc210">0718 - Leetcode210 - Course Scheduel II - Medium</a></p>
-<p>[0719 - Leetcode64 - ]</p>
-<p><a href="#lc">0720 - Leetcode - Remove Linked List Elements - Medium</a></p>
-<p><a href="#lc103">0722 - Leetcode103 - Binary Tree Zigzag Level Order Traversal - Medium</a></p>
-<p><a href="#lc797">0724 - Leetcode797 - All Paths from source to Target - Medium</a></p>
-<p>-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</p>
-<h1 id="0724-Leetcode797-All-Paths-From-Source-to-Target"><a href="#0724-Leetcode797-All-Paths-From-Source-to-Target" class="headerlink" title="0724 - Leetcode797 - All Paths From Source to Target"></a>0724 - Leetcode797 - All Paths From Source to Target</h1><blockquote>
-<p>Given a directed, acyclic graph of <code>N</code> nodes. Find all possible paths from node <code>0</code> to node <code>N-1</code>, and return them in any order.</p>
-<p>The graph is given as follows: the nodes are 0, 1, …, graph.length - 1. graph[i] is a list of all nodes j for which the edge (i, j) exists.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Example:</span><br><span class="line">Input: [[1,2], [3], [3], []] </span><br><span class="line">Output: [[0,1,3],[0,2,3]] </span><br><span class="line">Explanation: The graph looks like this:</span><br><span class="line">0---&gt;1</span><br><span class="line">|    |</span><br><span class="line">v    v</span><br><span class="line">2---&gt;3</span><br><span class="line">There are two paths: 0 -&gt; 1 -&gt; 3 and 0 -&gt; 2 -&gt; 3.</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>解题思路：</p>
-<p>把edge储存为 ： {到达点：[上一个可能点]} 的字典格式，如果上一个可能的点存在0的话就跳出循环，否则的话就一直循环下去。 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">allPathsSourceTarget</span>(<span class="params">self, graph</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type graph: List[List[int]]</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        edge = defaultdict(<span class="built_in">list</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(graph)):</span><br><span class="line">            link = graph[i]</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> link:</span><br><span class="line">                edge[k] += [i]</span><br><span class="line">                </span><br><span class="line">        ans = []</span><br><span class="line">        self.dfs(edge, <span class="built_in">len</span>(graph) - <span class="number">1</span>, [], ans)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span>(<span class="params">self, edge, lastnode, path, ans</span>):</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> lastnode == <span class="number">0</span>:</span><br><span class="line">            path = path + [<span class="number">0</span>]</span><br><span class="line">            ans.append( path[::<span class="number">-1</span>] )</span><br><span class="line">            <span class="keyword">return</span> </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> edge[lastnode]:</span><br><span class="line">            self.dfs(edge, node, path + [lastnode], ans)</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
-<h1 id="0722-Leetcode103-Binary-Tree-Zigzag-Level-Order-Traversal"><a href="#0722-Leetcode103-Binary-Tree-Zigzag-Level-Order-Traversal" class="headerlink" title="0722 - Leetcode103 - Binary Tree Zigzag Level Order Traversal"></a>0722 - Leetcode103 - Binary Tree Zigzag Level Order Traversal</h1><blockquote>
-<p>Given a binary tree, return the <em>zigzag level order</em> traversal of its nodes’ values. (ie, from left to right, then right to left for the next level and alternate between).</p>
-<p>For example:<br>Given binary tree <code>[3,9,20,null,null,15,7]</code>,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> &#x2F; \</span><br><span class="line">9  20</span><br><span class="line">  &#x2F;  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
-<p>return its zigzag level order traversal as:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [3],</span><br><span class="line">  [20,9],</span><br><span class="line">  [15,7]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>解题思路</p>
-<p>BFS + 正反向输出 + flag决定</p>
-<p>BFS输出，然后设置flag，每次都*-1 可以控制正反向输出。</p>
-<h1 id="0720-Leetcode-Remove-Linked-List-Elements"><a href="#0720-Leetcode-Remove-Linked-List-Elements" class="headerlink" title="0720 - Leetcode - Remove Linked List Elements"></a>0720 - Leetcode - Remove Linked List Elements</h1><blockquote>
-<p>Remove all elements from a linked list of integers that have value <strong><em>val\</em></strong>.</p>
-<p><strong>Example:</strong></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input:  1-&gt;2-&gt;6-&gt;3-&gt;4-&gt;5-&gt;6, val = 6</span><br><span class="line">Output: 1-&gt;2-&gt;3-&gt;4-&gt;5</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>解题思路：</p>
-<p>设置dummy node，查看next.val是否和要去掉的val相同，如果相同，定义next = next.next. 指针不动；如果不同，指针后移一位。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">removeElements</span>(<span class="params">self, head, val</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :type val: int</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        dummy = ListNode(<span class="number">0</span>)</span><br><span class="line">        </span><br><span class="line">        dummy.<span class="built_in">next</span> = head</span><br><span class="line">        head = dummy</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> head.<span class="built_in">next</span>:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> head.<span class="built_in">next</span>.val == val:</span><br><span class="line">                <span class="keyword">if</span> head.<span class="built_in">next</span>.<span class="built_in">next</span>:</span><br><span class="line">                    head.<span class="built_in">next</span> = head.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    head.<span class="built_in">next</span> = <span class="literal">None</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                head = head.<span class="built_in">next</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> dummy.<span class="built_in">next</span></span><br></pre></td></tr></table></figure>
-<h1 id="0718-Leetcode210-Course-Scheduel-II"><a href="#0718-Leetcode210-Course-Scheduel-II" class="headerlink" title="0718 - Leetcode210 - Course Scheduel II"></a>0718 - Leetcode210 - Course Scheduel II</h1><blockquote>
-<p>There are a total of <em>n</em> courses you have to take, labeled from <code>0</code> to <code>n-1</code>.</p>
-<p>Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: <code>[0,1]</code></p>
-<p>Given the total number of courses and a list of prerequisite <strong>pairs</strong>, return the ordering of courses you should take to finish all courses.</p>
-<p>There may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.</p>
-</blockquote>
-<p>解题思路：</p>
-<ol>
-<li><p>DFS</p>
-</li>
-<li><p>Node in degree（入度）</p>
-<p>当我们把pre课程当做出发点，而现在要选的课程当做目的地</p>
-</li>
-</ol>
-<h1 id="0717-Leetcode347-Top-K-Frequent-Elements"><a href="#0717-Leetcode347-Top-K-Frequent-Elements" class="headerlink" title="0717 - Leetcode347 - Top K Frequent Elements"></a>0717 - Leetcode347 - Top K Frequent Elements</h1><h1 id="0714-Leetcode1344-Angle-Between-Hands-of-a-Clock"><a href="#0714-Leetcode1344-Angle-Between-Hands-of-a-Clock" class="headerlink" title="0714 - Leetcode1344 - Angle Between Hands of a Clock"></a>0714 - Leetcode1344 - Angle Between Hands of a Clock</h1><blockquote>
-<p>Given two numbers, <code>hour</code> and <code>minutes</code>. Return the smaller angle (in degrees) formed between the <code>hour</code> and the <code>minute</code> hand.</p>
-</blockquote>
-<p>解题思路：</p>
-<p>就直接写，然后钝角转化为 360 - 本身</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">angleClock</span>(<span class="params">self, hour, minutes</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type hour: int</span></span><br><span class="line"><span class="string">        :type minutes: int</span></span><br><span class="line"><span class="string">        :rtype: float</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        angle_h = (hour%<span class="number">12</span>) * <span class="number">30</span> + minutes * <span class="number">0.5</span></span><br><span class="line">        </span><br><span class="line">        angle_m = minutes * <span class="number">6</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># print(angle_h, angle_m)</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">abs</span>(angle_h - angle_m) &gt; <span class="number">180</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">360</span> - <span class="built_in">abs</span>(angle_h - angle_m)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">abs</span>(angle_h - angle_m)</span><br><span class="line">       </span><br></pre></td></tr></table></figure>
-<h1 id="0713-Leetcode100-Same-Tree"><a href="#0713-Leetcode100-Same-Tree" class="headerlink" title="0713 - Leetcode100 - Same Tree"></a>0713 - Leetcode100 - Same Tree</h1><blockquote>
-<p>Given two binary trees, write a function to check if they are the same or not.</p>
-<p>Two binary trees are considered the same if they are structurally identical and the nodes have the same value.</p>
-</blockquote>
-<p>解题思路：</p>
-<p>Recursive - 分别判断每个节点是否相等</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isSameTree</span>(<span class="params">self, p, q</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type p: TreeNode</span></span><br><span class="line"><span class="string">        :type q: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.checkNode(p, q)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">checkNode</span>(<span class="params">self, node1, node2</span>):</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> node1 <span class="keyword">and</span> <span class="keyword">not</span> node2:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> node1 <span class="keyword">or</span> <span class="keyword">not</span> node2 <span class="keyword">or</span> node1.val != node2.val:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> self.checkNode(node1.left, node2.left) <span class="keyword">and</span> self.checkNode(node1.right, node2.right)</span><br></pre></td></tr></table></figure>
-<h1 id="0711-Leetcode78-Subsets"><a href="#0711-Leetcode78-Subsets" class="headerlink" title="0711 - Leetcode78 - Subsets"></a>0711 - Leetcode78 - Subsets</h1><blockquote>
-<p>Given a set of <strong>distinct</strong> integers, <em>nums</em>, return all possible subsets (the power set).</p>
-<p><strong>Note:</strong> The solution set must not contain duplicate subsets.</p>
-<p><strong>Example:</strong></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Input: nums = [1,2,3]</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  [3],</span><br><span class="line">  [1],</span><br><span class="line">  [2],</span><br><span class="line">  [1,2,3],</span><br><span class="line">  [1,3],</span><br><span class="line">  [2,3],</span><br><span class="line">  [1,2],</span><br><span class="line">  []</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>解题思路：</p>
-<p>用recursive吧，因为不希望出现重复项，所以新加进来的数可以视为前一个subset 加上 一个新的数字，而这个新的数字是subdet最后一位数字往后的。所以可以用resurcive。</p>
-<p>比如说 </p>
-<ul>
-<li>[] 是初始解，那么[] +[1], [] + [2], []+[3] 就是第一层解</li>
-<li>[1] + [2], [1]+[3] 就要继续下去。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subsets</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        ans = []</span><br><span class="line">        sub = []</span><br><span class="line">        ans.append(sub)</span><br><span class="line">        self.newsub(sub, nums, <span class="number">0</span>, ans)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line">        </span><br><span class="line">            </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">newsub</span>(<span class="params">self, sub, nums, i, ans</span>):</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(nums):</span><br><span class="line">            ans.append(sub + [nums[i]])</span><br><span class="line">            self.newsub(sub + [nums[i]], nums, i+<span class="number">1</span>, ans)</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">      </span><br></pre></td></tr></table></figure>
-<h1 id="0708-3Sum"><a href="#0708-3Sum" class="headerlink" title="0708 - 3Sum"></a>0708 - 3Sum</h1><blockquote>
-<p>Given an array <code>nums</code> of <em>n</em> integers, are there elements <em>a</em>, <em>b</em>, <em>c</em> in <code>nums</code> such that <em>a</em> + <em>b</em> + <em>c</em> = 0? Find all unique triplets in the array which gives the sum of zero.</p>
-<p><strong>Note:</strong></p>
-<p>The solution set must not contain duplicate triplets.</p>
-<p><strong>Example:</strong></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Given array nums = [-1, 0, 1, 2, -1, -4],</span><br><span class="line"></span><br><span class="line">A solution set is:</span><br><span class="line">[</span><br><span class="line">  [-1, 0, 1],</span><br><span class="line">  [-1, -1, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>解题思路：</p>
-<p>先排序，再固定指针 i ，然后从这个指针向右的序列确定两个指针 left, right, 寻找nums[i] = -(nums[left]+nums[right])。</p>
-<p>如果左右两指针相加大于  -(nums[left]+nums[right])，right -= 1, 否则 left+=1.如果相等就把者三个数的list放在ans中。</p>
-<p><strong>注意！！！</strong></p>
-<p>这个题直接这样写会超时，所以要考虑很多特殊的情况。</p>
-<ol>
-<li><p>if nums[i] &gt; 0, break 当最小值都大于零，右边的nums[left]和nums[right]肯定都大于零，就不可能存在三个数相加为0的情况；</p>
-</li>
-<li><p>判断是否有重复: if nums[left - 1] &gt; i and nums[left - 1] ==  nums[left]: 这时候left可以直接+1忽略</p>
-<p>同理，可以跳过重复的右指针。</p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">threeSum</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        nums.sort()</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)):</span><br><span class="line">            left = i + <span class="number">1</span></span><br><span class="line">            right = <span class="built_in">len</span>(nums) - <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> nums[i] == nums[i<span class="number">-1</span>]: <span class="keyword">continue</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span> left &lt; right:</span><br><span class="line">                <span class="keyword">if</span> left - <span class="number">1</span> &gt; i <span class="keyword">and</span> nums[left] == nums[left<span class="number">-1</span>]: </span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">if</span> right+<span class="number">1</span> &lt; <span class="built_in">len</span>(nums) <span class="keyword">and</span> nums[right] == nums[right+<span class="number">1</span>]:</span><br><span class="line">                    right -= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> nums[left] + nums[right] == -nums[i]:</span><br><span class="line">                    ans.append([nums[i], nums[left], nums[right]])</span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">                <span class="keyword">elif</span> nums[left] + nums[right] &gt; -nums[i]:</span><br><span class="line">                    right -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    left += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-<h1 id="0707-Leetcode463-Island-Perimeter"><a href="#0707-Leetcode463-Island-Perimeter" class="headerlink" title="0707 - Leetcode463 - Island Perimeter"></a>0707 - Leetcode463 - Island Perimeter</h1><blockquote>
-<p>You are given a map in form of a two-dimensional integer grid where 1 represents land and 0 represents water.</p>
-<p>Grid cells are connected horizontally/vertically (not diagonally). The grid is completely surrounded by water, and there is exactly one island (i.e., one or more connected land cells).</p>
-<p>The island doesn’t have “lakes” (water inside that isn’t connected to the water around the island). One cell is a square with side length 1. The grid is rectangular, width and height don’t exceed 100. Determine the perimeter of the island.</p>
-<p><strong>Example:</strong></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">[[0,1,0,0],</span><br><span class="line"> [1,1,1,0],</span><br><span class="line"> [0,1,0,0],</span><br><span class="line"> [1,1,0,0]]</span><br><span class="line"></span><br><span class="line">Output: 16</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>解题思路：</p>
-<p>很简单，遍历grid中的每一项，如果是1，那么他就会有4条边，然后减去临边也为1的数量，然后就可以得到小岛的周长。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">islandPerimeter</span>(<span class="params">self, grid</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type grid: List[List[int]]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        row = <span class="built_in">len</span>(grid)</span><br><span class="line">        col = <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">        count1 = <span class="number">0</span></span><br><span class="line">        edge = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(row):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(col):</span><br><span class="line">                <span class="keyword">if</span> grid[i][j] == <span class="number">1</span>:</span><br><span class="line">                    count1 += <span class="number">1</span></span><br><span class="line">                    edge = edge + (self.countLand(grid, i+<span class="number">1</span>, j) +self.countLand(grid, i<span class="number">-1</span>, j)+self.countLand(grid, i, j+<span class="number">1</span>)+self.countLand(grid, i, j<span class="number">-1</span>))</span><br><span class="line">                    </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="number">4</span>*count1 - edge</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">countLand</span>(<span class="params">self, grid, i, j</span>):</span></span><br><span class="line">        land = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> i &gt;= <span class="number">0</span> <span class="keyword">and</span> i &lt; <span class="built_in">len</span>(grid) <span class="keyword">and</span> j &gt;= <span class="number">0</span> <span class="keyword">and</span> j &lt; <span class="built_in">len</span>(grid[<span class="number">0</span>]):</span><br><span class="line">            land += grid[i][j]</span><br><span class="line">        <span class="keyword">return</span> land</span><br></pre></td></tr></table></figure>
-<h1 id="补充-Leetcode695-Max-Area-of-Island"><a href="#补充-Leetcode695-Max-Area-of-Island" class="headerlink" title="补充 - Leetcode695 - Max Area of Island"></a>补充 - Leetcode695 - Max Area of Island</h1><blockquote>
-<p>Given a non-empty 2D array <code>grid</code> of 0’s and 1’s, an <strong>island</strong> is a group of <code>1</code>‘s (representing land) connected 4-directionally (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.</p>
-<p>Find the maximum area of an island in the given 2D array. (If there is no island, the maximum area is 0.)</p>
-</blockquote>
-<p>解题思路：</p>
-<ol>
-<li><p>DFS。寻找最大岛屿面积，遍历每一个点，然后从每一个点延伸开始寻找它周围的是1的点，遍历过的点改标记为0.</p>
-<p>之前有一个题，也是遍历每一个点，然后遍历的时候改为-1，之后遍历完又换回来。这种是 解跟解之间独立的，比如是某条路径（我实在找不到那道题了），还要换回来因为可能此路不通，我们还要走下一条路。但是这种求面积的，包括数岛屿个数的题，我们在换了标记之后表示我们已经count了这个grid[i][j]</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxAreaOfIsland</span>(<span class="params">self, grid</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type grid: List[List[int]]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        max_area = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(grid)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(grid[<span class="number">0</span>])):</span><br><span class="line">                max_area = <span class="built_in">max</span>(max_area, self.dfs(grid, i, j))</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> max_area</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span>(<span class="params">self, grid, i, j</span>):</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> i &lt; <span class="number">0</span> <span class="keyword">or</span> i &gt;= <span class="built_in">len</span>(grid) <span class="keyword">or</span> j &lt; <span class="number">0</span> <span class="keyword">or</span> j &gt;= <span class="built_in">len</span>(grid[<span class="number">0</span>]) <span class="keyword">or</span> grid[i][j] == <span class="number">0</span>: </span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        grid[i][j] = <span class="number">0</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> self.dfs(grid, i+<span class="number">1</span>, j) + self.dfs(grid, i<span class="number">-1</span>, j) + self.dfs(grid, i, j+<span class="number">1</span>) + self.dfs(grid, i, j<span class="number">-1</span>) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="0706-Leetcode66-Plus-One"><a href="#0706-Leetcode66-Plus-One" class="headerlink" title="0706 - Leetcode66 - Plus One"></a>0706 - Leetcode66 - Plus One</h1><blockquote>
-<p>Given a <strong>non-empty</strong> array of digits representing a non-negative integer, plus one to the integer.</p>
-<p>The digits are stored such that the most significant digit is at the head of the list, and each element in the array contain a single digit.</p>
-<p>You may assume the integer does not contain any leading zero, except the number 0 itself.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,3]</span><br><span class="line">Output: [1,2,4]</span><br><span class="line">Explanation: The array represents the integer 123.</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>解题思路：</p>
-<ol>
-<li><p>硬做。这道题就是在问给出的list如果代表的是一个数字，那么这个数字加上1之后，得到的list会是什么样子。给出的例子都很简单，简直是迷惑人。因为有几种特殊的情况，一种是最后一位为9的时候，它加上1之后要进位的，另一种情况是最高位同样为9的时候，它加上一是要变多一位的。所以单纯对list里面的数字进行加1处理远远不够。 我一开始想的就是把给的list转化为数字，然后+1，然后再拆解成list。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plusOne</span>(<span class="params">self, digits</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type digits: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        num = <span class="number">0</span></span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; <span class="built_in">len</span>(digits):</span><br><span class="line">            num = <span class="number">10</span>*num + digits[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        num = num+<span class="number">1</span>    </span><br><span class="line">        plus = []</span><br><span class="line">        <span class="keyword">while</span> num &gt; <span class="number">0</span>:</span><br><span class="line">            plus.append(num % <span class="number">10</span>)</span><br><span class="line">            num //= <span class="number">10</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> plus[::<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>recursion</p>
-<p>迭代去做考虑的因素就不需要分开考虑究竟最高位是不是9，那我们返回的值就是当我们所处的这一位是9的话，就把这个数字改换为0，然后对前面的数字进行+1处理。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plusOne</span>(<span class="params">self, digits</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type digits: List[int]</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(digits) == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> [<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> digits[<span class="number">-1</span>] &lt; <span class="number">9</span>:</span><br><span class="line">            digits[<span class="number">-1</span>] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> digits        </span><br><span class="line">        <span class="keyword">elif</span> digits[<span class="number">-1</span>] == <span class="number">9</span>:         </span><br><span class="line">            <span class="keyword">return</span> self.plusOne(digits[:<span class="number">-1</span>]) + [<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="0705-Leetcode461-Hamming-Distance"><a href="#0705-Leetcode461-Hamming-Distance" class="headerlink" title="0705 - Leetcode461 - Hamming Distance"></a>0705 - Leetcode461 - Hamming Distance</h1><blockquote>
-<p>The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hamming_distance">Hamming distance</a> between two integers is the number of positions at which the corresponding bits are different.</p>
-<p>Given two integers <code>x</code> and <code>y</code>, calculate the Hamming distance.</p>
-<p><strong>Note:</strong><br>0 ≤ <code>x</code>, <code>y</code> &lt; 231.</p>
-<p><strong>Example:</strong></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: x = 1, y = 4</span><br><span class="line"></span><br><span class="line">Output: 2</span><br><span class="line"></span><br><span class="line">Explanation:</span><br><span class="line">1   (0 0 0 1)</span><br><span class="line">4   (0 1 0 0)</span><br><span class="line"><span class="code">       ↑   ↑</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>解题思路：</p>
-<p>我一开始是想着移位运算有没有取最后一位然后取异或的，但是没想起来该怎么写。于是就用了最原始的求数字二进制的方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hammingDistance</span>(<span class="params">self, x, y</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type x: int</span></span><br><span class="line"><span class="string">        :type y: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">if</span> x == <span class="number">0</span> <span class="keyword">and</span> y == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">                </span><br><span class="line">            count += (x%<span class="number">2</span>) ^ (y%<span class="number">2</span>)</span><br><span class="line">            </span><br><span class="line">            x = x // <span class="number">2</span></span><br><span class="line">            y = y // <span class="number">2</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
-<p>后面查了一下确实有直接算二进制的：</p>
-<p><code>bin(x)</code> 可以返回x的二进制表示形式，但是返回的值是一个string</p>
-<p><code>int(x, 16)</code> 可以将16进制下的字符串类型x转化为一个十进制的int形式的数字</p>
-<h1 id="补充-Leetcode477-Total-Hamming-Distance"><a href="#补充-Leetcode477-Total-Hamming-Distance" class="headerlink" title="补充 - Leetcode477 - Total Hamming Distance"></a>补充 - Leetcode477 - Total Hamming Distance</h1><blockquote>
-<p>The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hamming_distance">Hamming distance</a> between two integers is the number of positions at which the corresponding bits are different.</p>
-<p>Now your job is to find the total Hamming distance between all pairs of the given numbers.</p>
-<p><strong>Example:</strong></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Input: 4, 14, 2</span><br><span class="line"></span><br><span class="line">Output: 6</span><br><span class="line"></span><br><span class="line">Explanation: In binary representation, the 4 is 0100, 14 is 1110, and 2 is 0010 (just</span><br><span class="line">showing the four bits relevant in this case). So the answer will be:</span><br><span class="line">HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 + 2 = 6.</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>解题思路：</p>
-<ol>
-<li><p>和上面一题不同，这道题如果每两对都要计算一下hamming distance再相加的话，就会造成很多重复的计算。所以我是直接想用数学方法写的，没有用到算法的技巧。</p>
-<p>假设我们的 list 中一共有 N 个数字，因为我们要求这些数字的二进制表示下的位数的差异，所以我们需要把这些数字都用0 1表示。那么对于这N个数字而言，拿出每两个数字然后逐位进行比较就相当于，对于每一位而言，我们把这N个0或1的数字拿出来，然后看看能有几个不一样。所以用到了排列组合的思想。</p>
-<p>对于每一位而言，N个数字一共会有个 $2 \choose N$ 种结果，$ {2 \choose N } = {N-2 \choose N} = (N-1)*N$， 而在这一位上面，我们只有两种选择，要么0 要么1，所以我们再利用一个count list来统计一下每一位1的个数<code>count[i]</code>。最后对于每一位而言，两两数字不同的可能性就有 ${2 \choose N} - {2 \choose count[i]} - {2 \choose N-count[i]}$.</p>
-<p>扫了一眼讨论区，哦，我好蠢，两两不同的可能性就是 $count[i] \times (N - count[i])$。大部分也是通过数学计算来解决这个问题的。</p>
-<p><strong>又学了一招 <code>&quot;&#123;0:b&#125;&quot;.format(num)</code> 可以把num转化为二进制字符串</strong></p>
-<p><code>print(&quot;bin: &#123;0:b&#125;, oct: &#123;0:o&#125;, hex: &#123;0:x&#125;&quot;.format(12))</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">totalHammingDistance</span>(<span class="params">self, nums</span>):</span></span><br><span class="line">       <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">       :type nums: List[int]</span></span><br><span class="line"><span class="string">       :rtype: int</span></span><br><span class="line"><span class="string">       &quot;&quot;&quot;</span></span><br><span class="line">       count = [<span class="number">0</span>] * <span class="number">32</span></span><br><span class="line">       <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">           i = <span class="number">0</span></span><br><span class="line">           <span class="keyword">while</span> num != <span class="number">0</span>:</span><br><span class="line">               count[i] += num % <span class="number">2</span></span><br><span class="line">               num /= <span class="number">2</span></span><br><span class="line">               i += <span class="number">1</span>                </span><br><span class="line">       N = <span class="built_in">len</span>(nums)</span><br><span class="line">       total_ham = <span class="number">0</span></span><br><span class="line">               </span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(count)):            </span><br><span class="line">           <span class="keyword">if</span> count[i] &gt; <span class="number">0</span>:                </span><br><span class="line">               total_ham  += N * (N - <span class="number">1</span>)/<span class="number">2</span> - count[i]*(count[i]<span class="number">-1</span>)/<span class="number">2</span> - (N - count[i])*(N - count[i] - <span class="number">1</span>)/<span class="number">2</span></span><br><span class="line">               </span><br><span class="line">       <span class="keyword">return</span> total_ham</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="0704-Leetcode264-Ugly-Number-II"><a href="#0704-Leetcode264-Ugly-Number-II" class="headerlink" title="0704 - Leetcode264 - Ugly Number II"></a>0704 - Leetcode264 - Ugly Number II</h1><blockquote>
-<p>Write a program to find the <code>n</code>-th ugly number.</p>
-<p>Ugly numbers are <strong>positive numbers</strong> whose prime factors only include <code>2, 3, 5</code>. </p>
-<p><strong>Example:</strong></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 10</span><br><span class="line">Output: 12</span><br><span class="line">Explanation: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>解题思路：</p>
-<ol>
-<li><p>最小堆帮助排序：主要还是明确Ugly Number的定义吧，指的就是factor只有2，3，5的数字。那么就意味着我所有的数字只能是ugly number的乘积。所以就从1开始，之后所有的数字都是ugly number里面的数字 <em>2 </em>3 *5.</p>
-<p>一开始想用动态规划，但这里存在一个排序的问题，第一个数字乘 2 3 5和第二个数字乘2 3 5，哪个应该放在哪个后面。但后来想到用min heap这个结构，会把最小的放在上面，每次我们pop出来最小的数字放在我们的sorted ugly number lsit中，然后再把它乘以2 3 5的数字放进我们的min heap中，就行了。如果pop出来的数字已经在我们的sorted ugly number里面了，那我们就跳过这个数字。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nthUglyNumber</span>(<span class="params">self, n</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        sorted_ugly = []</span><br><span class="line">        heap = [<span class="number">1</span>]</span><br><span class="line">        heapq.heapify(heap)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">len</span>(sorted_ugly) &lt; n:            </span><br><span class="line">            next_ugly = heapq.heappop(heap)</span><br><span class="line">            <span class="keyword">if</span> next_ugly <span class="keyword">not</span> <span class="keyword">in</span> sorted_ugly:</span><br><span class="line">                sorted_ugly.append(next_ugly)</span><br><span class="line">                heapq.heappush(heap, next_ugly*<span class="number">2</span>)</span><br><span class="line">                heapq.heappush(heap, next_ugly*<span class="number">3</span>)</span><br><span class="line">                heapq.heappush(heap, next_ugly*<span class="number">5</span>)</span><br><span class="line">        <span class="keyword">return</span> sorted_ugly[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>动态规划</p>
-<p>把2 3 5需要乘的数字表示为指针，然后依次升高，进行排序</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nthUglyNumber</span>(<span class="params">self, n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type n: int</span></span><br><span class="line"><span class="string">    :rtype: int</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    dp = [<span class="number">1</span>]</span><br><span class="line">    pointer2 = <span class="number">0</span></span><br><span class="line">    pointer3 = <span class="number">0</span></span><br><span class="line">    pointer5 = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(dp) &lt; n:</span><br><span class="line">        dp = dp + [<span class="built_in">min</span>(dp[pointer2]*<span class="number">2</span>, dp[pointer3]*<span class="number">3</span>, dp[pointer5]*<span class="number">5</span>)]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> dp[<span class="number">-1</span>] == dp[pointer2]*<span class="number">2</span>:</span><br><span class="line">            pointer2 += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> dp[<span class="number">-1</span>] == dp[pointer3]*<span class="number">3</span>:</span><br><span class="line">            pointer3 += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> dp[<span class="number">-1</span>] == dp[pointer5]*<span class="number">5</span>:</span><br><span class="line">            pointer5 += <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="补充-Leetcode263-Ugly-Number"><a href="#补充-Leetcode263-Ugly-Number" class="headerlink" title="补充 - Leetcode263 - Ugly Number"></a>补充 - Leetcode263 - Ugly Number</h1><blockquote>
-<p>Write a program to check whether a given number is an ugly number.</p>
-<p>Ugly numbers are <strong>positive numbers</strong> whose prime factors only include <code>2, 3, 5</code>.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: 6</span><br><span class="line">Output: true</span><br><span class="line">Explanation: 6 = 2 × 3</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>解题思路：</p>
-<p>更直接一点，只用循环除以2 3 5 就可以了。注意小于0的数字和 =0 的数字</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isUgly</span>(<span class="params">self, num</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type num: int</span></span><br><span class="line"><span class="string">        :rtype: bool</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> num == <span class="number">1</span>: <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">if</span> num == <span class="number">0</span>: <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">        <span class="keyword">while</span> num != <span class="number">1</span>:</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">                num = num //<span class="number">2</span></span><br><span class="line">            <span class="keyword">elif</span> num%<span class="number">3</span> == <span class="number">0</span>:</span><br><span class="line">                num = num//<span class="number">3</span></span><br><span class="line">            <span class="keyword">elif</span> num%<span class="number">5</span> == <span class="number">0</span>:</span><br><span class="line">                num = num//<span class="number">5</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-<h1 id="0703-Leetcode957-Prison-Cells-After-N-days"><a href="#0703-Leetcode957-Prison-Cells-After-N-days" class="headerlink" title="0703 - Leetcode957 - Prison Cells After N days"></a>0703 - Leetcode957 - Prison Cells After N days</h1><blockquote>
-<p>There are 8 prison cells in a row, and each cell is either occupied or vacant.</p>
-<p>Each day, whether the cell is occupied or vacant changes according to the following rules:</p>
-<ul>
-<li>If a cell has two adjacent neighbors that are both occupied or both vacant, then the cell becomes occupied.</li>
-<li>Otherwise, it becomes vacant.</li>
-</ul>
-<p>(Note that because the prison is a row, the first and the last cells in the row can’t have two adjacent neighbors.)</p>
-<p>We describe the current state of the prison in the following way: <code>cells[i] == 1</code> if the <code>i</code>-th cell is occupied, else <code>cells[i] == 0</code>.</p>
-<p>Given the initial state of the prison, return the state of the prison after <code>N</code> days (and <code>N</code> such changes described above.)</p>
-</blockquote>
-<p>解题思路：</p>
-<ol>
-<li><p>规律总结，我是总结规律来的。因为如果写一个方程然后运行N次感觉时间复杂度会比较高。总结规律之后，14变换为一轮回，然后求余数就可以了。但是这个应该是有更底层的解释，为什么14个一个轮回。还有看到的规律是，几次之后，后面的模式和前面相比是前半部分和后半部分调换了位置。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Time: O(1), Space: O(1)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">prisonAfterNDays</span>(<span class="params">self, cells, N</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type cells: List[int]</span></span><br><span class="line"><span class="string">        :type N: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> N == <span class="number">0</span>: <span class="keyword">return</span> cells</span><br><span class="line">        temp = [<span class="number">0</span>]*<span class="number">8</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(cells) - <span class="number">1</span>):                </span><br><span class="line">                temp[i] = <span class="number">1</span> - cells[i<span class="number">-1</span>] ^ cells[i+<span class="number">1</span>]</span><br><span class="line">                </span><br><span class="line">        cells = temp</span><br><span class="line">        </span><br><span class="line">        re = (N - <span class="number">1</span>) % <span class="number">14</span></span><br><span class="line">        <span class="keyword">while</span> re &gt; <span class="number">0</span>:</span><br><span class="line">            temp = [<span class="number">0</span>]*<span class="number">8</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(cells) - <span class="number">1</span>):                </span><br><span class="line">                temp[i] = <span class="number">1</span> - cells[i<span class="number">-1</span>] ^ cells[i+<span class="number">1</span>]               </span><br><span class="line">            cells[<span class="number">1</span>:<span class="number">8</span>] = temp[<span class="number">1</span>:<span class="number">8</span>]            </span><br><span class="line">            re -= <span class="number">1</span>           </span><br><span class="line">        <span class="keyword">return</span> cells</span><br><span class="line">     </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>常规做法：将pattern保存在dictionary中，然后看几个一循环。（因为有的时候可能循环周期不同</p>
-<p>需要注意的是保存在字典里的数字是我们接下来要找的余数，余数是从 0 到 T-1（T为周期），所以N在计算的时候需要做-1.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Time: O(1) Space: O(1)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">prisonAfterNDays</span>(<span class="params">self, cells, N</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type cells: List[int]</span></span><br><span class="line"><span class="string">        :type N: int</span></span><br><span class="line"><span class="string">        :rtype: List[int]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        pattern_dict = &#123;&#125;</span><br><span class="line">        <span class="comment"># cells = self.nextPattern(cells)</span></span><br><span class="line">        n = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            n += <span class="number">1</span></span><br><span class="line">            cells = self.nextPattern(cells)</span><br><span class="line">            <span class="keyword">if</span> cells <span class="keyword">in</span> pattern_dict.values():</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                pattern_dict[n<span class="number">-1</span>] = cells    </span><br><span class="line">        T = n - <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> pattern_dict[(N<span class="number">-1</span>) % T]</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="0702-Leetcode107-Binary-Tree-Level-Order-Traversal-II-（104同理）"><a href="#0702-Leetcode107-Binary-Tree-Level-Order-Traversal-II-（104同理）" class="headerlink" title="0702 - Leetcode107 - Binary Tree Level Order Traversal II （104同理）"></a>0702 - Leetcode107 - Binary Tree Level Order Traversal II （104同理）</h1><blockquote>
-<p>Given a binary tree, return the <em>bottom-up level order</em> traversal of its nodes’ values. (ie, from left to right, level by level from leaf to root).</p>
-<p>For example:<br>Given binary tree <code>[3,9,20,null,null,15,7]</code>,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> &#x2F; \</span><br><span class="line">9  20</span><br><span class="line">  &#x2F;  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
-<p>return its bottom-up level order traversal as:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [15,7],</span><br><span class="line">  [9,20],</span><br><span class="line">  [3]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>解题思路:</p>
-<p>普通的BFS每层拿出，遍历，再将每层的left right放入</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">levelOrderBottom</span>(<span class="params">self, root</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root: <span class="keyword">return</span> []</span><br><span class="line">        </span><br><span class="line">        queue = [root]</span><br><span class="line">        ans = []</span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">len</span>(queue) &gt; <span class="number">0</span>:</span><br><span class="line">            nodes = []</span><br><span class="line">            <span class="keyword">while</span> <span class="built_in">len</span>(queue) &gt; <span class="number">0</span>:</span><br><span class="line">                nodes.append(queue.pop(<span class="number">0</span>))</span><br><span class="line">            <span class="comment"># print(nodes)</span></span><br><span class="line">            tmp = [n.val <span class="keyword">for</span> n <span class="keyword">in</span> nodes]</span><br><span class="line">            ans.append(tmp)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> n <span class="keyword">in</span> nodes:</span><br><span class="line">                <span class="keyword">if</span> n.left:</span><br><span class="line">                    queue.append(n.left)</span><br><span class="line">                <span class="keyword">if</span> n.right:  </span><br><span class="line">                    queue.append(n.right)</span><br><span class="line">        <span class="keyword">return</span> ans[::<span class="number">-1</span>]</span><br><span class="line">            </span><br></pre></td></tr></table></figure>
-<p>上述如果返回的是 <code>ans</code> 那就是不bottom up的 level traverse 遍历二叉树</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 学到了deque 读（deck）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line">deque.pop()</span><br><span class="line">deque.popleft() <span class="comment"># 和append组合相当于queue的FIFO</span></span><br></pre></td></tr></table></figure>
-<h1 id="0701-Leetcode441-Arranging-coins"><a href="#0701-Leetcode441-Arranging-coins" class="headerlink" title="0701 - Leetcode441 - Arranging coins"></a>0701 - Leetcode441 - Arranging coins</h1><blockquote>
-<p>You have a total of <em>n</em> coins that you want to form in a staircase shape, where every <em>k</em>-th row must have exactly <em>k</em> coins.</p>
-<p>Given <em>n</em>, find the total number of <strong>full</strong> staircase rows that can be formed.</p>
-<p><em>n</em> is a non-negative integer and fits within the range of a 32-bit signed integer.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">n = 5</span><br><span class="line"></span><br><span class="line">The coins can form the following rows:</span><br><span class="line">¤</span><br><span class="line">¤ ¤</span><br><span class="line">¤ ¤</span><br><span class="line"></span><br><span class="line">Because the 3rd row is incomplete, we return 2.</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>解题思路：</p>
-<ol>
-<li><p>看到这道题首先想到的是斐波那契数列，因而想到了用动态规划来写。这道题不是斐波那切数列啊！就是看到这个排列想到了。如果用动态规划写的话：</p>
-<ul>
-<li>dp[i] 表示的就是当第i行排满之后，总共需要几个coin</li>
-<li>状态转移方程 dp[i] = dp[i-1] + i</li>
-<li>实质上也是等差数列求和：求一个 <code>int(k)</code> 使得 $\frac{k(k+1)}{2} &lt;= n$， 得出的解是 $k = \frac{-1+\sqrt{1+8n}}{2} = \sqrt{2n + 0.25} - 0.5$</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Time: O(sqrt(n)) Space: O(sqrt(n))</span></span><br><span class="line"><span class="comment"># 这样写会TLE</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">arrangeCoins</span>(<span class="params">self, n</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        dp = []</span><br><span class="line">        dp = dp+[<span class="number">0</span>]</span><br><span class="line">        count = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> n &gt;= dp[<span class="number">-1</span>]:</span><br><span class="line">            dp = dp + [count + dp[<span class="number">-1</span>]]</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> count - <span class="number">2</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>写的时候直接用n减去每次的循环序号（i.e. 第一次减去1，第二次减去2）当n小于0的时候就跳出循环，返回循环的次数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Time: O(sqrt(n))(?是这样吗) Space: O(1)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">arrangeCoins</span>(<span class="params">self, n</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n &lt;= <span class="number">2</span>: <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> n &gt;= <span class="number">0</span>:</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">            n -= count</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> count - <span class="number">1</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>看了别人写的之后还有Binary Search. 二叉树的时候更新左右两个端点总是会忽略的一个问题是，如果你要保左端点，那在算中值的时候需要+1，这样才能保证不陷入死循环。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">arrangeCoins</span>(<span class="params">self, n</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        right = n</span><br><span class="line">        <span class="keyword">while</span> left &lt; right:</span><br><span class="line">            <span class="comment"># print(left, right)</span></span><br><span class="line">            mid = (left + right + <span class="number">1</span>)/<span class="number">2</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> mid*(mid+<span class="number">1</span>)/<span class="number">2</span> &lt; n: </span><br><span class="line">                left = mid </span><br><span class="line">            <span class="keyword">if</span> mid*(mid+<span class="number">1</span>)/<span class="number">2</span> &gt; n: </span><br><span class="line">                right = mid - <span class="number">1</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> mid*(mid+<span class="number">1</span>)/<span class="number">2</span> == n: </span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> left </span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1375,11 +1177,11 @@ a = \sigma(z)</script><p>从这一层中可以看出，如果我们要求  $w_1$
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Chenxi</span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
   </div>

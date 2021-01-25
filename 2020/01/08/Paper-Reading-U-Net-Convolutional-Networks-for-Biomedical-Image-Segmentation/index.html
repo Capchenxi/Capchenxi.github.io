@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="论文题目：U-Net: Convolutional Networks for Biomedical Image Segmentation  论文作者：$Olaf Ronneberger, Philipp Fischer, Thomas Bro$  相关代码：https:&#x2F;&#x2F;lmb.informatik.uni-freiburg.de&#x2F;people&#x2F;ronneber&#x2F;u-net&#x2F;  论文原文中的一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读 |U-Net: Convolutional Networks for Biomedical Image Segmentation">
+<meta property="og:url" content="http://yoursite.com/2020/01/08/Paper-Reading-U-Net-Convolutional-Networks-for-Biomedical-Image-Segmentation/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="论文题目：U-Net: Convolutional Networks for Biomedical Image Segmentation  论文作者：$Olaf Ronneberger, Philipp Fischer, Thomas Bro$  相关代码：https:&#x2F;&#x2F;lmb.informatik.uni-freiburg.de&#x2F;people&#x2F;ronneber&#x2F;u-net&#x2F;  论文原文中的一">
+<meta property="og:locale">
+<meta property="og:image" content="https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/u-net-architecture.png">
+<meta property="article:published_time" content="2020-01-08T03:21:50.000Z">
+<meta property="article:modified_time" content="2020-01-08T03:21:50.000Z">
+<meta property="article:author" content="Chenxi">
+<meta property="article:tag" content="图像分割">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/u-net-architecture.png">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/01/08/Paper-Reading-U-Net-Convolutional-Networks-for-Biomedical-Image-Segmentation/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>论文阅读 |U-Net: Convolutional Networks for Biomedical Image Segmentation | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">网络结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E9%87%87%E6%A0%B7-upsampling"><span class="nav-number">3.0.1.</span> <span class="nav-text">上采样 upsampling</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">训练过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%95%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text">试验结果</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Author</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/08/Paper-Reading-U-Net-Convolutional-Networks-for-Biomedical-Image-Segmentation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          论文阅读 |U-Net: Convolutional Networks for Biomedical Image Segmentation
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-08 11:21:50" itemprop="dateCreated datePublished" datetime="2020-01-08T11:21:50+08:00">2020-01-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li><p>论文题目：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1505.04597.pdf">U-Net: Convolutional Networks for Biomedical Image Segmentation</a></p>
+</li>
+<li><p>论文作者：$Olaf Ronneberger, Philipp Fischer, Thomas Bro$</p>
+</li>
+<li><p>相关代码：<a target="_blank" rel="noopener" href="https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/">https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/</a></p>
+</li>
+<li><p><strong>论文原文中的一些翻译可能不准确，（）中的部分为论文原文中的术语</strong></p>
+</li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>本文主要介绍了一种能够最大程度利用数据增强进行训练的模型，并且在数据分割任务中表现出色。这个网络结构包含了一个降维采样（contracting path）的过程来提取图片中的内容信息，以及一个对称的上采样（expanding path）可以准确提供分割的位置。文章展示了该网络可以通过比较少的图片进行训练，然后得到比之前的方法更好的分割数据。</p>
+<a id="more"></a>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>这部分就是在说近两年，神经网络在计算机视觉的任务解决上发挥了很大的作用，包括图片的分类定位和分割。然后提出了在2012年由 Ciresan提出的对于图像中target进行识别和定位的算法。该算法是通过训练一个神经网络，通过在图片上滑动的窗口进行像素级别的分类。这个算法有两个弱点，首先，这个过程会非常的慢，因为神经网络需要应用在每个滑动窗口的patch上，其次，在定位准确性和图片内容使用上有一个trade-off。更大的patch需要更多的池化层，而池化层或降低localization的准确度。但是如果输入的patch较小，又会使得摄取的图片内容过少。</p>
+<p>这篇文章中，作者设计了一个更为精妙的模型，也就是全卷积神经网络(fully convolutional network)。作者稍微调整了这个结构，使得该网络结构用少量的训练图片可以得到更加准确的分割。主要思路是利用上采样层取代池化层来弥补之前的压缩过程（usual contract）。因此，这些层可以增加输出的的分辨率。为了定位准确，压缩路径中的高分辨率的特征和上采样的结果相结合。接下来的卷积层(a successive convolution layer)可以基于此得到一个更准确的结果。</p>
+<p><img src="https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/u-net-architecture.png" alt="img" style="zoom:67%;" /></p>
+<h1 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h1><p>网络结构如上图所示，包含左侧的下采样路径(contracting path)和右侧的上采样(expanding path)路径。</p>
+<ul>
+<li><p>Contracting path:</p>
+<p>传统的卷积网络结构，包含两个 $3 \times 3$ 的卷积（unpadded），连接一个ReLU，之后是一个池化层。</p>
+<p>在每个下采样过程中，都会将feature channel的数量加倍。</p>
+<p>展示一个downsampling 的单元</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">down</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, in_ch, out_ch</span>):</span></span><br><span class="line">        <span class="built_in">super</span>(down, self).__init__()</span><br><span class="line">        self.mpconv = nn.Sequential(</span><br><span class="line">            nn.Conv2d(in_ch, out_ch, <span class="number">3</span>),</span><br><span class="line">            nn.BatchNorm2d(out_ch),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.Conv2d(out_ch, out_ch, <span class="number">3</span>),</span><br><span class="line">            nn.BatchNorm2d(out_ch),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.MaxPool2d(<span class="number">2</span>),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        x = self.mpconv(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Expanding path： 这部分有些些复杂。主要分为两个部分，一部分是从下采样过程中直接引入feature map；另一部分是上采样过程中的feature map。</p>
+<p>在上采样的过程中，feature map会经过一个 $2 \times  2$ 的卷积，用来拓展feature map的大小，收缩channel的数量使其减半。然后直接和左侧下采样过程中的相同feature channel数的层相拼接（也就是U型中间横线的指向）。 然后拼接的网络通过两次 $3 \times 3$ 卷积（unpadded）+ReLU的结构。</p>
+<p>展示一个上采样单元：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">up</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, in_ch, out_ch, bilinear=<span class="literal">True</span></span>):</span></span><br><span class="line">        <span class="built_in">super</span>(up, self).__init__()</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> bilinear:</span><br><span class="line">            self.up = nn.Upsample(scale_factor=<span class="number">2</span>, mode=<span class="string">&#x27;bilinear&#x27;</span>, align_corners=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.up = nn.ConvTranspose2d(in_ch//<span class="number">2</span>, in_ch//<span class="number">2</span>, <span class="number">2</span>, stride=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        self.conv = nn.Sequence(</span><br><span class="line">            nn.Conv2d(in_ch, out_ch, <span class="number">3</span>),</span><br><span class="line">            nn.BatchNorm2d(out_ch),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>),</span><br><span class="line">            nn.Conv2d(out_ch, out_ch, <span class="number">3</span>),</span><br><span class="line">            nn.BatchNorm2d(out_ch),</span><br><span class="line">            nn.ReLU(inplace=<span class="literal">True</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x1, x2</span>):</span></span><br><span class="line">        x1 = self.up(x1)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># input is CHW</span></span><br><span class="line">        diffY = x2.size()[<span class="number">2</span>] - x1.size()[<span class="number">2</span>]</span><br><span class="line">        diffX = x2.size()[<span class="number">3</span>] - x1.size()[<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">        x1 = F.pad(x1, (diffX // <span class="number">2</span>, diffX - diffX//<span class="number">2</span>,</span><br><span class="line">                        diffY // <span class="number">2</span>, diffY - diffY//<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">        x = torch.cat([x2, x1], dim=<span class="number">1</span>)</span><br><span class="line">        x = self.conv(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>最后一层的 $1 \times 1$ 卷积层是用来将64层channel变为所需的类的个数。</li>
+</ul>
+<p>网络总共包含23个卷积层。</p>
+<p>为了和segmentation map由无缝连接，我们需要选取合适输入的图片的尺寸，让每个 $2 \times 2$的卷积层在上面作用时都得到偶数的尺寸。【这点还挺重要的，在实际应用中，我有接触用不合适的尺寸来做下采样，导致在上采样过程中很难和之前的结构concat。当两部分不能直接concat的时候，可以尝试去掉一列。】</p>
+<h3 id="上采样-upsampling"><a href="#上采样-upsampling" class="headerlink" title="上采样 upsampling"></a>上采样 upsampling</h3><p>上采样的过程其实就是拓展你的feature map的过程。我们一般在做分类任务的卷积过程时，得到的feature map可能它的channel数量越来越多，但是 它的 h，w值是越来越小的，直到最后一层再进行分类的时候会通过全连接神经网络变成一个1024或者更小的向量。这个数值是远小于一开始输入的图片大小的。</p>
+<p>但是在端到端分割网络结构中，我们的输出是一个和输入图片大小一样的图片，并且在像素级地分辨前景和背景。所以就存在一个上采样的过程，使原本减小了的feature map再逐渐变大。所以就存在了一个上采样的过程。一般扩大feature map的操作分为三种： 反卷积(deconvolution/ convolution transpose)，上池化(unpooling)，上采样(unsampling)。【题目中提到的unsampling是一个泛泛的扩大feature map的概念】</p>
+<ul>
+<li><p>反卷积 deconvolution </p>
+<p>如果在你知道了它是如何操作之后，这里其实叫转置卷积更为合适。</p>
+</li>
+<li><p>上池化 unpooling</p>
+<p>这里就是将池化的过程反过来做。</p>
+</li>
+<li><p>上采样 unsmapling</p>
+<p>一般指的是用传统的方法进行插值采样。</p>
+</li>
+</ul>
+<p>上池化和上采样不需要训练参数，但是反卷积因为有卷积的存在，所以还是存在训练参数的。</p>
+<h1 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h1><ul>
+<li><p>最终的feature map上的每一个pixel都会经过soft-max层来判断它究竟属于哪一类。</p>
+</li>
+<li><p>提到了一个pre-computed weight map，有助于分辨相邻的有边界的范围。也就是在训练的时候将边界处的loss weight加大，强迫机器学习边界处的内容。具体公式如下：</p>
+<script type="math/tex; mode=display">
+w({\bf x}) = w_c({\bf x}) + w_0 \cdot exp\left(-\frac{(d_1({\bf x})+ d_2({\bf x}))^2}{2\sigma ^2}\right)</script><p>这里的 $w_c({\bf x})$ 是balance class frequencies的map，$d_1$ 和 $d_2$ 分别表示距离第一近和第二近细胞的边界的距离。$w_0$ 和 $\sigma$ 都是人为设置的。可以看出来像素距离边界越近得到的权重越高。</p>
+<p>最终的cross entropy loss在计算的过程中会考虑权重 </p>
+<script type="math/tex; mode=display">
+E = \sum\limits_{\bf x\in \Omega} w({\bf x})\log(p_{l({\bf x})}({\bf x}))</script></li>
+<li><p>weight matrix一开始的初始值是以 $\sqrt{2/N}$ 为deviation的高斯分布取值的，N的值为卷积的总个数。</p>
+</li>
+<li>因为数据本身不太够，所以需要进行数据增广。</li>
+</ul>
+<h1 id="试验结果"><a href="#试验结果" class="headerlink" title="试验结果"></a>试验结果</h1><p>总之就是在三种任务上测试并且表现都很好。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/" rel="tag"># 图像分割</a>
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/01/08/Notes-Kmeans-and-KNN/" rel="prev" title="Notes | Kmeans 和 KNN">
+                  <i class="fa fa-chevron-left"></i> Notes | Kmeans 和 KNN
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/01/09/Algorithm-Leetcode-array/" rel="next" title="算法 | 【Leetcode】数组array类题目总结">
+                  算法 | 【Leetcode】数组array类题目总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

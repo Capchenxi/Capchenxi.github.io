@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="提取CCL双语语料库信息【简易网页内容抓取】 说明：此程序非商用，纯属个人提取数据时写的简单的抓取网页信息的程序，具体内容请参阅 CCL语料库使用说明 。感谢CCL语料库的创建和维护者。转载请标明出处 适用范围：CCL双语语料库 输入信息：查询词汇query，词汇左右两边限定词汇长度max_left, max_right 返回内容：无 (会在当前文件夹下创建 .&#x2F;CCL_corpus&#x2F; 文件夹保存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="whatidid | 提取CCL双语语料检索库检索数据">
+<meta property="og:url" content="http://yoursite.com/2020/05/17/whatidid-%E6%8F%90%E5%8F%96CCL%E8%AF%AD%E6%96%99%E6%A3%80%E7%B4%A2%E5%BA%93%E6%A3%80%E7%B4%A2%E6%95%B0%E6%8D%AE/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="提取CCL双语语料库信息【简易网页内容抓取】 说明：此程序非商用，纯属个人提取数据时写的简单的抓取网页信息的程序，具体内容请参阅 CCL语料库使用说明 。感谢CCL语料库的创建和维护者。转载请标明出处 适用范围：CCL双语语料库 输入信息：查询词汇query，词汇左右两边限定词汇长度max_left, max_right 返回内容：无 (会在当前文件夹下创建 .&#x2F;CCL_corpus&#x2F; 文件夹保存">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/images/3281589670804_.pic_hd.jpg">
+<meta property="og:image" content="http://yoursite.com/images/3291589670915_.pic_hd.jpg">
+<meta property="article:published_time" content="2020-05-16T22:59:00.000Z">
+<meta property="article:modified_time" content="2020-05-16T22:59:00.000Z">
+<meta property="article:author" content="Chenxi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/3281589670804_.pic_hd.jpg">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/05/17/whatidid-%E6%8F%90%E5%8F%96CCL%E8%AF%AD%E6%96%99%E6%A3%80%E7%B4%A2%E5%BA%93%E6%A3%80%E7%B4%A2%E6%95%B0%E6%8D%AE/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>whatidid | 提取CCL双语语料检索库检索数据 | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Author</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/17/whatidid-%E6%8F%90%E5%8F%96CCL%E8%AF%AD%E6%96%99%E6%A3%80%E7%B4%A2%E5%BA%93%E6%A3%80%E7%B4%A2%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          whatidid | 提取CCL双语语料检索库检索数据
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-05-17 06:59:00" itemprop="dateCreated datePublished" datetime="2020-05-17T06:59:00+08:00">2020-05-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>提取CCL双语语料库信息【简易网页内容抓取】</p>
+<p>说明：此程序非商用，纯属个人提取数据时写的简单的抓取网页信息的程序，具体内容请参阅 <a target="_blank" rel="noopener" href="http://ccl.pku.edu.cn:8080/ccl_corpus/CCLCorpus_Readme.html">CCL语料库使用说明</a> 。感谢CCL语料库的创建和维护者。<strong>转载请标明出处</strong></p>
+<p>适用范围：CCL双语语料库</p>
+<p>输入信息：查询词汇query，词汇左右两边限定词汇长度max_left, max_right</p>
+<p>返回内容：无 (会在当前文件夹下创建 ./CCL_corpus/ 文件夹保存目标词汇的搜索结果)</p>
+<p>图片说明：</p>
+<p><img src="/images/3281589670804_.pic_hd.jpg" alt="3281589670804_.pic_hd"><img src="/images/3291589670915_.pic_hd.jpg" alt="3291589670915_.pic_hd"></p>
+<p>具体程序：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">extract_sentences</span>(<span class="params">query:<span class="built_in">str</span>=<span class="string">&#x27;bill&#x27;</span>, max_left:<span class="built_in">int</span>=<span class="number">300</span>, max_right:<span class="built_in">int</span>=<span class="number">300</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :param query: 目标搜索词 target word</span></span><br><span class="line"><span class="string">    :param max_left: 左侧提取最多字数(以char为单位) maximum str length before target word</span></span><br><span class="line"><span class="string">    :param max_right: 右侧提取最多字数(以char为单位)minmum str length after target word</span></span><br><span class="line"><span class="string">    :return: None. (Generate the file containing sentences)</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    page = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        web = <span class="string">&#x27;http://ccl.pku.edu.cn:8080/ccl_corpus/search?dir=chen&amp;q=&#x27;</span>+query+<span class="string">&#x27;&amp;LastQuery=&#x27;</span>+query+<span class="string">&#x27;&amp;start=&#x27;</span>+<span class="built_in">str</span>((page<span class="number">-1</span>)*<span class="number">50</span>)+<span class="string">&#x27;&amp;num=50&#x27;</span>+\</span><br><span class="line">              <span class="string">&#x27;&amp;index=FullIndex&amp;outputFormat=HTML&amp;orderStyle=score&amp;encoding=UTF-8&amp;neighborSortLength=0&amp;maxLeftLength=&#x27;</span>+<span class="built_in">str</span>(max_left)+<span class="string">&#x27;&amp;maxRightLength=&#x27;</span>+<span class="built_in">str</span>(max_right)+<span class="string">&#x27;&amp;isForReading=yes&#x27;</span></span><br><span class="line">        response = requests.get(web)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> response.raise_for_status(): <span class="comment"># check if the website is available</span></span><br><span class="line">            print(response.raise_for_status())</span><br><span class="line"></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        url_text = response.content.decode()</span><br><span class="line"></span><br><span class="line">        se = re.search(</span><br><span class="line">            <span class="string">r&#x27;&lt;td width=\&quot;3%\&quot;&gt;(\d+)&lt;\/td&gt;&lt;td width=\&quot;45%\&quot; valign=\&quot;top\&quot; colspan=\&quot;3\&quot; align=\&quot;left\&quot;&gt;(.+?)&lt;\/td&gt;&lt;td width=\&quot;45%\&quot; valign=\&quot;top\&quot; colspan=\&quot;3\&quot; align=\&quot;left\&quot;&gt;(.+?)&lt;\/td&gt;&lt;\/tr&gt;&#x27;</span>,</span><br><span class="line">            url_text, re.S)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> se: <span class="comment"># If there is no matching pattern, break</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        match = re.finditer(<span class="string">r&#x27;&lt;td width=\&quot;3%\&quot;&gt;(\d+)&lt;\/td&gt;&lt;td width=\&quot;45%\&quot; valign=\&quot;top\&quot; colspan=\&quot;3\&quot; align=\&quot;left\&quot;&gt;(.+?)&lt;\/td&gt;&lt;td width=\&quot;45%\&quot; valign=\&quot;top\&quot; colspan=\&quot;3\&quot; align=\&quot;left\&quot;&gt;(.+?)&lt;\/td&gt;&lt;\/tr&gt;&#x27;</span>,</span><br><span class="line">                                url_text, re.S)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(<span class="string">&#x27;../CCL_corpus&#x27;</span>):</span><br><span class="line">            os.mkdir(<span class="string">&#x27;../CCL_corpus&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;../CCL_corpus/ccl_&#x27;</span>+query+<span class="string">&#x27;.txt&#x27;</span>,<span class="string">&#x27;a&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="keyword">for</span> m <span class="keyword">in</span> match:</span><br><span class="line"></span><br><span class="line">                f.write(m.group(<span class="number">1</span>)+<span class="string">&#x27; &#x27;</span>+ re.sub(<span class="string">&#x27; +&#x27;</span>, <span class="string">&#x27; &#x27;</span>, re.sub(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27; &#x27;</span>, m.group(<span class="number">2</span>)))+<span class="string">&#x27; &#x27;</span>+</span><br><span class="line">                        re.sub(<span class="string">&#x27; +&#x27;</span>, <span class="string">&#x27; &#x27;</span>, re.sub(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27; &#x27;</span>, m.group(<span class="number">3</span>)))+<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        page += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    target_words_list = [<span class="string">&#x27;address&#x27;</span>, <span class="string">&#x27;appreciate&#x27;</span>, <span class="string">&#x27;beat&#x27;</span>, <span class="string">&#x27;bill&#x27;</span>, <span class="string">&#x27;bond&#x27;</span>, <span class="string">&#x27;column&#x27;</span>, <span class="string">&#x27;cover&#x27;</span>, <span class="string">&#x27;deliver&#x27;</span>, <span class="string">&#x27;exploit&#x27;</span>, <span class="string">&#x27;figure&#x27;</span>,<span class="string">&#x27;perspective&#x27;</span>, <span class="string">&#x27;platform&#x27;</span>, <span class="string">&#x27;provision&#x27;</span>, <span class="string">&#x27;rest&#x27;</span>]</span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> target_words_list:</span><br><span class="line">        extract_sentences(t)</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/04/20/whatidid-gensim-word2vec-doc/" rel="prev" title="杂学 | 对于Word2Vec的一点理解">
+                  <i class="fa fa-chevron-left"></i> 杂学 | 对于Word2Vec的一点理解
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/06/07/Algorithm-Leetcode-June%20Challenge/" rel="next" title="Algorithm | LeetCode - June Challenge">
+                  Algorithm | LeetCode - June Challenge <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

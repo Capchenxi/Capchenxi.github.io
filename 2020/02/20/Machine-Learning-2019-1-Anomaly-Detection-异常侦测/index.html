@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="终于到了正文部分了：） Chapter 1. Anomaly Detection 之前说到了这部分主要是说如何让机器知道“我不知道”。">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Machine Learning-2019| 1 Anomaly Detection 异常侦测">
+<meta property="og:url" content="http://yoursite.com/2020/02/20/Machine-Learning-2019-1-Anomaly-Detection-%E5%BC%82%E5%B8%B8%E4%BE%A6%E6%B5%8B/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="终于到了正文部分了：） Chapter 1. Anomaly Detection 之前说到了这部分主要是说如何让机器知道“我不知道”。">
+<meta property="og:locale">
+<meta property="og:image" content="http://yoursite.com/RenderedImage-3.jpeg">
+<meta property="og:image" content="http://yoursite.com/FullSizeRender.jpeg">
+<meta property="article:published_time" content="2020-02-19T16:25:45.000Z">
+<meta property="article:modified_time" content="2020-02-19T16:25:45.000Z">
+<meta property="article:author" content="Chenxi">
+<meta property="article:tag" content="lecture notes">
+<meta property="article:tag" content="Machine Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/RenderedImage-3.jpeg">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/02/20/Machine-Learning-2019-1-Anomaly-Detection-%E5%BC%82%E5%B8%B8%E4%BE%A6%E6%B5%8B/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title> Machine Learning-2019| 1 Anomaly Detection 异常侦测 | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E5%8F%AB-Anomaly-Detecion"><span class="nav-number">1.</span> <span class="nav-text">什么叫 Anomaly Detecion</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E7%94%A8-Anomaly-Detection"><span class="nav-number">2.</span> <span class="nav-text">怎么用 Anomaly Detection</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84-Anomaly-Detection"><span class="nav-number">3.</span> <span class="nav-text">简单情况下的 Anomaly Detection</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Anomaly-Detection-%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">4.</span> <span class="nav-text">Anomaly Detection 的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-1-With-Label"><span class="nav-number">4.1.</span> <span class="nav-text">Case 1. With Label</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%96%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E6%98%AFAnomaly-data"><span class="nav-number">4.1.1.</span> <span class="nav-text">如何判断新的数据是Anomaly data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-set-Dev-set-Testing-set"><span class="nav-number">4.1.2.</span> <span class="nav-text">Training set, Dev set, Testing set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9Anomaly-Detection%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E8%AF%84%E4%BB%B7"><span class="nav-number">4.1.3.</span> <span class="nav-text">对Anomaly Detection模型进行评价</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">4.1.4.</span> <span class="nav-text">可能存在的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-2-Without-Label"><span class="nav-number">4.2.</span> <span class="nav-text">Case 2. Without Label</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%97%A0%E6%A0%87%E7%AD%BE%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E5%BB%BA%E6%A8%A1"><span class="nav-number">4.2.1.</span> <span class="nav-text">对无标签数据进行建模</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#f-theta-bf-x-%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1"><span class="nav-number">4.2.2.</span> <span class="nav-text">$f_{\theta}({\bf x})$ 参数估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95"><span class="nav-number">4.2.3.</span> <span class="nav-text">其他方法</span></a></li></ol></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Author</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/20/Machine-Learning-2019-1-Anomaly-Detection-%E5%BC%82%E5%B8%B8%E4%BE%A6%E6%B5%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+           Machine Learning-2019| 1 Anomaly Detection 异常侦测
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-02-20 00:25:45" itemprop="dateCreated datePublished" datetime="2020-02-20T00:25:45+08:00">2020-02-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>终于到了正文部分了：）</p>
+<p>Chapter 1. Anomaly Detection</p>
+<p>之前说到了这部分主要是说如何让机器知道“我不知道”。</p>
+<a id="more"></a>
+<h1 id="什么叫-Anomaly-Detecion"><a href="#什么叫-Anomaly-Detecion" class="headerlink" title="什么叫 Anomaly Detecion"></a>什么叫 Anomaly Detecion</h1><p>Anomaly Detecion其实就是异常侦测。但是这里的“异常”并不是一个绝对的褒义词，而是新见到的数据和之前训练的数据是不同的。</p>
+<p>如果在训练过程中，我们的Training Set 为 ${x^{(1)}, x^{(2)}, …,x^{(N)}}$，那么Anomaly Detecion的作用就是：</p>
+<p><img src="/RenderedImage-3.jpeg" alt="RenderedImage-3"></p>
+<p>这里的AD 说的就是 Anomaly Dection，它能测定与训练数据相似的测试数据为 normal，与训练数据不同的数据为abnormal</p>
+<h1 id="怎么用-Anomaly-Detection"><a href="#怎么用-Anomaly-Detection" class="headerlink" title="怎么用 Anomaly Detection"></a>怎么用 Anomaly Detection</h1><p>在日常生活中的很多方面我们都可以用到 Anomaly Detection：</p>
+<ul>
+<li>Fraud Detection：$x$ 为盗刷行为。训练的数据为正常的交易，而异常的数据为盗刷记录</li>
+<li>Network Intrusion Detection：$x$ 为攻击行为。训练的数据都是正常的网络工作状态，而异常的行为被视作攻击网络的行为。</li>
+<li>Cancer Detection： $x$ 为癌细胞。训练的数据都是正常的细胞组织结构，而异常的细胞被视作癌细胞。</li>
+</ul>
+<h1 id="简单情况下的-Anomaly-Detection"><a href="#简单情况下的-Anomaly-Detection" class="headerlink" title="简单情况下的 Anomaly Detection"></a>简单情况下的 Anomaly Detection</h1><p>在上述应用举例中，我们可以发现，这种问题不是很好解决吗。我们只要收集Normal和Abnormal的数据，然后对其进行分类不就行了吗。</p>
+<p>再简单情况下，或是说可以找到很多数据的情况下，Anomaly Detecion是可以这么做的。</p>
+<p>我们可以设置两个分类 Class 1 为正常状态， Class 2 为异常状态，然后收集训练数据，标定标签，然后对新的数据直接进行分类就可以得到 新的数据是否异常。 这种情况是简单的二分类，我们可以直接训练一个Binary Classifier来帮助我们解决问题，事实上在已知异常数据的情况下，很多分类器就是这么做的。</p>
+<p>但是，问题是，我们可以穷举所有的异常数据么？所有的异常数据都可以看做是一类吗？对于未知的异常数据我们该如何让机器意识到这是之前没学过，是它“不知道” 的内容呢？这才是 Anomaly Detection主要讨论的方向。</p>
+<h1 id="Anomaly-Detection-的分类"><a href="#Anomaly-Detection-的分类" class="headerlink" title="Anomaly Detection 的分类"></a>Anomaly Detection 的分类</h1><p>对于异常检测，我们可以将其分为两种情况：一种是数据有标签的，一种是数据没有标签的。</p>
+<p><img src="/FullSizeRender.jpeg" alt="FullSizeRender"></p>
+<p>第一类情况下，我们可以直接利用normal的训练数据和对应的标签来训练分类器，然后使用这个分类器对新的在训练集中没有标签数据（abnormal的数据）的识别，就是我们的对于异常的检测，也被叫做 Open-set recognition.</p>
+<p>第二类情况下，我们训练的数据是没有标签的。这时候，训练的数据可能和之前一样，都是normal的数据，也有可能在训练的时候就混入了一些abnormal的数据。再对新的abnormal的数据进行检测，就是异常检测。</p>
+<h2 id="Case-1-With-Label"><a href="#Case-1-With-Label" class="headerlink" title="Case 1. With Label"></a>Case 1. With Label</h2><p>在第一种情况下，我们的normal的训练数据和对应的标签是已知的。我们需要先对这些训练数据构建分类器，然后再输入新的abnormal的数据。（在这种情况下，如果你的训练数据中有abnoraml的数据，因为他们都是带label的，所以也很容易构成abnormal其中的一类（abnormal的数据可能有很多类，也有一些未知的abnormal的数据））</p>
+<h3 id="如何判断新的数据是Anomaly-data"><a href="#如何判断新的数据是Anomaly-data" class="headerlink" title="如何判断新的数据是Anomaly data"></a>如何判断新的数据是Anomaly data</h3><p>这里拿来举例的训练数据是 辛普森一家 中角色和其对应的名字。所以这里要明确的一点是，normal的数据就是辛普森一家中的人物，而abnormal的数据就是 非辛普森一家 中的东西（这里“东西” 包括，各种其他的动漫人物，或者一些奇奇怪怪的东西，比如 茶壶？hhhh 反正就是 其他类型的东西）。</p>
+<p>第一步，我们需要对这些数据进行训练并且构造分类器。</p>
+<ul>
+<li><p>训练数据 ： ${x^{(1)}, x^{(2)},…,x^{(N)}}$</p>
+</li>
+<li><p>训练label：${\hat y^{(1)}, \hat y^{(2)},…, \hat y^{(N)}}$</p>
+</li>
+<li>可以用各种各样的分类器，这里如果用神经网络构建分类器，输入图片给出的结果将是一个 probability distribution。表明该图片在不同分类上的可能性是多少。</li>
+</ul>
+<p>第二步，我们需要对新数据进行判断</p>
+<p>试想，如果新的测试数据都是之前在训练数据中存在的，且训练数据足够多，那么这个分类器分类的准确度应该还是很高的。也就是说，给定义一张新的图片的时候，大概率我们最后得到的分布是：某一类的probability特别的高，其他的分类上的probability会很低，或接近于零。</p>
+<p>但对于一个分类器在训练的时候从没见过的新的图片，他会不知所措，不知道这张新的图片应该被分在哪个类。所以可能在各个分类上都有相对平均的probability。这样的话，我们就可以有一个小的结论，也就是说，对于一张新的图片，没有哪个分类能做到很高的肯定，说 ：看，这张新图是属于这个分类的。所以这里我们就引入一个新的参数，对未知图片进行判断。</p>
+<p>第三步，建立Cofidence score</p>
+<p>这里的 $\bf Confidence\ Score$ 就是用来表明分类器有多大的把握说，我做出的分类是正确的。$\bf Confidence\ Score$ 有很多种建立的机制，我们可以选择 最大的probability作为 $\bf Confidence\ Score$，也可以选择最后的 probability distribution的熵值作为这个参数。如果选最大的probability作为参数，那么，对于一个之前在训练集中出现过的数据类别，我们的分类器会给出它属于对应分类的很高的概率，这样就说明我们的模型对这个分类有很大的信心。相反，如果新的数据之前没见过，那么机器可能会由于得在各个分类都给出一个比较平均的probability，这样的话，最高的probability就会变低。我们也可以在训练分类器的时候直接就加上一层（一个输出结果）来训练 $\bf Confidence\ Score$。这就要求我们在训练数据中也有一些abnormal的数据，并且给他一些比较低的分数。</p>
+<p>根据以上的步骤，我们就可以构建一个分类器，可一个 $\bf Confidence\ Score$ 的机制，对新输入的图片进行判断。</p>
+<h3 id="Training-set-Dev-set-Testing-set"><a href="#Training-set-Dev-set-Testing-set" class="headerlink" title="Training set, Dev set, Testing set"></a>Training set, Dev set, Testing set</h3><p>这里的训练数据和之前说的一样，需要是图片和图片对应的人物label</p>
+<p>Dev set需要和Test set相似，所以这里需要包含有 simpson 人物和 不是simpson人物的图片</p>
+<h3 id="对Anomaly-Detection模型进行评价"><a href="#对Anomaly-Detection模型进行评价" class="headerlink" title="对Anomaly Detection模型进行评价"></a>对Anomaly Detection模型进行评价</h3><p>我们有了 分类器 和 信心分数机制 后，可以对测试的数据进行测试，然后对对比输出结果，对该模型进行判定。</p>
+<p>说到底 normal 和 abnormal 的模型还是二分类问题，所以我们这里重要的一个参数就是 信心分数 阈值 $\lambda$ 的设定问题。也就是说 在我的 信心分数 高于 阈值 $\lambda$ 的时候，将这张新图判定为对应的分类，而 信心分数 低于阈值 $\lambda$ 的时候，这张新图被判定为 anomaly data。</p>
+<p>那么这里就涉及到二分类的两种错误： False Posivite 和 False Negative. 根据阈值 $\lambda$ 的不同，我们也可以画出 ROC的图。 究竟阈值选的高还是低，需要主观的确定  False Posivite 和 False Negative 两种错误哪种付出的代价比较大。比如说，我们在进行异常细胞（癌细胞）检测的时候，比较 假阳性 和 假阴性， 我们希望假阴性发生的更少。因为假阳性的话，最后还是会解除，可能就是被诊断的人伤心，但是假阴性会让病人错过治疗的最佳时间。在这种情况下， 阈值 $\lambda$ 的值需要设置的相对较高。</p>
+<h3 id="可能存在的问题"><a href="#可能存在的问题" class="headerlink" title="可能存在的问题"></a>可能存在的问题</h3><p>之前我们提出的，包括对 信心分数的假设都是，新输入的图片与训练图片十分不相似，所以输出的结果是一个较为平均的分布，以至于拉低最高的probability。但是，如果我们将一张老虎或者狼的图片放在 猫狗识别器中，我们还能得到一个较为平均的分布吗？还是说因为老虎或者狼和猫或者狗长得像，他们就会被错误的当成猫或狗呢？</p>
+<p>这个分类错误的原因在于，我们在训练模型的时候，我们并不知道我们的机器学习了训练数据的哪一个特征。由于老虎和猫同属猫科动物，相似的特征可能让分类器无法出一个平均的分布（即，可能是狗，可能是猫），这样我们就无法利用信心分数来做 Anomaly Detection。同样的，在上述 Simpson一家人物分类器中，我们如果把新的输入图片的脸涂黄（分类器是根据颜色特征来分类），分类器也会给出一个错误的并且很高的分类分数。</p>
+<p>解决这类问题有两种方法：</p>
+<ul>
+<li>如果可以拿到异常数据，那么对于和正常数据相似却不同的异常数据，我们在训练过程中可以家属 信心分数的影响，给这些异常数据一个很低的信心分数（可以参考刚才说的，在神经网络中增加一个输出来训练信心分数机制）</li>
+<li>如果拿不到异常数据，我们则需要利用Gerative model 生成异常数据, 生成一些和正常数据相似但不同的数据。</li>
+</ul>
+<h2 id="Case-2-Without-Label"><a href="#Case-2-Without-Label" class="headerlink" title="Case 2. Without Label"></a>Case 2. Without Label</h2><p>第二种情况是当训练数据的Label是未知的时候，我们该如何判断新的数据是normal还是abnormal的呢？既然训练数据的label都是未知的，那就需要我们对数据建立分布模型，然后估计模型的参数，构造混合模型，然后根据新增数据的特征和他处在混合模型的位置来确定，他究竟是数据normal还是abnormal。</p>
+<h3 id="对无标签数据进行建模"><a href="#对无标签数据进行建模" class="headerlink" title="对无标签数据进行建模"></a>对无标签数据进行建模</h3><p>这里拿来举例的是一个玩游戏的例子，说的是一个pokemon的在线游戏，想要通过玩家的不同操作特征来识别玩家到底是认真玩游戏还是来捣乱的。那么这里的异常数据就是捣乱玩家。那么对于认真玩家和捣乱玩家，我们要对他们进行建模，首要选取的是用来描述每一个玩家的特征。为了更方便表达，选择了两个特征来描述玩家的特征：1. 在混乱政府状态下的发言频率； 2. 说脏话的频率。这两个特征的值也很好算，是取值在[0,1] 之间的值。</p>
+<p>我们用 $x^{(i)} = \left[\begin{array}{c}x_1\x_2\end{array}\right]$ 表示第 $i$ 个数据的 两个特征值。</p>
+<p>以现有的训练数据，我们有 对于 $N$ 个玩家的每个特征值。我们可以对于每一个玩家在这两个特征维度值，上画出来这些数据的特征二维分布（因为特征只有两个，若特征有D个则是D维分布）。我们假设现在存在某种参数二维分布，可以帮我们画出来数据的特征分布图。也就是说，假设现在有一个 $f<em>{\theta}({\bf x})$ 的分布，$\theta$ 是该分布的参数，我们可以根据 $f</em>{\theta}({\bf x})$ 画出一个和 我们收集到的数据分布一样的二维分布图。 这样的话，即使我们的数据无法涵盖所有的特征组合的情况，我们也可以根据估测出来的函数 $f_{\theta}({\bf x})$ 来判定新出现的数据在分布的哪个部分，给定一个阈值 $\lambda$ 之后就可以用新的数据和 $\lambda$ 比较，看看新的数据是正常还是异常。</p>
+<h3 id="f-theta-bf-x-参数估计"><a href="#f-theta-bf-x-参数估计" class="headerlink" title="$f_{\theta}({\bf x})$ 参数估计"></a>$f_{\theta}({\bf x})$ 参数估计</h3><p>这部分对 $f<em>{\theta}({\bf x})$ 参数的估计就是最大可能性的估计，也就是说，在我们假设了 特征分布 $f</em>{\theta}({\bf x})$ 后，我们希望估计出来的参数 可以使 $f_{\theta}({\bf x})$ 最大可能的符合我们得到的训练数据的分布。这种估计方法被称作 Maximum Likelihood Estimation 简称 MLE。</p>
+<p>我们这里假设每一个 $x^{(i)}$ 都服从 $f<em>{\theta}(x^{(i)})$ 的分布，那么 $N$ 个训练数据$x^{(1)}, x^{(2)}, …, x^{(N)}$同时出现的概率就是 $f</em>{\theta}({\bf x}) = \prod \limits<em>{i = 1}^{N}f</em>{\theta}(x^{(i)})$。我们要使这个联合分布概率的样子最接近我们数据的二维分布。</p>
+<p>得到的MLE参数被我们记做 $\theta^*$.</p>
+<p>通常情况下，我们会用高斯分布来拟合数据，得到的估计的参数就是 $\mu^<em>$ 和 $[\Sigma]^</em>$.在设立了 阈值 $\lambda$ 之后，我们可以通过将新的数据代入已知的分布中，然后测定得到的值和 $\lambda$ 的大小，随之得出这个新的数据是normal还是anomaly。</p>
+<p>这个方法和之前Case 1 的方法接近，只不过在这里我们通过拟合模型来表示训练数据，做出的假设其实是正常的数据是占主导部分的，异常的数据是比较outlier的部分。和Case 1 设置信心分数不同，因为我们无法明确训练数据的标签，因此，只能通过现有数据设置一个合适的阈值。</p>
+<h3 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h3>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/lecture-notes/" rel="tag"># lecture notes</a>
+              <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/02/19/Machine-Learning-2019-Introduction/" rel="prev" title=" Machine Learning-2019| Introduction">
+                  <i class="fa fa-chevron-left"></i>  Machine Learning-2019| Introduction
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/02/22/Machine-Learning-2019-2-Attack-and-Defense-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/" rel="next" title="Machine Learning-2019| 2 Attack and Defense 攻击与防御">
+                  Machine Learning-2019| 2 Attack and Defense 攻击与防御 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

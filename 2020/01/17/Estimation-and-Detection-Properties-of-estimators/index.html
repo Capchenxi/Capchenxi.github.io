@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="Intro这部分主要讲的是对于已知分布的随机变量的分布参数的估计，这里对参数的估计可以具备三种不同的性质：分别置无偏，有效，一致。这些性质可以帮我们更好的对参数进行估计。另外，在我们发现有多个 Properties of estimators在现实生活中，我们想到得知一个整体的某个特征 $k$，也就是 $k$ 值的大小。但有时候由于整体太过庞大，我们无法对整体中的每一个个体的该特征 $k$ 都进行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Estimation and Detection | Properties of estimators">
+<meta property="og:url" content="http://yoursite.com/2020/01/17/Estimation-and-Detection-Properties-of-estimators/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="Intro这部分主要讲的是对于已知分布的随机变量的分布参数的估计，这里对参数的估计可以具备三种不同的性质：分别置无偏，有效，一致。这些性质可以帮我们更好的对参数进行估计。另外，在我们发现有多个 Properties of estimators在现实生活中，我们想到得知一个整体的某个特征 $k$，也就是 $k$ 值的大小。但有时候由于整体太过庞大，我们无法对整体中的每一个个体的该特征 $k$ 都进行">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-01-17T02:34:06.000Z">
+<meta property="article:modified_time" content="2020-01-17T02:34:06.000Z">
+<meta property="article:author" content="Chenxi">
+<meta property="article:tag" content="lecture notes">
+<meta property="article:tag" content="Pattern Classification">
+<meta property="article:tag" content="sufficient statistics">
+<meta property="article:tag" content="MVUE">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/01/17/Estimation-and-Detection-Properties-of-estimators/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Estimation and Detection | Properties of estimators | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Properties-of-estimators"><span class="nav-number">2.</span> <span class="nav-text">Properties of estimators</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unbiased-%E6%97%A0%E5%81%8F"><span class="nav-number">2.1.</span> <span class="nav-text">Unbiased (无偏)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Consistency%EF%BC%88%E4%B8%80%E8%87%B4%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">Consistency（一致）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Efficient-%E6%9C%89%E6%95%88"><span class="nav-number">2.3.</span> <span class="nav-text">Efficient (有效)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finsher-Neyman-Factorization-theorem"><span class="nav-number">2.4.</span> <span class="nav-text">Finsher-Neyman Factorization theorem</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MVUE-amp-Sufficient-Statistics"><span class="nav-number">3.</span> <span class="nav-text">MVUE &amp; Sufficient Statistics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sufficient-Statistics"><span class="nav-number">3.1.</span> <span class="nav-text">Sufficient Statistics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="nav-number">3.1.1.</span> <span class="nav-text">举个例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rao-Backwell-theorem"><span class="nav-number">3.2.</span> <span class="nav-text">Rao-Backwell theorem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-find-the-MVUE"><span class="nav-number">3.3.</span> <span class="nav-text">How to find the MVUE</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Author</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/17/Estimation-and-Detection-Properties-of-estimators/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Estimation and Detection | Properties of estimators
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-17 10:34:06" itemprop="dateCreated datePublished" datetime="2020-01-17T10:34:06+08:00">2020-01-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>这部分主要讲的是对于已知分布的随机变量的分布参数的估计，这里对参数的估计可以具备三种不同的性质：分别置无偏，有效，一致。这些性质可以帮我们更好的对参数进行估计。另外，在我们发现有多个</p>
+<h1 id="Properties-of-estimators"><a href="#Properties-of-estimators" class="headerlink" title="Properties of estimators"></a>Properties of estimators</h1><p>在现实生活中，我们想到得知一个整体的某个特征 $k$，也就是 $k$ 值的大小。但有时候由于整体太过庞大，我们无法对整体中的每一个个体的该特征 $k$ 都进行统计计算，这时候我们只能抽样整体中的一小部分的个体，由他们组成我们要估计的样本空间。那对于这些小部分个体的 $k$ 我们需要构建估计量，来估计 $k$ 的值。</p>
+<p>这时候，对于估计量来说，有三个特征：无偏，有效，一致</p>
+<h2 id="Unbiased-无偏"><a href="#Unbiased-无偏" class="headerlink" title="Unbiased (无偏)"></a>Unbiased (无偏)</h2><p>假设现在我们的样本空间${X_1, X_2,…,X_N}$ ，无偏估计是指当我们在对样本的 $\theta$ 特征进行估计的时候，估计量 $T{(\theta)}$ 的期望等于 $\theta$， 即 $E{T(\theta)} = \theta$. 若该估计量是有偏估计，那么 $E{T(\theta)} = g(\theta)$，即估计量的期望是关于被估计参数的方程，如果这个方程是线性的，那么这个估计量是可以从有偏变到无偏的。</p>
+<h2 id="Consistency（一致）"><a href="#Consistency（一致）" class="headerlink" title="Consistency（一致）"></a>Consistency（一致）</h2><p>对于一致估计量，我们希望在我们增大样本数据的时候，估计量的方差会趋近于0. </p>
+<p>假设现在我们的样本${X_1, X_2,…,X_N}$  作为估计样本$\theta$ 的估计量 为 $T{X_1, X_2,…,X_N}$ ,若样本量增大 N值变大，$Var{T{X_1, X_2,…,X_N}}$ 趋近于0，那么我们称这个估计量是一致的。</p>
+<h2 id="Efficient-有效"><a href="#Efficient-有效" class="headerlink" title="Efficient (有效)"></a>Efficient (有效)</h2><h2 id="Finsher-Neyman-Factorization-theorem"><a href="#Finsher-Neyman-Factorization-theorem" class="headerlink" title="Finsher-Neyman Factorization theorem"></a>Finsher-Neyman Factorization theorem</h2><script type="math/tex; mode=display">
+p(\underline{X}|\theta) = h(\underline{X})g(T(\underline{X}),\theta)</script><p>上式表示，当且仅当$T(\underline{X})$ 是充分统计量的时候，样本空间的联合概率 $p(\underline{X}|\theta)$ 可以表示为分离的两部分的乘积。</p>
+<h1 id="MVUE-amp-Sufficient-Statistics"><a href="#MVUE-amp-Sufficient-Statistics" class="headerlink" title="MVUE &amp; Sufficient Statistics"></a>MVUE &amp; Sufficient Statistics</h1><p>为什么需要MVUE呢，因为在我们对 ${X_1, X_2,…,X_N}$  分布的参数进行估计的时候，可能 $\theta$ 的估计量有很多都是无偏估计（unbiased）。如何在这么多的无偏估计中选一个最好的呢，我们选择那个variance比较小的。</p>
+<p>引入MVUE的时候，我们需要先说明一个概念：sufficient statistics</p>
+<h2 id="Sufficient-Statistics"><a href="#Sufficient-Statistics" class="headerlink" title="Sufficient Statistics"></a>Sufficient Statistics</h2><ul>
+<li>假设样本空间 ${X_1, X_2,…,X_N}$ ,IID (independent and identical distribution)</li>
+<li>服从分布 $p_i(X_i|\theta)$</li>
+</ul>
+<p>这时，如果联合分布 $P(X_1,…X_N|T{X_1, X_2,…,X_N},\theta)$中的估计量是不含 $\theta$ 变量的，那么估计量 $T{X_1, X_2,…,X_N}$ 就是充分统计量(sufficient statistics)。其实也就是说我们可以用 $T{X_1, X_2,…,X_N}$ 来估计样本 ${X_1, X_2,…,X_N}$ 的分布而不需要用到样本分布的参数 $\theta$ 的时候，我们就说此时 $T{X_1, X_2,…,X_N}$ 是充分统计量。</p>
+<p>我们在计算充分统计量的时候可以通过计算 ${X_1, X_2,…,X_N}$ 这些变量的联合概率，然后提取和 $\theta$ 不相关的部分提取出来，就是充分统计量。提取的方法我们称作 Fishser-Neyman factorization theorem.</p>
+<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3><p>假设 $x<em>1, x_2, …,x_n$ 服从伯努利分布，即： $\begin{align}x_i = \begin{cases} 1 &amp;{w.p. \theta}\0 &amp; w.p. (1-\theta)\end{cases}\end{align}$ 表示$x_i$ 在伯努利分布下，取 1 的概率是 $\theta$ 取 0 的概率是 $1- \theta$. 这样的话，联合分布 $p({\bf x}|\theta) = \prod</em>\limits{i = 1}^{n}\theta^{x<em>i}(1 - \theta)^{1 - x_i} = \theta^{\sum\limits</em>{i = 1}^{n}x<em>i}(1 - \theta)^{n - \sum\limits</em>{i = 1}^{n}x_i}$</p>
+<p>这样可以得到，$\theta$ 的充分统计量是 $T(x<em>1,x_2,…,x_n) = \sum\limits</em>{i = 1}^{n}x_i$. 这样的话，充分统计量就是独立于参数$\theta$ 外的量了，也就是说$p({\bf x}|\theta) = \theta^{T}(1 - \theta)^{n - T}$</p>
+<p>既然得知了 $\theta$ 的充分统计量  $T(x<em>1,x_2,…,x_n) = \sum\limits</em>{i = 1}^{n}x_i$， 我们可以首先来看一下 $T$ 的取值范围：$0\leq T\leq n$, 那么关于 $T(x_1,x_2,…,x_n) $ 就有 $n$ 个不同的取值，$T(x_1, x_2, …,x_n)$ 的分布 就为 $P(T(x_1, x_2, …,x_n) = k | \theta) = {\tbinom{k}{n}\theta^k(1 - \theta)^{n-k}}$，$P(x_1, …,x_n,T(x_1, x_2, …,x_n) = k |\theta) = {\theta^k(1 - \theta)^{n-k}}$ 这样的话：$P(x_1,…x_n|T(x_1, x_2, …,x_n) = k , \theta) = \frac{\theta^k(1 - \theta)^{n-k}}{\tbinom{k}{n}\theta^k(1 - \theta)^{n-k}} = \frac{1}{\tbinom{k}{n}}$.</p>
+<p>这说明 ,在已知充分统计量的时候， 联合分布是和参数 $\theta$ 无关的。同时充分统计量也减少了在数据中和 参数 $\theta$ 相关的部分。</p>
+<h2 id="Rao-Backwell-theorem"><a href="#Rao-Backwell-theorem" class="headerlink" title="Rao-Backwell theorem"></a>Rao-Backwell theorem</h2><ul>
+<li>令 $g(x_1, x_2, …x_n)$ 为参数 $\theta$ 的一个无偏估计量，那么 $E{g({\bf x})} |T({\bf x})}$则是参数  $\theta$ 的MVUE，也就是说 $E{\hat g} = E{E{g({\bf x})} |T({\bf x})} = \theta$, 且 $VAR{\hat g({\bf x})} \leq VAR{g({\bf x})}$</li>
+</ul>
+<h2 id="How-to-find-the-MVUE"><a href="#How-to-find-the-MVUE" class="headerlink" title="How to find the MVUE"></a>How to find the MVUE</h2><ul>
+<li>找到参数的 $T$, 充分统计量</li>
+<li>找到任意一个参数的 无偏估计量 $g({\bf x})$</li>
+<li>计算 MVUE 为 $\hat g({\bf x}) = E{ g({\bf x}) | T({\bf x })}$</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/lecture-notes/" rel="tag"># lecture notes</a>
+              <a href="/tags/Pattern-Classification/" rel="tag"># Pattern Classification</a>
+              <a href="/tags/sufficient-statistics/" rel="tag"># sufficient statistics</a>
+              <a href="/tags/MVUE/" rel="tag"># MVUE</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/01/16/Estimation-and-Detection-Bayes-Decision-Theory/" rel="prev" title="Estimation and Detection| Bayes Decision Theory">
+                  <i class="fa fa-chevron-left"></i> Estimation and Detection| Bayes Decision Theory
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/01/17/Algorithm-LinkedList/" rel="next" title="Algorithm | LinkedList">
+                  Algorithm | LinkedList <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

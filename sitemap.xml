@@ -2,21 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2020/10/17/test/</loc>
+    <loc>http://yoursite.com/2021/01/24/Mac-brew-vscode-opencv/</loc>
     
-    <lastmod>2020-10-17</lastmod>
+    <lastmod>2021-01-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/07/24/Paper-Reading-Deep-Residual-Learning-for-Image-Recognition/</loc>
+    <loc>http://yoursite.com/2020/12/14/C-wk1-write-a-c-program/</loc>
+    
+    <lastmod>2020-12-14</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/10/27/PaddlePaddle-%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/</loc>
+    
+    <lastmod>2020-10-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/07/25/Paper-Reading-Deep-Residual-Learning-for-Image-Recognition/</loc>
     
     <lastmod>2020-07-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/07/22/%E5%B9%B2%E8%B4%A7-%E5%87%A0%E7%A7%8D%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E7%BD%91%E7%BB%9C/</loc>
+    <loc>http://yoursite.com/2020/07/23/%E5%B9%B2%E8%B4%A7-%E5%87%A0%E7%A7%8D%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%9A%84%E7%BD%91%E7%BB%9C/</loc>
     
     <lastmod>2020-07-22</lastmod>
     
@@ -30,7 +44,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/07/19/%E5%B9%B2%E8%B4%A7-Canny-Edge-Detector/</loc>
+    <loc>http://yoursite.com/2020/07/20/%E5%B9%B2%E8%B4%A7-Canny-Edge-Detector/</loc>
     
     <lastmod>2020-07-20</lastmod>
     
@@ -44,70 +58,70 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/07/05/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Backpropagation/</loc>
+    <loc>http://yoursite.com/2020/07/06/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Backpropagation/</loc>
     
     <lastmod>2020-07-05</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/07/04/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Recipe-for-Deep-Learning/</loc>
+    <loc>http://yoursite.com/2020/07/05/Machine-Learning-2020-Lecture-4-Deep-Learning-Preparation-Recipe-for-Deep-Learning/</loc>
     
     <lastmod>2020-07-04</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/07/02/Algorithm-Binary-Heap/</loc>
+    <loc>http://yoursite.com/2020/07/03/Algorithm-Binary-Heap/</loc>
     
     <lastmod>2020-07-02</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/06/30/Algorithm-LeetCode-July-Challenge/</loc>
+    <loc>http://yoursite.com/2020/07/01/Algorithm-LeetCode-July-Challenge/</loc>
     
     <lastmod>2020-06-30</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/06/23/Algorithm-Binary-Tree/</loc>
+    <loc>http://yoursite.com/2020/06/24/Algorithm-Binary-Tree/</loc>
     
     <lastmod>2020-06-23</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/06/12/PaperReading-SMPL-A-Skinned-Multi-Person-Linear-Model/</loc>
+    <loc>http://yoursite.com/2020/06/13/PaperReading-SMPL-A-Skinned-Multi-Person-Linear-Model/</loc>
     
     <lastmod>2020-06-12</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/06/08/Algorithm-Sorting/</loc>
+    <loc>http://yoursite.com/2020/06/09/Algorithm-Sorting/</loc>
     
     <lastmod>2020-06-09</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/06/06/Algorithm-Leetcode-June%20Challenge/</loc>
+    <loc>http://yoursite.com/2020/06/07/Algorithm-Leetcode-June%20Challenge/</loc>
     
     <lastmod>2020-06-07</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/05/16/whatidid-%E6%8F%90%E5%8F%96CCL%E8%AF%AD%E6%96%99%E6%A3%80%E7%B4%A2%E5%BA%93%E6%A3%80%E7%B4%A2%E6%95%B0%E6%8D%AE/</loc>
+    <loc>http://yoursite.com/2020/05/17/whatidid-%E6%8F%90%E5%8F%96CCL%E8%AF%AD%E6%96%99%E6%A3%80%E7%B4%A2%E5%BA%93%E6%A3%80%E7%B4%A2%E6%95%B0%E6%8D%AE/</loc>
     
     <lastmod>2020-05-16</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/04/19/whatidid-gensim-word2vec-doc/</loc>
+    <loc>http://yoursite.com/2020/04/20/whatidid-gensim-word2vec-doc/</loc>
     
     <lastmod>2020-04-19</lastmod>
     
@@ -121,35 +135,35 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/04/13/Machine-Learning-2020-Lecture-2-New-Optimization/</loc>
+    <loc>http://yoursite.com/2020/04/14/Machine-Learning-2020-Lecture-2-New-Optimization/</loc>
     
     <lastmod>2020-04-13</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/04/12/whatidid-%E3%80%90%E7%99%BE%E5%BA%A6PaddlePaddle%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A07%E6%97%A5%E5%85%A5%E9%97%A8-CV%E7%96%AB%E6%83%85%E4%B8%93%E9%A2%98/</loc>
+    <loc>http://yoursite.com/2020/04/13/whatidid-%E3%80%90%E7%99%BE%E5%BA%A6PaddlePaddle%E3%80%91%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A07%E6%97%A5%E5%85%A5%E9%97%A8-CV%E7%96%AB%E6%83%85%E4%B8%93%E9%A2%98/</loc>
     
     <lastmod>2020-04-12</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/04/09/PaperReading-BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/</loc>
+    <loc>http://yoursite.com/2020/04/10/PaperReading-BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding/</loc>
     
     <lastmod>2020-04-10</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/04/05/whatidid-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B8%AD%E4%B8%8D%E5%90%8C%E4%BB%BB%E5%8A%A1%E4%B8%8B%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E6%80%BB%E7%BB%93/</loc>
+    <loc>http://yoursite.com/2020/04/06/whatidid-%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E4%B8%AD%E4%B8%8D%E5%90%8C%E4%BB%BB%E5%8A%A1%E4%B8%8B%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96%E6%80%BB%E7%BB%93/</loc>
     
     <lastmod>2020-04-05</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/03/28/PaperReading-Google-s-Neural-Machine-Translation-System-Bridging-the-Gap-between-Human-and-Machine-Translation/</loc>
+    <loc>http://yoursite.com/2020/03/29/PaperReading-Google-s-Neural-Machine-Translation-System-Bridging-the-Gap-between-Human-and-Machine-Translation/</loc>
     
     <lastmod>2020-03-28</lastmod>
     
@@ -163,91 +177,91 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/03/24/PaperReading-Unsupervised-Prepresentation-Learning-with-Deep-Convolutional-GAN/</loc>
+    <loc>http://yoursite.com/2020/03/25/PaperReading-Unsupervised-Prepresentation-Learning-with-Deep-Convolutional-GAN/</loc>
     
     <lastmod>2020-03-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/03/23/PaperReading-Semantic-Human-Matting/</loc>
+    <loc>http://yoursite.com/2020/03/24/PaperReading-Semantic-Human-Matting/</loc>
     
     <lastmod>2020-03-23</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/03/22/PaperReading-MobileNetsV1/</loc>
+    <loc>http://yoursite.com/2020/03/23/PaperReading-MobileNetsV1/</loc>
     
     <lastmod>2020-03-22</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/03/21/Paper-Reading-MobileNetV2-Inverted-Residuals-and-Linear-Bottlenecks/</loc>
+    <loc>http://yoursite.com/2020/03/22/Paper-Reading-MobileNetV2-Inverted-Residuals-and-Linear-Bottlenecks/</loc>
     
     <lastmod>2020-03-22</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/03/19/Machine-Learning-2020-Lecture-0-Introduction/</loc>
+    <loc>http://yoursite.com/2020/03/20/Machine-Learning-2020-Lecture-0-Introduction/</loc>
     
     <lastmod>2020-03-19</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/03/19/Machine-Learning-2020-Lecture-1-Regression/</loc>
+    <loc>http://yoursite.com/2020/03/20/Machine-Learning-2020-Lecture-1-Regression/</loc>
     
     <lastmod>2020-03-19</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/03/18/%E5%B9%B2%E8%B4%A7-BLEU-score/</loc>
+    <loc>http://yoursite.com/2020/03/19/%E5%B9%B2%E8%B4%A7-BLEU-score/</loc>
     
     <lastmod>2020-03-18</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/03/07/Machine-Learning-2019-5-Meta-Learning/</loc>
+    <loc>http://yoursite.com/2020/03/08/Machine-Learning-2019-5-Meta-Learning/</loc>
     
     <lastmod>2020-03-07</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/03/01/Machine-Learning-2019-4-Life-Long-Learning/</loc>
+    <loc>http://yoursite.com/2020/03/02/Machine-Learning-2019-4-Life-Long-Learning/</loc>
     
     <lastmod>2020-03-01</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/02/24/Algorithm-Leetcode-Dynamic-Programming/</loc>
+    <loc>http://yoursite.com/2020/02/25/Algorithm-Leetcode-Dynamic-Programming/</loc>
     
     <lastmod>2020-02-25</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/02/23/Machine-Learning-2019-3-Explainable-Machine-Learning-%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>http://yoursite.com/2020/02/24/Machine-Learning-2019-3-Explainable-Machine-Learning-%E5%8F%AF%E8%A7%A3%E9%87%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
     
     <lastmod>2020-02-23</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/02/21/Machine-Learning-2019-2-Attack-and-Defense-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/</loc>
+    <loc>http://yoursite.com/2020/02/22/Machine-Learning-2019-2-Attack-and-Defense-%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/</loc>
     
     <lastmod>2020-02-21</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/02/19/Machine-Learning-2019-1-Anomaly-Detection-%E5%BC%82%E5%B8%B8%E4%BE%A6%E6%B5%8B/</loc>
+    <loc>http://yoursite.com/2020/02/20/Machine-Learning-2019-1-Anomaly-Detection-%E5%BC%82%E5%B8%B8%E4%BE%A6%E6%B5%8B/</loc>
     
     <lastmod>2020-02-19</lastmod>
     
@@ -268,28 +282,28 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/02/09/Paper-Reading-Searching-for-MobileNet-V3/</loc>
+    <loc>http://yoursite.com/2020/02/10/Paper-Reading-Searching-for-MobileNet-V3/</loc>
     
     <lastmod>2020-02-10</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/01/16/Algorithm-LinkedList/</loc>
+    <loc>http://yoursite.com/2020/01/17/Algorithm-LinkedList/</loc>
     
     <lastmod>2020-01-17</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/01/16/Estimation-and-Detection-Properties-of-estimators/</loc>
+    <loc>http://yoursite.com/2020/01/17/Estimation-and-Detection-Properties-of-estimators/</loc>
     
     <lastmod>2020-01-17</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/01/15/Estimation-and-Detection-Bayes-Decision-Theory/</loc>
+    <loc>http://yoursite.com/2020/01/16/Estimation-and-Detection-Bayes-Decision-Theory/</loc>
     
     <lastmod>2020-01-15</lastmod>
     
@@ -303,14 +317,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/01/13/Paper-Reading-ClothFlow-A-Flow-Based-Model-for-Clothed-Person-Generation/</loc>
+    <loc>http://yoursite.com/2020/01/14/Paper-Reading-ClothFlow-A-Flow-Based-Model-for-Clothed-Person-Generation/</loc>
     
     <lastmod>2020-01-14</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/01/13/Algorithm-Leetcode-search/</loc>
+    <loc>http://yoursite.com/2020/01/14/Algorithm-Leetcode-search/</loc>
     
     <lastmod>2020-01-14</lastmod>
     
@@ -324,21 +338,21 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/01/07/Paper-Reading-U-Net-Convolutional-Networks-for-Biomedical-Image-Segmentation/</loc>
+    <loc>http://yoursite.com/2020/01/08/Paper-Reading-U-Net-Convolutional-Networks-for-Biomedical-Image-Segmentation/</loc>
     
     <lastmod>2020-01-08</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/01/07/Notes-Kmeans-and-KNN/</loc>
+    <loc>http://yoursite.com/2020/01/08/Notes-Kmeans-and-KNN/</loc>
     
     <lastmod>2020-01-07</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/01/06/Notes-Different-distances/</loc>
+    <loc>http://yoursite.com/2020/01/07/Notes-Different-distances/</loc>
     
     <lastmod>2020-01-06</lastmod>
     
@@ -366,49 +380,49 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/12/28/Algorithm-Computational-Complexity/</loc>
+    <loc>http://yoursite.com/2019/12/29/Algorithm-Computational-Complexity/</loc>
     
     <lastmod>2019-12-28</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/12/27/Paper-Reading-Building-dtatistical-shape-spaces-for-3D-human-modeling/</loc>
+    <loc>http://yoursite.com/2019/12/28/Paper-Reading-Building-dtatistical-shape-spaces-for-3D-human-modeling/</loc>
     
     <lastmod>2019-12-28</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/12/26/%E5%B9%B2%E8%B4%A7-hexo%E4%BD%BF%E7%94%A8%E5%87%BA%E7%8E%B0%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/</loc>
+    <loc>http://yoursite.com/2019/12/27/%E5%B9%B2%E8%B4%A7-hexo%E4%BD%BF%E7%94%A8%E5%87%BA%E7%8E%B0%E7%9A%84%E5%B0%8F%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2019-12-27</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/12/24/Paper%20Reading%20|%20The%20spaces%20of%20human%20body%20shapes:%20reconstruction%20and%20parameterization%20from%20range%20scans./</loc>
+    <loc>http://yoursite.com/2019/12/25/Paper%20Reading%20|%20The%20spaces%20of%20human%20body%20shapes:%20reconstruction%20and%20parameterization%20from%20range%20scans./</loc>
     
     <lastmod>2019-12-25</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/12/24/System%20and%20Signals%20|%20Chapter%201_2%20/</loc>
+    <loc>http://yoursite.com/2019/12/25/System%20and%20Signals%20|%20Chapter%201_2%20/</loc>
     
     <lastmod>2019-12-24</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/11/12/System%20and%20Signals%20|%20Chapter%201%20/</loc>
+    <loc>http://yoursite.com/2019/11/13/System%20and%20Signals%20|%20Chapter%201%20/</loc>
     
     <lastmod>2019-11-12</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/11/07/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/</loc>
+    <loc>http://yoursite.com/2019/11/08/%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2/</loc>
     
     <lastmod>2019-11-07</lastmod>
     
@@ -438,7 +452,7 @@
 
   <url>
     <loc>http://yoursite.com/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -446,357 +460,364 @@
   
   <url>
     <loc>http://yoursite.com/tags/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Python/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/%E4%BA%8C%E5%8F%89%E5%A0%86/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/heap/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/%E5%A4%8D%E6%9D%82%E5%BA%A6/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/leetcode/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Dynamic-Programming/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/search/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/DFS/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/lecture-notes/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Pattern-Classification/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/hypothesis-testing/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Bayes-calssifier/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/sufficient-statistics/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/MVUE/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Machine-Learning/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Explainable-Machine-Learning/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Life-Long-Learning/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Meta-Learning/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Regression/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Gradient-Descent/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Classification/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Logistic-Regression/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Optimization/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Deep-Learning/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Backpropagation/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/distance/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/KNN/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Kmeans/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/cluster/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/PCA/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/3D/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/ASM/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/feature-points-selection/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/ICCV2019/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Garment/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Computer-Vision/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/SCAPE/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/HumanBody/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/ArticultatedHumanBody/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/%E6%8A%A0%E5%9B%BE/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/GAN/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/PaddlePaddle/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/NLP/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Machine-Translation/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/hexo/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/Object-Detection/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/tags/array/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/C/</loc>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -805,49 +826,49 @@
   
   <url>
     <loc>http://yoursite.com/categories/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/categories/%E7%AE%97%E6%B3%95/Google-Interview/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/categories/%E5%B9%B2%E8%B4%A7/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/categories/%E4%B8%80%E7%82%B9%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite.com/categories/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2020-10-27</lastmod>
+    <lastmod>2021-01-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

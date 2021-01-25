@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="Intro这部分就是贝叶斯分类器，也是模式识别中最简单的分类器。贝叶斯分类器的思想在神经网络的目标方程中也有所涉及。对于贝叶斯分类器来讲，重要的是进行分类的指标，也就是feature的分布，以及不同类别的先验概率)。 *先验概率和后验概率的区别在于是否观测到x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Estimation and Detection| Bayes Decision Theory">
+<meta property="og:url" content="http://yoursite.com/2020/01/16/Estimation-and-Detection-Bayes-Decision-Theory/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="Intro这部分就是贝叶斯分类器，也是模式识别中最简单的分类器。贝叶斯分类器的思想在神经网络的目标方程中也有所涉及。对于贝叶斯分类器来讲，重要的是进行分类的指标，也就是feature的分布，以及不同类别的先验概率)。 *先验概率和后验概率的区别在于是否观测到x">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-01-15T17:07:31.000Z">
+<meta property="article:modified_time" content="2020-01-15T17:07:31.000Z">
+<meta property="article:author" content="Chenxi">
+<meta property="article:tag" content="lecture notes">
+<meta property="article:tag" content="Pattern Classification">
+<meta property="article:tag" content="Bayes calssifier">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/01/16/Estimation-and-Detection-Bayes-Decision-Theory/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Estimation and Detection| Bayes Decision Theory | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bayesian-Classifier"><span class="nav-number">2.</span> <span class="nav-text">Bayesian Classifier</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E5%BB%BABayesian-Classifier"><span class="nav-number">2.1.</span> <span class="nav-text">构建Bayesian Classifier</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SNR-%E5%92%8C-p-e"><span class="nav-number">2.2.</span> <span class="nav-text">SNR 和 p(e)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E7%BB%B4%E7%89%B9%E5%BE%81%E4%B8%8B%E7%9A%84Bayesian-Classifier"><span class="nav-number">2.3.</span> <span class="nav-text">多维特征下的Bayesian Classifier</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Feature-selection"><span class="nav-number">2.4.</span> <span class="nav-text">Feature selection</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Author</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/16/Estimation-and-Detection-Bayes-Decision-Theory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Estimation and Detection| Bayes Decision Theory
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-01-16 01:07:31" itemprop="dateCreated datePublished" datetime="2020-01-16T01:07:31+08:00">2020-01-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课堂笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>这部分就是贝叶斯分类器，也是模式识别中最简单的分类器。贝叶斯分类器的思想在神经网络的目标方程中也有所涉及。对于贝叶斯分类器来讲，重要的是进行分类的指标，也就是feature的分布，以及不同类别的<a href="[https://baike.baidu.com/item/%E5%85%88%E9%AA%8C%E6%A6%82%E7%8E%87](https://baike.baidu.com/item/先验概率">先验概率</a>)。</p>
+<p>*先验概率和后验概率的区别在于是否观测到x</p>
+<a id="more"></a>
+<h1 id="Bayesian-Classifier"><a href="#Bayesian-Classifier" class="headerlink" title="Bayesian Classifier"></a>Bayesian Classifier</h1><p>判定 instance $\bf x$ 的所属类别。 $\bf x$ 为一个特征向量feature vector, 每个值 $x_i$ 代表着某个特征的值。假设现在我们分别有 $w_1, w_2, w_3,…,w_C$ 总共 $C$ 个可能类别，我们现在要根据特征向量 $\bf x$ 的值来判定这个向量处于哪个分类。</p>
+<p>首先来定义几个概念：</p>
+<ul>
+<li>先验概率<strong>prior probability</strong> $p(w<em>i)$, 表明instace属于每个类别的可能的概率，这个值需要通过前期调查得到。【比如我们想要判断A校随便抓来一个学生是本科生 还是研究生，那么这里的先验概率就是A校的本科生有多少，研究生有多少。】先验概率说明的是在我不作任何特征分析的时候，一个instance它属于某一类 $w_i$ 的概率是多少。这里需要保证 $\sum\limits^{C}</em>{i = 1}p(w_i) = 1$, 即所有可能类别的和为1.</li>
+<li>后验概率<strong>posterior probability</strong> $p(w_i | {\bf x})$,表明在我观测到某个特定的instance ${\bf x}$ 之后，它属于 $w_i$ 类别的概率。【接着上面的例子，后验概率说的就是，我现在抓来小明，我知道了小明的年龄，身高，成绩等一系列特征之后，小明是研究生还是本科生。】后验概率说明的是当我已知某个观测量的时候，它属于 $w_i$ 的概率是多少，相当于一个条件概率。</li>
+<li>先验概率和后验概率之间的关系(Bayes’ theorem)： $p(w<em>i|x) = \frac{p(x|w_i)p(w_i)}{p(x)}, p(x) = \sum\limits</em>{i = 1}^{C}p(x,w_i)$</li>
+</ul>
+<p>所以back to our question, 我们应该用一个什么样的classifier，来决定 $\bf x$ 的类别呢？当然是让误差最小了！</p>
+<h2 id="构建Bayesian-Classifier"><a href="#构建Bayesian-Classifier" class="headerlink" title="构建Bayesian Classifier"></a>构建Bayesian Classifier</h2><p>对于每个类别来说，都有误差概率，即，当我们选定 $\bf x$ 为某一类时，这一类都会有出现误差的概率 $p(e|w<em>i)$, 这时的平均误差概率就为： $p(e) = \sum\limits^{C}</em>{i = 1}p(e|w<em>i)p(w_i)$. 所以此时，我们想到了一种分类器，就是可以minimize这个误差概率的分类器。此时，$p(e)$ 还有一种表示形式，也就是 $p(e) = \int\limits</em>{\bf x} p(e, {\bf x})d{\bf x} = \int\limits_{\bf x}p(e|{\bf x})p({\bf x})d{\bf x}$ 这时针对每一个 instance ${\bf x}$ 进行积分，之前的 $p(e) $ 则是根据每一类上的error进行积分。</p>
+<p>所以说 最小化  $p(e | {\bf x})$ 相当于最小化 $p(e)$。</p>
+<p>好，那么让我们来看一下如何使  $p(e | {\bf x})$ 最小。</p>
+<p>先看一下二分类的问题，此时的 $i$ 只取 1和2两个值。那么也就是说，我们的误差只有两种状况：</p>
+<p>$\begin{align}\begin{equation} p(e | {\bf x}) = \begin{cases}p(w_1 | {\bf x})&amp;{\bf x}\in{w_2}\p(w_2 | {\bf x})&amp;{\bf x}\in{w_1}\end{cases}\end{equation}\end{align}$</p>
+<p>这两种很好理解，也就是说 当 $\bf x$ 属于 $w_2$ 的时候 $p(w_1 | {\bf x})$ 就属于错误分类的概率，同理，当 $\bf x$ 属于 $w_1$ 的时候 $p(w_2 | {\bf x})$ 就属于错误分类的概率。所以说如果我们想让误差概率最小，那么当 ${\bf x}\in{w_1}$ 时，我们希望 $p(w_1 | {\bf x}) &gt; p(w_2 | {\bf x})$ , 当 ${\bf x} \in w_2$ 时，我们希望 $p(w_2 | {\bf x}) &gt; p(w_1 | {\bf x})$. 反过来的逻辑就是，在 $p(w_1 | {\bf x})$  和 $p(w_2 | {\bf x}) $ 中，我们取值较大的作为分类结果。也就是说判定结果取决于观测下的 $\bf x$ 在那种分布$p(w_i| {\bf x})$ 下的概率最大。 </p>
+<p>所欲对于贝叶斯分类器来说，他的评价特点就是可以最小化平均误差概率。</p>
+<h2 id="SNR-和-p-e"><a href="#SNR-和-p-e" class="headerlink" title="SNR 和 p(e)"></a>SNR 和 p(e)</h2><p>既然刚刚我们讨论了产生误差的概率，也就是$p(e)$，接下来我们看看如果给定了 $\bf x$ 在不同类别下的分布，那么我们该如何计算 $p(e)$，我们 $\bf x$ 又该如何分类。</p>
+<p>还是来看个二分类的问题。如果现在我们的instance只可能有两种分类，并且对于每一个instance $\bf x$ 来说，都只有一个feature，也就是个标量。那么此时我们来看看当$x$的取值和分类类别之间的关系。我们假设，在 $w_1$ 下，$x$ 服从均值为 $\mu_1$, 方差为 $\sigma^2$ 的高斯分布，而在$w_2$ 下，$x$ 服从均值为 $\mu_2$, 方差为 $\sigma^2$的高斯分布。也就是说：$p(x|w_1) \sim \mathcal{N}(\mu_1, \sigma^2)$, $p(x|w_2) \sim \mathcal{N}(\mu_2, \sigma^2)$, 并且两个类别的先验概率相同，即$p(w_1) = p(w_2) = 0.5$</p>
+<p>那我们现在来构建一个贝叶斯分类器，看看究竟该如何分类。</p>
+<p>根据之前Bayesian Classifier的特性，我们知道这个分类器是根据后验概率来做判断的。那么，当 </p>
+<p>$p(w_1|x) &gt; p(w_2|x)$ 时， 我们取 ${ x}$ 为$w_1$ 类，反之 $x$ 为 $w_2$ 类。</p>
+<p>根据 <a href="[https://en.wikipedia.org/wiki/Bayes%27_theorem](https://en.wikipedia.org/wiki/Bayes&#39;_theorem">Bayes’ theorem</a>), $p(w_i|x) =\frac{p(x|w_i)p(w_i)}{p(x)}$, 且左右两边的分母相同，贝叶斯分类器的判断条件就变成了，当$p(x|w_1)p(w_1) &gt; p(x|w_2)p(w_2)$ 时， 我们取 ${ x}$ 为$w_1$ 类，反之 $x$ 为 $w_2$ 类。因为是对 $x$ 进行判断，所以我们将 $x$ 移到同一边，得出：$\frac{p(x|w_1)}{p(x|w_2)} &gt; \frac{p(w_2)}{p(w_1)} = 1$.对于每个高斯分布来说 $p(x|w_i) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x - \mu_i)^2}, i = 1,2$，那么上式可以化简为 $\frac{\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x - \mu_1)^2}}{\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x - \mu_2)^2}} &gt; 1$, 两边同取对数可得：$-\frac{1}{2\sigma^2}(x - \mu_1)^2 +\frac{1}{2\sigma^2}(x - \mu_2)^2 &gt; 0$ 了进一步简化得到</p>
+<p>当 $x&gt; \frac{\mu_1+\mu_2}{2}$ 时被判定为 $w_1$ 类，反之为 $w_2$ 类。这个结果其实也可以从图中得出。因为之前我们分析过，在$x$ 取值上，哪种分类的概率比较大，我们就在该取值范围上判定 $x$ 属于该类。这就说明，当 $x$ 更靠近 $\mu_1$, 它就属于 $w_1$ 反之就属于 $w_2$.</p>
+<p>那么知道了如何构建分类器得到 $x$ 的值，之后我们需要来看一下针对以上分类标准建立的Bayesian分类器，他的错误概率是多少。首先还是关于错误概率定义：$p(e) = \sum \limits^{C}_{i = 1}p(e|w_i)p(w_i)$ 因为这里我们拿二分类举例，所以 $C = 2$, $p(e) = p(e|w_1)p(w_1) + p(e|w_2)p(w_2)$. 对于二分类而言 $p(e|w_1)$ 其实就是分类器错误地把 $x$ 分进了 $w_2$ 类，即 $p(x&lt;\frac{\mu_1+\mu_2}{2}|w_1)$， 另一种错误状况就是 $p(x&gt;\frac{\mu_1+\mu_2}{2}|w_2)$</p>
+<p>此时：$p(e) = \frac{1}{2}\left[{\int\limits<em>{x&lt;\frac{\mu_1+\mu_2}{2}}p(x|w_1)dx + \int\limits</em>{x&gt;\frac{\mu_1+\mu_2}{2}}p(x|w_2)dx}\right]$</p>
+<p>我们先看前一部分：如果我们定义 $z \triangleq \frac{x - \mu_1}{\sigma}$ </p>
+<p>$p(x&gt;\frac{\mu_1+\mu_2}{2}|w_1) = p(z&gt;\frac{\frac{1}{2}(\mu_1+\mu_2) - \mu_1}{\sigma}) = p(z&gt;\frac{\mu_2 - \mu_1}{2\sigma}) = p(z&gt;SNR)$</p>
+<p>这里 $SNR = \frac{\mu_2 - \mu_1}{2\sigma}$， $z\sim \mathcal{N}(0,1)$</p>
+<p>首先，我们用 $z$ 代替 $x$ ，将之前 $x$ 服从的 $\mathcal{N}(\mu_1, \sigma^2)$ 的高斯分布改为了一个 $z$ 服从的  $\mathcal{N}(0,1)$ 分布。这样是为了使 $p(e)$的形式更加一般化，因为对于同样的 $\mathcal{N}(0,1)$ 分布，我们可以通过比较积分区域来判定大小。</p>
+<p>那SNR 是啥呢？</p>
+<p>其实一般说的SNR就是信噪比，即signal-noise-ratio. 我们这里提出的SNR其实就是在描述在不同分类下 $x$ 分布的分离程度。也就是说，如果在不同的类别下，两种分布的信噪比越高，就说明这两种分布的区别越明显。【分析一下信噪比的表达形式，如果SNR越高，首先是 $\mu2 - \mu1$ 的值越大，这说明两个高斯分布离得越远；另一种情况是 $\sigma$ 的值越小，这说明针对每个高斯分布，它的方差越小，分布范围越窄，同样可以使两个高斯分布更好区分。】</p>
+<p>所以这里其实把前半部分的错误概率转化为了一个关于 $\mathcal{N}(0,1)$ 的积分，积分区间是 $z&gt;SNR$, 同样的第二部分我们也可以做同样的操作，可以得到相同的结论。那最后 $p(e)$ 的表达式就变成了：$p(e) = \int\limits_{SNR}zdz$</p>
+<h2 id="多维特征下的Bayesian-Classifier"><a href="#多维特征下的Bayesian-Classifier" class="headerlink" title="多维特征下的Bayesian Classifier"></a>多维特征下的Bayesian Classifier</h2><p>之前我们提到的都是基于一维的instance，也就是说instance的feature只有一个，且这个变量在不同情况下服从高斯分布。如果我们的instance的feature不止一个，这是instance $x$ 就从标量变成了向量 $\bf x$, 即 ${\bf x} = \left[\begin{equation}\begin{array}{c}x_1\x_2\…\x_N\end{array}\end{equation}\right]$， 那之前的一维高斯分布就变成了多维高斯分布:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+p({\bf x} |w_i) \sim \mathcal{N}({\vec \mu}_i, [\Sigma]) = \frac{1}{(2\pi)^{N/2}|[\Sigma]|^{1/2}}e^{-\frac{1}{2}({\bf x} - \vec \mu_i)^{\intercal}[\Sigma]^{-1}({\bf x} - \vec \mu_i)}
+\end{align}</script><p>在多维分布下，Bayesian分类器可以简化为:</p>
+<script type="math/tex; mode=display">
+(\mu_2 - \mu_1)^T[\Sigma]^{-1}{\bf x} > \frac{1}{2}(\mu_2 - \mu_1)^T[\Sigma]^{-1}(\mu_2+\,u_1)</script><p>当满足上述条件是， ${\bf x}$ 将分类为 $w_2$ 类，反之则是 $w_1$类。上述简化后的分类器，左侧是关于${\bf x}$ 的方程，右侧则是一个实数。也就是说，如果 $\bf x$ 是二维的，那么将是一个直线方程两侧分类的问题，如果 $\bf x$ 是三维，则是空间平面两侧分类的问题。</p>
+<p>在这种情况下，我们计算 $p(e)$ 是否还能用 SNR的公式表达呢？答案是肯定的，但是和一维不一样，我们需要计算的是 $(\mu<em>2 - \mu_1)^T[\Sigma]^{-1}{\bf x}$ 即左侧这个多项式的均值和方差。我们假设$ y = (\mu_2 - \mu_1)^T[\Sigma]^{-1}{\bf x}$，这样的话，在$w_1$ 和 $w_2$ 两种不同分类下，$y$ 都服从多维高斯分布。其中在 $w_1$情况下, $\mu</em>{y,1} = (\mu<em>2 - \mu_1)^T[\Sigma]^{-1}\mu_1$,  在 $w_2$ 情况下，$\mu</em>{y,2} = (\mu<em>2 - \mu_1)^T[\Sigma]^{-1}\mu_2$, 二者的covariance matrix是相同的，都是 $\sigma_y^2 = (\mu_2 - \mu_1)^T[\Sigma]^{-1}(\mu_2 - \mu_1)$, 在这种情况下，$SNR = \frac{\mu</em>{y,2} - \mu_{y,1}}{2\sigma_y}$.</p>
+<h2 id="Feature-selection"><a href="#Feature-selection" class="headerlink" title="Feature selection"></a>Feature selection</h2><p>既然上面提到了，当我的instance $\bf x$ 是多维，即由多个特征描述的时候，就不得不涉及到如何选择这几个特征中可信度最高的一个或两个变量最为我们对 $\bf x$ 分类估计的标准。</p>
+<p>我们选择的标准就是出现错误的概率 $p(e)$, 我们在 $N$ 个特征里面选择 $k$ 个的时候，需要计算的是在这 $k$ 个特征表示下，得到的 $p(e)$ 也就是结合的SNR是多少，我们需要选择的是 SNR较高的组合。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/lecture-notes/" rel="tag"># lecture notes</a>
+              <a href="/tags/Pattern-Classification/" rel="tag"># Pattern Classification</a>
+              <a href="/tags/Bayes-calssifier/" rel="tag"># Bayes calssifier</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/01/15/Estimation-and-Detection-Intro/" rel="prev" title="Estimation and Detection| Introduction">
+                  <i class="fa fa-chevron-left"></i> Estimation and Detection| Introduction
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/01/17/Estimation-and-Detection-Properties-of-estimators/" rel="next" title="Estimation and Detection | Properties of estimators">
+                  Estimation and Detection | Properties of estimators <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

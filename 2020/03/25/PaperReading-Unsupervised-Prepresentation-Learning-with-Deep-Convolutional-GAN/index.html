@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-Hans,en,zh_CN,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+
+  <meta name="description" content="论文题目：UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS  论文作者：Alec Radford, Luke Metz, Soumith Chintala  相关代码  摘要目前，有监督的卷积网络收获了极大地成功。但是无监督的卷积神经网络受到的关注度就比较低。这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读 | Unsupervised Prepresentation Learning with Deep Convolutional Generative Adversarial Network">
+<meta property="og:url" content="http://yoursite.com/2020/03/25/PaperReading-Unsupervised-Prepresentation-Learning-with-Deep-Convolutional-GAN/index.html">
+<meta property="og:site_name" content="光">
+<meta property="og:description" content="论文题目：UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS  论文作者：Alec Radford, Luke Metz, Soumith Chintala  相关代码  摘要目前，有监督的卷积网络收获了极大地成功。但是无监督的卷积神经网络受到的关注度就比较低。这">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-03-24T19:39:50.000Z">
+<meta property="article:modified_time" content="2020-03-24T19:39:50.000Z">
+<meta property="article:author" content="Chenxi">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="GAN">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yoursite.com/2020/03/25/PaperReading-Unsupervised-Prepresentation-Learning-with-Deep-Convolutional-GAN/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>论文阅读 | Unsupervised Prepresentation Learning with Deep Convolutional Generative Adversarial Network | 光</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="光" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">光</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Life sucks, but you're gonna love it.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Related-Work"><span class="nav-number">3.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Approach-and-Model-Architecture"><span class="nav-number">4.</span> <span class="nav-text">Approach and Model Architecture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%B9%E6%8A%97%E8%AE%AD%E7%BB%83%E7%9A%84%E7%BB%86%E8%8A%82"><span class="nav-number">5.</span> <span class="nav-text">对抗训练的细节</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LSUN"><span class="nav-number">5.1.</span> <span class="nav-text">LSUN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Faces"><span class="nav-number">5.2.</span> <span class="nav-text">Faces</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ImageNet-1k"><span class="nav-number">5.3.</span> <span class="nav-text">ImageNet-1k</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Empirical-Validation-of-DCGAN-capabilities"><span class="nav-number">6.</span> <span class="nav-text">Empirical Validation of DCGAN capabilities</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Classifying-CIFAR-10-using-GANs-as-a-feature-extractor"><span class="nav-number">6.1.</span> <span class="nav-text">Classifying CIFAR-10 using GANs as a feature extractor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Classifiying-SVHN-digits-using-GAN-as-a-feature-extractor"><span class="nav-number">6.2.</span> <span class="nav-text">Classifiying SVHN digits using GAN as a feature extractor</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Investigating-and-visualizing-the-internals-of-the-networks"><span class="nav-number">7.</span> <span class="nav-text">Investigating and visualizing the internals of the networks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Walking-in-the-latent-space"><span class="nav-number">7.1.</span> <span class="nav-text">Walking in the latent space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Visualizing-the-discriminator-features"><span class="nav-number">7.2.</span> <span class="nav-text">Visualizing the discriminator features</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manipulating-the-generator-representation"><span class="nav-number">7.3.</span> <span class="nav-text">Manipulating the generator representation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vector-arithmetic-on-face-samples"><span class="nav-number">7.4.</span> <span class="nav-text">Vector arithmetic on face samples</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Author</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/25/PaperReading-Unsupervised-Prepresentation-Learning-with-Deep-Convolutional-GAN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="光">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          论文阅读 | Unsupervised Prepresentation Learning with Deep Convolutional Generative Adversarial Network
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-03-25 03:39:50" itemprop="dateCreated datePublished" datetime="2020-03-25T03:39:50+08:00">2020-03-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <ul>
+<li><p>论文题目：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1511.06434.pdf">UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS</a></p>
+</li>
+<li><p>论文作者：<a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Radford%2C+A">Alec Radford</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Metz%2C+L">Luke Metz</a>, <a target="_blank" rel="noopener" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Chintala%2C+S">Soumith Chintala</a></p>
+</li>
+<li>相关代码</li>
+</ul>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>目前，有监督的卷积网络收获了极大地成功。但是无监督的卷积神经网络受到的关注度就比较低。这篇文章主要是希望可以构建有监督和无监督学习之间的桥梁。文章介绍了一类被称为是深度卷积生成网络的结构，他们有很浅给的结构上的限制并且说明了在无监督学习方面这类网络是很有优势的，并且会通过一系列的任务来体现这类网络的优势。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>从大量的无标记图片数据库中学习重复出现的特征是热门研究的方向。在计算机视觉中，我们可以利用大量的无标记数据来学习他们的中间特征，这些学到的特征可以完成分类的任务。本文提出一种通过训练GAN（生成对抗网络）来建立图片的特征，并且之后再利用生成器和判别器中的网络作为有监督学习中的特征提取器。GAN模型提供了一个很好的对于最大化估计的替代手段。GAN模型的训练不是很稳定，明显的表现在生成器生成一些奇怪的图片上；展现GAN学习到了什么特征的可视化研究也很少。</p>
+<p>这篇文章的贡献主要有几个方面：</p>
+<ul>
+<li>提出和评价了卷积对抗生成网络中结构的限制，希望这些限制能帮助GAN结构更稳定地训练。并且命名为DCGAN</li>
+<li>训练了可以进行图片分类的生成器，和其他无监督分类模型进行比较</li>
+<li>可视化GAN模型学习到的filter，并且展示了特定的filter可以画出特定的物体</li>
+<li>展示了生成器有很多有趣的向量计算，可以直接反映在生成的图片上。</li>
+</ul>
+<h1 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h1><ul>
+<li>从无标签数据中学习特征表达</li>
+<li>生成自然的图片（比较像真的的图片）</li>
+<li>可视化内部CNN层</li>
+</ul>
+<h1 id="Approach-and-Model-Architecture"><a href="#Approach-and-Model-Architecture" class="headerlink" title="Approach and Model Architecture"></a>Approach and Model Architecture</h1><p>历来将CNN结构用在GAN的模型中生成图片展示的效果都不是很好。这让LAPGAN的作者想到逐步提高生成图片的分辨率使得生成图片的模型更加稳定。我们同样也遇到了将CNN运用在GAN模型中常见的不稳定的问题。然而在一些列的模型探索以后，我们选定了一组模型可以在训练时稳定生成高清晰度的图片。</p>
+<p>我们方法的核心是采用和修改最近在CNN结构中提出的改变</p>
+<ol>
+<li>用带有确定stride参数的卷积层替代池化层，这可以使网络自己去学习适用于自身的下采样的方法。我们在生成器generator中采用这个改变</li>
+<li>去除卷积网络顶部的全连接层。最强有力的证明是使用平均池化层，我们发现global average pooling会提升模型的稳定性但是会减缓收敛速度。折中的办法是直接用卷积特征连接生成器和判别器的输入和输出层。（？）。GAN网络的第一层，也就是随机 z 向量这一层可以被称作全连接层，因为这只是矩阵的乘法，但是他得出的结果会变形为4维tensor，并且开启以后一堆卷积。对于判别器来讲，最后一层的卷积层会被放入单一的sigmoid方程中作为输出。</li>
+<li>Batch Normalization可以稳定学习过程。但是在每一层增加BN层会导致生成的样本不稳定，所以在生成器的输出和判别器的输入层，我们不会用到BN。</li>
+<li>在生成器除了输出层职位都用ReLU，在判别器用leaky ReLU会好一些</li>
+</ol>
+<h1 id="对抗训练的细节"><a href="#对抗训练的细节" class="headerlink" title="对抗训练的细节"></a>对抗训练的细节</h1><p>我们用三个数据库： LSUN， Imagenet，组合人脸作为训练数据，训练了DCGAN模型。</p>
+<ul>
+<li>对于训练图片 scale到 tanh方程的范围 [-1, 1] </li>
+<li>所有训练中用size 128 mini-batch的SGD进行梯度下降运算</li>
+<li>初始化z向量都来自于deviation为0.02的高斯分布</li>
+<li>LeakyReLU中的斜率为0.2</li>
+<li>利用Adam优化器，momentum设置为0.5</li>
+<li>学习率设置为0.0002</li>
+</ul>
+<h2 id="LSUN"><a href="#LSUN" class="headerlink" title="LSUN"></a>LSUN</h2><p>随着由GAN网络生成的图片质量的提高，对于网络是否过拟合的讨论也随之增加。为了说明我们的模型是如何处理更多数据并且生成更高分辨率的图片，我们在LSUN大约三百万张图上做了训练。最近的分析显示了模型学习速度之快和生成图片质量之间的关系。我们展示了训练一次过后的sample，模仿在线学习，显示我们的模型并不是通过过拟合生成高质量图片的。训练的图片没有进行数据增广。</p>
+<h2 id="Faces"><a href="#Faces" class="headerlink" title="Faces"></a>Faces</h2><p>Faces的数据库是从网上下载了一些包含人的图片。每一个人都做了确认，保证他们是处于现代的人。对于这些图片，通过OpenCV里的人脸detector将脸从图片中识别出来。这些face boxes就被当做是训练数据。同样这部分的图片没有进行数据增广。</p>
+<h2 id="ImageNet-1k"><a href="#ImageNet-1k" class="headerlink" title="ImageNet-1k"></a>ImageNet-1k</h2><p>我们用了ImageNet数据库中的图片作为无监督学习的图片来源。训练是在大小为 $32\times32$ 尺寸的图片上展开。图片同样没有做数据增广。</p>
+<h1 id="Empirical-Validation-of-DCGAN-capabilities"><a href="#Empirical-Validation-of-DCGAN-capabilities" class="headerlink" title="Empirical Validation of DCGAN capabilities"></a>Empirical Validation of DCGAN capabilities</h1><h2 id="Classifying-CIFAR-10-using-GANs-as-a-feature-extractor"><a href="#Classifying-CIFAR-10-using-GANs-as-a-feature-extractor" class="headerlink" title="Classifying CIFAR-10 using GANs as a feature extractor"></a>Classifying CIFAR-10 using GANs as a feature extractor</h2><p>常见的评价无监督特征学习的算法就是将他们用作特征提取器用在有监督的数据库中，然后看他表现如何。</p>
+<p>在CIFAR-10数据库中，用K-means算法作为单层网络的特征提取器已经可以得到很好的分类结果。当特征map的数量增加到4800的时候，可以达到的准确略为80.6%，若是将它拓展为多层特征学习，那么准确率可以高达82%。为了评价DCGAN学到的特征，我们将模型在ImageNet-1k上进行训练，然后用判别器每一层的卷积特征进行最大池化处理，将每一层生成一个 $4\times4$ 的网格。这些特征然后被展开形成一个 28672 维的向量，然后用 L2-svm分类器进行分类，可以得到准确率为82.8%的结果。DCGAN的结果还是没有直接训练CNN的结果好。另外，因为DCGAN不是在CIFAR-10本来的数据库上训练的，也可以说明该模型真的学到了特征，并且不受训练数据的影响。</p>
+<h2 id="Classifiying-SVHN-digits-using-GAN-as-a-feature-extractor"><a href="#Classifiying-SVHN-digits-using-GAN-as-a-feature-extractor" class="headerlink" title="Classifiying SVHN digits using GAN as a feature extractor"></a>Classifiying SVHN digits using GAN as a feature extractor</h2><p>这部分和上部分的内容差不多，是在另一个数据集上面的测试。如果用DCGAN的判别器做有监督学习，能够得到比较小的test error。另外，我们验证了DCGAN里面的CNN结构并不是模型分类的关键点，因为如果纯训练一个CNN的有监督模型，达到的误差更大。</p>
+<h1 id="Investigating-and-visualizing-the-internals-of-the-networks"><a href="#Investigating-and-visualizing-the-internals-of-the-networks" class="headerlink" title="Investigating and visualizing the internals of the networks"></a>Investigating and visualizing the internals of the networks</h1><p>我们从多方面研究了训练的生成器和判别器。我们不做任何 nearest neighbor的搜索。在像素级别或者特征级别的nearest neighbor容易被愚弄，童谣的我们不用log-likelihood标准来评价模型，因为这种标准很弱。</p>
+<h2 id="Walking-in-the-latent-space"><a href="#Walking-in-the-latent-space" class="headerlink" title="Walking in the latent space"></a>Walking in the latent space</h2><p>我们做的第一个实验是去理解隐层的样貌。顺着训练中学习到的流我们可以找到一些出现剧烈变化时表现出的训练模型memorization的标志，以及那些信息被破坏了。如果在隐层中探索的过程中，某一层的语义发生了变化（比如增加或减少了某个部分）那么我们可以以此作为模型学习到的相关和有趣的特征。</p>
+<h2 id="Visualizing-the-discriminator-features"><a href="#Visualizing-the-discriminator-features" class="headerlink" title="Visualizing the discriminator features"></a>Visualizing the discriminator features</h2><p>之前的工作显示了在有监督训练下的CNN网络会学到很有力的特征。特别是对以一些场景而言，CNN网络会学习到一些物体的detector。我们介绍了DCGAN也同样从大量的图片数据库中学到有趣的特征。特别是在卧室的场景中，可以看到学习到了一些床，窗户这样的特征。</p>
+<h2 id="Manipulating-the-generator-representation"><a href="#Manipulating-the-generator-representation" class="headerlink" title="Manipulating the generator representation"></a>Manipulating the generator representation</h2><p>除了从判别器学习到的特征之外，我们也需要考虑生成器学到了什么。从生成的图片的质量上来讲，生学期学习到了场景一些主要的特征，比如床，窗户，台灯，门还有奢华的家具。为了探索更多的特征的性能，我们做事杨尝试去除生成器中的窗户。</p>
+<p>在150个sample中，52个窗户被人为地框起来。在第二高的卷积特征层，应用了logistic regression去预测窗户的特征是否被激活。圈出的窗户盒子内的激活层是正值还是随机值。【这部分是没怎么弄明白是怎么把窗户给搞没有的】</p>
+<h2 id="Vector-arithmetic-on-face-samples"><a href="#Vector-arithmetic-on-face-samples" class="headerlink" title="Vector arithmetic on face samples"></a>Vector arithmetic on face samples</h2><p>学习了用在自然语言处理上的对于词向量的操作。这里是直接将加减操作用在Z向量上，最后生成的图片也会产生某种特征上的变化。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+              <a href="/tags/GAN/" rel="tag"># GAN</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/03/24/PaperReading-Semantic-Human-Matting/" rel="prev" title="论文阅读 | Semantic Human Matting">
+                  <i class="fa fa-chevron-left"></i> 论文阅读 | Semantic Human Matting
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/03/28/Machine-Learning-2020-Lecture-2-Classification/" rel="next" title="Machine Learning-2020|Lecture#2 Classification">
+                  Machine Learning-2020|Lecture#2 Classification <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Author</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
